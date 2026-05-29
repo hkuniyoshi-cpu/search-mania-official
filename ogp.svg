@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1a3a"/>
+      <stop offset="100%" style="stop-color:#1a2d6b"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   style="stop-color:#4285F4"/>
+      <stop offset="50%"  style="stop-color:#93b8ff"/>
+      <stop offset="100%" style="stop-color:#4285F4"/>
+    </linearGradient>
+    <linearGradient id="brandV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   style="stop-color:#93b8ff"/>
+      <stop offset="100%" style="stop-color:#1a73e8"/>
+    </linearGradient>
+    <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   style="stop-color:#4285F4;stop-opacity:0.45"/>
+      <stop offset="100%" style="stop-color:#4285F4;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   style="stop-color:#34a853;stop-opacity:0.30"/>
+      <stop offset="100%" style="stop-color:#34a853;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative orbs -->
+  <circle cx="120" cy="120" r="280" fill="url(#orb1)"/>
+  <circle cx="1080" cy="540" r="320" fill="url(#orb2)"/>
+
+  <!-- Grid pattern (subtle) -->
+  <g opacity="0.06" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Corner frame -->
+  <rect x="72"   y="72"    width="2"    height="486" fill="url(#brandV)" opacity="0.7"/>
+  <rect x="1126" y="72"    width="2"    height="486" fill="url(#brandV)" opacity="0.7"/>
+  <rect x="72"   y="72"    width="1056" height="1.5" fill="url(#brand)"  opacity="0.6"/>
+  <rect x="72"   y="556.5" width="1056" height="1.5" fill="url(#brand)"  opacity="0.6"/>
+
+  <!-- Corner accents -->
+  <rect x="72"   y="72"   width="32" height="2"  fill="#4285F4"/>
+  <rect x="72"   y="72"   width="2"  height="32" fill="#4285F4"/>
+  <rect x="1096" y="72"   width="32" height="2"  fill="#4285F4"/>
+  <rect x="1126" y="72"   width="2"  height="32" fill="#4285F4"/>
+  <rect x="72"   y="556"  width="32" height="2"  fill="#4285F4"/>
+  <rect x="72"   y="526"  width="2"  height="32" fill="#4285F4"/>
+  <rect x="1096" y="556"  width="32" height="2"  fill="#4285F4"/>
+  <rect x="1126" y="526"  width="2"  height="32" fill="#4285F4"/>
+
+  <!-- Top divider -->
+  <rect x="540" y="148" width="120" height="1" fill="url(#brand)" opacity="0.8"/>
+
+  <!-- Eyebrow -->
+  <text x="600" y="188" font-family="Inter, sans-serif" font-size="14" fill="#4285F4" text-anchor="middle" letter-spacing="8" opacity="0.95" font-weight="600">DIGITAL · MEO · AI · NAHA</text>
+
+  <!-- Brand EN -->
+  <text x="600" y="316" font-family="Inter, Arial, sans-serif" font-size="86" fill="url(#brand)" text-anchor="middle" letter-spacing="8" font-weight="700">SearchMania</text>
+
+  <!-- Brand JP -->
+  <text x="600" y="368" font-family="'Noto Sans JP', sans-serif" font-size="22" fill="#ffffff" text-anchor="middle" letter-spacing="14" opacity="0.95" font-weight="500">サ ー チ マ ニ ア</text>
+
+  <!-- Middle divider -->
+  <rect x="420" y="410" width="360" height="1" fill="url(#brand)" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="600" y="452" font-family="'Noto Serif JP', serif" font-size="22" fill="#ffffff" text-anchor="middle" letter-spacing="10" opacity="0.92" font-weight="500">デ ジ タ ル を 身 近 に</text>
+
+  <!-- Domain -->
+  <text x="600" y="510" font-family="Inter, monospace" font-size="14" fill="#93b8ff" text-anchor="middle" letter-spacing="4" opacity="0.85">search-mania.net</text>
+
+  <!-- Diamond markers -->
+  <polygon points="600,130 606,136 600,142 594,136" fill="#4285F4" opacity="0.8"/>
+  <polygon points="600,488 604,492 600,496 596,492" fill="#4285F4" opacity="0.6"/>
+</svg>
