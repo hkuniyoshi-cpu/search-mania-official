@@ -115,25 +115,37 @@
 <!-- ==================== Hero ==================== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-overlay"></div>
     <div class="hero-grid"></div>
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-particles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
   </div>
+
   <div class="hero-inner">
-    <div class="hero-eyebrow">
+    <div class="hero-eyebrow anim-fade-down">
       <span class="line"></span>
       <span class="text">DIGITAL · MEO · AI · DX</span>
       <span class="line"></span>
     </div>
-    <h1 class="hero-title">
+
+    <h1 class="hero-title" data-anim="char-cascade">
       <span class="hero-title-main" id="heroTitle">デジタルを身近に、<br>もっとあたりまえに。</span>
     </h1>
-    <p class="hero-sub" id="heroSub">
+
+    <p class="hero-sub anim-fade-up-delay" id="heroSub">
       沖縄から日本全国へ。Googleマップ集客・AI自動化・DX支援で、<br>
       事業者様の "デジタル × 集客 × 業務効率化" を一気通貫でサポート。
     </p>
-    <div class="hero-actions">
-      <a href="#services" class="btn btn-primary">
+
+    <div class="hero-actions anim-fade-up-delay-2">
+      <a href="#services" class="btn btn-primary btn-shine">
         <span>事業内容を見る</span>
         <i class="fa-solid fa-arrow-right"></i>
       </a>
@@ -142,7 +154,8 @@
         <i class="fa-solid fa-comments"></i>
       </a>
     </div>
-    <div class="hero-meta">
+
+    <div class="hero-meta anim-fade-up-delay-3">
       <div class="meta-item">
         <span class="meta-label">本社</span>
         <span class="meta-value">沖縄県那覇市</span>
@@ -159,7 +172,47 @@
       </div>
     </div>
   </div>
+
+  <a href="#services" class="hero-scroll" aria-label="下にスクロール">
+    <span class="scroll-text">SCROLL</span>
+    <span class="scroll-line"></span>
+  </a>
 </section>
+
+<!-- ==================== Tech Marquee (Section divider) ==================== -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span><i class="fa-brands fa-google"></i> Google Maps</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-location-dot"></i> MEO Strategy</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-robot"></i> Generative AI</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-bolt"></i> Make / Zapier</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-code"></i> Web Development</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-chart-line"></i> SEO &amp; Analytics</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-microchip"></i> Automation</span>
+    <span class="dot">●</span>
+    <!-- duplicate for seamless loop -->
+    <span><i class="fa-brands fa-google"></i> Google Maps</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-location-dot"></i> MEO Strategy</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-robot"></i> Generative AI</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-bolt"></i> Make / Zapier</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-code"></i> Web Development</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-chart-line"></i> SEO &amp; Analytics</span>
+    <span class="dot">●</span>
+    <span><i class="fa-solid fa-microchip"></i> Automation</span>
+    <span class="dot">●</span>
+  </div>
+</div>
 
 <!-- ==================== Services / 事業内容 ==================== -->
 <section class="section services" id="services">
@@ -251,6 +304,26 @@
       <div class="foryou-skel"></div>
       <div class="foryou-skel"></div>
       <div class="foryou-skel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Works / 実績 ==================== -->
+<section class="section works bg-light" id="works">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">WORKS</span>
+      <h2 class="section-title">実 績</h2>
+      <p class="section-subtitle">これまでに手がけたプロジェクトの一部をご紹介します</p>
+    </div>
+
+    <div class="works-grid reveal-stagger" id="worksGrid">
+      <div class="work-skel"></div>
+      <div class="work-skel"></div>
+      <div class="work-skel"></div>
+      <div class="work-skel"></div>
+      <div class="work-skel"></div>
+      <div class="work-skel"></div>
     </div>
   </div>
 </section>
@@ -784,6 +857,40 @@ function applyBlog(items){
    Partners (delivery 流用)
    delivery シートの type=partner で扱う or 専用partnersシート
    ============================================================ */
+/* ============================================================
+   Works
+   ============================================================ */
+function applyWorks(items){
+  if(!Array.isArray(items) || !items.length) return;
+  const grid = document.getElementById('worksGrid');
+  if(!grid) return;
+  // 「サンプル」が含まれるものはスケルトンのまま空にせず、フォールバックでサンプル表示
+  const real = items.filter(w => !/サンプル/.test(w.title || ''));
+  const display = real.length ? real : items;
+  grid.innerHTML = display.map(w => {
+    const img = driveImg(w.image);
+    const hasUrl = w.url && /^https?:/.test(w.url);
+    const open = hasUrl
+      ? `<a class="work-card reveal" href="${esc(w.url)}" target="_blank" rel="noopener">`
+      : `<article class="work-card reveal">`;
+    const close = hasUrl ? '</a>' : '</article>';
+    return `${open}
+      <div class="work-image">
+        ${img
+          ? `<img src="${esc(img)}" alt="${esc(w.title)}" loading="lazy">`
+          : '<div class="work-image-placeholder"><i class="fa-solid fa-image"></i></div>'}
+        <div class="work-image-overlay"></div>
+      </div>
+      <div class="work-body">
+        ${w.category ? `<span class="work-cat">${esc(w.category)}</span>` : ''}
+        <h3 class="work-title">${esc(w.title)}</h3>
+        ${w.desc ? `<p class="work-desc">${esc(w.desc)}</p>` : ''}
+        ${hasUrl ? '<span class="work-link">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>' : ''}
+      </div>
+    ${close}`;
+  }).join('');
+}
+
 function applyPartners(items){
   if(!Array.isArray(items) || !items.length) return;
   const grid = document.getElementById('partnersGrid');
@@ -871,6 +978,7 @@ function loadCMS(){
       if(data.forYou)   applyForYou(data.forYou);
       if(data.reviews)  applyReviews(data.reviews);
       if(data.blog)     applyBlog(data.blog);
+      if(data.works)    applyWorks(data.works);
       if(data.partners) applyPartners(data.partners);
       if(data.recruit)  applyRecruit(data.recruit, data.recruitStatus);
       if(data.cta)      applyCTA(data.cta);
@@ -996,6 +1104,90 @@ document.addEventListener('DOMContentLoaded', () => {
   // CMS 読み込み後に reveal を再観測
   setTimeout(observeNew, 1500);
 });
+
+/* ============================================================
+   Character cascade animation for hero title
+   ============================================================ */
+function setupCharCascade(){
+  const el = document.querySelector('[data-anim="char-cascade"] .hero-title-main');
+  if(!el) return;
+  // Walk text nodes only, preserving <br> tags
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+  const nodes = [];
+  let n;
+  while((n = walker.nextNode())) nodes.push(n);
+  let idx = 0;
+  nodes.forEach(node => {
+    const text = node.nodeValue;
+    const frag = document.createDocumentFragment();
+    [...text].forEach(ch => {
+      if(ch === ' ' || ch === '　'){
+        frag.appendChild(document.createTextNode(ch));
+        return;
+      }
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.animationDelay = (0.04 * idx) + 's';
+      span.textContent = ch;
+      frag.appendChild(span);
+      idx++;
+    });
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+setupCharCascade();
+
+/* ============================================================
+   3D Tilt on cards (mouse-tracked)
+   ============================================================ */
+function setupTilt(){
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotY = (x - 0.5) * 10;
+      const rotX = (0.5 - y) * 10;
+      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* Apply tilt to dynamically inserted service/work cards too */
+const tiltObserver = new MutationObserver(() => {
+  document.querySelectorAll('.service-card:not(.tilt), .work-card:not(.tilt)').forEach(c => {
+    c.classList.add('tilt');
+  });
+  setupTilt();
+});
+tiltObserver.observe(document.body, { childList: true, subtree: true });
+
+/* ============================================================
+   Mouse-tracked parallax for hero orbs
+   ============================================================ */
+const heroSec = document.getElementById('hero');
+if(heroSec){
+  heroSec.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    heroSec.style.setProperty('--parallax-x', x + 'px');
+    heroSec.style.setProperty('--parallax-y', y + 'px');
+  });
+}
+
+/* ============================================================
+   Scroll progress + parallax bg image
+   ============================================================ */
+window.addEventListener('scroll', () => {
+  const sc = window.scrollY;
+  const heroBgImg = document.querySelector('.hero-bg-image');
+  if(heroBgImg && sc < window.innerHeight){
+    heroBgImg.style.transform = `scale(1.08) translateY(${sc * 0.35}px)`;
+  }
+}, { passive: true });
 
 /* Click anchor in same page → smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
