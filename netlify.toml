@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+
+# ブログ詳細ページを動的テンプレートにリライト
+# /blog/index.html が存在するためサブパスのみ対象
+# status=200 = rewrite（ブラウザのURLはそのまま、blog/index.html を配信）
+[[redirects]]
+  from = "/blog/*"
+  to   = "/blog/index.html"
+  status = 200
+
+# プライバシーポリシー/利用規約は静的HTMLなのでそのまま
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
