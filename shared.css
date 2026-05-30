@@ -2029,6 +2029,21 @@ a:hover { color: var(--blue-dark); }
   transform: translateY(0) scale(1);
 }
 
+/* Critical safety: is-visible always wins, regardless of cascade conflicts */
+.reveal.is-visible,
+.reveal-stagger > *.is-visible,
+.is-visible.reveal,
+.reveal-stagger > .is-visible {
+  opacity: 1 !important;
+}
+.reveal.is-visible:not(.foryou-card),
+.reveal-stagger > *.is-visible:not(.foryou-card) {
+  transform: translateY(0) scale(1) !important;
+}
+.foryou-card.reveal.is-visible {
+  transform: translateX(0) !important;
+}
+
 /* ---------- For You card slide-in from left ---------- */
 .foryou-card.reveal { transform: translateX(-30px); }
 .foryou-card.reveal.is-visible { transform: translateX(0); }
