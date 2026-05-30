@@ -25,8 +25,8 @@
   <meta name="twitter:image" content="https://search-mania.net/ogp.svg">
 
   <link rel="canonical" href="https://search-mania.net/">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="alternate icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,13 +84,14 @@
     </a>
     <nav class="nav-menu" aria-label="主要ナビゲーション">
       <ul>
-        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#services">サービス</a></li>
         <li><a href="#greeting">代表挨拶</a></li>
-        <li><a href="#partners">PARTNERS</a></li>
+        <li><a href="#works">実績</a></li>
+        <li><a href="#partners">パートナーズ</a></li>
         <li><a href="#about">会社情報</a></li>
         <li><a href="#recruit">採用</a></li>
-        <li><a href="#blog">BLOG</a></li>
-        <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+        <li><a href="#blog">ブログ</a></li>
+        <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く">
@@ -102,13 +103,14 @@
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobile-nav">
   <ul>
-    <li><a href="#services">SERVICES / 事業内容</a></li>
+    <li><a href="#services">サービス</a></li>
     <li><a href="#greeting">代表挨拶</a></li>
-    <li><a href="#partners">PARTNERS / 取引先</a></li>
+    <li><a href="#works">実績</a></li>
+    <li><a href="#partners">パートナーズ</a></li>
     <li><a href="#about">会社情報</a></li>
     <li><a href="#recruit">採用情報</a></li>
-    <li><a href="#blog">BLOG / お知らせ</a></li>
-    <li><a href="#contact">CONTACT / お問い合わせ</a></li>
+    <li><a href="#blog">ブログ</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
   </ul>
 </div>
 
@@ -327,7 +329,6 @@
       <div class="partner-skel"></div>
     </div>
 
-    <p class="partners-note reveal">※掲載は順次拡大予定。掲載をご希望の取引先様はお問い合わせください。</p>
   </div>
 </section>
 
@@ -960,6 +961,14 @@ function loadCMS(){
       if(data.partners) applyPartners(data.partners);
       if(data.recruit)  applyRecruit(data.recruit, data.recruitStatus);
       if(data.cta)      applyCTA(data.cta);
+      // CMS反映直後に新規挿入要素のアニメーションを監視（タイミング依存バグの修正）
+      if(typeof observeNew === 'function') observeNew();
+      // CMS反映から800ms後にフェイルセーフ実行（全ての未表示 reveal を強制的に is-visible 化）
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible), .reveal-stagger > *:not(.is-visible)').forEach(el => {
+          el.classList.add('is-visible');
+        });
+      }, 800);
     })
     .catch(err => console.warn('CMS fetch error:', err));
 }
@@ -1069,9 +1078,17 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .reveal-stagger > *').forEach(el => io.observe(el));
 
-/* Re-observe CMS-inserted elements */
+/* Re-observe CMS-inserted elements. Elements already in viewport become visible immediately. */
 function observeNew(){
-  document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal:not(.is-visible), .reveal-stagger > *:not(.is-visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.95 && rect.bottom > 0;
+    if(inView){
+      el.classList.add('is-visible');
+    } else {
+      io.observe(el);
+    }
+  });
 }
 
 /* ============================================================
@@ -1081,6 +1098,12 @@ document.addEventListener('DOMContentLoaded', () => {
   loadCMS();
   // CMS 読み込み後に reveal を再観測
   setTimeout(observeNew, 1500);
+  // 最終フェイルセーフ: 5秒後に未表示の reveal を強制 is-visible 化
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible), .reveal-stagger > *:not(.is-visible)').forEach(el => {
+      el.classList.add('is-visible');
+    });
+  }, 5000);
 });
 
 /* ============================================================
