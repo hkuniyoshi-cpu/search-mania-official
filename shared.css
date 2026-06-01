@@ -607,6 +607,25 @@ a:hover { color: var(--blue-dark); }
   color: var(--ink-soft);
 }
 
+/* リンク付きサービスカード */
+a.service-card { cursor: pointer; }
+.service-link-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .25s, transform .25s;
+}
+a.service-card:hover .service-link-hint {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .service-skel {
   min-height: 260px;
   background: var(--bg-light);
