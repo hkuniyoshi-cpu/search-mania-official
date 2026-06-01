@@ -234,55 +234,54 @@
     .reveal-left { opacity:0; transform:translateX(-30px); }
     .reveal-right { opacity:0; transform:translateX(30px); }
 
-    /* ── Hero CTA buttons ── */
-    .hero-cta-wrap {
+    /* ── CTA buttons (絶対揃える版) ── */
+    .cta-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       justify-content: center;
-      gap: 14px;
-    }
-    .hero-cta-main {
-      flex: 0 1 auto;
-      min-width: 220px;
-      max-width: 340px;
-    }
-    .hero-cta-line {
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 12px;
+    }
+    .cta-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       gap: 8px;
-      flex: 0 0 auto;
-      background: #fff;
-      color: var(--fg);
-      font-weight: 600;
+      height: 56px !important;
+      padding: 0 28px !important;
+      box-sizing: border-box !important;
       font-size: 16px;
-      padding: 16px 28px;
+      line-height: 1;
       border-radius: 12px;
       text-decoration: none;
-      border: 1px solid var(--line);
-      transition: box-shadow .2s, border-color .2s;
       white-space: nowrap;
-      line-height: 1.5;
+      vertical-align: middle;
     }
-    .hero-cta-line:hover {
-      box-shadow: 0 4px 12px rgba(6,199,85,.2);
-      border-color: #06C755;
-    }
-    .btn-primary.hero-cta-main {
-      flex: 0 0 auto;
-      padding: 16px 28px;
-      font-size: 16px;
-      line-height: 1.5;
+    .cta-primary {
+      background: #4285F4;
+      color: #fff;
+      border: none;
+      font-weight: 700;
       box-shadow: 0 4px 16px rgba(66,133,244,.4);
+      transition: background .2s;
     }
-    .hero-cta-line:hover {
-      box-shadow: 0 4px 12px rgba(6,199,85,.2);
+    .cta-primary:hover { background: #1a73e8; }
+    .cta-line {
+      background: #fff;
+      color: #202124;
+      font-weight: 600;
+      border: 1.5px solid rgba(0,0,0,.12);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .cta-line:hover {
       border-color: #06C755;
+      box-shadow: 0 4px 12px rgba(6,199,85,.2);
     }
+    .cta-icon { width: 18px; height: 18px; flex-shrink: 0; stroke-width: 2.5; }
+    .cta-icon-svg { width: 18px; height: 18px; flex-shrink: 0; }
     @media (max-width: 520px) {
-      .hero-cta-wrap { flex-direction: column; align-items: center; }
-      .hero-cta-main, .hero-cta-line { width: 100%; max-width: 360px; min-width: unset; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .cta-btn { width: 100%; max-width: 360px; margin: 0 auto; }
     }
 
     /* ── Scrollbar ── */
@@ -361,18 +360,14 @@
     </p>
 
     <!-- CTA buttons -->
-    <div id="hero-cta" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:stretch;">
-      <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#4285F4;color:#fff;font-weight:700;font-size:16px;padding:0 28px;height:52px;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(66,133,244,.4);transition:background .2s,transform .15s;white-space:nowrap;border:none;"
-         onmouseover="this.style.background='#1a73e8'" onmouseout="this.style.background='#4285F4'">
-        <i data-lucide="map-pin" style="width:17px;height:17px;stroke-width:2.5;flex-shrink:0;"></i>
-        無料マップ勉強会に参加する
+    <div id="hero-cta" class="cta-row">
+      <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="cta-btn cta-primary">
+        <i data-lucide="map-pin" class="cta-icon"></i>
+        <span>無料マップ勉強会に参加する</span>
       </a>
-      <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#202124;font-weight:600;font-size:16px;padding:0 28px;height:52px;border-radius:12px;text-decoration:none;border:1.5px solid rgba(0,0,0,.12);transition:border-color .2s,box-shadow .2s;white-space:nowrap;"
-         onmouseover="this.style.borderColor='#06C755';this.style.boxShadow='0 4px 12px rgba(6,199,85,.2)'" onmouseout="this.style.borderColor='rgba(0,0,0,.12)';this.style.boxShadow='none'">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="#06C755" style="flex-shrink:0;"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-        LINEで質問する
+      <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener" class="cta-btn cta-line">
+        <svg viewBox="0 0 24 24" fill="#06C755" class="cta-icon-svg"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+        <span>LINEで質問する</span>
       </a>
     </div>
   </div>
@@ -912,7 +907,7 @@
     .from('#hero-box',    { y: 30, opacity: 0, duration: .7 }, '-=.3')
     .from('#hero-title',  { y: 20, opacity: 0, duration: .5 }, '-=.3')
     .from('#hero-desc',   { y: 20, opacity: 0, duration: .5 }, '-=.3')
-    .from('#hero-cta > *',{ y: 16, opacity: 0, duration: .4, stagger: .12 }, '-=.2');
+    .from('#hero-cta > *',{ opacity: 0, duration: .5, stagger: .15, clearProps: 'all' }, '-=.2');
 
   // Scroll reveals
   gsap.utils.toArray('.reveal').forEach(el => {
