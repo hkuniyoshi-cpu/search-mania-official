@@ -295,7 +295,8 @@ a:hover { color: var(--blue-dark); }
 .hero {
   position: relative;
   min-height: 100vh;
-  padding: calc(var(--header-h) + 80px) 24px 100px;
+  /* 上下対称のパディングで、コンテンツの視覚中心をビューポート中央に合わせる */
+  padding: calc(var(--header-h) + 60px) 24px 130px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1758,20 +1759,27 @@ a:hover { color: var(--blue-dark); }
 /* ---------- Scroll indicator ---------- */
 .hero-scroll {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   color: rgba(255,255,255,.65);
   font-size: 10px;
-  letter-spacing: .4em;
   text-decoration: none;
   z-index: 5;
   opacity: 0;
   animation: fadeUp 1s 2.6s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-scroll .scroll-text {
+  display: block;
+  letter-spacing: .4em;
+  /* letter-spacingで右にできる空白を相殺してテキスト幾何中心を合わせる */
+  margin-right: -.4em;
 }
 .hero-scroll:hover { color: #fff; }
 .hero-scroll .scroll-line {
