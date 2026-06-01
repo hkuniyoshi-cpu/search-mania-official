@@ -252,26 +252,29 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      flex: 0 1 auto;
-      min-width: 160px;
-      max-width: 220px;
+      flex: 0 0 auto;
       background: #fff;
       color: var(--fg);
       font-weight: 600;
       font-size: 16px;
-      padding: 16px 24px;
+      padding: 16px 28px;
       border-radius: 12px;
       text-decoration: none;
       border: 1px solid var(--line);
       transition: box-shadow .2s, border-color .2s;
       white-space: nowrap;
-      height: 56px;
-      box-sizing: border-box;
+      line-height: 1.5;
+    }
+    .hero-cta-line:hover {
+      box-shadow: 0 4px 12px rgba(6,199,85,.2);
+      border-color: #06C755;
     }
     .btn-primary.hero-cta-main {
-      height: 56px;
-      box-sizing: border-box;
-      padding: 0 32px;
+      flex: 0 0 auto;
+      padding: 16px 28px;
+      font-size: 16px;
+      line-height: 1.5;
+      box-shadow: 0 4px 16px rgba(66,133,244,.4);
     }
     .hero-cta-line:hover {
       box-shadow: 0 4px 12px rgba(6,199,85,.2);
