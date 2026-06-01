@@ -691,12 +691,17 @@ function fmtDate(s){
 function driveImg(url){
   if(!url) return '';
   const s = String(url).trim();
-  const m1 = s.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if(m1) return `https://drive.google.com/thumbnail?id=${m1[1]}&sz=w1200`;
+  // lh3 形式はそのまま返す
   const m2 = s.match(/lh3\.googleusercontent\.com\/d\/([a-zA-Z0-9_-]+)/);
   if(m2) return `https://lh3.googleusercontent.com/d/${m2[1]}=w1200`;
+  // /d/FILE_ID 形式 → lh3 に変換（最も安定）
+  const m1 = s.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if(m1) return `https://lh3.googleusercontent.com/d/${m1[1]}=w1200`;
+  // thumbnail 形式が直接渡された場合
   if(s.indexOf('drive.google.com/thumbnail') !== -1){
-    return s.replace(/[?&]sz=[^&]*/, '?sz=w1200');
+    const idm = s.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if(idm) return `https://lh3.googleusercontent.com/d/${idm[1]}=w1200`;
+    return s;
   }
   return s;
 }
@@ -885,7 +890,7 @@ function applyWorks(items){
     return `${open}
       <div class="work-image">
         ${img
-          ? `<img src="${esc(img)}" alt="${esc(w.title)}" loading="lazy">`
+          ? `<img src="${esc(img)}" alt="${esc(w.title)}" loading="lazy" onerror="this.closest('.work-image').innerHTML='<div class=\\'work-image-placeholder\\'><i class=\\'fa-solid fa-image\\'></i></div>'">`
           : '<div class="work-image-placeholder"><i class="fa-solid fa-image"></i></div>'}
         <div class="work-image-overlay"></div>
       </div>
