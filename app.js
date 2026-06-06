@@ -475,17 +475,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, 5000);
 
-  /* ----- Hero keywords: 順次 active 切替 ----- */
-  const kws = document.querySelectorAll('.hero-keywords .kw');
-  if(kws.length){
-    let kwIdx = 0;
-    const cycleKw = () => {
-      kws.forEach(k => k.classList.remove('is-active'));
-      kws[kwIdx].classList.add('is-active');
-      kwIdx = (kwIdx + 1) % kws.length;
+  /* ----- Hero keywords: 中央のキーワードをアクティブ化 ----- */
+  const kwsContainer = document.querySelector('.hero-keywords');
+  if(kwsContainer){
+    const kws = kwsContainer.querySelectorAll('.kw');
+    const centerY = () => {
+      const rect = kwsContainer.getBoundingClientRect();
+      return rect.top + rect.height / 2;
     };
-    cycleKw();
-    setInterval(cycleKw, 2400);
+    const updateActive = () => {
+      const c = centerY();
+      let nearest = null, nearestDist = Infinity;
+      kws.forEach(k => {
+        const r = k.getBoundingClientRect();
+        const ky = r.top + r.height / 2;
+        const d = Math.abs(c - ky);
+        if(d < nearestDist){ nearestDist = d; nearest = k; }
+      });
+      kws.forEach(k => k.classList.toggle('is-active', k === nearest));
+    };
+    const tick = () => {
+      updateActive();
+      requestAnimationFrame(tick);
+    };
+    tick();
   }
 
   /* ----- Chapter sections: スクロール到達で in-view 付与 ----- */
