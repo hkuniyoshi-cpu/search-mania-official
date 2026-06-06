@@ -36,7 +36,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="shared.css?v=20260606b">
+  <link rel="stylesheet" href="shared.css?v=20260606folio">
 
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="LZg90oxtbqi0v6An7Fc0uO3ufbqcmW4_Qp9mCI2u6wk" />
@@ -114,54 +114,48 @@
   </ul>
 </div>
 
-<!-- ==================== Hero ==================== -->
-<section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="hero-bg-image"></div>
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="hero-particles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
+<!-- ==================== Hero - Folio editorial style ==================== -->
+<section class="hero hero--editorial" id="hero">
+  <div class="hero-edit-inner">
+    <div class="hero-edit-text">
+      <span class="hero-edit-eyebrow">— Searchmania Inc.</span>
+      <h1 class="hero-edit-title">
+        <span class="line-1">デジタルを、</span>
+        <span class="line-2">身近に。</span>
+        <span class="line-3">もっと、あたりまえに。</span>
+      </h1>
+      <p class="hero-edit-lead">
+        沖縄那覇から日本全国へ。Googleマップ集客・AI自動化・DX支援で、<br>
+        事業者の「デジタル × 集客 × 業務効率化」を一気通貫で。
+      </p>
+      <div class="hero-edit-actions">
+        <a href="#about" class="link-arrow">
+          <span>About Us</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#business" class="link-arrow">
+          <span>Business</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#contact" class="link-arrow link-arrow--cta">
+          <span>Contact</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-edit-image">
+      <div class="hero-image-frame">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1740&auto=format&fit=crop" alt="" loading="eager">
+      </div>
+      <div class="hero-edit-caption">
+        <span class="caption-num">— 2025</span>
+        <span class="caption-text">Digital × MEO × AI<br>From Okinawa to Japan.</span>
+      </div>
     </div>
   </div>
 
-  <div class="hero-inner">
-    <div class="hero-eyebrow anim-fade-down">
-      <span class="line"></span>
-      <span class="text">DIGITAL · MEO · AI · DX</span>
-      <span class="line"></span>
-    </div>
-
-    <h1 class="hero-title" data-anim="char-cascade">
-      <span class="hero-title-main" id="heroTitle">デジタルを身近に、<br>もっとあたりまえに。</span>
-    </h1>
-
-    <p class="hero-sub anim-fade-up-delay" id="heroSub">
-      沖縄から日本全国へ。Googleマップ集客・AI自動化・DX支援で、<br>
-      事業者様の "デジタル × 集客 × 業務効率化" を一気通貫でサポート。
-    </p>
-
-    <div class="hero-actions anim-fade-up-delay-2">
-      <a href="#services" class="btn btn-primary btn-shine">
-        <span>事業内容を見る</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-      <a href="#contact" class="btn btn-outline">
-        <span>無料相談する</span>
-        <i class="fa-solid fa-comments"></i>
-      </a>
-    </div>
-
-  </div>
-
-  <a href="#services" class="hero-scroll" aria-label="下にスクロール">
-    <span class="scroll-text">SCROLL</span>
-    <span class="scroll-line"></span>
+  <a href="#about" class="hero-scroll-min" aria-label="Scroll">
+    <span>Scroll</span>
   </a>
 </section>
 
@@ -194,35 +188,14 @@
   </div>
 </div>
 
-<!-- ==================== Services / 事業内容 ==================== -->
-<section class="section services" id="services">
+<!-- ==================== 01 About — 代表挨拶 ==================== -->
+<section class="section chapter" id="greeting" data-chapter="01" data-label="About Us">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">SERVICES</span>
-      <h2 class="section-title">事 業 内 容</h2>
-      <p class="section-subtitle">
-        MEO集客からAI自動化、DX支援、Webサービス開発まで。<br>
-        デジタル技術を活用し、お客様のビジネスをトータルサポートします。
-      </p>
-    </div>
-
-    <div class="services-grid reveal-stagger" id="servicesGrid">
-      <!-- skeleton -->
-      <div class="service-skel"></div>
-      <div class="service-skel"></div>
-      <div class="service-skel"></div>
-      <div class="service-skel"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 代表挨拶 ==================== -->
-<section class="section greeting" id="greeting">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">MESSAGE</span>
-      <h2 class="section-title">代 表 挨 拶</h2>
-      <p class="section-subtitle">SearchMania代表からのメッセージ</p>
+    <div class="sec-head chapter-head reveal">
+      <span class="chapter-num">01</span>
+      <span class="chapter-label">About Us</span>
+      <h2 class="chapter-title">私たちについて</h2>
+      <p class="chapter-lead">SearchMania代表からのメッセージ。沖縄から、デジタルで日本全国を豊かにする。</p>
     </div>
 
     <div class="greeting-content reveal" id="greetingContent">
@@ -252,8 +225,27 @@
   </div>
 </section>
 
+<!-- ==================== 02 Business — 事業内容 ==================== -->
+<section class="section chapter bg-light" id="services" data-chapter="02" data-label="Business">
+  <div class="container">
+    <div class="sec-head chapter-head reveal">
+      <span class="chapter-num">02</span>
+      <span class="chapter-label">Business</span>
+      <h2 class="chapter-title">事業内容</h2>
+      <p class="chapter-lead">MEO集客からAI自動化、DX支援、Webサービス開発まで。<br>デジタル技術を活用し、お客様のビジネスをトータルサポートします。</p>
+    </div>
+
+    <div class="services-grid reveal-stagger" id="servicesGrid">
+      <div class="service-skel"></div>
+      <div class="service-skel"></div>
+      <div class="service-skel"></div>
+      <div class="service-skel"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== Features / こだわり ==================== -->
-<section class="section features bg-light" id="features">
+<section class="section features" id="features">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">OUR STRENGTH</span>
@@ -352,13 +344,14 @@
   </div>
 </section>
 
-<!-- ==================== Blog ==================== -->
-<section class="section blog bg-light" id="blog">
+<!-- ==================== 03 News — お知らせ ==================== -->
+<section class="section chapter" id="blog" data-chapter="03" data-label="News">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">NEWS &amp; BLOG</span>
-      <h2 class="section-title">お 知 ら せ ・ ブ ロ グ</h2>
-      <p class="section-subtitle">MEO・AI活用の最新情報をお届け</p>
+    <div class="sec-head chapter-head reveal">
+      <span class="chapter-num">03</span>
+      <span class="chapter-label">News</span>
+      <h2 class="chapter-title">お知らせ・最新情報</h2>
+      <p class="chapter-lead">MEO・AI活用の最新事例とお役立ち情報をお届けします。</p>
     </div>
 
     <div class="wall cms-loading" id="blogWall">
@@ -386,13 +379,14 @@
   </div>
 </section>
 
-<!-- ==================== About / 会社情報 ==================== -->
-<section class="section about bg-light" id="about">
+<!-- ==================== 04 Corporate — 会社情報 ==================== -->
+<section class="section chapter bg-light" id="about" data-chapter="04" data-label="Corporate">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">COMPANY</span>
-      <h2 class="section-title">会 社 情 報</h2>
-      <p class="section-subtitle">SearchMania Inc. について</p>
+    <div class="sec-head chapter-head reveal">
+      <span class="chapter-num">04</span>
+      <span class="chapter-label">Corporate</span>
+      <h2 class="chapter-title">会社情報</h2>
+      <p class="chapter-lead">SearchMania Inc. の経営理念と会社概要をご紹介します。</p>
     </div>
 
     <div class="about-grid reveal">
@@ -651,7 +645,7 @@
 </footer>
 
 <!-- ==================== Script ==================== -->
-<script src="./app.js?v=20260606b" defer></script>
+<script src="./app.js?v=20260606folio" defer></script>
 
 </body>
 </html>
