@@ -516,86 +516,149 @@ a:hover { color: var(--blue-dark); }
 /* ============================================================
    Services
    ============================================================ */
+/* ============================================================
+   Services — Bento 非対称グリッド (先進的・独自レイアウト)
+   ============================================================ */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 18px;
+}
+.services-grid .service-card:nth-child(1),
+.services-grid .service-card:nth-child(4) {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+.services-grid .service-card:nth-child(2),
+.services-grid .service-card:nth-child(3) {
+  grid-column: span 3;
+  grid-row: span 1;
 }
 
 .service-card {
   position: relative;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  transition: all .35s var(--ease);
+  border-radius: 22px;
+  padding: 30px 32px;
+  transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 16px;
+  isolation: isolate;
 }
+/* 微細ドットパターン背景 (hover で出現) */
 .service-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--blue-soft) 0%, transparent 50%);
+  background-image: radial-gradient(circle at 1px 1px, rgba(66,133,244,.08) 1px, transparent 0);
+  background-size: 22px 22px;
   opacity: 0;
-  transition: opacity .4s var(--ease);
+  transition: opacity .5s var(--ease);
   pointer-events: none;
+  z-index: -1;
+}
+/* 右上のグラデーション光彩 */
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(66,133,244,.18) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+  pointer-events: none;
+  z-index: -1;
 }
 .service-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: var(--blue);
-  box-shadow: 0 20px 40px rgba(66,133,244,.15);
+  box-shadow: 0 24px 50px -16px rgba(66,133,244,.22);
 }
-.service-card:hover::before { opacity: 1; }
+.service-card:hover::before,
+.service-card:hover::after { opacity: 1; }
 
+/* 大型カード(1, 4番目)に特別な背景グラデ */
+.services-grid .service-card:nth-child(1),
+.services-grid .service-card:nth-child(4) {
+  background: linear-gradient(165deg, #fff 0%, #fafbff 100%);
+  padding: 36px;
+}
+
+/* 番号: 大きく薄く配置 (装飾的) */
 .service-num {
   position: absolute;
-  top: 24px; right: 28px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: .14em;
+  top: 22px; right: 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -.04em;
   color: var(--blue);
-  opacity: .5;
+  opacity: .08;
+  line-height: 1;
+  z-index: 0;
+  pointer-events: none;
 }
+.services-grid .service-card:nth-child(1) .service-num,
+.services-grid .service-card:nth-child(4) .service-num {
+  font-size: 88px;
+  top: 20px;
+}
+
+/* アイコンボックス(小さめ・洗練) */
 .service-img {
-  width: 70px;
-  height: 70px;
+  width: 52px;
+  height: 52px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  background: linear-gradient(135deg, var(--blue) 0%, #6ba1f7 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 20px;
   position: relative;
   z-index: 1;
+  box-shadow: 0 6px 16px rgba(66,133,244,.32);
+  flex-shrink: 0;
 }
 .service-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
-.service-img.placeholder i { font-size: 28px; }
+.service-img.placeholder i { font-size: 20px; }
 
+/* バッジ(角丸ピル風・控えめ) */
 .service-badge {
-  display: inline-block;
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 2;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .18em;
   color: var(--blue);
-  background: var(--blue-soft);
-  padding: 4px 10px;
-  border-radius: 4px;
-  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid var(--blue-line);
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
 }
 
 .service-body { position: relative; z-index: 1; }
 .service-name {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 10px;
   line-height: 1.5;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
+}
+.services-grid .service-card:nth-child(1) .service-name,
+.services-grid .service-card:nth-child(4) .service-name {
+  font-size: 22px;
+  line-height: 1.45;
 }
 .service-price {
   font-size: 13px;
@@ -605,9 +668,23 @@ a:hover { color: var(--blue-dark); }
   margin-bottom: 8px;
 }
 .service-desc {
-  font-size: 14.5px;
-  line-height: 1.85;
+  font-size: 14px;
+  line-height: 1.8;
   color: var(--ink-soft);
+}
+.services-grid .service-card:nth-child(1) .service-desc,
+.services-grid .service-card:nth-child(4) .service-desc {
+  font-size: 14.5px;
+  line-height: 1.9;
+}
+
+/* 大型カード末尾に矢印インジケーター */
+.services-grid .service-card:nth-child(1)::before,
+.services-grid .service-card:nth-child(4)::before {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(66,133,244,.08) 1px, transparent 0),
+    linear-gradient(135deg, transparent 0%, rgba(66,133,244,.04) 100%);
+  background-size: 22px 22px, 100% 100%;
 }
 
 /* リンク付きサービスカード */
@@ -630,12 +707,22 @@ a.service-card:hover .service-link-hint {
 }
 
 .service-skel {
-  min-height: 260px;
-  background: var(--bg-light);
+  min-height: 200px;
+  background: #fafbff;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  border-radius: 22px;
   position: relative;
   overflow: hidden;
+}
+.services-grid .service-skel:nth-child(1),
+.services-grid .service-skel:nth-child(4) {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+.services-grid .service-skel:nth-child(2),
+.services-grid .service-skel:nth-child(3) {
+  grid-column: span 3;
+  grid-row: span 1;
 }
 .service-skel::after,
 .feature-skel::after,
@@ -733,50 +820,92 @@ a.service-card:hover .service-link-hint {
 /* ============================================================
    Features
    ============================================================ */
+/* ============================================================
+   Features — エディトリアル/雑誌スタイル
+   背景に巨大なナンバー、罫線で区切る縦リスト、見出しは大きく
+   ============================================================ */
 .features-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
 }
 .feature-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 32px 28px;
-  border-top: 3px solid var(--blue);
-  box-shadow: 0 2px 12px rgba(15,23,42,.04);
-  transition: all .35s var(--ease);
+  position: relative;
+  background: transparent;
+  padding: 44px 0 44px 130px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 2fr;
+  gap: 40px;
+  align-items: start;
+  transition: background .35s var(--ease);
+  overflow: hidden;
 }
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(15,23,42,.08);
+  background: rgba(66,133,244,.025);
 }
+/* 巨大な番号(背景アクセント) */
 .feature-num {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 100px;
+  font-weight: 800;
+  letter-spacing: -.05em;
   color: var(--blue);
-  letter-spacing: .06em;
-  margin-bottom: 14px;
-  display: block;
+  opacity: .12;
+  line-height: 1;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+}
+.feature-card:hover .feature-num {
+  opacity: .22;
+  transform: translateY(-50%) translateX(6px);
 }
 .feature-title {
-  font-size: 16px;
+  position: relative;
+  z-index: 1;
+  font-size: 22px;
   font-weight: 700;
   color: var(--ink);
-  margin-bottom: 12px;
-  letter-spacing: .04em;
-  line-height: 1.6;
+  letter-spacing: .02em;
+  line-height: 1.45;
+  margin: 0;
+  padding-right: 16px;
+}
+/* 見出しの左側に細いブルーライン */
+.feature-title::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--blue);
+  vertical-align: middle;
+  margin-right: 12px;
+  margin-bottom: 4px;
+  transition: width .35s var(--ease);
+}
+.feature-card:hover .feature-title::before {
+  width: 40px;
 }
 .feature-desc {
-  font-size: 14px;
-  line-height: 1.85;
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  line-height: 1.95;
   color: var(--ink-soft);
+  margin: 0;
 }
 .feature-skel {
-  min-height: 200px;
-  background: #fff;
-  border-radius: var(--radius);
-  border-top: 3px solid var(--line);
+  min-height: 130px;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
   position: relative;
   overflow: hidden;
 }
@@ -784,58 +913,102 @@ a.service-card:hover .service-link-hint {
 /* ============================================================
    For You
    ============================================================ */
+/* ============================================================
+   For You — 縦長カード + アクセントナンバー (独自レイアウト)
+   ============================================================ */
 .foryou-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 .foryou-card {
+  position: relative;
   display: flex;
-  gap: 20px;
-  background: var(--bg-light);
-  padding: 24px;
-  border-radius: var(--radius);
-  align-items: center;
-  border-left: 3px solid var(--blue);
-  transition: all .3s var(--ease);
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  padding: 32px 24px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  text-align: left;
+  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* 番号風アクセント(右上に大きく薄く) */
+.foryou-card::before {
+  content: attr(data-index);
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  color: var(--blue);
+  opacity: .08;
+  line-height: 1;
+  z-index: -1;
+  pointer-events: none;
 }
 .foryou-card:hover {
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(66,133,244,.10);
-  transform: translateX(4px);
+  transform: translateY(-6px);
+  border-color: var(--blue);
+  box-shadow: 0 22px 44px -14px rgba(66,133,244,.22);
 }
+
+/* アイコン: 四角ラウンド (円形→四角に変更で印象差別化) */
 .foryou-img {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--blue-soft);
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--blue-soft) 0%, #c7dbff 100%);
   color: var(--blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   flex-shrink: 0;
+  border: 1px solid var(--blue-line);
+  transition: transform .35s var(--ease);
 }
-.foryou-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.foryou-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+.foryou-card:hover .foryou-img {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.foryou-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .foryou-label {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
   font-weight: 700;
   color: var(--blue);
   letter-spacing: .18em;
-  margin-bottom: 6px;
   text-transform: uppercase;
+}
+.foryou-label::before {
+  content: '';
+  width: 14px;
+  height: 1.5px;
+  background: var(--blue);
+  display: inline-block;
 }
 .foryou-cap {
   font-size: 14.5px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--ink-soft);
 }
 .foryou-skel {
-  min-height: 110px;
-  background: var(--bg-light);
-  border-radius: var(--radius);
-  border-left: 3px solid var(--line);
+  min-height: 200px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
   position: relative;
   overflow: hidden;
 }
@@ -850,8 +1023,8 @@ a.service-card:hover .service-link-hint {
   margin-bottom: 32px;
 }
 .partner-card {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   aspect-ratio: 3 / 2;
   display: flex;
@@ -862,26 +1035,25 @@ a.service-card:hover .service-link-hint {
   text-align: center;
   position: relative;
   transition: all .3s var(--ease);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 1px 2px rgba(15,23,42,.04);
 }
 .partner-card:hover {
-  background: rgba(255,255,255,.12);
-  border-color: rgba(255,255,255,.3);
+  border-color: var(--blue);
   transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(66,133,244,.12);
 }
 .partner-card img {
   max-width: 100%;
   max-height: 60px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: .85;
+  opacity: .88;
   transition: opacity .3s var(--ease);
 }
 .partner-card:hover img { opacity: 1; }
 .partner-name-fallback {
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255,255,255,.85);
+  color: var(--ink);
   letter-spacing: .04em;
 }
 .partner-name {
@@ -889,15 +1061,15 @@ a.service-card:hover .service-link-hint {
   margin-top: 8px;
   font-size: 11px;
   letter-spacing: .12em;
-  color: rgba(255,255,255,.55);
+  color: var(--muted);
   text-transform: uppercase;
 }
 
 .partner-card.featured {
   grid-column: span 2;
   grid-row: span 2;
-  background: linear-gradient(135deg, rgba(66,133,244,.15), rgba(255,255,255,.05));
-  border-color: rgba(66,133,244,.45);
+  background: linear-gradient(135deg, #fff 0%, var(--blue-soft) 100%);
+  border-color: var(--blue);
 }
 .partner-card.featured img {
   max-height: 110px;
@@ -909,30 +1081,22 @@ a.service-card:hover .service-link-hint {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: .26em;
-  color: var(--blue);
-  background: rgba(255,255,255,.95);
+  color: #fff;
+  background: var(--blue);
   padding: 4px 10px;
   border-radius: 3px;
   text-transform: uppercase;
 }
 
 .partner-skel {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   aspect-ratio: 3/2;
   position: relative;
   overflow: hidden;
 }
 .partner-skel:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-
-.partners-note {
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,.55);
-  letter-spacing: .08em;
-  margin-top: 28px;
-}
 
 /* ============================================================
    Reviews
@@ -1373,19 +1537,63 @@ a.service-card:hover .service-link-hint {
 .check {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 12px;
+  padding: 14px 16px;
   background: var(--bg-light);
   border: 1.5px solid var(--line);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 13.5px;
   font-weight: 500 !important;
   color: var(--ink) !important;
   cursor: pointer;
   margin-bottom: 0 !important;
   transition: all .2s var(--ease);
+  line-height: 1.4;
 }
-.check input { width: 16px; height: 16px; accent-color: var(--blue); }
+.check input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all .2s var(--ease);
+  display: inline-block;
+  vertical-align: middle;
+}
+.check input[type="checkbox"]:hover {
+  border-color: var(--blue);
+}
+.check input[type="checkbox"]:checked {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+.check input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 4px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.check input[type="checkbox"]:focus-visible {
+  outline: 2px solid rgba(66,133,244,.4);
+  outline-offset: 2px;
+}
+.check span {
+  flex: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
 .check:hover {
   border-color: var(--blue);
   background: var(--blue-soft);
@@ -1434,7 +1642,12 @@ a.service-card:hover .service-link-hint {
 /* ============================================================
    CTA
    ============================================================ */
-.cta { background: linear-gradient(135deg, #0a1a3a, #122d6b); }
+.cta {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(66,133,244,.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(147,184,255,.18) 0%, transparent 55%),
+    linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 50%, #f8fbff 100%);
+}
 .cta-box {
   text-align: center;
   padding: 80px 40px;
@@ -1443,14 +1656,14 @@ a.service-card:hover .service-link-hint {
 .cta-headline {
   font-size: clamp(24px, 3.4vw, 36px);
   font-weight: 700;
-  color: #fff;
+  color: var(--ink);
   letter-spacing: .08em;
   margin-bottom: 18px;
   line-height: 1.5;
 }
 .cta-sub {
   font-size: 15.5px;
-  color: rgba(255,255,255,.78);
+  color: var(--ink-soft);
   margin-bottom: 38px;
 }
 .cta-actions {
@@ -1459,31 +1672,23 @@ a.service-card:hover .service-link-hint {
   justify-content: center;
   flex-wrap: wrap;
 }
-.cta-actions .btn-outline {
-  color: #fff;
-  border-color: rgba(255,255,255,.4);
-}
-.cta-actions .btn-outline:hover {
-  background: #fff;
-  color: var(--blue-deep);
-  border-color: #fff;
-}
 
 /* ============================================================
    Footer
    ============================================================ */
 .site-footer {
-  background: #0a1a3a;
-  color: rgba(255,255,255,.7);
+  background: #f1f5f9;
+  color: var(--ink-soft);
   padding: 80px 0 40px;
   font-size: 13.5px;
+  border-top: 1px solid var(--line);
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 50px;
   padding-bottom: 50px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  border-bottom: 1px solid #e2e8f0;
 }
 .footer-brand .footer-logo {
   display: flex;
@@ -1491,21 +1696,21 @@ a.service-card:hover .service-link-hint {
   gap: 12px;
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 14px;
 }
 .footer-logo-icon {
   height: 36px;
-  filter: brightness(0) invert(1);
+  /* 反転を解除して元のロゴ色のまま使う */
 }
 .footer-tagline {
   font-size: 13px;
-  color: rgba(255,255,255,.6);
+  color: var(--muted);
   line-height: 1.7;
   margin-bottom: 18px;
 }
 .footer-social a {
-  color: rgba(255,255,255,.55);
+  color: var(--muted);
   font-size: 20px;
   margin-right: 18px;
   transition: color .25s var(--ease);
@@ -1516,22 +1721,22 @@ a.service-card:hover .service-link-hint {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .26em;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 18px;
   text-transform: uppercase;
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul a {
-  color: rgba(255,255,255,.6);
+  color: var(--ink-soft);
   font-size: 13.5px;
   transition: color .2s var(--ease);
 }
-.footer-col ul a:hover { color: #fff; }
+.footer-col ul a:hover { color: var(--blue); }
 .footer-addr {
   font-size: 12.5px;
   line-height: 1.9;
-  color: rgba(255,255,255,.55);
+  color: var(--muted);
 }
 
 .footer-bottom {
@@ -1541,7 +1746,7 @@ a.service-card:hover .service-link-hint {
   align-items: center;
   gap: 16px;
   font-size: 12px;
-  color: rgba(255,255,255,.45);
+  color: var(--muted);
   letter-spacing: .08em;
 }
 .produced-by {
@@ -1549,21 +1754,40 @@ a.service-card:hover .service-link-hint {
   font-size: 10px;
   letter-spacing: .26em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.35);
+  color: var(--muted);
 }
 .produced-by a {
-  color: rgba(66,133,244,.7);
+  color: var(--blue);
   transition: color .25s var(--ease);
 }
-.produced-by a:hover { color: var(--blue); }
+.produced-by a:hover { color: var(--blue-dark); }
 
 /* ============================================================
    Responsive
    ============================================================ */
 @media (max-width: 1024px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .features-list { grid-template-columns: repeat(2, 1fr); }
+  /* Bento を2列に圧縮 */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+  .services-grid .service-card:nth-child(1),
+  .services-grid .service-card:nth-child(2),
+  .services-grid .service-card:nth-child(3),
+  .services-grid .service-card:nth-child(4),
+  .services-grid .service-skel:nth-child(1),
+  .services-grid .service-skel:nth-child(2),
+  .services-grid .service-skel:nth-child(3),
+  .services-grid .service-skel:nth-child(4) {
+    grid-column: span 1;
+    grid-row: auto;
+  }
+  .features-list { grid-template-columns: 1fr; }
+  .feature-card { padding: 36px 0 36px 90px; grid-template-columns: 1fr; gap: 14px; }
+  .feature-num { font-size: 76px; }
+  .feature-title { font-size: 19px; }
   .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .foryou-grid { grid-template-columns: repeat(2, 1fr); }
   .wall { grid-template-columns: repeat(2, 1fr); }
   .partners-grid { grid-template-columns: repeat(4, 1fr); }
   .greeting-content { grid-template-columns: 1fr; text-align: center; max-width: 600px; }
@@ -2105,27 +2329,7 @@ a.service-card:hover .service-link-hint {
 .foryou-card.reveal { transform: translateX(-30px); }
 .foryou-card.reveal.is-visible { transform: translateX(0); }
 
-/* ---------- Feature card pop animation ---------- */
-.feature-card {
-  position: relative;
-  overflow: hidden;
-}
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 0; height: 3px;
-  background: linear-gradient(90deg, var(--blue), #93b8ff);
-  transition: width .6s cubic-bezier(.16,1,.3,1);
-}
-.feature-card:hover::before { width: 100%; }
-.feature-card:hover .feature-num {
-  background: linear-gradient(135deg, var(--blue), #93b8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transform: scale(1.1);
-}
+/* Feature card 旧拡張ブロックはエディトリアル新設計と競合するため無効化 */
 .feature-num { transition: transform .4s var(--ease); display: inline-block; }
 
 /* ---------- Partner card hover glow ---------- */
