@@ -3721,3 +3721,14 @@ a.service-card:hover .service-link-hint {
   .section.chapter#blog::after { width: 280px; height: 280px; left: -80px; }
   .section.chapter#about::after { width: 280px; height: 280px; }
 }
+
+/* キーワードの中央アクティブハイライト */
+.hero-keywords .kw.is-active {
+  color: transparent !important;
+  background: linear-gradient(120deg, #4285F4 0%, #6ba1f7 50%, #0f172a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 18px !important;
+  letter-spacing: .32em !important;
+  font-weight: 700;
+}
