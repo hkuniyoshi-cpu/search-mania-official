@@ -2905,3 +2905,221 @@ a.service-card:hover .service-link-hint {
   }
   .section.chapter#greeting .greeting-photo { max-width: 280px; margin: 0 auto; }
 }
+
+/* ============================================================
+   FOLIO EDITORIAL ANIMATIONS
+   - Scroll-triggered (IntersectionObserver via is-visible)
+   - 上品・遅め・控えめ。チャプター/画像/テキストを順次浮かび上がらせる
+   ============================================================ */
+
+/* ---------- Base reveal classes ---------- */
+
+/* slow fade-up (controlled by .is-visible toggle) */
+.f-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1);
+  will-change: opacity, transform;
+}
+.f-up.is-visible { opacity: 1; transform: translateY(0); }
+
+/* delayed series for stagger */
+.f-up.d1 { transition-delay: .10s; }
+.f-up.d2 { transition-delay: .22s; }
+.f-up.d3 { transition-delay: .34s; }
+.f-up.d4 { transition-delay: .46s; }
+.f-up.d5 { transition-delay: .58s; }
+.f-up.d6 { transition-delay: .70s; }
+
+/* image clip-path reveal (folio signature) */
+.f-img {
+  clip-path: inset(0 0 100% 0);
+  -webkit-clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.6s cubic-bezier(.65,0,.35,1), -webkit-clip-path 1.6s cubic-bezier(.65,0,.35,1);
+  will-change: clip-path;
+}
+.f-img.is-visible {
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
+}
+
+/* text-line reveal (line by line via inner spans) */
+.f-lines .f-line {
+  display: block;
+  overflow: hidden;
+}
+.f-lines .f-line > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1.1s cubic-bezier(.16,1,.3,1);
+}
+.f-lines.is-visible .f-line > span { transform: translateY(0); }
+.f-lines.is-visible .f-line:nth-child(1) > span { transition-delay: .10s; }
+.f-lines.is-visible .f-line:nth-child(2) > span { transition-delay: .22s; }
+.f-lines.is-visible .f-line:nth-child(3) > span { transition-delay: .34s; }
+.f-lines.is-visible .f-line:nth-child(4) > span { transition-delay: .46s; }
+
+/* large chapter number ticking up */
+.chapter-num {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.4s cubic-bezier(.16,1,.3,1), transform 1.4s cubic-bezier(.16,1,.3,1);
+}
+.chapter-head.is-visible .chapter-num {
+  opacity: 0.08;
+  transform: translateY(0);
+}
+
+/* chapter label line draw */
+.chapter-label {
+  opacity: 0;
+  transition: opacity .9s .3s ease-out;
+}
+.chapter-label::before,
+.chapter-label::after {
+  transition: width .9s cubic-bezier(.65,0,.35,1) .35s;
+  width: 0;
+}
+.chapter-head.is-visible .chapter-label { opacity: 1; }
+.chapter-head.is-visible .chapter-label::before,
+.chapter-head.is-visible .chapter-label::after { width: 28px; }
+
+/* chapter title slow rise */
+.chapter-title {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1.0s .45s cubic-bezier(.16,1,.3,1), transform 1.0s .45s cubic-bezier(.16,1,.3,1);
+}
+.chapter-head.is-visible .chapter-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* chapter lead text fade */
+.chapter-lead {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.0s .65s ease-out, transform 1.0s .65s ease-out;
+}
+.chapter-head.is-visible .chapter-lead {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* horizontal divider line draw */
+.f-line-draw {
+  position: relative;
+  height: 1px;
+  background: transparent;
+  overflow: hidden;
+  margin: 60px auto;
+  max-width: 80px;
+}
+.f-line-draw::before {
+  content: '';
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: var(--ink);
+  transition: right 1.4s cubic-bezier(.65,0,.35,1);
+}
+.f-line-draw.is-visible::before { right: 0; }
+
+/* image with caption (folio image presentation) */
+.f-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.f-image-wrap .f-img-caption {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  letter-spacing: .24em;
+  color: rgba(255,255,255,.85);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 1s 1.0s ease-out;
+}
+.f-image-wrap.is-visible .f-img-caption { opacity: 1; }
+
+/* hover micro-interactions (folio quiet) */
+.link-arrow .arrow {
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+/* greeting photo: apply f-img feel */
+.section.chapter#greeting .greeting-photo {
+  clip-path: inset(0 0 100% 0);
+  -webkit-clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.6s cubic-bezier(.65,0,.35,1), -webkit-clip-path 1.6s cubic-bezier(.65,0,.35,1);
+}
+.section.chapter#greeting .greeting-content.is-visible .greeting-photo {
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
+}
+
+/* greeting text paragraph fade-up serial */
+.section.chapter#greeting .greeting-text p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+}
+.section.chapter#greeting .greeting-content.is-visible .greeting-text p {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section.chapter#greeting .greeting-content.is-visible .greeting-text p:nth-of-type(1) { transition-delay: .35s; }
+.section.chapter#greeting .greeting-content.is-visible .greeting-text p:nth-of-type(2) { transition-delay: .50s; }
+
+.section.chapter#greeting .greeting-sign {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.0s .8s ease-out, transform 1.0s .8s ease-out;
+}
+.section.chapter#greeting .greeting-content.is-visible .greeting-sign {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* services / works / partners / etc.: cascade with stagger */
+.reveal-stagger > .f-up:nth-child(1) { transition-delay: .10s; }
+.reveal-stagger > .f-up:nth-child(2) { transition-delay: .20s; }
+.reveal-stagger > .f-up:nth-child(3) { transition-delay: .30s; }
+.reveal-stagger > .f-up:nth-child(4) { transition-delay: .40s; }
+.reveal-stagger > .f-up:nth-child(5) { transition-delay: .50s; }
+.reveal-stagger > .f-up:nth-child(6) { transition-delay: .60s; }
+
+/* CTA arrow micro */
+.link-arrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .6s cubic-bezier(.65,0,.35,1);
+}
+.link-arrow:hover::after { transform: scaleX(1); }
+
+/* reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .f-up, .f-img, .f-lines .f-line > span,
+  .chapter-num, .chapter-label, .chapter-title, .chapter-lead,
+  .f-line-draw::before,
+  .section.chapter#greeting .greeting-photo,
+  .section.chapter#greeting .greeting-text p,
+  .section.chapter#greeting .greeting-sign {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+  .chapter-num { opacity: 0.08 !important; }
+  .chapter-label::before, .chapter-label::after { width: 28px !important; }
+  .f-line-draw::before { right: 0 !important; }
+}
