@@ -36,7 +36,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="shared.css?v=20260606folio-anim">
+  <link rel="stylesheet" href="shared.css?v=20260606folio-globe">
 
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="LZg90oxtbqi0v6An7Fc0uO3ufbqcmW4_Qp9mCI2u6wk" />
@@ -116,13 +116,44 @@
 
 <!-- ==================== Hero - Folio editorial style ==================== -->
 <section class="hero hero--editorial" id="hero">
+  <!-- 3D Wireframe Globe (背景アニメーション) -->
+  <div class="hero-globe-bg" aria-hidden="true">
+    <div class="hero-globe">
+      <div class="hero-globe-inner">
+        <!-- Meridians (経線: 縦のリング、Y軸回転で並ぶ) -->
+        <span class="g-meridian" style="--r:0deg"></span>
+        <span class="g-meridian" style="--r:15deg"></span>
+        <span class="g-meridian" style="--r:30deg"></span>
+        <span class="g-meridian" style="--r:45deg"></span>
+        <span class="g-meridian" style="--r:60deg"></span>
+        <span class="g-meridian" style="--r:75deg"></span>
+        <span class="g-meridian" style="--r:90deg"></span>
+        <span class="g-meridian" style="--r:105deg"></span>
+        <span class="g-meridian" style="--r:120deg"></span>
+        <span class="g-meridian" style="--r:135deg"></span>
+        <span class="g-meridian" style="--r:150deg"></span>
+        <span class="g-meridian" style="--r:165deg"></span>
+        <!-- Parallels (緯線: 横のリング、X軸傾けて配置) -->
+        <span class="g-parallel" style="--x:0deg;--s:1"></span>
+        <span class="g-parallel" style="--x:0deg;--s:.85"></span>
+        <span class="g-parallel" style="--x:0deg;--s:.65"></span>
+        <span class="g-parallel" style="--x:0deg;--s:.4"></span>
+        <!-- Data dots (拠点ドット) -->
+        <span class="g-dot" style="--mx:35%;--my:30%;--d:0s"></span>
+        <span class="g-dot" style="--mx:65%;--my:45%;--d:1.5s"></span>
+        <span class="g-dot" style="--mx:25%;--my:60%;--d:3s"></span>
+        <span class="g-dot" style="--mx:75%;--my:70%;--d:4.5s"></span>
+      </div>
+    </div>
+    <div class="hero-globe-orb"></div>
+  </div>
+
   <div class="hero-edit-inner">
     <div class="hero-edit-text">
       <span class="hero-edit-eyebrow">— Searchmania Inc.</span>
       <h1 class="hero-edit-title">
-        <span class="line-1">デジタルを、</span>
-        <span class="line-2">身近に。</span>
-        <span class="line-3">もっと、あたりまえに。</span>
+        <span class="line-1">デジタルを身近に、</span>
+        <span class="line-2">もっとあたりまえに。</span>
       </h1>
       <p class="hero-edit-lead">
         沖縄那覇から日本全国へ。Googleマップ集客・AI自動化・DX支援で、<br>
@@ -137,7 +168,7 @@
           <span>Business</span>
           <span class="arrow">→</span>
         </a>
-        <a href="#contact" class="link-arrow link-arrow--cta">
+        <a href="#contact" class="link-arrow">
           <span>Contact</span>
           <span class="arrow">→</span>
         </a>
@@ -645,7 +676,7 @@
 </footer>
 
 <!-- ==================== Script ==================== -->
-<script src="./app.js?v=20260606folio-anim" defer></script>
+<script src="./app.js?v=20260606folio-globe" defer></script>
 
 </body>
 </html>
