@@ -501,15 +501,17 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  /* ----- Chapter sections: スクロール到達で in-view 付与 ----- */
-  const chapters = document.querySelectorAll('.section.chapter');
-  if(chapters.length && 'IntersectionObserver' in window){
-    const chapterIO = new IntersectionObserver((entries) => {
+  /* ----- 全主要セクション: スクロール到達で in-view 付与 ----- */
+  const animSections = document.querySelectorAll(
+    '.section.chapter, #features, #for-you, #works, #partners, #reviews, #recruit, #contact'
+  );
+  if(animSections.length && 'IntersectionObserver' in window){
+    const secIO = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('in-view');
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-    chapters.forEach(c => chapterIO.observe(c));
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    animSections.forEach(c => secIO.observe(c));
   }
 });
 
