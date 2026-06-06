@@ -3732,3 +3732,256 @@ a.service-card:hover .service-link-hint {
   letter-spacing: .32em !important;
   font-weight: 700;
 }
+
+/* ============================================================
+   ⭐ CHAPTER BG — BOLD VERSION (もっと派手に・濃く)
+   既存セレクタを上書き
+   ============================================================ */
+
+/* ---------- 01 About — 大型同心円 + 回転リング + 光球 ---------- */
+.section.chapter#greeting::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -250px;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  border: 2px solid rgba(66,133,244,.45);
+  box-shadow:
+    inset 0 0 0 80px rgba(66,133,244,.10),
+    inset 0 0 0 160px rgba(66,133,244,.05),
+    0 0 0 70px rgba(66,133,244,.18),
+    0 0 0 140px rgba(66,133,244,.10),
+    0 0 0 210px rgba(66,133,244,.05);
+  transform: translateY(-50%) scale(0);
+  transition: transform 1.8s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#greeting.in-view::before {
+  transform: translateY(-50%) scale(1);
+  animation: bgRotateSlow 60s linear infinite, chapterBreathe 8s ease-in-out infinite 1.8s;
+}
+.section.chapter#greeting::after {
+  content: '';
+  position: absolute;
+  bottom: -180px;
+  right: -180px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(66,133,244,.30) 0%, rgba(66,133,244,.10) 40%, transparent 75%);
+  transform: scale(0);
+  transition: transform 2.2s 0.3s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#greeting.in-view::after {
+  transform: scale(1);
+  animation: chapterBreathe 10s ease-in-out infinite 2.5s;
+}
+
+@keyframes bgRotateSlow {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ---------- 02 Business — 濃いグリッド + 複数縦光線 + ドット流れる ---------- */
+.section.chapter#services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(66,133,244,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66,133,244,.22) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(ellipse 80% 70% at center, black 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, black 30%, transparent 90%);
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#services.in-view::before {
+  opacity: 1;
+  transform: scale(1);
+  animation: gridDrift 24s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 70px 70px, 70px 70px; }
+}
+/* 中央に1本縦光線 */
+.section.chapter#services::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(66,133,244,.6) 15%,
+    rgba(66,133,244,.9) 50%,
+    rgba(66,133,244,.6) 85%,
+    transparent 100%);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: opacity 1s, transform 1.6s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(66,133,244,.5);
+}
+.section.chapter#services.in-view::after {
+  opacity: 1;
+  transform: scaleY(1);
+  animation: lineSlide 6s ease-in-out infinite 1.6s;
+}
+@keyframes lineSlide {
+  0%, 100% { left: 50%; }
+  25%      { left: 25%; }
+  50%      { left: 50%; }
+  75%      { left: 75%; }
+}
+
+/* 追加: 02 Business に "流れるドット" を絶対配置で複数置く */
+.section.chapter#services {
+  /* 子要素として追加のdivで実装するため、ここで isolate */
+}
+.section.chapter#services .chapter-head::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 20px rgba(66,133,244,.8);
+  transform: translateX(-50%);
+  animation: dotFall 4s ease-in infinite;
+  opacity: 0;
+}
+.section.chapter#services.in-view .chapter-head::before {
+  opacity: 1;
+}
+@keyframes dotFall {
+  0%   { top: -40px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+/* ---------- 03 News — 大型光球 + 円 + 波線 ---------- */
+.section.chapter#blog::before {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  right: -200px;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle,
+    rgba(66,133,244,.35) 0%,
+    rgba(66,133,244,.20) 30%,
+    rgba(66,133,244,.08) 60%,
+    transparent 80%);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 2.2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(2px);
+}
+.section.chapter#blog.in-view::before {
+  transform: scale(1);
+  animation: chapterBreathe 10s ease-in-out infinite 2s;
+}
+.section.chapter#blog::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  border: 2px solid rgba(66,133,244,.32);
+  box-shadow:
+    0 0 0 30px rgba(66,133,244,.10),
+    0 0 0 60px rgba(66,133,244,.05);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 2s 0.3s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#blog.in-view::after {
+  transform: scale(1);
+  animation: bgRotateBlog 80s linear infinite;
+}
+@keyframes bgRotateBlog {
+  to { transform: scale(1) rotate(360deg); }
+}
+
+/* ---------- 04 Corporate — 縦線パターン濃く + 大円リング + 横線 ---------- */
+.section.chapter#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 89px,
+    rgba(66,133,244,.30) 89px,
+    rgba(66,133,244,.30) 90px
+  );
+  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#about.in-view::before { opacity: 1; }
+.section.chapter#about::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -150px;
+  width: 600px;
+  height: 600px;
+  border: 2px solid rgba(66,133,244,.40);
+  box-shadow:
+    inset 0 0 0 40px rgba(66,133,244,.08),
+    inset 0 0 0 80px rgba(66,133,244,.04),
+    0 0 0 40px rgba(66,133,244,.10);
+  border-radius: 50%;
+  transform: translateY(-50%) scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#about.in-view::after {
+  transform: translateY(-50%) scale(1);
+  animation: bgRotateSlow 80s linear infinite, chapterBreathe 12s ease-in-out infinite 2s;
+}
+
+/* ---------- chapterBreathe を再定義(強めに) ---------- */
+@keyframes chapterBreathe {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50%      { transform: translateY(-50%) scale(1.08); }
+}
+
+/* 章コンテンツを bg より前面に */
+.section.chapter > .container,
+.section.chapter > * { position: relative; z-index: 1; }
+.section.chapter .chapter-head { position: relative; }
+
+/* モバイルでは縮小 */
+@media (max-width: 900px) {
+  .section.chapter#greeting::before { width: 600px; height: 600px; left: -150px; box-shadow: inset 0 0 0 50px rgba(66,133,244,.10), 0 0 0 50px rgba(66,133,244,.15), 0 0 0 100px rgba(66,133,244,.08); }
+  .section.chapter#greeting::after { width: 400px; height: 400px; }
+  .section.chapter#blog::before { width: 600px; height: 600px; }
+  .section.chapter#blog::after { width: 400px; height: 400px; left: -120px; }
+  .section.chapter#about::after { width: 400px; height: 400px; }
+}
