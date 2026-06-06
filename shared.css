@@ -373,9 +373,12 @@ a:hover { color: var(--blue-dark); }
 }
 .hero-title-main {
   color: #fff;
+  /* 明るくなった背景上で白文字をしっかり浮かせるための強めの多重シャドウ */
   text-shadow:
-    0 2px 20px rgba(10,26,58,.85),
-    0 4px 40px rgba(10,26,58,.6);
+    0 1px 0  rgba(8,20,46,.55),
+    0 2px 14px rgba(8,20,46,.85),
+    0 4px 30px rgba(8,20,46,.65),
+    0 0 60px  rgba(8,20,46,.45);
 }
 
 .hero-sub {
@@ -1655,7 +1658,8 @@ a.service-card:hover .service-link-hint {
   background-size: cover;
   background-position: center;
   transform: scale(1.08);
-  filter: saturate(0.8) brightness(0.4);
+  /* 写真をより明るく見せる：彩度を上げて、ややシャドウを下げる */
+  filter: saturate(1.05) brightness(0.85) contrast(1.05);
   animation: kenBurns 22s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -1667,10 +1671,13 @@ a.service-card:hover .service-link-hint {
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
+  /* 全体オーバーレイを大幅に明るく:
+     - 上下にうっすらブルーグラデで写真を引き立てる
+     - 中央には可読性確保用のソフトな暗み(放射状)を入れる
+     - 写真自体は60-70%ほど見えるようにする */
   background:
-    radial-gradient(ellipse at 28% 42%, rgba(10,26,58,.7) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 85%, rgba(52,168,83,.14) 0%, transparent 55%),
-    linear-gradient(120deg, rgba(8,20,46,.95) 0%, rgba(13,32,75,.82) 45%, rgba(10,26,58,.9) 100%);
+    radial-gradient(ellipse 70% 55% at 50% 50%, rgba(8,20,46,.55) 0%, rgba(8,20,46,.15) 60%, transparent 100%),
+    linear-gradient(180deg, rgba(13,32,75,.35) 0%, rgba(13,32,75,.15) 35%, rgba(13,32,75,.20) 70%, rgba(13,32,75,.45) 100%);
 }
 
 /* ---------- 3rd orb + parallax track ---------- */
