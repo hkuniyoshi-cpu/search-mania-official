@@ -3985,3 +3985,282 @@ a.service-card:hover .service-link-hint {
   .section.chapter#blog::after { width: 400px; height: 400px; left: -120px; }
   .section.chapter#about::after { width: 400px; height: 400px; }
 }
+
+/* ============================================================
+   ⭐ 非チャプター5セクションの背景アニメーション
+   features / for-you / works / partners / reviews
+   ============================================================ */
+
+/* 共通: 章セクションと同じく overflow:hidden / position:relative */
+#features, #for-you, #works, #partners, #reviews, #recruit, #contact {
+  position: relative;
+  overflow: hidden;
+}
+#features > .container,
+#for-you > .container,
+#works > .container,
+#partners > .container,
+#reviews > .container,
+#recruit > .container,
+#contact > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 私たちの強み (Features) — 大型番号フローティング ---------- */
+#features::before {
+  content: '01 / 02 / 03 / 04';
+  position: absolute;
+  top: 20%;
+  left: -50px;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(120px, 18vw, 240px);
+  font-weight: 900;
+  letter-spacing: .12em;
+  color: rgba(66,133,244,.10);
+  white-space: nowrap;
+  line-height: 1;
+  pointer-events: none;
+  transform: translateX(-30%);
+  transition: transform 1.8s cubic-bezier(.16,1,.3,1);
+  z-index: 0;
+}
+#features.in-view::before {
+  transform: translateX(0);
+  animation: numberFloat 30s linear infinite;
+}
+@keyframes numberFloat {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-30%); }
+}
+#features::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  border: 2px solid rgba(66,133,244,.20);
+  box-shadow:
+    0 0 0 30px rgba(66,133,244,.06),
+    0 0 0 60px rgba(66,133,244,.03);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+#features.in-view::after {
+  transform: scale(1);
+  animation: sectionBreathe 9s ease-in-out infinite 2s;
+}
+
+/* ---------- こんな事業者様に (For You) — ネットワーク node / line ---------- */
+#for-you::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle 3px at 15% 25%, rgba(66,133,244,.6), transparent),
+    radial-gradient(circle 3px at 78% 15%, rgba(66,133,244,.5), transparent),
+    radial-gradient(circle 3px at 35% 75%, rgba(66,133,244,.5), transparent),
+    radial-gradient(circle 3px at 88% 65%, rgba(66,133,244,.5), transparent),
+    radial-gradient(circle 3px at 50% 50%, rgba(66,133,244,.7), transparent),
+    radial-gradient(circle 3px at 8% 80%, rgba(66,133,244,.4), transparent),
+    radial-gradient(circle 3px at 65% 90%, rgba(66,133,244,.5), transparent),
+    radial-gradient(circle 3px at 25% 10%, rgba(66,133,244,.5), transparent);
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+#for-you.in-view::before { opacity: 1; }
+/* ノードのパルス効果のため、追加のリング */
+#for-you::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(66,133,244,.5);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+  z-index: 0;
+}
+#for-you.in-view::after {
+  opacity: 1;
+  animation: nodePulse 3s ease-out infinite;
+}
+@keyframes nodePulse {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 3px; }
+  100% { transform: translate(-50%, -50%) scale(15); opacity: 0; border-width: 1px; }
+}
+
+/* ---------- 実績 (Works) — 斜めストライプ / 格子が流れる ---------- */
+#works::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 60px,
+    rgba(66,133,244,.10) 60px,
+    rgba(66,133,244,.10) 62px
+  );
+  mask-image: radial-gradient(ellipse 70% 90% at center, black 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 90% at center, black 30%, transparent 90%);
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+#works.in-view::before {
+  opacity: 1;
+  animation: stripeFlow 25s linear infinite;
+}
+@keyframes stripeFlow {
+  from { background-position: 0 0; }
+  to   { background-position: 88px 88px; }
+}
+#works::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(66,133,244,.25) 0%, transparent 60%);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+#works.in-view::after {
+  transform: scale(1);
+  animation: sectionBreathe 8s ease-in-out infinite 1.5s;
+}
+
+/* ---------- パートナーズ (Partners) — 軌道リング ---------- */
+#partners::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  border: 1.5px solid rgba(66,133,244,.18);
+  box-shadow:
+    inset 0 0 0 80px rgba(66,133,244,.04),
+    inset 0 0 0 160px rgba(66,133,244,.04),
+    inset 0 0 0 240px rgba(66,133,244,.04);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+#partners.in-view::before {
+  transform: translate(-50%, -50%) scale(1);
+  animation: orbitRotate 60s linear infinite;
+}
+@keyframes orbitRotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+#partners::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  border-radius: 50%;
+  box-shadow:
+    0 0 30px var(--blue),
+    0 0 60px rgba(66,133,244,.5);
+  transform: translate(-50%, -50%) translateX(400px);
+  opacity: 0;
+  transition: opacity 1s;
+  pointer-events: none;
+  z-index: 0;
+  transform-origin: center;
+}
+#partners.in-view::after {
+  opacity: 1;
+  animation: planetOrbit 20s linear infinite;
+}
+@keyframes planetOrbit {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(400px) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg) translateX(400px) rotate(-360deg); }
+}
+
+/* ---------- お客様の声 (Reviews) — 波紋リップル + 引用符 ---------- */
+#reviews::before {
+  content: '"';
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  font-family: "Noto Serif JP", "Georgia", serif;
+  font-size: clamp(200px, 28vw, 400px);
+  font-weight: 900;
+  color: rgba(66,133,244,.10);
+  line-height: 0.8;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(40px) rotate(-5deg);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  z-index: 0;
+}
+#reviews.in-view::before {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+/* 反対側にもう一個 */
+#reviews::after {
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  right: 8%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid rgba(66,133,244,.4);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 1s;
+}
+#reviews.in-view::after {
+  opacity: 1;
+  animation: ripple 4s ease-out infinite;
+}
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 1; border-width: 4px; }
+  100% { transform: scale(8); opacity: 0; border-width: 1px; }
+}
+
+/* ---------- 共通: section の呼吸 ---------- */
+@keyframes sectionBreathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.05); opacity: .9; }
+}
+
+/* モバイル調整 */
+@media (max-width: 900px) {
+  #features::before { font-size: 100px; }
+  #features::after { width: 350px; height: 350px; }
+  #partners::before { width: 500px; height: 500px; }
+  #partners::after { transform: translate(-50%, -50%) translateX(250px); }
+  @keyframes planetOrbit {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(250px) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg) translateX(250px) rotate(-360deg); }
+  }
+  #works::after { width: 280px; height: 280px; }
+  #reviews::before { font-size: 180px; }
+}
