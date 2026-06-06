@@ -2608,29 +2608,29 @@ a.service-card:hover .service-link-hint {
 
 .hero-edit-title {
   font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(26px, 3.6vw, 46px);
   font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: .03em;
+  line-height: 1.4;
+  letter-spacing: .04em;
   color: var(--ink);
   margin-bottom: 36px;
 }
 .hero-edit-title .line-1,
-.hero-edit-title .line-2,
-.hero-edit-title .line-3 {
+.hero-edit-title .line-2 {
   display: block;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(28px);
-  animation: heroLineUp .9s cubic-bezier(.16,1,.3,1) forwards;
+  animation: heroLineUp 1s cubic-bezier(.16,1,.3,1) forwards;
 }
 .hero-edit-title .line-1 { animation-delay: .15s; }
-.hero-edit-title .line-2 { animation-delay: .35s; }
-.hero-edit-title .line-3 {
-  animation-delay: .55s;
-  color: var(--muted);
-  font-size: 0.7em;
-  font-weight: 500;
-  margin-top: 12px;
+.hero-edit-title .line-2 {
+  animation-delay: .40s;
+  background: linear-gradient(110deg, var(--ink) 0%, var(--ink) 35%, var(--blue) 80%, #6ba1f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 @keyframes heroLineUp {
   to { opacity: 1; transform: translateY(0); }
@@ -3280,3 +3280,170 @@ a.service-card:hover .service-link-hint {
   .hero-globe-inner { animation: none; transform: rotateY(20deg) rotateX(-10deg); }
   .hero-globe-orb, .g-dot { animation: none; }
 }
+
+/* ============================================================
+   HERO: 縦キーワードリスト (folio FINANCIAL WORLD 風)
+   - 右端に縦並び
+   - 1つずつグラデーション色で active
+   - active は 3秒で自動切替
+   ============================================================ */
+.hero-keywords {
+  position: absolute;
+  right: max(30px, 2.5vw);
+  top: 50%;
+  transform: translateY(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-keywords .kw {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: .26em;
+  font-size: 14px;
+  color: rgba(15,23,42,.10);
+  text-align: right;
+  transition:
+    color 1.2s cubic-bezier(.65,0,.35,1),
+    letter-spacing 1.2s cubic-bezier(.65,0,.35,1),
+    font-size 1.2s cubic-bezier(.65,0,.35,1),
+    transform 1.2s cubic-bezier(.65,0,.35,1);
+  position: relative;
+  transform: translateX(0);
+}
+.hero-keywords .kw.is-active {
+  color: transparent;
+  background: linear-gradient(120deg, var(--blue) 0%, #6ba1f7 50%, var(--ink) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 18px;
+  letter-spacing: .32em;
+  transform: translateX(-12px);
+}
+.hero-keywords .kw.is-active::before {
+  content: '';
+  position: absolute;
+  right: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 1px;
+  background: var(--blue);
+  animation: kwLineDraw .9s cubic-bezier(.65,0,.35,1) forwards;
+  transform-origin: right;
+}
+@keyframes kwLineDraw {
+  from { width: 0; }
+  to   { width: 24px; }
+}
+
+@media (max-width: 900px) {
+  .hero-keywords { display: none; }
+}
+
+/* ============================================================
+   SCROLL-LINKED BG ANIMATIONS
+   - スクロールでセクションに到達したら背景パターンを表示
+   - 各セクション固有の subtle background
+   ============================================================ */
+
+/* About (01) - 同心円リング */
+.section.chapter#greeting {
+  position: relative;
+  overflow: hidden;
+}
+.section.chapter#greeting::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -150px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(66,133,244,.10);
+  box-shadow:
+    0 0 0 60px rgba(66,133,244,.05),
+    0 0 0 120px rgba(66,133,244,.03);
+  transform: translateY(-50%) scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#greeting.in-view::before { transform: translateY(-50%) scale(1); }
+
+/* Services (02) - グリッドパターン */
+.section.chapter#services {
+  position: relative;
+  overflow: hidden;
+}
+.section.chapter#services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(66,133,244,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66,133,244,.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#services.in-view::before { opacity: 1; }
+
+/* Blog (03 News) - 動く線パターン */
+.section.chapter#blog {
+  position: relative;
+  overflow: hidden;
+}
+.section.chapter#blog::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(66,133,244,.08) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 2s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#blog.in-view::before { transform: scale(1); }
+
+/* About (04 Corporate) - 縦線パターン */
+.section.chapter#about {
+  position: relative;
+  overflow: hidden;
+}
+.section.chapter#about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 119px,
+    rgba(66,133,244,.06) 119px,
+    rgba(66,133,244,.06) 120px
+  );
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+.section.chapter#about.in-view::before { opacity: 1; }
+
+/* 章セクションのコンテンツは bg より前 */
+.section.chapter > .container { position: relative; z-index: 1; }
