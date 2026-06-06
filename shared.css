@@ -3123,3 +3123,160 @@ a.service-card:hover .service-link-hint {
   .chapter-label::before, .chapter-label::after { width: 28px !important; }
   .f-line-draw::before { right: 0 !important; }
 }
+
+/* ============================================================
+   HERO 3D WIREFRAME GLOBE (folio-hd inspired digital earth)
+   - CSS 3D 真の球体回転
+   - 12本の経線 (meridian) + 3本の緯線 (parallel)
+   - パルスする拠点ドット
+   - Y軸 60秒で1周
+   ============================================================ */
+
+.hero-globe-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* やわらかい光暈 */
+.hero-globe-orb {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(66,133,244,.10) 0%,
+    rgba(66,133,244,.04) 35%,
+    transparent 70%);
+  filter: blur(8px);
+  z-index: 0;
+  animation: orbPulse 12s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+/* 球体コンテナ */
+.hero-globe {
+  position: relative;
+  width: 620px;
+  height: 620px;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.hero-globe-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: globeSpinY 70s linear infinite;
+  will-change: transform;
+}
+@keyframes globeSpinY {
+  from { transform: rotateY(0deg) rotateX(-10deg); }
+  to   { transform: rotateY(360deg) rotateX(-10deg); }
+}
+
+/* 経線 - 縦のリング、Y軸回転で並ぶ */
+.g-meridian {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(66,133,244,.24);
+  border-radius: 50%;
+  transform: rotateY(var(--r));
+  box-sizing: border-box;
+}
+/* 最前列の経線(0deg, 180deg)を少し濃く */
+.g-meridian[style*="--r:0deg"],
+.g-meridian[style*="--r:90deg"] {
+  border-color: rgba(66,133,244,.40);
+}
+
+/* 緯線 - 水平にしたリングを縦方向に並べる */
+.g-parallel {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(66,133,244,.15);
+  border-radius: 50%;
+  transform: rotateX(90deg) scale(var(--s));
+  box-sizing: border-box;
+}
+/* 赤道のみ少し濃く */
+.g-parallel[style*="--s:1"] {
+  border-color: rgba(66,133,244,.32);
+}
+/* 緯線を上下に配置 (translateZ で球面上に乗せる) */
+.g-parallel:nth-of-type(2) { transform: rotateX(90deg) scale(.85) translateZ(105px); }
+.g-parallel:nth-of-type(3) { transform: rotateX(90deg) scale(.65) translateZ(195px); }
+.g-parallel:nth-of-type(4) { transform: rotateX(90deg) scale(.4) translateZ(260px); }
+
+/* 緯線をX軸回転でも配置 (北側にコピー) */
+.hero-globe-inner::before,
+.hero-globe-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(66,133,244,.15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-globe-inner::before {
+  transform: rotateX(90deg) scale(.85) translateZ(-105px);
+}
+.hero-globe-inner::after {
+  transform: rotateX(90deg) scale(.65) translateZ(-195px);
+}
+
+/* 拠点ドット - 2D表示で発光・パルス */
+.g-dot {
+  position: absolute;
+  top: var(--my);
+  left: var(--mx);
+  width: 6px;
+  height: 6px;
+  background: #4285F4;
+  border-radius: 50%;
+  z-index: 5;
+  animation: dotPulse 3s ease-in-out infinite;
+  animation-delay: var(--d);
+  box-shadow: 0 0 0 0 rgba(66,133,244,.6);
+}
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(66,133,244,.6); transform: scale(1); }
+  50%  { box-shadow: 0 0 0 14px rgba(66,133,244,0); transform: scale(1.15); }
+  100% { box-shadow: 0 0 0 0 rgba(66,133,244,0); transform: scale(1); }
+}
+
+/* Hero 内のコンテンツは globe の上に乗せる */
+.hero-edit-inner { position: relative; z-index: 2; }
+.hero-scroll-min { position: relative; z-index: 2; }
+
+/* 写真フレームの背景の透明度を少し上げて globe との重なりを楽しむ */
+.hero-image-frame {
+  box-shadow: 0 30px 60px -20px rgba(15,23,42,.18), 0 0 0 1px rgba(255,255,255,.4);
+}
+
+/* レスポンシブ: モバイルでは globe を縮小 */
+@media (max-width: 900px) {
+  .hero-globe { width: 480px; height: 480px; opacity: 0.5; }
+  .hero-globe-orb { width: 540px; height: 540px; }
+}
+@media (max-width: 600px) {
+  .hero-globe { width: 380px; height: 380px; opacity: 0.4; }
+  .hero-globe-orb { width: 420px; height: 420px; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-globe-inner { animation: none; transform: rotateY(20deg) rotateX(-10deg); }
+  .hero-globe-orb, .g-dot { animation: none; }
+}
