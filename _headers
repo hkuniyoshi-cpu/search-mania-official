@@ -1,0 +1,80 @@
+# =====================================================================
+# SearchMania Inc. Security Headers (Cloudflare Pages)
+# =====================================================================
+# 適用範囲:すべてのパス
+# 効果:OWASP推奨 + モダンWebセキュリティのフル対策
+# =====================================================================
+
+/*
+  # ----- クリックジャッキング対策 -----
+  # iframe埋め込みを自社オリジン以外から拒否
+  X-Frame-Options: SAMEORIGIN
+
+  # ----- MIME Sniffing 防止 -----
+  # ブラウザに Content-Type を厳密尊重させる
+  X-Content-Type-Options: nosniff
+
+  # ----- XSS監査 (レガシー、最新ブラウザはCSP使用) -----
+  X-XSS-Protection: 1; mode=block
+
+  # ----- Referrer 漏洩防止 -----
+  # 自社→外部リンク時はリファラーを送らない/限定する
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # ----- DNS Prefetch 制御 -----
+  X-DNS-Prefetch-Control: on
+
+  # ----- 危険なPermissions全部拒否 -----
+  # 位置情報・マイク・カメラ・支払い等のAPIアクセスを完全ブロック
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), midi=(), fullscreen=(self), interest-cohort=()
+
+  # ----- HSTS (HTTPS強制 + サブドメイン対応 + プリロード対応) -----
+  # 2年間HTTPS強制 + サブドメイン込み + Chromeプリロードリスト掲載可能
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # ----- Cross-Origin Isolation -----
+  # クロスオリジンの分離強化
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  Cross-Origin-Embedder-Policy: unsafe-none
+
+  # ----- Content Security Policy (CSP) -----
+  # 許可ドメインを明示してXSS・改ざんを多層防御
+  # default-src 'self': 何も無ければ自社のみ
+  # script-src: 自社 + GAS (CMS/フォーム送信)
+  # style-src: 自社 + Google Fonts + Font Awesome CDN
+  # img-src: 自社 + Cloudinary + Unsplash + Google Drive + GBP写真
+  # font-src: 自社 + Google Fonts + Font Awesome
+  # frame-src: 自社 + Google Maps
+  # connect-src: 自社 + GAS (fetch先)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://script.google.com https://script.googleusercontent.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com https://drive.google.com https://lh3.googleusercontent.com https://lh4.googleusercontent.com https://lh5.googleusercontent.com https://lh6.googleusercontent.com https://maps.gstatic.com https://maps.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-src 'self' https://www.google.com https://maps.google.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# =====================================================================
+# Cache 制御 (Cloudflare向け細分化)
+# =====================================================================
+
+# 静的アセット(CSS/JS/画像/フォント): 1年キャッシュ
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML: CMS更新を即時反映するため短めキャッシュ
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# sitemap / robots: 1日キャッシュ
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400
