@@ -1398,6 +1398,17 @@ a.service-card:hover .service-link-hint {
   border-top: 1px solid var(--line);
   margin-top: 12px;
 }
+
+/* ハニーポット: 人間には完全に不可視。スクリーンリーダーには aria-hidden で隠す */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 .form-agree .check { background: transparent; border: none; padding: 8px 0; }
 .form-agree .check:hover { background: transparent; }
 
