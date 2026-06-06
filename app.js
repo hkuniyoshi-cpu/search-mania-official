@@ -109,9 +109,10 @@ function applyForYou(items){
   if(!Array.isArray(items) || !items.length) return;
   const grid = document.getElementById('forYouGrid');
   if(!grid) return;
-  grid.innerHTML = items.map(f => {
+  grid.innerHTML = items.map((f, i) => {
     const img = driveImg(f.image);
-    return `<article class="foryou-card reveal">
+    const idx = String(i + 1).padStart(2, '0');
+    return `<article class="foryou-card reveal" data-index="${idx}">
       ${img ? `<div class="foryou-img"><img src="${esc(img)}" alt="" loading="lazy"></div>` : '<div class="foryou-img placeholder"><i class="fa-solid fa-check"></i></div>'}
       <div class="foryou-body">
         <span class="foryou-label">${esc(f.label)}</span>
