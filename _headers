@@ -53,19 +53,22 @@
 # Cache 制御 (Cloudflare向け細分化)
 # =====================================================================
 
-# 静的アセット(CSS/JS/画像/フォント): 1年キャッシュ
+# CSS/JS: 1時間キャッシュ + must-revalidate (頻繁に更新されるため、新バージョン即時反映)
+# CDN(Cloudflareエッジ) と ブラウザ どちらも ETag で再検証
 /*.css
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, must-revalidate
 /*.js
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# 画像・フォント: 30日キャッシュ (滅多に変わらない / ファイル名がほぼ固有)
 /*.svg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=2592000
 /*.png
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=2592000
 /*.jpg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=2592000
 /*.webp
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=2592000
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
