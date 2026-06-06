@@ -523,6 +523,11 @@
             <span><a href="./privacy-policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span>
           </label>
         </div>
+        <!-- Honeypot: ボット記入を捕捉。人間には不可視 -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="s-website">Website</label>
+          <input type="text" id="s-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-submit">
           <button type="submit" class="btn btn-primary btn-block">
             <span>送信する</span>
@@ -573,6 +578,11 @@
             <span><a href="./privacy-policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する</span>
           </label>
         </div>
+        <!-- Honeypot: ボット記入を捕捉。人間には不可視 -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="i-website">Website</label>
+          <input type="text" id="i-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-submit">
           <button type="submit" class="btn btn-primary btn-block">
             <span>送信する</span>
@@ -599,10 +609,6 @@
         <a href="#contact" class="btn btn-primary btn-large">
           <i class="fa-solid fa-comments"></i>
           <span>無料相談する</span>
-        </a>
-        <a href="tel:" class="btn btn-outline btn-large" id="ctaTel">
-          <i class="fa-solid fa-phone"></i>
-          <span>お電話で相談</span>
         </a>
       </div>
     </div>
@@ -722,10 +728,7 @@ function applySettings(s){
     const el = document.getElementById('copyright');
     if(el) el.textContent = '© ' + new Date().getFullYear() + ' ' + s.copyright + ' All Rights Reserved.';
   }
-  if(s.tel){
-    const tel = document.getElementById('ctaTel');
-    if(tel) tel.setAttribute('href','tel:' + s.tel.replace(/[^0-9+]/g,''));
-  }
+  // 電話導線は廃止: 問い合わせはフォーム/メールに一本化
 }
 
 function applyHero(h){
@@ -1063,6 +1066,16 @@ document.querySelectorAll('form[data-form]').forEach(form => {
 
     const formType = form.getAttribute('data-form');
     const fd = new FormData(form);
+
+    // Honeypot: 不可視フィールドに値があればBotとみなして無音で破棄
+    if(fd.get('website')) {
+      console.warn('Honeypot triggered, dropping silently');
+      status.className = 'form-status success';
+      status.innerHTML = '<i class="fa-solid fa-circle-check"></i> 送信が完了しました。<br>担当者より2営業日以内にご返信いたします。';
+      form.reset();
+      return;
+    }
+
     const payload = {
       type: formType,
       name: fd.get('name') || '',
