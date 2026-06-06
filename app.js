@@ -474,6 +474,30 @@ document.addEventListener('DOMContentLoaded', () => {
       el.classList.add('is-visible');
     });
   }, 5000);
+
+  /* ----- Hero keywords: 順次 active 切替 ----- */
+  const kws = document.querySelectorAll('.hero-keywords .kw');
+  if(kws.length){
+    let kwIdx = 0;
+    const cycleKw = () => {
+      kws.forEach(k => k.classList.remove('is-active'));
+      kws[kwIdx].classList.add('is-active');
+      kwIdx = (kwIdx + 1) % kws.length;
+    };
+    cycleKw();
+    setInterval(cycleKw, 2400);
+  }
+
+  /* ----- Chapter sections: スクロール到達で in-view 付与 ----- */
+  const chapters = document.querySelectorAll('.section.chapter');
+  if(chapters.length && 'IntersectionObserver' in window){
+    const chapterIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add('in-view');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    chapters.forEach(c => chapterIO.observe(c));
+  }
 });
 
 /* ============================================================
