@@ -4264,3 +4264,200 @@ a.service-card:hover .service-link-hint {
   #works::after { width: 280px; height: 280px; }
   #reviews::before { font-size: 180px; }
 }
+
+/* ============================================================
+   ⭐ Googleマップ勉強会 ポップアップ吹き出し
+   - 固定位置 (bottom-right) + スクロール追従
+   - 起動時は隠れていて、2秒後にスライドイン
+   - パルスアニメで視線誘導
+   - 閉じるボタンでセッション中は再表示しない
+   ============================================================ */
+.study-popup {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px 14px 16px;
+
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+
+  border-radius: 16px;
+  box-shadow:
+    0 16px 38px rgba(66,133,244,.40),
+    0 4px 12px rgba(66,133,244,.25),
+    inset 0 0 0 1px rgba(255,255,255,.18);
+
+  max-width: 320px;
+
+  opacity: 0;
+  transform: translateY(40px) scale(.92);
+  transition: opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
+  will-change: transform, opacity;
+}
+/* 出現状態 (JSで .is-shown を付与) */
+.study-popup.is-shown {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: studyBounce 3.4s ease-in-out 1.2s infinite;
+}
+@keyframes studyBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-6px) scale(1.02); }
+}
+
+/* 閉じた後 */
+.study-popup.is-dismissed {
+  opacity: 0;
+  transform: translateY(50px) scale(.85);
+  pointer-events: none;
+}
+
+/* ホバー時 */
+.study-popup:hover {
+  animation: none;
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 22px 46px rgba(66,133,244,.50),
+    0 6px 16px rgba(66,133,244,.30),
+    inset 0 0 0 1px rgba(255,255,255,.25);
+}
+.study-popup:hover .study-popup-arrow {
+  transform: translateX(6px);
+}
+
+/* 吹き出しの尻尾 (右下に向けて) */
+.study-popup::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 36px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  transform: rotate(45deg);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+/* グロー (パルスする外側リング) */
+.study-popup::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 22px;
+  border: 2px solid var(--blue);
+  opacity: 0;
+  pointer-events: none;
+}
+.study-popup.is-shown::before {
+  animation: studyGlow 2.8s ease-out 2s infinite;
+}
+@keyframes studyGlow {
+  0%   { opacity: .8; transform: scale(.95); }
+  100% { opacity: 0;  transform: scale(1.08); }
+}
+
+/* アイコン */
+.study-popup-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.22);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  backdrop-filter: blur(4px);
+}
+
+/* テキストブロック */
+.study-popup-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.study-popup-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.study-popup-sub {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  opacity: .92;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* 右側アロー */
+.study-popup-arrow {
+  flex-shrink: 0;
+  margin-left: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+
+/* 閉じるボタン (右上に小さく) */
+.study-popup-close {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(15,23,42,.15);
+  transition: transform .25s ease, background .25s ease, color .25s ease;
+  z-index: 2;
+}
+.study-popup-close:hover {
+  background: var(--ink);
+  color: #ffffff;
+  transform: scale(1.12) rotate(90deg);
+}
+
+/* モバイル: フル幅で下に */
+@media (max-width: 600px) {
+  .study-popup {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    max-width: none;
+    padding: 12px 20px 12px 14px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  .study-popup-icon { width: 38px; height: 38px; font-size: 18px; border-radius: 10px; }
+  .study-popup-title { font-size: 13px; }
+  .study-popup-sub { font-size: 10.5px; }
+  .study-popup::after { right: 50%; transform: translateX(50%) rotate(45deg); }
+}
+
+/* 動き抑制設定の人には控えめに */
+@media (prefers-reduced-motion: reduce) {
+  .study-popup.is-shown { animation: none; }
+  .study-popup.is-shown::before { animation: none; opacity: 0; }
+}
