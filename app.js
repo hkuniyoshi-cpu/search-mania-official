@@ -501,6 +501,25 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
+  /* ----- 勉強会ポップアップ ----- */
+  const studyPopup = document.getElementById('studyPopup');
+  if(studyPopup){
+    const closeBtn = studyPopup.querySelector('.study-popup-close');
+    // セッション中に閉じていなければ 2秒後に出現
+    if(sessionStorage.getItem('studyPopupDismissed') !== '1'){
+      setTimeout(() => studyPopup.classList.add('is-shown'), 2000);
+    }
+    if(closeBtn){
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        studyPopup.classList.remove('is-shown');
+        studyPopup.classList.add('is-dismissed');
+        try { sessionStorage.setItem('studyPopupDismissed', '1'); } catch(_){}
+      });
+    }
+  }
+
   /* ----- 全主要セクション: スクロール到達で in-view 付与 ----- */
   const animSections = document.querySelectorAll(
     '.section.chapter, #features, #for-you, #works, #partners, #reviews, #recruit, #contact'
