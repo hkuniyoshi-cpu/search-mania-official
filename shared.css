@@ -2889,11 +2889,26 @@ a.service-card:hover .service-link-hint {
     grid-template-columns: 1fr;
     gap: 50px;
     min-height: auto;
+    text-align: center;
   }
   .hero.hero--editorial { padding: calc(var(--header-h) + 30px) 22px 60px; }
+  .hero-edit-text { padding-right: 0; text-align: center; }
+  .hero-edit-eyebrow { display: block; text-align: center; }
+  .hero-edit-title { text-align: center; }
+  .hero-edit-title .line-1,
+  .hero-edit-title .line-2 { text-align: center; }
+  .hero-edit-lead { text-align: center; max-width: none; margin-left: auto; margin-right: auto; }
+  .hero-edit-actions { align-items: center; }
   .hero-edit-image { max-width: 480px; margin: 0 auto; }
   .hero-image-frame { aspect-ratio: 4/3; }
-  .link-arrow { min-width: 220px; font-size: 14px; }
+  .hero-edit-caption { align-items: center; text-align: center; }
+  .link-arrow {
+    min-width: 240px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 14px;
+    justify-content: space-between;
+  }
   .section.chapter { padding: 80px 0 70px; }
   .sec-head.chapter-head { margin-bottom: 50px; }
   .chapter-label { margin-top: -36px; font-size: 11px; letter-spacing: .28em; }
