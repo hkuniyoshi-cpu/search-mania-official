@@ -4298,13 +4298,15 @@ a.service-card:hover .service-link-hint {
   gap: 12px;
   padding: 14px 22px 14px 16px;
 
-  /* Google ブランド4色グラデーション (Blue → Red → Yellow → Green) */
+  /* Google ブランド4色グラデーション (Blue を多めに) */
   background: linear-gradient(135deg,
-    #4285F4 0%,
-    #EA4335 35%,
-    #FBBC04 70%,
-    #34A853 100%);
-  background-size: 200% 200%;
+    #4285F4  0%,
+    #4285F4 25%,    /* Blue を 0-25% でフラット保持 */
+    #1a73e8 45%,    /* 続いて濃い Blue */
+    #EA4335 68%,    /* Red は遅めに登場 */
+    #FBBC04 84%,    /* Yellow */
+    #34A853 100%);  /* Green エンド */
+  background-size: 220% 220%;
   background-position: 0% 0%;
   color: #ffffff;
   text-decoration: none;
@@ -4312,11 +4314,12 @@ a.service-card:hover .service-link-hint {
 
   border-radius: 16px;
   box-shadow:
-    0 16px 38px rgba(66,133,244,.25),
-    0 16px 38px rgba(234,67,53,.15),
-    0 16px 38px rgba(52,168,83,.15),
-    0 4px 12px rgba(15,23,42,.18),
-    inset 0 0 0 1px rgba(255,255,255,.25);
+    0 16px 44px rgba(66,133,244,.45),    /* Blue シャドウ最大 */
+    0 8px 22px rgba(26,115,232,.30),     /* 濃いBlueシャドウ重ね */
+    0 16px 38px rgba(234,67,53,.10),
+    0 16px 38px rgba(52,168,83,.10),
+    0 4px 12px rgba(15,23,42,.20),
+    inset 0 0 0 1px rgba(255,255,255,.28);
 
   max-width: 320px;
 
