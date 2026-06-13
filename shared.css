@@ -4298,16 +4298,25 @@ a.service-card:hover .service-link-hint {
   gap: 12px;
   padding: 14px 22px 14px 16px;
 
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  /* Google ブランド4色グラデーション (Blue → Red → Yellow → Green) */
+  background: linear-gradient(135deg,
+    #4285F4 0%,
+    #EA4335 35%,
+    #FBBC04 70%,
+    #34A853 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
   color: #ffffff;
   text-decoration: none;
   font-family: "Inter", "Noto Sans JP", sans-serif;
 
   border-radius: 16px;
   box-shadow:
-    0 16px 38px rgba(66,133,244,.40),
-    0 4px 12px rgba(66,133,244,.25),
-    inset 0 0 0 1px rgba(255,255,255,.18);
+    0 16px 38px rgba(66,133,244,.25),
+    0 16px 38px rgba(234,67,53,.15),
+    0 16px 38px rgba(52,168,83,.15),
+    0 4px 12px rgba(15,23,42,.18),
+    inset 0 0 0 1px rgba(255,255,255,.25);
 
   max-width: 320px;
 
@@ -4320,11 +4329,19 @@ a.service-card:hover .service-link-hint {
 .study-popup.is-shown {
   opacity: 1;
   transform: translateY(0) scale(1);
-  animation: studyBounce 3.4s ease-in-out 1.2s infinite;
+  animation:
+    studyBounce 3.4s ease-in-out 1.2s infinite,
+    googleGradientShift 8s linear infinite;
 }
 @keyframes studyBounce {
   0%, 100% { transform: translateY(0) scale(1); }
   50%      { transform: translateY(-6px) scale(1.02); }
+}
+/* Google4色を絶えずゆるやかに動かす */
+@keyframes googleGradientShift {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 /* 閉じた後 */
@@ -4347,7 +4364,7 @@ a.service-card:hover .service-link-hint {
   transform: translateX(6px);
 }
 
-/* 吹き出しの尻尾 (右下に向けて) */
+/* 吹き出しの尻尾 (右下に向けて、Google緑寄り) */
 .study-popup::after {
   content: '';
   position: absolute;
@@ -4355,19 +4372,25 @@ a.service-card:hover .service-link-hint {
   right: 36px;
   width: 18px;
   height: 18px;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  background: linear-gradient(135deg, #FBBC04 0%, #34A853 100%);
   transform: rotate(45deg);
   z-index: -1;
   border-radius: 2px;
 }
 
-/* グロー (パルスする外側リング) */
+/* グロー (パルスする外側リング - Googleレインボー) */
 .study-popup::before {
   content: '';
   position: absolute;
   inset: -8px;
   border-radius: 22px;
-  border: 2px solid var(--blue);
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #4285F4, #EA4335, #FBBC04, #34A853) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
   opacity: 0;
   pointer-events: none;
 }
