@@ -774,8 +774,11 @@
       <details class="faq">
         <summary>料金プランを教えてください。<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">
-          <p style="margin:0 0 12px;">月額 <strong>50,000円（税別）</strong>が通常価格です。年額一括払い（480,000円 / 税別）を選択すると年間12万円お得になります。</p>
-          <p style="margin:0 0 8px;font-size:13px;"><strong>ご紹介割引について：</strong>既存のご契約者様がご紹介され、紹介先との契約が成立した場合、ご紹介者の月額が <strong>40,000円</strong> に永続的に割引されます（契約後の特典）。</p>
+          <p style="margin:0 0 12px;">料金プランは以下の2つです。（すべて税別）</p>
+          <ul style="list-style:disc;padding-left:20px;margin:0 0 12px;line-height:1.9;">
+            <li><strong>月額プラン：40,000円/月</strong>（年間費用 48万円）</li>
+            <li><strong>年額一括プラン：480,000円/年</strong>（12ヶ月分を一括でお支払い）</li>
+          </ul>
           <p style="margin:0 0 8px;font-size:13px;"><strong>補助金・助成金：</strong>各種補助金・助成金にも対応可能です。サポート枠は<strong>月3件まで</strong>でご案内しています。</p>
           <p style="margin:0;font-size:12px;color:var(--fg-mute);">※まずは無料マップ勉強会にてサービスが貴店に合うかどうかご説明させていただきます。</p>
         </div>
@@ -816,38 +819,27 @@
     </div>
 
     <!-- Pricing -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:40px;max-width:680px;margin-left:auto;margin-right:auto;">
       <!-- Standard -->
       <div class="price-card reveal-left" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);">
-        <p style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;margin:0 0 12px;">STANDARD</p>
-        <p style="font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin:0 0 8px;">通常月額プラン</p>
-        <p style="font-size:36px;font-weight:900;color:#fff;margin:0;letter-spacing:-.02em;">50,000<span style="font-size:16px;font-weight:500;color:rgba(255,255,255,.5);">円/月</span></p>
+        <p style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;margin:0 0 12px;">MONTHLY</p>
+        <p style="font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin:0 0 8px;">月額プラン</p>
+        <p style="font-size:40px;font-weight:900;color:#fff;margin:0;letter-spacing:-.02em;">40,000<span style="font-size:16px;font-weight:500;color:rgba(255,255,255,.5);">円/月</span></p>
         <p style="font-size:11px;color:rgba(255,255,255,.4);margin:4px 0 16px;">（税別）</p>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);">
-          <p style="font-size:12px;color:rgba(255,255,255,.4);margin:0;">年間 60万円</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.5);margin:0;">年間費用 48万円</p>
         </div>
       </div>
 
-      <!-- Annual - featured -->
-      <div class="price-card reveal" style="background:rgba(66,133,244,.15);border-color:var(--accent);position:relative;">
-        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;white-space:nowrap;">おすすめ</div>
-        <p style="font-size:11px;font-weight:700;color:rgba(66,133,244,.8);letter-spacing:.1em;margin:0 0 12px;">ANNUAL PLAN</p>
+      <!-- Annual -->
+      <div class="price-card reveal-right" style="background:rgba(66,133,244,.15);border-color:var(--accent);position:relative;">
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;white-space:nowrap;">一括払いでおトク</div>
+        <p style="font-size:11px;font-weight:700;color:rgba(66,133,244,.8);letter-spacing:.1em;margin:0 0 12px;">ANNUAL</p>
         <p style="font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin:0 0 8px;">年額一括プラン</p>
-        <p style="font-size:36px;font-weight:900;color:#fff;margin:0;letter-spacing:-.02em;">480,000<span style="font-size:16px;font-weight:500;color:rgba(255,255,255,.5);">円/年</span></p>
+        <p style="font-size:40px;font-weight:900;color:#fff;margin:0;letter-spacing:-.02em;">480,000<span style="font-size:16px;font-weight:500;color:rgba(255,255,255,.5);">円/年</span></p>
         <p style="font-size:11px;color:rgba(255,255,255,.4);margin:4px 0 16px;">（税別）</p>
         <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(66,133,244,.3);">
-          <p style="font-size:12px;color:#93C5FD;margin:0;font-weight:600;">月換算 40,000円・年間 <span style="color:var(--g-green);">-12万円</span></p>
-        </div>
-      </div>
-
-      <!-- Referral note -->
-      <div class="price-card reveal-right" style="background:rgba(52,168,83,.08);border-color:rgba(52,168,83,.25);">
-        <p style="font-size:11px;font-weight:700;color:rgba(52,168,83,.8);letter-spacing:.1em;margin:0 0 12px;">REFERRAL BONUS</p>
-        <p style="font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin:0 0 8px;">ご紹介割引</p>
-        <p style="font-size:36px;font-weight:900;color:#fff;margin:0;letter-spacing:-.02em;">40,000<span style="font-size:16px;font-weight:500;color:rgba(255,255,255,.5);">円/月</span></p>
-        <p style="font-size:11px;color:rgba(255,255,255,.4);margin:4px 0 16px;">（税別）</p>
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(52,168,83,.2);">
-          <p style="font-size:12px;color:rgba(52,168,83,.8);margin:0;line-height:1.6;">ご紹介されたお客様の契約成立後、紹介者の月額が永続的に割引になります。</p>
+          <p style="font-size:12px;color:#93C5FD;margin:0;font-weight:600;">12ヶ月分を一括でお支払い</p>
         </div>
       </div>
     </div>
