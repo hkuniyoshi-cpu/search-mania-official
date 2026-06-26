@@ -266,26 +266,6 @@
       transition: background .2s;
     }
     .cta-primary:hover { background: #1a73e8; }
-    .cta-apply {
-      background: linear-gradient(135deg, #FBBC05, #EA4335);
-      color: #fff;
-      border: none;
-      font-weight: 700;
-      box-shadow: 0 4px 20px rgba(234,67,53,.4);
-      transition: filter .2s, transform .15s;
-      position: relative;
-    }
-    .cta-apply::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #FBBC05, #EA4335);
-      opacity: .35;
-      filter: blur(8px);
-      z-index: -1;
-    }
-    .cta-apply:hover { filter: brightness(1.08); transform: translateY(-1px); }
     .cta-line {
       background: #fff;
       color: #202124;
@@ -381,17 +361,13 @@
 
     <!-- CTA buttons -->
     <div id="hero-cta" class="cta-row">
-      <a href="mailto:h.kuniyoshi@search-mania.net?subject=%E3%80%90%E6%89%8B%E6%94%BE%E3%81%97%E3%83%9E%E3%83%83%E3%83%97%E9%9B%86%E5%AE%A2%E3%80%91%E7%94%B3%E8%BE%BC%E3%81%BF%E5%B8%8C%E6%9C%9B&body=%E3%80%90%E5%BA%97%E8%88%97%E5%90%8D%E3%80%91%0A%E3%80%90%E3%82%AA%E3%83%BC%E3%83%8A%E3%83%BC%E5%90%8D%E3%80%91%0A%E3%80%90%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%80%91%0A%E3%80%90%E5%B8%8C%E6%9C%9B%E3%83%97%E3%83%A9%E3%83%B3%EF%BC%88%E6%9C%88%E9%A1%8D%EF%BC%8F%E5%B9%B4%E9%A1%8D%EF%BC%89%E3%80%91%0A%E3%80%90%E3%81%94%E8%B3%AA%E5%95%8F%E3%83%BB%E3%81%94%E8%A6%81%E6%9C%9B%E3%80%91" class="cta-btn cta-apply">
-        <i data-lucide="send" class="cta-icon"></i>
-        <span>今すぐ申込む</span>
-      </a>
       <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="cta-btn cta-primary">
         <i data-lucide="map-pin" class="cta-icon"></i>
-        <span>無料マップ勉強会へ</span>
+        <span>無料マップ勉強会に参加する</span>
       </a>
       <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener" class="cta-btn cta-line">
         <svg viewBox="0 0 24 24" fill="#06C755" class="cta-icon-svg"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-        <span>LINEで質問</span>
+        <span>LINEで質問する</span>
       </a>
     </div>
   </div>
@@ -822,7 +798,7 @@
       </details>
       <details class="faq" style="border-bottom:none;">
         <summary>申込みから稼働開始までの流れは？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
-        <div class="faq-body">①無料マップ勉強会へご参加（任意） → ②お申込み → ③対面ヒアリング（90〜120分）+ 写真素材30〜50枚のご提供 + GoogleビジネスプロフィールへのMEアドレス追加 → ④自動運用スタート。月3件までの受付となりますので、ご希望の方はお早めにご相談ください。</div>
+        <div class="faq-body">①お申込み → ②ヒアリング（フォーム入力）+ 写真素材30〜50枚のご提供 + Googleビジネスプロフィールへの指定メールアドレス追加 → ③自動運用スタート。月3件までの受付となりますので、ご希望の方はお早めにご相談ください。</div>
       </details>
     </div>
   </div>
@@ -882,24 +858,19 @@
 
     <!-- CTAs -->
     <div class="reveal" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;">
-      <!-- 申込みCTA (PRIMARY) -->
-      <a href="mailto:h.kuniyoshi@search-mania.net?subject=%E3%80%90%E6%89%8B%E6%94%BE%E3%81%97%E3%83%9E%E3%83%83%E3%83%97%E9%9B%86%E5%AE%A2%E3%80%91%E7%94%B3%E8%BE%BC%E3%81%BF%E5%B8%8C%E6%9C%9B&body=%E3%80%90%E5%BA%97%E8%88%97%E5%90%8D%E3%80%91%0A%E3%80%90%E3%82%AA%E3%83%BC%E3%83%8A%E3%83%BC%E5%90%8D%E3%80%91%0A%E3%80%90%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%80%91%0A%E3%80%90%E5%B8%8C%E6%9C%9B%E3%83%97%E3%83%A9%E3%83%B3%EF%BC%88%E6%9C%88%E9%A1%8D%EF%BC%8F%E5%B9%B4%E9%A1%8D%EF%BC%89%E3%80%91%0A%E3%80%90%E3%81%94%E8%B3%AA%E5%95%8F%E3%83%BB%E3%81%94%E8%A6%81%E6%9C%9B%E3%80%91" class="btn-primary" style="font-size:18px;padding:18px 36px;white-space:nowrap;background:linear-gradient(135deg,#FBBC05,#EA4335);box-shadow:0 4px 24px rgba(234,67,53,.4);">
-        <i data-lucide="send" style="width:20px;height:20px;stroke-width:2.5;"></i>
-        今すぐ申込む
-      </a>
       <!-- 勉強会CTA -->
       <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="btn-primary" style="font-size:18px;padding:18px 36px;white-space:nowrap;">
         <i data-lucide="map-pin" style="width:20px;height:20px;stroke-width:2.5;"></i>
-        無料マップ勉強会に参加
+        無料マップ勉強会に参加する
       </a>
       <!-- LINE -->
       <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener" class="btn-secondary" style="white-space:nowrap;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#06C755"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-        LINEで質問
+        LINEで質問・相談する
       </a>
     </div>
     <p class="reveal" style="text-align:center;color:rgba(255,255,255,.45);font-size:12px;margin-top:20px;line-height:1.7;">
-      ※申込みボタンはメール作成画面が開きます（送信先：h.kuniyoshi@search-mania.net）<br>
+      ※申込みフォームは現在準備中です。お急ぎの方はLINEまたは無料勉強会にてご相談ください。<br>
       ※サポート枠が埋まり次第、募集を一時停止いたします
     </p>
   </div>
