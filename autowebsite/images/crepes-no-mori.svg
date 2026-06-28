@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+
+  <!-- ── 背景 ── -->
+  <rect width="1200" height="630" fill="#2B2622"/>
+
+  <!-- ── 罫線テクスチャ ── -->
+  <g stroke="#FAF7F2" stroke-width="0.6" opacity="0.045">
+    <line x1="0" y1="28" x2="1200" y2="28"/>
+    <line x1="0" y1="56" x2="1200" y2="56"/>
+    <line x1="0" y1="84" x2="1200" y2="84"/>
+    <line x1="0" y1="112" x2="1200" y2="112"/>
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="168" x2="1200" y2="168"/>
+    <line x1="0" y1="196" x2="1200" y2="196"/>
+    <line x1="0" y1="224" x2="1200" y2="224"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="308" x2="1200" y2="308"/>
+    <line x1="0" y1="336" x2="1200" y2="336"/>
+    <line x1="0" y1="364" x2="1200" y2="364"/>
+    <line x1="0" y1="392" x2="1200" y2="392"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="448" x2="1200" y2="448"/>
+    <line x1="0" y1="476" x2="1200" y2="476"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+    <line x1="0" y1="532" x2="1200" y2="532"/>
+    <line x1="0" y1="560" x2="1200" y2="560"/>
+    <line x1="0" y1="588" x2="1200" y2="588"/>
+    <line x1="0" y1="616" x2="1200" y2="616"/>
+  </g>
+
+  <!-- ── 左アクセントライン ── -->
+  <rect x="0" y="0" width="7" height="630" fill="#FAF7F2" opacity="0.14"/>
+
+  <!-- ── マスキングテープ（左上） ── -->
+  <rect x="50" y="-10" width="300" height="36" rx="3" fill="#C8BFAE" opacity="0.2" transform="rotate(5, 200, 8)"/>
+  <text x="162" y="24" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#2B2622" opacity="0.55" letter-spacing="3" transform="rotate(5, 162, 24)">Naha · Okinawa</text>
+
+  <!-- ── マスキングテープ（右下） ── -->
+  <rect x="860" y="602" width="280" height="36" rx="3" fill="#A89373" opacity="0.18" transform="rotate(-5, 1000, 620)"/>
+
+  <!-- ── 散りばめた点 ── -->
+  <circle cx="128" cy="178" r="6" fill="#FAF7F2" opacity="0.1"/>
+  <circle cx="155" cy="202" r="3.5" fill="#FAF7F2" opacity="0.07"/>
+  <circle cx="103" cy="208" r="2.5" fill="#FAF7F2" opacity="0.06"/>
+  <circle cx="1078" cy="112" r="5.5" fill="#FAF7F2" opacity="0.1"/>
+  <circle cx="1102" cy="136" r="3" fill="#FAF7F2" opacity="0.07"/>
+  <circle cx="1058" cy="148" r="2" fill="#FAF7F2" opacity="0.06"/>
+  <circle cx="96" cy="516" r="4.5" fill="#FAF7F2" opacity="0.08"/>
+  <circle cx="1108" cy="490" r="5" fill="#FAF7F2" opacity="0.09"/>
+  <circle cx="200" cy="580" r="3" fill="#FAF7F2" opacity="0.06"/>
+  <circle cx="980" cy="60" r="4" fill="#FAF7F2" opacity="0.07"/>
+
+  <!-- ── クレープコーンのイラスト（右端） ── -->
+  <g transform="translate(1010, 130) scale(2.6)" opacity="0.15" stroke="#FAF7F2" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 38 L30 86 L42 38"/>
+    <path d="M16 40 Q30 46 44 40"/>
+    <path d="M15 45 Q30 51 45 45"/>
+    <ellipse cx="30" cy="34" rx="13" ry="7"/>
+    <ellipse cx="30" cy="25" rx="14" ry="10"/>
+    <path d="M20 17 Q24 8 30 13 Q36 8 40 17"/>
+    <path d="M22 22 Q30 18 38 22" stroke-width="1"/>
+  </g>
+
+  <!-- ── 小さな花（左下） ── -->
+  <g transform="translate(96, 470)" opacity="0.11" fill="#FAF7F2">
+    <circle cx="0" cy="-15" r="7.5"/>
+    <circle cx="14" cy="-5" r="7.5"/>
+    <circle cx="9" cy="10" r="7.5"/>
+    <circle cx="-9" cy="10" r="7.5"/>
+    <circle cx="-14" cy="-5" r="7.5"/>
+    <circle cx="0" cy="0" r="5"/>
+  </g>
+
+  <!-- ── スタンプ外円（ダッシュ） ── -->
+  <circle cx="570" cy="318" r="256" fill="none" stroke="#FAF7F2" stroke-width="2.5" stroke-dasharray="14 9" opacity="0.38"/>
+  <!-- ── スタンプ内円（薄い） ── -->
+  <circle cx="570" cy="318" r="237" fill="none" stroke="#FAF7F2" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- ── "since 2008" 上部ラベル ── -->
+  <text x="570" y="94" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" fill="#FAF7F2" opacity="0.32" letter-spacing="6">·  ·  since  2008  ·  ·</text>
+
+  <!-- ── メインタイトル：クレープの森 ── -->
+  <text x="570" y="305"
+    text-anchor="middle"
+    font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif CJK JP', 'MS Mincho', 'BIZ UDMincho', serif"
+    font-size="102"
+    font-weight="700"
+    fill="#FAF7F2"
+    letter-spacing="6"
+    text-rendering="optimizeLegibility">クレープの森</text>
+
+  <!-- ── 波線アンダーライン ── -->
+  <path d="M 240 330 Q 270 322, 300 330 T 360 330 T 420 330 T 480 330 T 540 330 T 600 330 T 660 330 T 720 330 T 780 330 T 840 330 T 880 330 T 900 330"
+    stroke="#8E8678" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- ── サブタイトル：Crêpe no Mori ── -->
+  <text x="570" y="388"
+    text-anchor="middle"
+    font-family="Georgia, 'Palatino Linotype', 'Book Antiqua', serif"
+    font-size="34"
+    font-style="italic"
+    fill="#8E8678"
+    letter-spacing="7">Crêpe no Mori</text>
+
+  <!-- ── 場所バッジ ── -->
+  <rect x="466" y="408" width="208" height="42" rx="21" fill="none" stroke="#FAF7F2" stroke-width="1.5" opacity="0.28"/>
+  <text x="570" y="435"
+    text-anchor="middle"
+    font-family="'Hiragino Sans', 'Yu Gothic', 'Meiryo', 'Noto Sans CJK JP', sans-serif"
+    font-size="17"
+    fill="#FAF7F2"
+    opacity="0.52"
+    letter-spacing="5">那覇 · 安里</text>
+
+  <!-- ── 下部装飾ドット ── -->
+  <text x="570" y="536" text-anchor="middle" font-family="serif" font-size="16" fill="#FAF7F2" opacity="0.18" letter-spacing="20">·  ·  ·  ·  ·</text>
+
+</svg>
