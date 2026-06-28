@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手放しWEB集客 | SearchMania</title>
+  <link rel="canonical" href="https://search-mania.net/autowebsite/">
+  <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SearchMania Inc.">
+  <meta property="og:title" content="手放しWEB集客 | SearchMania">
+  <meta property="og:description" content="AIが毎日2記事を自動投稿。SEO×AIO対策で「検索した人に選ばれるサイト」を自動で育てます。公式HP兼用・月額20,000円（税別）。">
+  <meta property="og:image" content="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
+  <meta property="og:url" content="https://search-mania.net/autowebsite/">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="AIが毎日2記事を自動投稿。SEO×AIO対策で「検索した人に選ばれるサイト」を自動で育てます。公式HP兼用・月額20,000円（税別）。">
+  <meta name="keywords" content="手放しWEB集客,SEO,AIO,自動更新サイト,AI集客,SearchMania,沖縄">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans JP"', 'Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --green:       #22c55e;
+      --green-dark:  #16a34a;
+      --green-light: #dcfce7;
+      --fg:          #111827;
+      --fg-dim:      #374151;
+      --fg-mute:     #6b7280;
+      --surf:        #f0fdf4;
+      --line:        rgba(0,0,0,.10);
+    }
+    html { overflow-x: hidden; }
+    body { background:#fff; color:var(--fg); font-family:"Noto Sans JP",Inter,system-ui,sans-serif; overflow-x:hidden; }
+    html.lenis, html.lenis body { height:auto; }
+    .lenis.lenis-smooth { scroll-behavior:auto !important; }
+
+    .noise-bg {
+      position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:200px;
+    }
+
+    /* NAV */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:0 24px; height:60px;
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(255,255,255,.88); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line); transition:box-shadow .3s;
+    }
+    #nav.scrolled { box-shadow:0 2px 12px rgba(0,0,0,.08); }
+    .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-brand img { width:28px; height:28px; }
+    .nav-brand span { font-size:15px; font-weight:700; color:var(--fg); }
+    .nav-links { display:flex; gap:6px; align-items:center; }
+    .nav-links a { font-size:13px; font-weight:500; color:var(--fg-dim); padding:6px 10px; border-radius:6px; text-decoration:none; transition:background .15s,color .15s; }
+    .nav-links a:hover { background:var(--surf); color:var(--fg); }
+    .nav-cta { background:var(--green) !important; color:#fff !important; border-radius:8px; padding:7px 14px !important; font-weight:700 !important; }
+    .nav-cta:hover { background:var(--green-dark) !important; }
+    .nav-sub { background:rgba(34,197,94,.1) !important; color:var(--green) !important; border-radius:8px; padding:6px 12px !important; font-weight:600 !important; border:1px solid rgba(34,197,94,.3) !important; }
+    .nav-sub:hover { background:rgba(34,197,94,.18) !important; }
+    @media (max-width:720px) {
+      .nav-links a:not(.nav-cta):not(.nav-sub) { display:none; }
+    }
+    @media (max-width:480px) { .nav-sub { display:none !important; } }
+
+    /* UTILITIES */
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--green); background:var(--green-light); border-radius:999px; padding:4px 12px;
+    }
+    .card {
+      background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px;
+      transition:box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow:0 8px 32px rgba(34,197,94,.12); transform:translateY(-2px); }
+
+    /* CTA BUTTONS */
+    .cta-row { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; }
+    .cta-btn {
+      display:flex !important; align-items:center !important; justify-content:center !important;
+      gap:8px; height:56px !important; padding:0 28px !important; box-sizing:border-box !important;
+      font-size:15px; line-height:1; border-radius:12px; text-decoration:none; white-space:nowrap;
+      font-weight:700; transition:filter .2s, transform .15s, box-shadow .2s;
+    }
+    .cta-green { background:var(--green); color:#fff; box-shadow:0 4px 16px rgba(34,197,94,.4); }
+    .cta-green:hover { background:var(--green-dark); transform:translateY(-2px); }
+    .cta-dark { background:linear-gradient(135deg,#16a34a,#15803d); color:#fff; box-shadow:0 4px 20px rgba(22,163,74,.4); }
+    .cta-dark:hover { filter:brightness(1.08); transform:translateY(-1px); }
+    .cta-line { background:#fff; color:#202124; border:1.5px solid rgba(0,0,0,.12); }
+    .cta-line:hover { border-color:#06C755; box-shadow:0 4px 12px rgba(6,199,85,.2); }
+    .cta-icon { width:18px; height:18px; flex-shrink:0; stroke-width:2.5; }
+    @media (max-width:520px) {
+      .cta-row { flex-direction:column; align-items:stretch; }
+      .cta-btn { width:100%; max-width:360px; margin:0 auto; }
+    }
+
+    /* FAQ */
+    details.faq { border-bottom:1px solid var(--line); }
+    details.faq summary {
+      list-style:none; display:flex; justify-content:space-between; align-items:center;
+      padding:20px 0; font-weight:600; cursor:pointer; font-size:15px; gap:12px;
+    }
+    details.faq summary::-webkit-details-marker { display:none; }
+    details.faq summary .chevron { transition:transform .3s; color:var(--fg-mute); flex-shrink:0; }
+    details.faq[open] summary .chevron { transform:rotate(180deg); }
+    details.faq .faq-body { padding:0 0 20px; color:var(--fg-dim); font-size:14px; line-height:1.8; }
+    details.faq[open] summary ~ * { animation:slideDown .25s ease; }
+
+    /* ANIMATIONS */
+    @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes pulse2 { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
+    .reveal { opacity:0; transform:translateY(30px); }
+    .reveal-left { opacity:0; transform:translateX(-30px); }
+    .reveal-right { opacity:0; transform:translateX(30px); }
+
+    /* DARK CTA SECTION */
+    .dark-cta { background:linear-gradient(160deg,#052e16 0%,#14532d 100%); position:relative; overflow:hidden; }
+    .dark-cta::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 20% 80%,rgba(34,197,94,.15) 0%,transparent 55%),
+                 radial-gradient(ellipse at 80% 20%,rgba(16,185,129,.10) 0%,transparent 50%);
+    }
+
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(0,0,0,.15); border-radius:99px; }
+  </style>
+</head>
+<body>
+
+<div class="noise-bg"></div>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav id="nav">
+  <a href="https://search-mania.net/" class="nav-brand">
+    <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" alt="SearchMania">
+    <span>SearchMania</span>
+  </a>
+  <div class="nav-links">
+    <a href="#problem">お悩み</a>
+    <a href="#solution">仕組み</a>
+    <a href="#gallery">実績</a>
+    <a href="#price">料金</a>
+    <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="nav-sub">無料相談</a>
+    <a href="#apply" class="nav-cta">お申込み</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section style="padding:120px 0 80px;position:relative;overflow:hidden;">
+  <!-- グリッドBG -->
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <!-- グロー -->
+  <div style="position:absolute;top:-120px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(34,197,94,.10),transparent 65%);border-radius:50%;pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(16,185,129,.07),transparent 65%);border-radius:50%;pointer-events:none;"></div>
+
+  <!-- フローティングアイコン -->
+  <div style="position:absolute;top:15%;left:5%;opacity:.45;pointer-events:none;animation:float 6s ease-in-out infinite;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </div>
+  <div style="position:absolute;top:20%;right:6%;opacity:.45;pointer-events:none;animation:float 7s ease-in-out infinite reverse;animation-delay:1s;">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+  </div>
+  <div style="position:absolute;bottom:20%;left:8%;opacity:.45;pointer-events:none;animation:float 8s ease-in-out infinite;animation-delay:.5s;">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.813 1.9a2 2 0 0 1 1.287 1.288L12 21l1.9-5.812a2 2 0 0 1 1.287-1.288L21 12l-5.813-1.9a2 2 0 0 1-1.287-1.288Z"/></svg>
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;position:relative;z-index:1;text-align:center;">
+
+    <!-- バッジ -->
+    <div id="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:var(--green-light);border:1px solid rgba(34,197,94,.4);border-radius:999px;padding:6px 16px;margin-bottom:28px;">
+      <span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse2 2s infinite;"></span>
+      <span style="font-size:12px;font-weight:700;color:var(--green-dark);">SEO × AIO × 公式HP兼用｜自動更新型WEBサイト</span>
+    </div>
+
+    <!-- ヒーローボックス -->
+    <div id="hero-box" style="background:#fff;border:1px solid var(--line);border-radius:24px;padding:44px 40px 36px;box-shadow:0 8px 50px rgba(34,197,94,.10);margin-bottom:48px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;display:flex;">
+        <div style="flex:1;background:#22c55e;"></div>
+        <div style="flex:1;background:#16a34a;"></div>
+        <div style="flex:1;background:#4ade80;"></div>
+        <div style="flex:1;background:#86efac;"></div>
+      </div>
+      <h2 style="font-size:clamp(28px,5.5vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:12px 0 18px;color:var(--fg);">
+        検索した人に、<br><span style="color:var(--green);">選ばれるサイト</span>を<br>自動で作り続ける
+      </h2>
+      <p style="font-size:clamp(14px,1.8vw,17px);color:var(--fg-dim);line-height:1.8;margin:0 0 24px;">
+        毎日2記事をAIが自動投稿。<mark style="background:linear-gradient(180deg,transparent 60%,#dcfce7 60%);padding:0 2px;font-weight:600;color:var(--fg);">ChatGPT・Gemini</mark>にも引用される構造化データ対応。<br>
+        オーナーは寝ててもOK、サイトが育ち続ける。
+      </p>
+      <!-- 3軸バッジ -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;font-size:clamp(12px,1.5vw,14px);font-weight:700;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);color:var(--green-dark);padding:8px 14px;border-radius:10px;border:1px solid rgba(34,197,94,.25);">
+          <i data-lucide="search" style="width:14px;height:14px;stroke-width:2.5;"></i>SEO<span style="font-weight:400;font-size:11px;opacity:.8;">（通常検索対策）</span>
+        </span>
+        <span style="color:var(--fg-mute);font-weight:400;align-self:center;">×</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.1);color:#4f46e5;padding:8px 14px;border-radius:10px;border:1px solid rgba(99,102,241,.25);">
+          <i data-lucide="sparkles" style="width:14px;height:14px;stroke-width:2.5;"></i>AIO<span style="font-weight:400;font-size:11px;opacity:.8;">（AI検索対策）</span>
+        </span>
+        <span style="color:var(--fg-mute);font-weight:400;align-self:center;">×</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.1);color:#d97706;padding:8px 14px;border-radius:10px;border:1px solid rgba(251,191,36,.25);">
+          <i data-lucide="globe" style="width:14px;height:14px;stroke-width:2.5;"></i>公式HP兼用
+        </span>
+      </div>
+    </div>
+
+    <!-- サービス名 -->
+    <div id="hero-title" style="margin-bottom:20px;">
+      <h1 style="font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--fg);margin:0 0 12px;letter-spacing:-.02em;">
+        手放し<span style="color:var(--green);">WEB</span>集客
+      </h1>
+      <p style="font-size:12px;color:var(--fg-mute);margin:0 0 12px;letter-spacing:.05em;">＝ SEO/AIOを起点とした自動集客プラン ＝</p>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--surf);border-radius:999px;padding:6px 14px;">
+        <i data-lucide="check-circle" style="width:14px;height:14px;color:var(--green);stroke-width:2.5;"></i>
+        <span style="font-size:13px;font-weight:500;color:var(--fg-dim);">365日、自動でサイトが更新され続ける</span>
+      </div>
+    </div>
+
+    <p id="hero-desc" style="font-size:clamp(15px,2vw,19px);color:var(--fg-dim);line-height:1.8;margin:0 auto 40px;max-width:680px;">
+      公式HPとしても使える設計で、<strong style="color:var(--fg);">「今すぐ検索している人」</strong>に確実に届きます。<br>
+      月額20,000円（税別）でWEB集客の入口を自動化。
+    </p>
+
+    <div id="hero-cta" class="cta-row">
+      <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="cta-btn cta-green">
+        <i data-lucide="calendar" class="cta-icon"></i>
+        <span>無料相談はこちら</span>
+      </a>
+      <a href="#apply" class="cta-btn cta-dark">
+        <i data-lucide="send" class="cta-icon"></i>
+        <span>お申込みはこちら</span>
+      </a>
+      <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener" class="cta-btn cta-line">
+        <svg viewBox="0 0 24 24" fill="#06C755" style="width:18px;height:18px;flex-shrink:0;"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+        <span>LINEで質問</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     P: PROBLEM
+══════════════════════════════════ -->
+<section id="problem" style="padding:80px 0;background:var(--surf);scroll-margin-top:70px;">
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="margin-bottom:16px;">PROBLEM</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0;">こんなお悩み、抱えていませんか？</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;max-width:820px;margin:0 auto 36px;">
+
+      <div class="reveal" style="background:#fff;border-radius:14px;padding:24px;border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:-4px;right:12px;font-size:52px;font-weight:900;color:#dcfce7;line-height:1;font-family:Inter,system-ui;">01</span>
+        <div style="flex-shrink:0;width:44px;height:44px;border-radius:12px;background:#dcfce7;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
+          <i data-lucide="map-pin-off" style="width:22px;height:22px;color:var(--green-dark);stroke-width:2;"></i>
+        </div>
+        <div style="position:relative;z-index:1;">
+          <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">マップだけでは届かない</p>
+          <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">Googleマップには出てるのに「比較検討している層」を取りこぼしている。情報収集する客がHPを見てくれない。</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="background:#fff;border-radius:14px;padding:24px;border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:-4px;right:12px;font-size:52px;font-weight:900;color:#dcfce7;line-height:1;font-family:Inter,system-ui;">02</span>
+        <div style="flex-shrink:0;width:44px;height:44px;border-radius:12px;background:#dcfce7;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
+          <i data-lucide="globe-2" style="width:22px;height:22px;color:var(--green-dark);stroke-width:2;"></i>
+        </div>
+        <div style="position:relative;z-index:1;">
+          <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">HPが古い・ない</p>
+          <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">公式サイトがない、または何年も更新が止まっている。古い情報が残ったままで機会損失が続いている。</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="background:#fff;border-radius:14px;padding:24px;border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:-4px;right:12px;font-size:52px;font-weight:900;color:#dcfce7;line-height:1;font-family:Inter,system-ui;">03</span>
+        <div style="flex-shrink:0;width:44px;height:44px;border-radius:12px;background:#dcfce7;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
+          <i data-lucide="bot" style="width:22px;height:22px;color:var(--green-dark);stroke-width:2;"></i>
+        </div>
+        <div style="position:relative;z-index:1;">
+          <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">AI検索に出てこない</p>
+          <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">ChatGPTやGeminiで「おすすめの○○」と聞かれたとき、自分の店が紹介されない。AI時代に乗り遅れている。</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="background:#fff;border-radius:14px;padding:24px;border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;position:relative;overflow:hidden;">
+        <span style="position:absolute;top:-4px;right:12px;font-size:52px;font-weight:900;color:#dcfce7;line-height:1;font-family:Inter,system-ui;">04</span>
+        <div style="flex-shrink:0;width:44px;height:44px;border-radius:12px;background:#dcfce7;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;">
+          <i data-lucide="calendar-x" style="width:22px;height:22px;color:var(--green-dark);stroke-width:2;"></i>
+        </div>
+        <div style="position:relative;z-index:1;">
+          <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">ネット対策が続かない</p>
+          <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">ブログや記事投稿が大変で続かない。SEO業者に頼んでも効果が実感できず、費用対効果が見えない。</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="background:#fff;border-radius:16px;padding:24px 32px;border:1px solid var(--line);text-align:center;">
+      <p style="font-size:clamp(15px,2.5vw,19px);font-weight:700;color:var(--fg);margin:0;">
+        その悩み、<span style="color:var(--green);">AIが365日自動</span>で全て解決します
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     A: AFFINITY
+══════════════════════════════════ -->
+<section style="padding:80px 0;background:#fff;">
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="eyebrow" style="margin-bottom:16px;">WHY NOW</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0 0 16px;">検索の仕組みが根本から変わった</h2>
+      <p style="font-size:15px;color:var(--fg-dim);line-height:1.8;max-width:640px;margin:0 auto;">
+        Googleはもう「順位」だけで集客できる時代ではありません。AI検索・パーソナライズ検索が普及した今、<br>
+        <strong style="color:var(--fg);">「情報量豊富で毎日更新されているサイト」</strong>が選ばれます。
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+      <div class="reveal-left card">
+        <div style="width:44px;height:44px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i data-lucide="user-check" style="width:22px;height:22px;color:var(--green-dark);stroke-width:2;"></i>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 8px;">パーソナライズ検索の台頭</h3>
+        <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">Googleはユーザーごとに異なる検索結果を表示します。過去の行動・位置・好みで判断されるため、画一的なMEOだけでは全員に届かない時代になりました。</p>
+      </div>
+      <div class="reveal card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i data-lucide="brain-circuit" style="width:22px;height:22px;color:#7c3aed;stroke-width:2;"></i>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 8px;">AI検索（ChatGPT・Gemini）の急拡大</h3>
+        <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">「○○エリアのおすすめ店は？」とAIに聞く人が急増。AIに引用されるには、構造化された豊富な情報が必要です。</p>
+      </div>
+      <div class="reveal-right card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#fef9c3;display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <i data-lucide="trending-up" style="width:22px;height:22px;color:#d97706;stroke-width:2;"></i>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 8px;">競合はすでに動いています</h3>
+        <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">毎日コンテンツを更新している競合に対して、放置されたHPや情報ゼロのサイトは検索で埋もれていきます。対策は今すぐ始めるほど有利です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     S: SOLUTION
+══════════════════════════════════ -->
+<section id="solution" style="padding:80px 0;background:var(--surf);scroll-margin-top:70px;">
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="margin-bottom:16px;">SOLUTION</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0 0 10px;">手放しWEB集客が解決する</h2>
+      <p style="font-size:14px;color:var(--fg-dim);margin:0;">初期設定だけで、あとはAIが365日サイトを育てます</p>
+    </div>
+
+    <!-- 3ステップフロー -->
+    <div class="reveal" style="display:flex;flex-wrap:wrap;background:#fff;border-radius:20px;border:1px solid var(--line);overflow:hidden;margin-bottom:40px;">
+      <div style="flex:1;min-width:180px;padding:32px 20px;text-align:center;border-right:1px solid var(--line);">
+        <div style="width:52px;height:52px;border-radius:16px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"><span style="font-size:22px;font-weight:900;color:var(--green-dark);">1</span></div>
+        <i data-lucide="clipboard-list" style="width:28px;height:28px;color:var(--green);stroke-width:1.5;margin-bottom:8px;"></i>
+        <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">初期設定</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">事業情報・ターゲット・キーワードを入力するだけ（1回のみ）</p>
+      </div>
+      <div style="flex:1;min-width:180px;padding:32px 20px;text-align:center;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--surf),#fff);">
+        <div style="width:52px;height:52px;border-radius:16px;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"><span style="font-size:22px;font-weight:900;color:#fff;">2</span></div>
+        <i data-lucide="sparkles" style="width:28px;height:28px;color:var(--green);stroke-width:1.5;margin-bottom:8px;"></i>
+        <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">AI自動生成</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">ターゲットに刺さる記事を毎日2本、AIが自動生成</p>
+      </div>
+      <div style="flex:1;min-width:180px;padding:32px 20px;text-align:center;">
+        <div style="width:52px;height:52px;border-radius:16px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;"><span style="font-size:22px;font-weight:900;color:var(--green-dark);">3</span></div>
+        <i data-lucide="globe" style="width:28px;height:28px;color:var(--green);stroke-width:1.5;margin-bottom:8px;"></i>
+        <p style="font-size:15px;font-weight:700;color:var(--fg);margin:0 0 6px;">自動公開・蓄積</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">SEO/AIO対応フォーマットで自動公開。情報が資産として積み重なる</p>
+      </div>
+    </div>
+
+    <!-- 4ベネフィット -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+      <div class="reveal-left" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;">
+        <i data-lucide="file-text" style="width:32px;height:32px;color:var(--green);stroke-width:1.5;margin-bottom:10px;"></i>
+        <p style="font-size:14px;font-weight:700;color:var(--fg);margin:0 0 4px;">毎日2記事を自動投稿</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">SEO対策として月60記事以上が蓄積</p>
+      </div>
+      <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;">
+        <i data-lucide="brain" style="width:32px;height:32px;color:#7c3aed;stroke-width:1.5;margin-bottom:10px;"></i>
+        <p style="font-size:14px;font-weight:700;color:var(--fg);margin:0 0 4px;">ChatGPT・Geminiに引用</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">構造化データ整備でAIO対策も完備</p>
+      </div>
+      <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;">
+        <i data-lucide="layout-dashboard" style="width:32px;height:32px;color:#d97706;stroke-width:1.5;margin-bottom:10px;"></i>
+        <p style="font-size:14px;font-weight:700;color:var(--fg);margin:0 0 4px;">公式HPとして使える</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">事業紹介・メニュー・アクセスも掲載</p>
+      </div>
+      <div class="reveal-right" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;">
+        <i data-lucide="moon" style="width:32px;height:32px;color:var(--green);stroke-width:1.5;margin-bottom:10px;"></i>
+        <p style="font-size:14px;font-weight:700;color:var(--fg);margin:0 0 4px;">寝てるだけでOK</p>
+        <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.6;">365日、オーナーは何もしなくていい</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     GALLERY
+══════════════════════════════════ -->
+<section id="gallery" style="padding:80px 0;background:#fff;scroll-margin-top:70px;">
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="margin-bottom:16px;">CASE GALLERY</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0 0 10px;">自動更新WEBサイトの導入実績</h2>
+      <p style="font-size:14px;color:var(--fg-dim);margin:0;">業種・地域を問わず9業態以上で稼働中。クリックで実例サイトをご覧いただけます。</p>
+    </div>
+
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">
+
+      <a href="https://sfp-okinawa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#dbeafe;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="goal" style="width:18px;height:18px;color:#1d4ed8;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">S.F.P 沖縄</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">フットサル / 南風原町</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://crepes-no-mori.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fce7f3;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="utensils" style="width:18px;height:18px;color:#be185d;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">クレープの森</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">飲食店</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://laundrypress-nahatomari.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="shirt" style="width:18px;height:18px;color:#0369a1;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">Laundrypress 那覇泊</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">クリーニング</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://momo-villa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fef3c7;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="home" style="width:18px;height:18px;color:#d97706;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">百momo</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">ヴィラ / 南城市</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://thai-raksaa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#f3e8ff;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="flower-2" style="width:18px;height:18px;color:#9333ea;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">タイ古式 RAKSAA</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">マッサージ</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://hikari-seikotsu.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fff7ed;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="heart-pulse" style="width:18px;height:18px;color:#ea580c;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">ひかり整骨院</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">整骨 / 豊見城市</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://blow-kokusaidori.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#212121;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="dices" style="width:18px;height:18px;color:#fbbf24;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">BLOW 国際通り</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">バー / 那覇</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://churamp.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#161e1a;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="tent" style="width:18px;height:18px;color:#e87833;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">ちゅらんぷ</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">キャンプバー / 那覇</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+      <a href="https://miyoshi-iwamoto.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
+        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="stethoscope" style="width:18px;height:18px;color:#0369a1;stroke-width:2;"></i>
+        </div>
+        <div style="min-width:0;flex:1;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">三次いわもと接骨院</p>
+          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">整骨 / 広島県三次市</p>
+        </div>
+        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     O: OFFER（料金）
+══════════════════════════════════ -->
+<section id="price" style="padding:80px 0;background:var(--surf);scroll-margin-top:70px;">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="margin-bottom:16px;">PRICING</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0;">シンプルな料金プラン</h2>
+    </div>
+
+    <div class="reveal" style="background:#fff;border:2px solid var(--green);border-radius:24px;padding:40px;position:relative;overflow:hidden;margin-bottom:20px;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22c55e,#16a34a);"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:var(--fg-mute);letter-spacing:.1em;margin:0 0 8px;">月額プラン</p>
+          <p style="font-size:52px;font-weight:900;color:var(--fg);margin:0;letter-spacing:-.03em;line-height:1;">20,000<span style="font-size:20px;font-weight:500;color:var(--fg-mute);">円/月</span></p>
+          <p style="font-size:12px;color:var(--fg-mute);margin:4px 0 0;">（税別）</p>
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0 0 12px;">含まれるもの</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);">
+            <li style="display:flex;align-items:center;gap:8px;"><i data-lucide="check" style="width:15px;height:15px;color:var(--green);stroke-width:3;flex-shrink:0;"></i>自動記事投稿（月60記事以上）</li>
+            <li style="display:flex;align-items:center;gap:8px;"><i data-lucide="check" style="width:15px;height:15px;color:var(--green);stroke-width:3;flex-shrink:0;"></i>構造化データ整備（AIO対応）</li>
+            <li style="display:flex;align-items:center;gap:8px;"><i data-lucide="check" style="width:15px;height:15px;color:var(--green);stroke-width:3;flex-shrink:0;"></i>公式HP兼用サイト構築・運用</li>
+            <li style="display:flex;align-items:center;gap:8px;"><i data-lucide="check" style="width:15px;height:15px;color:var(--green);stroke-width:3;flex-shrink:0;"></i>月次レポート</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:flex;align-items:flex-start;gap:14px;">
+      <i data-lucide="info" style="width:18px;height:18px;color:var(--green);stroke-width:2;flex-shrink:0;margin-top:1px;"></i>
+      <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">
+        <strong style="color:var(--fg);">※「手放しマップ集客（月40,000円）」</strong>には、この自動更新WEBサイトの運用も<strong style="color:var(--fg);">すべて含まれます。</strong><br>
+        <a href="https://search-mania.net/automap/" style="color:var(--green);text-decoration:underline;font-size:12px;">→ 手放しマップ集客の詳細はこちら</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     N: NARROW DOWN
+══════════════════════════════════ -->
+<section style="padding:80px 0;background:#fff;">
+  <div style="max-width:860px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="eyebrow" style="margin-bottom:16px;">FOR YOU</div>
+      <h2 style="font-size:clamp(22px,4vw,34px);font-weight:800;color:var(--fg);margin:0;">こんな方に向いています</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:36px;">
+      <div class="reveal-left" style="background:var(--surf);border:1px solid rgba(34,197,94,.3);border-radius:20px;padding:28px;">
+        <p style="font-size:14px;font-weight:700;color:var(--green-dark);margin:0 0 16px;display:flex;align-items:center;gap:8px;">
+          <i data-lucide="check-circle-2" style="width:18px;height:18px;stroke-width:2;flex-shrink:0;"></i>こんな方に向いています
+        </p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--fg-dim);">
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>飲食・美容・整骨・マッサージ・宿泊などの店舗型ビジネス</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>公式HPが未所持 or 何年も更新が止まっている</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>Googleマップ集客の次の手を探している</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>月2万円以内でWEB集客を始めたい</li>
+        </ul>
+      </div>
+      <div class="reveal-right" style="background:#fafafa;border:1px solid var(--line);border-radius:20px;padding:28px;">
+        <p style="font-size:14px;font-weight:700;color:#dc2626;margin:0 0 16px;display:flex;align-items:center;gap:8px;">
+          <i data-lucide="x-circle" style="width:18px;height:18px;stroke-width:2;flex-shrink:0;"></i>このような方は対象外です
+        </p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--fg-dim);">
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#dc2626;font-weight:700;flex-shrink:0;margin-top:1px;">✕</span>ECサイト・通販がメインのビジネス</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#dc2626;font-weight:700;flex-shrink:0;margin-top:1px;">✕</span>BtoB専業（一般消費者との接点がない）</li>
+          <li style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#dc2626;font-weight:700;flex-shrink:0;margin-top:1px;">✕</span>1〜2ヶ月で即成果を求める方（効果は3〜6ヶ月から）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reveal" style="background:linear-gradient(135deg,#052e16,#14532d);border-radius:16px;padding:22px 32px;text-align:center;color:#fff;">
+      <p style="font-size:13px;color:rgba(255,255,255,.55);margin:0 0 4px;letter-spacing:.05em;">CAPACITY</p>
+      <p style="font-size:18px;font-weight:800;margin:0;">品質維持のため、新規受付は<span style="color:#4ade80;"> 月5件まで</span></p>
+      <p style="font-size:12px;color:rgba(255,255,255,.45);margin:6px 0 0;">ご希望の方はお早めにご相談ください</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     GUARANTEE
+══════════════════════════════════ -->
+<section style="padding:80px 0;background:var(--surf);">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:24px;padding:48px 40px;color:#fff;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(34,197,94,.15) 0%,transparent 65%),radial-gradient(ellipse at 80% 20%,rgba(16,185,129,.10) 0%,transparent 60%);"></div>
+      <div style="position:relative;z-index:1;text-align:center;">
+        <i data-lucide="shield-check" style="width:48px;height:48px;color:#4ade80;stroke-width:1.5;margin-bottom:14px;"></i>
+        <h2 style="font-size:clamp(20px,3.5vw,30px);font-weight:800;margin:0 0 12px;">6ヶ月全額返金保証</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.55);margin:0 0 24px;line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto;">
+          本サービスに自信を持ってご提供するために、以下の条件をすべて満たした場合に全額返金いたします。
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;text-align:left;">
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;">
+            <p style="font-size:11px;font-weight:700;color:#4ade80;margin:0 0 6px;">条件 01</p>
+            <p style="font-size:13px;color:rgba(255,255,255,.8);margin:0;line-height:1.6;">6ヶ月間、継続契約を完了した場合</p>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;">
+            <p style="font-size:11px;font-weight:700;color:#4ade80;margin:0 0 6px;">条件 02</p>
+            <p style="font-size:13px;color:rgba(255,255,255,.8);margin:0;line-height:1.6;">月次レポートを確認し、フィードバックを継続実施した場合</p>
+          </div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;">
+            <p style="font-size:11px;font-weight:700;color:#4ade80;margin:0 0 6px;">条件 03</p>
+            <p style="font-size:13px;color:rgba(255,255,255,.8);margin:0;line-height:1.6;">対象業種・地域の店舗型ビジネスである場合</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section style="padding:80px 0;background:#fff;">
+  <div style="max-width:680px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <h2 style="font-size:clamp(22px,3.5vw,30px);font-weight:800;color:var(--fg);margin:0;">よくあるご質問</h2>
+    </div>
+    <div class="reveal">
+      <details class="faq">
+        <summary>記事の内容は自分でコントロールできますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">はい。初期設定時にターゲットキーワード・業種・打ち出したいテーマをご指定いただきます。それに基づいてAIが記事を生成します。定期的な方針変更もご相談いただけます。</div>
+      </details>
+      <details class="faq">
+        <summary>既存のHPがありますが、乗り換えできますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">はい、可能です。既存のドメインを引き継ぐ形での移行対応もご相談いただけます。詳細はLINEまたはお申込みフォームよりお問い合わせください。</div>
+      </details>
+      <details class="faq">
+        <summary>手放しマップ集客（MEO）との違いは？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">手放しマップ集客はGoogleマップ（MEO）を起点とした集客サービスです。手放しWEB集客は「通常検索（SEO）」「AI検索（AIO）」への対策に特化した自動更新WEBサイトサービスです。手放しマップ集客（月40,000円）にはこのWEBサイト運用もすべて含まれています。</div>
+      </details>
+      <details class="faq">
+        <summary>効果が出るまでどのくらいかかりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">SEOの性質上、効果の実感には3〜6ヶ月程度かかります。ただし情報の蓄積は初日から始まり、長期的に集客資産として積み重なります。即効性を求める方には向いていません。</div>
+      </details>
+      <details class="faq">
+        <summary>解約はいつでもできますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">はい、最低契約期間の縛りは設けておりません。ただし6ヶ月全額返金保証の適用には6ヶ月継続が条件となります。</div>
+      </details>
+      <details class="faq">
+        <summary>対応業種に制限はありますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">基本的に店舗型ビジネスであれば業種を問いません。飲食・美容・整骨・マッサージ・宿泊・スポーツ施設など幅広い業種で対応実績があります。ECサイト・BtoB専業は対象外です。</div>
+      </details>
+      <details class="faq">
+        <summary>記事の品質はどのように担保されますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">SearchManiaのプロが設計したプロンプトと業種別テンプレートに基づいてAIが生成します。月次レポートで品質・成果を確認し、必要に応じてチューニングを行います。</div>
+      </details>
+      <details class="faq" style="border-bottom:none;">
+        <summary>初期費用はかかりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <div class="faq-body">初期設定費用が別途かかります。詳細な金額はご相談内容によって異なりますので、まずは無料相談またはLINEにてお気軽にお問い合わせください。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     A: ACTION（最終CTA + 申込フォーム）
+══════════════════════════════════ -->
+<section id="apply" class="dark-cta" style="padding:80px 0;scroll-margin-top:70px;">
+  <div style="max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <h2 style="font-size:clamp(24px,4vw,40px);font-weight:900;color:#fff;margin:0 0 12px;line-height:1.2;">
+        今すぐ始める<br><span style="color:#4ade80;">3つの入口</span>
+      </h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.5);margin:0;">まずは無料相談で、貴店に合うかどうか一緒に確認しましょう。</p>
+    </div>
+
+    <!-- 3CTA -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:56px;">
+      <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:12px;background:var(--green);color:#fff;font-weight:700;padding:28px 20px;border-radius:16px;text-decoration:none;text-align:center;transition:background .2s,transform .15s;box-shadow:0 4px 20px rgba(34,197,94,.4);" onmouseover="this.style.background='#16a34a';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#22c55e';this.style.transform='none'">
+        <i data-lucide="calendar-check" style="width:32px;height:32px;stroke-width:1.5;"></i>
+        <div>
+          <p style="font-size:16px;font-weight:800;margin:0 0 4px;">無料相談に参加</p>
+          <p style="font-size:11px;font-weight:400;opacity:.8;margin:0;">mapform.search-mania.net</p>
+        </div>
+      </a>
+      <a href="#form" style="display:flex;flex-direction:column;align-items:center;gap:12px;background:rgba(255,255,255,.08);color:#fff;font-weight:700;padding:28px 20px;border-radius:16px;text-decoration:none;text-align:center;border:1.5px solid rgba(255,255,255,.2);transition:background .2s,transform .15s;" onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,.08)';this.style.transform='none'">
+        <i data-lucide="send" style="width:32px;height:32px;stroke-width:1.5;"></i>
+        <div>
+          <p style="font-size:16px;font-weight:800;margin:0 0 4px;">お申込みフォームへ</p>
+          <p style="font-size:11px;font-weight:400;opacity:.6;margin:0;">↓ このページ下部のフォーム</p>
+        </div>
+      </a>
+      <a href="https://lin.ee/VftrWLN" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:12px;background:#06C755;color:#fff;font-weight:700;padding:28px 20px;border-radius:16px;text-decoration:none;text-align:center;transition:filter .2s,transform .15s;box-shadow:0 4px 20px rgba(6,199,85,.3);" onmouseover="this.style.filter='brightness(1.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.filter='none';this.style.transform='none'">
+        <svg viewBox="0 0 24 24" fill="#fff" style="width:32px;height:32px;"><path d="M12 2.5c-5.52 0-10 3.58-10 8 0 2.52 1.46 4.76 3.75 6.16-.17.58-.62 2.11-.71 2.42-.13.46.17.45.36.37.15-.06 2.35-1.5 3.23-2.11.2.01.4.01.6.01 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+        <div>
+          <p style="font-size:16px;font-weight:800;margin:0 0 4px;">LINEで質問する</p>
+          <p style="font-size:11px;font-weight:400;opacity:.8;margin:0;">気軽にお問い合わせ</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- 申込フォーム -->
+    <div id="form" class="reveal" style="background:#fff;border-radius:24px;padding:40px;scroll-margin-top:80px;">
+      <h3 style="font-size:20px;font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;">お申込みフォーム</h3>
+      <p style="font-size:13px;color:var(--fg-mute);text-align:center;margin:0 0 28px;">確認後、3営業日以内にご連絡いたします</p>
+
+      <form id="apply-form" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">事業者名（屋号）<span style="color:#dc2626;">*</span></label>
+            <input type="text" name="business_name" required placeholder="例：〇〇整骨院" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;transition:border-color .15s;box-sizing:border-box;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'">
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">担当者名<span style="color:#dc2626;">*</span></label>
+            <input type="text" name="contact_name" required placeholder="例：山田 太郎" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;transition:border-color .15s;box-sizing:border-box;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">電話番号<span style="color:#dc2626;">*</span></label>
+            <input type="tel" name="phone" required placeholder="例：090-1234-5678" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;transition:border-color .15s;box-sizing:border-box;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'">
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">メールアドレス<span style="color:#dc2626;">*</span></label>
+            <input type="email" name="email" required placeholder="例：info@example.com" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;transition:border-color .15s;box-sizing:border-box;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">業種<span style="color:#dc2626;">*</span></label>
+          <select name="industry" required style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;background:#fff;transition:border-color .15s;box-sizing:border-box;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'">
+            <option value="" disabled selected>業種を選択してください</option>
+            <option>飲食店</option>
+            <option>美容室・サロン</option>
+            <option>整骨院・接骨院・鍼灸院</option>
+            <option>マッサージ・エステ</option>
+            <option>宿泊施設・民泊</option>
+            <option>スポーツ施設・スクール</option>
+            <option>小売店・雑貨</option>
+            <option>その他サービス業</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:8px;">現在のHP状況<span style="color:#dc2626;">*</span></label>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--fg-dim);">
+              <input type="radio" name="hp_status" value="none" required style="accent-color:var(--green);"> HPがない
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--fg-dim);">
+              <input type="radio" name="hp_status" value="old"> HPが古い・放置中
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--fg-dim);">
+              <input type="radio" name="hp_status" value="active"> HPはあるが集客に困っている
+            </label>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:13px;font-weight:600;color:var(--fg);display:block;margin-bottom:6px;">ご質問・備考（任意）</label>
+          <textarea name="message" rows="3" placeholder="気になることがあればご記入ください" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;color:var(--fg);outline:none;resize:vertical;transition:border-color .15s;box-sizing:border-box;font-family:inherit;" onfocus="this.style.borderColor='#22c55e'" onblur="this.style.borderColor='rgba(0,0,0,.10)'"></textarea>
+        </div>
+
+        <button type="submit" style="background:var(--green);color:#fff;font-weight:700;font-size:16px;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;transition:background .2s,transform .15s;box-shadow:0 4px 16px rgba(34,197,94,.4);display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;" onmouseover="this.style.background='#16a34a';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='#22c55e';this.style.transform='none'">
+          <i data-lucide="send" style="width:18px;height:18px;stroke-width:2.5;"></i>
+          送信する
+        </button>
+
+        <p style="font-size:11px;color:var(--fg-mute);text-align:center;margin:0;">
+          送信後、SearchManiaよりメールまたは電話にてご連絡いたします。<br>
+          <a href="https://search-mania.net/privacy-policy.html" target="_blank" style="color:var(--green);">プライバシーポリシー</a>に同意の上お送りください。
+        </p>
+      </form>
+
+      <div id="form-success" style="display:none;text-align:center;padding:32px;">
+        <i data-lucide="check-circle-2" style="width:48px;height:48px;color:var(--green);stroke-width:1.5;margin-bottom:16px;"></i>
+        <p style="font-size:18px;font-weight:700;color:var(--fg);margin:0 0 8px;">送信が完了しました！</p>
+        <p style="font-size:14px;color:var(--fg-dim);margin:0;">3営業日以内にご連絡いたします。しばらくお待ちください。</p>
+      </div>
+    </div>
+
+    <p class="reveal" style="text-align:center;color:rgba(255,255,255,.35);font-size:12px;margin-top:20px;">月5件限定・申込み確認後3営業日以内にご連絡します</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer style="background:#0a0a0a;padding:40px 24px;text-align:center;">
+  <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:16px;">
+    <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307522/SearchMania%E3%83%AD%E3%82%B4%E7%99%BD_ctgxfr.png" style="width:24px;height:24px;" alt="Logo">
+    <span style="font-size:18px;font-weight:700;color:#fff;">SearchMania</span>
+  </div>
+  <nav style="display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-bottom:16px;">
+    <a href="https://search-mania.net/" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">公式サイト</a>
+    <a href="https://search-mania.net/automap/" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">手放しマップ集客</a>
+    <a href="https://search-mania.net/privacy-policy.html" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">プライバシーポリシー</a>
+    <a href="https://search-mania.net/terms.html" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">利用規約</a>
+  </nav>
+  <p style="font-size:12px;color:rgba(255,255,255,.2);margin:0;">&copy; 2025 SearchMania Inc. All rights reserved.</p>
+</footer>
+
+<!-- ══════════════════════════════════
+     SCRIPTS
+══════════════════════════════════ -->
+<script>
+  lucide.createIcons();
+
+  const lenis = new Lenis({ duration:1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10*t)) });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    start:'top -60',
+    onEnter: () => document.getElementById('nav').classList.add('scrolled'),
+    onLeaveBack: () => document.getElementById('nav').classList.remove('scrolled'),
+  });
+
+  gsap.timeline({ defaults:{ ease:'power3.out' } })
+    .from('#hero-badge',  { y:20, opacity:0, duration:.6 })
+    .from('#hero-box',    { y:30, opacity:0, duration:.7 }, '-=.3')
+    .from('#hero-title',  { y:20, opacity:0, duration:.5 }, '-=.3')
+    .from('#hero-desc',   { y:20, opacity:0, duration:.5 }, '-=.3')
+    .from('#hero-cta > *',{ opacity:0, duration:.5, stagger:.15, clearProps:'all' }, '-=.2');
+
+  gsap.utils.toArray('.reveal').forEach(el => {
+    gsap.fromTo(el, { y:36, opacity:0 }, { y:0, opacity:1, duration:.7, ease:'power2.out',
+      scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' } });
+  });
+  gsap.utils.toArray('.reveal-left').forEach(el => {
+    gsap.fromTo(el, { x:-36, opacity:0 }, { x:0, opacity:1, duration:.7, ease:'power2.out',
+      scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' } });
+  });
+  gsap.utils.toArray('.reveal-right').forEach(el => {
+    gsap.fromTo(el, { x:36, opacity:0 }, { x:0, opacity:1, duration:.7, ease:'power2.out',
+      scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' } });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) { e.preventDefault(); lenis.scrollTo(el, { offset:-70 }); }
+    });
+  });
+
+  // フォーム送信
+  const GAS_FORM_URL = ''; // ← GAS WebアプリのURLをここに入力
+
+  document.getElementById('apply-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.innerHTML = '<span>送信中...</span>';
+
+    const data = Object.fromEntries(new FormData(this));
+
+    if (GAS_FORM_URL) {
+      try {
+        await fetch(GAS_FORM_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          mode: 'no-cors',
+        });
+      } catch(err) { console.error(err); }
+    } else {
+      console.log('フォームデータ（GAS URL未設定）:', data);
+    }
+
+    document.getElementById('apply-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+    lucide.createIcons();
+  });
+</script>
+</body>
+</html>
