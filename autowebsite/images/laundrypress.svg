@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8F4FD"></stop>
+      <stop offset="55%" stop-color="#BFE0F7"></stop>
+      <stop offset="100%" stop-color="#0EA5E9"></stop>
+    </linearGradient>
+    <linearGradient id="markGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0EA5E9"></stop>
+      <stop offset="100%" stop-color="#38BDF8"></stop>
+    </linearGradient>
+    <radialGradient id="bubble" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"></stop>
+      <stop offset="60%" stop-color="#BFE0F7" stop-opacity="0.55"></stop>
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.18"></stop>
+    </radialGradient>
+  </defs>
+
+
+  <rect width="1200" height="630" fill="url(#bg)"></rect>
+
+
+  <circle cx="120" cy="120" r="46" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+  <circle cx="990" cy="90" r="28" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+  <circle cx="1070" cy="500" r="68" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+  <circle cx="80" cy="520" r="38" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+  <circle cx="220" cy="430" r="20" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+  <circle cx="900" cy="200" r="18" fill="url(#bubble)" stroke="#fff" stroke-opacity="0.5"></circle>
+
+
+  <g transform="translate(140, 220)">
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="url(#markGrad)"></rect>
+    <text x="60" y="78" font-family="Outfit, sans-serif" font-size="48" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="1">LP</text>
+    <circle cx="98" cy="22" r="10" fill="#fff" fill-opacity="0.6"></circle>
+  </g>
+
+
+  <g transform="translate(300, 220)" font-family="Outfit, 'Noto Sans JP', sans-serif" fill="#0F172A">
+    <text x="0" y="40" font-size="20" font-weight="600" letter-spacing="6" fill="#0284C7">SPARKLING CLEAN · NAHA TOMARI</text>
+    <text x="0" y="120" font-size="72" font-weight="700" letter-spacing="-1">Laundrypress</text>
+    <text x="0" y="180" font-size="36" font-weight="600">ランドリープレス那覇泊店</text>
+    <text x="0" y="240" font-size="22" font-weight="500" fill="#334155">24時間コインランドリー · 那覇市泊2-22-10</text>
+    <text x="0" y="290" font-size="20" font-weight="600" fill="#0EA5E9" letter-spacing="2">いつでも清潔に。泊の街のランドリー。</text>
+  </g>
+
+
+  <rect x="0" y="610" width="1200" height="20" fill="#0F172A"></rect>
+</svg>
