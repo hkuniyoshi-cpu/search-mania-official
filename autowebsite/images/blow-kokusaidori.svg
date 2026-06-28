@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080808"/>
+      <stop offset="100%" style="stop-color:#1a1010"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C9A84C"/>
+      <stop offset="50%" style="stop-color:#F0D080"/>
+      <stop offset="100%" style="stop-color:#C9A84C"/>
+    </linearGradient>
+    <linearGradient id="goldV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F0D080"/>
+      <stop offset="100%" style="stop-color:#9E8232"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(201,168,76,0.18)"/>
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="600" cy="315" rx="500" ry="300" fill="url(#glow)"/>
+
+  <rect x="72"   y="72"    width="2"    height="486" fill="url(#goldV)" opacity="0.55"/>
+  <rect x="1126" y="72"    width="2"    height="486" fill="url(#goldV)" opacity="0.55"/>
+  <rect x="72"   y="72"    width="1056" height="1.5" fill="url(#gold)"  opacity="0.45"/>
+  <rect x="72"   y="556.5" width="1056" height="1.5" fill="url(#gold)"  opacity="0.45"/>
+
+  <rect x="72"   y="72"   width="32" height="2"  fill="#C9A84C"/>
+  <rect x="72"   y="72"   width="2"  height="32" fill="#C9A84C"/>
+  <rect x="1096" y="72"   width="32" height="2"  fill="#C9A84C"/>
+  <rect x="1126" y="72"   width="2"  height="32" fill="#C9A84C"/>
+  <rect x="72"   y="556"  width="32" height="2"  fill="#C9A84C"/>
+  <rect x="72"   y="526"  width="2"  height="32" fill="#C9A84C"/>
+  <rect x="1096" y="556"  width="32" height="2"  fill="#C9A84C"/>
+  <rect x="1126" y="526"  width="2"  height="32" fill="#C9A84C"/>
+
+  <text x="200" y="200" font-family="serif" font-size="120" fill="#C9A84C" opacity="0.04" text-anchor="middle">♠</text>
+  <text x="1000" y="200" font-family="serif" font-size="120" fill="#C9A84C" opacity="0.04" text-anchor="middle">♦</text>
+  <text x="200" y="530" font-family="serif" font-size="120" fill="#C9A84C" opacity="0.04" text-anchor="middle">♣</text>
+  <text x="1000" y="530" font-family="serif" font-size="120" fill="#C9A84C" opacity="0.04" text-anchor="middle">♥</text>
+
+  <rect x="540" y="148" width="120" height="1" fill="url(#gold)" opacity="0.6"/>
+
+  <text x="600" y="192" font-family="Georgia,serif" font-size="13" fill="#C9A84C" text-anchor="middle" letter-spacing="8" opacity="0.85">NAHA · KOKUSAIDORI · CASINO BAR</text>
+
+  <text x="600" y="326" font-family="Georgia,'Times New Roman',serif" font-size="128" fill="url(#gold)" text-anchor="middle" letter-spacing="24" font-weight="400">BLOW</text>
+
+  <text x="600" y="382" font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="24" fill="#e8d9b8" text-anchor="middle" letter-spacing="12" opacity="0.85">カジノバー　沖縄国際通り店</text>
+
+  <rect x="420" y="414" width="360" height="1" fill="url(#gold)" opacity="0.45"/>
+
+  <text x="600" y="454" font-family="Georgia,serif" font-size="15" fill="#C9A84C" text-anchor="middle" letter-spacing="4" opacity="0.8">入 場 ¥ 1 , 0 0 0 　 フ リ ー ド リ ン ク 付 き</text>
+
+  <text x="600" y="510" font-family="Georgia,serif" font-size="14" fill="#8a7a60" text-anchor="middle" letter-spacing="3">blow-kokusaidori.search-mania.net</text>
+
+  <polygon points="600,130 606,136 600,142 594,136" fill="#C9A84C" opacity="0.65"/>
+  <polygon points="600,488 604,492 600,496 596,492" fill="#C9A84C" opacity="0.45"/>
+</svg>
