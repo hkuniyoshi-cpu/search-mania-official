@@ -517,15 +517,16 @@ a:hover { color: var(--blue-dark); }
    Services
    ============================================================ */
 /* ============================================================
-   Services — Bento 非対称グリッド (4カードを綺麗に充填)
+   Services — Bento 非対称グリッド (5カード対応)
    レイアウト:
      ┌──────────────────┬──────────┐
      │       Card 1     │ Card 2   │
      │      (Hero)      ├──────────┤
      │   span 4×2       │ Card 3   │
-     ├──────────────────┴──────────┤
-     │     Card 4 (Wide)  span 6×1 │
-     └─────────────────────────────┘
+     ├─────────┬────────┴──────────┤
+     │ Card 4  │     Card 5         │
+     │ span 3  │     span 3          │
+     └─────────┴────────────────────┘
    ============================================================ */
 .services-grid {
   display: grid;
@@ -542,9 +543,14 @@ a:hover { color: var(--blue-dark); }
   grid-column: span 2;
   grid-row: span 1;
 }
-.services-grid .service-card:nth-child(4) {
-  grid-column: span 6;
+.services-grid .service-card:nth-child(4),
+.services-grid .service-card:nth-child(5) {
+  grid-column: span 3;
   grid-row: span 1;
+}
+/* 4カードのみの場合のフォールバック (5枚目が無いときCard 4を全幅) */
+.services-grid .service-card:nth-child(4):nth-last-child(1) {
+  grid-column: span 6;
 }
 
 .service-card {
@@ -600,19 +606,20 @@ a:hover { color: var(--blue-dark); }
   padding: 40px;
 }
 /* 横長カード(4番目)は横並びレイアウト */
-.services-grid .service-card:nth-child(4) {
+/* 4枚しかない場合のみカード4を横長レイアウトに */
+.services-grid .service-card:nth-child(4):nth-last-child(1) {
   flex-direction: row;
   align-items: center;
   gap: 32px;
   background: linear-gradient(105deg, #fff 0%, #fafbff 70%, var(--blue-soft) 130%);
   padding: 28px 36px;
 }
-.services-grid .service-card:nth-child(4) .service-img {
+.services-grid .service-card:nth-child(4):nth-last-child(1) .service-img {
   width: 64px;
   height: 64px;
   font-size: 24px;
 }
-.services-grid .service-card:nth-child(4) .service-body {
+.services-grid .service-card:nth-child(4):nth-last-child(1) .service-body {
   flex: 1;
 }
 
@@ -634,7 +641,7 @@ a:hover { color: var(--blue-dark); }
   font-size: 100px;
   top: 28px; right: 36px;
 }
-.services-grid .service-card:nth-child(4) .service-num {
+.services-grid .service-card:nth-child(4):nth-last-child(1) .service-num {
   font-size: 80px;
   top: 50%;
   right: 36px;
@@ -690,7 +697,7 @@ a:hover { color: var(--blue-dark); }
   font-size: 24px;
   line-height: 1.4;
 }
-.services-grid .service-card:nth-child(4) .service-name {
+.services-grid .service-card:nth-child(4):nth-last-child(1) .service-name {
   font-size: 20px;
   margin-bottom: 6px;
 }
@@ -710,7 +717,7 @@ a:hover { color: var(--blue-dark); }
   font-size: 14.5px;
   line-height: 1.9;
 }
-.services-grid .service-card:nth-child(4) .service-desc {
+.services-grid .service-card:nth-child(4):nth-last-child(1) .service-desc {
   font-size: 13.5px;
   line-height: 1.7;
   margin-top: 4px;
@@ -1871,10 +1878,12 @@ a.service-card:hover .service-link-hint {
   .services-grid .service-card:nth-child(2),
   .services-grid .service-card:nth-child(3),
   .services-grid .service-card:nth-child(4),
+  .services-grid .service-card:nth-child(5),
   .services-grid .service-skel:nth-child(1),
   .services-grid .service-skel:nth-child(2),
   .services-grid .service-skel:nth-child(3),
-  .services-grid .service-skel:nth-child(4) {
+  .services-grid .service-skel:nth-child(4),
+  .services-grid .service-skel:nth-child(5) {
     grid-column: span 1;
     grid-row: auto;
   }
@@ -4501,4 +4510,68 @@ a.service-card:hover .service-link-hint {
 @media (prefers-reduced-motion: reduce) {
   .study-popup.is-shown { animation: none; }
   .study-popup.is-shown::before { animation: none; opacity: 0; }
+}
+
+/* ============================================================
+   ⭐ Services - autowebsite 系カードを Google Green で差別化
+   href に "autowebsite" を含むサービスカードは緑アクセント
+   ============================================================ */
+.services-grid a.service-card[href*="autowebsite"] {
+  background: linear-gradient(165deg, #fff 0%, #f3fbf5 100%);
+  border-color: rgba(52,168,83,.22);
+}
+.services-grid a.service-card[href*="autowebsite"]:hover {
+  border-color: #34A853;
+  box-shadow: 0 24px 50px -16px rgba(52,168,83,.28);
+}
+.services-grid a.service-card[href*="autowebsite"]::after {
+  background: radial-gradient(circle, rgba(52,168,83,.22) 0%, transparent 70%);
+}
+.services-grid a.service-card[href*="autowebsite"] .service-img {
+  background: linear-gradient(135deg, #34A853 0%, #5fb574 100%);
+  box-shadow: 0 6px 16px rgba(52,168,83,.34);
+}
+.services-grid a.service-card[href*="autowebsite"] .service-num {
+  color: #34A853;
+}
+.services-grid a.service-card[href*="autowebsite"] .service-badge {
+  color: #34A853;
+  border-color: rgba(52,168,83,.30);
+}
+.services-grid a.service-card[href*="autowebsite"] .service-price {
+  color: #34A853;
+}
+.services-grid a.service-card[href*="autowebsite"] .service-link-hint {
+  color: #34A853;
+}
+/* WEB集客 タグ (autowebsite カード左上に小さく出す) */
+.services-grid a.service-card[href*="autowebsite"] .service-body::before {
+  content: 'WEB 集客';
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  color: #34A853;
+  background: rgba(52,168,83,.10);
+  border: 1px solid rgba(52,168,83,.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+/* 同様にMEO系のカード(automap or マップ集客)はGoogle Blue強調 */
+.services-grid a.service-card[href*="automap"] .service-body::before,
+.services-grid a.service-card[href*="meo"] .service-body::before {
+  content: 'MEO 集客';
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  color: var(--blue);
+  background: rgba(66,133,244,.10);
+  border: 1px solid rgba(66,133,244,.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
 }
