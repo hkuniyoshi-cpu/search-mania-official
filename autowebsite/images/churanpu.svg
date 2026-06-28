@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2820"/>
+      <stop offset="100%" style="stop-color:#0E1512"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E87833"/>
+      <stop offset="50%" style="stop-color:#F4A55A"/>
+      <stop offset="100%" style="stop-color:#E87833"/>
+    </linearGradient>
+    <linearGradient id="goldV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4A55A"/>
+      <stop offset="100%" style="stop-color:#C0581A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(232,120,51,.25)"/>
+      <stop offset="100%" style="stop-color:rgba(232,120,51,0)"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <rect x="72" y="72"    width="2"    height="486" fill="url(#goldV)" opacity="0.6"/>
+  <rect x="1126" y="72"  width="2"    height="486" fill="url(#goldV)" opacity="0.6"/>
+  <rect x="72" y="72"    width="1056" height="1.5" fill="url(#gold)"  opacity="0.5"/>
+  <rect x="72" y="556.5" width="1056" height="1.5" fill="url(#gold)"  opacity="0.5"/>
+
+  <rect x="72"   y="72"   width="32" height="2"  fill="#E87833"/>
+  <rect x="72"   y="72"   width="2"  height="32" fill="#E87833"/>
+  <rect x="1096" y="72"   width="32" height="2"  fill="#E87833"/>
+  <rect x="1126" y="72"   width="2"  height="32" fill="#E87833"/>
+  <rect x="72"   y="556"  width="32" height="2"  fill="#E87833"/>
+  <rect x="72"   y="526"  width="2"  height="32" fill="#E87833"/>
+  <rect x="1096" y="556"  width="32" height="2"  fill="#E87833"/>
+  <rect x="1126" y="526"  width="2"  height="32" fill="#E87833"/>
+
+  <rect x="520" y="148" width="160" height="1" fill="url(#gold)" opacity="0.7"/>
+
+  <text x="600" y="188" font-family="Georgia, serif" font-size="13" fill="#E87833" text-anchor="middle" letter-spacing="7" opacity="0.9">URBAN CAMP BAR · NAHA MAKISHI</text>
+
+  <text x="600" y="320" font-family="Georgia, 'Times New Roman', serif" font-size="104" fill="url(#gold)" text-anchor="middle" letter-spacing="14" font-weight="400">CHURANPU</text>
+
+  <text x="600" y="378" font-family="'Hiragino Mincho ProN', 'Yu Mincho', serif" font-size="24" fill="#F5ECD8" text-anchor="middle" letter-spacing="10" opacity="0.9">Camp &amp; Bar　ちゅらんぷ</text>
+
+  <rect x="400" y="412" width="400" height="1" fill="url(#gold)" opacity="0.5"/>
+
+  <text x="600" y="450" font-family="Georgia, serif" font-size="15" fill="#E87833" text-anchor="middle" letter-spacing="4" opacity="0.85">那 覇 の 夜、焚 き 火 を 囲 む。</text>
+
+  <text x="600" y="512" font-family="Georgia, serif" font-size="14" fill="#7A8A72" text-anchor="middle" letter-spacing="3">churamp.search-mania.net</text>
+
+  <polygon points="600,130 606,136 600,142 594,136" fill="#E87833" opacity="0.7"/>
+  <polygon points="600,490 604,494 600,498 596,494" fill="#E87833" opacity="0.5"/>
+</svg>
