@@ -148,6 +148,30 @@
     ::-webkit-scrollbar { width:5px; }
     ::-webkit-scrollbar-track { background:transparent; }
     ::-webkit-scrollbar-thumb { background:rgba(0,0,0,.15); border-radius:99px; }
+
+    /* GALLERY CARDS */
+    .gallery-card {
+      display:flex; flex-direction:column;
+      background:#fff; border:1px solid var(--line);
+      border-radius:12px; overflow:hidden; text-decoration:none;
+      transition:border-color .2s, box-shadow .2s, transform .18s;
+    }
+    .gallery-card:hover { border-color:#22c55e; box-shadow:0 6px 24px rgba(34,197,94,.18); transform:translateY(-3px); }
+    .gallery-thumb { width:100%; }
+    .gallery-thumb svg { width:100%; height:auto; display:block; }
+    .gallery-footer { display:flex; align-items:center; padding:10px 12px; gap:8px; border-top:1px solid var(--line); background:inherit; }
+    .gallery-footer .gf-name { font-size:12px; font-weight:700; color:var(--fg); margin:0; line-height:1.3; }
+    .gallery-footer .gf-cat { font-size:10px; color:var(--fg-mute); margin:2px 0 0; }
+
+    /* AUTO-FLOW DIAGRAM */
+    .flow-step { text-align:center; min-width:80px; }
+    .flow-step .flow-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto 6px; }
+    .flow-step .flow-label { font-size:10px; font-weight:700; color:var(--fg); margin:0; line-height:1.4; }
+    .flow-step .flow-sub { font-size:9px; color:var(--fg-mute); margin:2px 0 0; }
+
+    @media (max-width:480px) {
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px,1fr)) !important; }
+    }
   </style>
 </head>
 <body>
@@ -249,6 +273,47 @@
       月額20,000円（税別）でWEB集客の入口を自動化。
     </p>
 
+    <!-- 自動集客フロー図 -->
+    <div class="reveal" style="margin:0 auto 36px;max-width:680px;background:var(--surf);border-radius:16px;padding:20px 16px;">
+      <p style="font-size:11px;font-weight:700;color:var(--fg-mute);text-align:center;letter-spacing:.1em;text-transform:uppercase;margin:0 0 16px;">自動集客の仕組み</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;">
+        <div class="flow-step">
+          <div class="flow-icon" style="background:#fff;border:1px solid var(--line);">
+            <i data-lucide="building-2" style="width:22px;height:22px;color:var(--green);stroke-width:1.8;"></i>
+          </div>
+          <p class="flow-label">事業情報<br>を入力</p>
+          <p class="flow-sub">1回のみ</p>
+        </div>
+        <i data-lucide="chevron-right" style="width:16px;height:16px;color:var(--green);stroke-width:2.5;flex-shrink:0;"></i>
+        <div class="flow-step">
+          <div class="flow-icon" style="background:var(--green);box-shadow:0 4px 12px rgba(34,197,94,.3);">
+            <i data-lucide="sparkles" style="width:22px;height:22px;color:#fff;stroke-width:1.8;"></i>
+          </div>
+          <p class="flow-label">AIが記事<br>を自動生成</p>
+          <p class="flow-sub">毎日2記事</p>
+        </div>
+        <i data-lucide="chevron-right" style="width:16px;height:16px;color:var(--green);stroke-width:2.5;flex-shrink:0;"></i>
+        <div class="flow-step">
+          <div class="flow-icon" style="background:#fff;border:1px solid var(--line);">
+            <i data-lucide="globe" style="width:22px;height:22px;color:var(--green);stroke-width:1.8;"></i>
+          </div>
+          <p class="flow-label">サイトを<br>自動で公開</p>
+          <p class="flow-sub">365日連続</p>
+        </div>
+        <i data-lucide="chevron-right" style="width:16px;height:16px;color:var(--green);stroke-width:2.5;flex-shrink:0;"></i>
+        <div class="flow-step">
+          <div class="flow-icon" style="background:#fff;border:1px solid var(--line);">
+            <i data-lucide="trending-up" style="width:22px;height:22px;color:var(--green);stroke-width:1.8;"></i>
+          </div>
+          <p class="flow-label">検索・AI検索<br>で集客</p>
+          <p class="flow-sub">SEO + AIO</p>
+        </div>
+      </div>
+      <p style="text-align:center;margin:14px 0 0;font-size:12px;font-weight:600;color:var(--fg-dim);">
+        <span style="color:var(--green);font-weight:800;">オーナーは最初の1回だけ。</span>あとは完全自動で運用。
+      </p>
+    </div>
+
     <div id="hero-cta" class="cta-row">
       <a href="https://mapform.search-mania.net/" target="_blank" rel="noopener" class="cta-btn cta-green">
         <i data-lucide="calendar" class="cta-icon"></i>
@@ -346,6 +411,26 @@
       </p>
     </div>
 
+    <!-- 検索変化ビジュアル -->
+    <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 16px;margin-bottom:32px;max-width:580px;margin-left:auto;margin-right:auto;">
+      <p style="text-align:center;font-size:11px;font-weight:700;color:var(--fg-mute);letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px;">検索の変化</p>
+      <div style="display:grid;grid-template-columns:1fr 36px 1fr;gap:8px;align-items:center;">
+        <div style="background:#fef9c3;border-radius:12px;padding:14px;text-align:center;">
+          <i data-lucide="search" style="width:26px;height:26px;color:#d97706;stroke-width:1.8;margin-bottom:6px;display:block;margin-left:auto;margin-right:auto;"></i>
+          <p style="font-size:12px;font-weight:700;color:#92400e;margin:0 0 4px;">従来のSEO</p>
+          <p style="font-size:10px;color:#b45309;margin:0;line-height:1.5;">キーワード順位のみ<br>対策が固定的</p>
+        </div>
+        <div style="text-align:center;">
+          <i data-lucide="arrow-right" style="width:18px;height:18px;color:var(--green);stroke-width:2;"></i>
+        </div>
+        <div style="background:var(--green-light);border-radius:12px;padding:14px;text-align:center;border:1.5px solid rgba(34,197,94,.3);">
+          <i data-lucide="brain-circuit" style="width:26px;height:26px;color:var(--green-dark);stroke-width:1.8;margin-bottom:6px;display:block;margin-left:auto;margin-right:auto;"></i>
+          <p style="font-size:12px;font-weight:700;color:#14532d;margin:0 0 4px;">AI検索時代</p>
+          <p style="font-size:10px;color:var(--green-dark);margin:0;line-height:1.5;">情報量・更新頻度が<br>集客の決め手</p>
+        </div>
+      </div>
+    </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
       <div class="reveal-left card">
         <div style="width:44px;height:44px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
@@ -405,6 +490,38 @@
       </div>
     </div>
 
+    <!-- 手動 vs 自動 比較ビジュアル -->
+    <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 24px;margin-bottom:32px;">
+      <p style="text-align:center;font-size:11px;font-weight:700;color:var(--fg-mute);letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px;">従来の運用 vs 手放しWEB集客</p>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;">
+        <div style="background:#fef2f2;border-radius:12px;padding:16px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <i data-lucide="clock" style="width:18px;height:18px;color:#dc2626;stroke-width:2;flex-shrink:0;"></i>
+            <p style="font-size:12px;font-weight:700;color:#991b1b;margin:0;">手動でのWEB更新</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <span style="font-size:10px;padding:3px 10px;background:#fecaca;border-radius:99px;color:#dc2626;display:inline-block;">記事ネタ探し → 30分〜</span>
+            <span style="font-size:10px;padding:3px 10px;background:#fecaca;border-radius:99px;color:#dc2626;display:inline-block;">執筆・編集 → 60〜120分</span>
+            <span style="font-size:10px;padding:3px 10px;background:#fecaca;border-radius:99px;color:#dc2626;display:inline-block;">毎日続けるのが大変</span>
+          </div>
+          <p style="font-size:11px;font-weight:700;color:#dc2626;margin:10px 0 0;text-align:center;">= 時間も体力も消耗</p>
+        </div>
+        <div style="font-size:15px;font-weight:900;color:var(--green);text-align:center;flex-shrink:0;padding:0 4px;">VS</div>
+        <div style="background:var(--green-light);border-radius:12px;padding:16px;border:1px solid rgba(34,197,94,.3);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <i data-lucide="cpu" style="width:18px;height:18px;color:var(--green-dark);stroke-width:2;flex-shrink:0;"></i>
+            <p style="font-size:12px;font-weight:700;color:#14532d;margin:0;">手放しWEB集客</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <span style="font-size:10px;padding:3px 10px;background:rgba(34,197,94,.2);border-radius:99px;color:var(--green-dark);display:inline-block;">初期設定 1回だけ → 完了</span>
+            <span style="font-size:10px;padding:3px 10px;background:rgba(34,197,94,.2);border-radius:99px;color:var(--green-dark);display:inline-block;">AIが毎日2記事を自動投稿</span>
+            <span style="font-size:10px;padding:3px 10px;background:rgba(34,197,94,.2);border-radius:99px;color:var(--green-dark);display:inline-block;">365日ゼロ作業で集客継続</span>
+          </div>
+          <p style="font-size:11px;font-weight:700;color:var(--green-dark);margin:10px 0 0;text-align:center;">= オーナーの作業はゼロ</p>
+        </div>
+      </div>
+    </div>
+
     <!-- 4ベネフィット -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
       <div class="reveal-left" style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;">
@@ -442,105 +559,273 @@
       <p style="font-size:14px;color:var(--fg-dim);margin:0;">業種・地域を問わず9業態以上で稼働中。クリックで実例サイトをご覧いただけます。</p>
     </div>
 
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">
+    <div class="reveal gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
 
-      <a href="https://sfp-okinawa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#dbeafe;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="goal" style="width:18px;height:18px;color:#1d4ed8;stroke-width:2;"></i>
+      <!-- 1. S.F.P 沖縄 -->
+      <a href="https://sfp-okinawa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#1e3a8a"/>
+            <rect x="20" y="8" width="240" height="69" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="140" y1="8" x2="140" y2="77" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <circle cx="140" cy="42" r="18" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+            <text x="140" y="38" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="22" letter-spacing="4" fill="white">S.F.P</text>
+            <text x="140" y="53" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.65)" letter-spacing="2">OKINAWA FUTSAL CIRCLE</text>
+            <rect x="104" y="61" width="72" height="13" rx="6.5" fill="#fbbf24"/>
+            <text x="140" y="71" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#1e3a8a">フットサル / 南風原町</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#dbeafe"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#eff6ff"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#1d4ed8">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#3b82f6">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#fbbf24"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">S.F.P 沖縄</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">フットサル / 南風原町</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">S.F.P 沖縄</p><p class="gf-cat">フットサル / 南風原町</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://crepes-no-mori.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fce7f3;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="utensils" style="width:18px;height:18px;color:#be185d;stroke-width:2;"></i>
+      <!-- 2. クレープの森 -->
+      <a href="https://crepes-no-mori.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#9d174d"/>
+            <circle cx="240" cy="15" r="55" fill="#be185d" opacity="0.35"/>
+            <circle cx="40" cy="70" r="38" fill="#831843" opacity="0.4"/>
+            <text x="140" y="35" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="16" fill="white">クレープの森</text>
+            <text x="140" y="50" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.65)" letter-spacing="1.5">CREPE CAFÉ · OKINAWA</text>
+            <path d="M110 58 Q140 70 170 58" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M117 64 Q140 74 163 64" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="104" y="71" width="72" height="12" rx="6" fill="#f9a8d4" opacity="0.9"/>
+            <text x="140" y="81" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#9d174d">飲食店 / 沖縄</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#fce7f3"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#fdf2f8"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#be185d">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#db2777">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#f472b6"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">クレープの森</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">飲食店</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">クレープの森</p><p class="gf-cat">飲食店 / 沖縄</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://laundrypress-nahatomari.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="shirt" style="width:18px;height:18px;color:#0369a1;stroke-width:2;"></i>
+      <!-- 3. Laundrypress 那覇泊 -->
+      <a href="https://laundrypress-nahatomari.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#0369a1"/>
+            <circle cx="140" cy="40" r="24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+            <circle cx="140" cy="40" r="16" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="0" y1="21" x2="280" y2="21" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <line x1="0" y1="62" x2="280" y2="62" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            <text x="140" y="37" text-anchor="middle" font-family="Arial" font-weight="900" font-size="12" letter-spacing="1" fill="white">LAUNDRYPRESS</text>
+            <text x="140" y="51" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="8" fill="rgba(255,255,255,0.7)">那覇泊 クリーニング</text>
+            <rect x="104" y="62" width="72" height="12" rx="6" fill="#7dd3fc" opacity="0.9"/>
+            <text x="140" y="72" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#0c4a6e">クリーニング / 那覇</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#e0f2fe"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#e0f2fe"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#0369a1">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#0ea5e9">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#38bdf8"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">Laundrypress 那覇泊</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">クリーニング</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">Laundrypress 那覇泊</p><p class="gf-cat">クリーニング / 那覇</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://momo-villa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fef3c7;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="home" style="width:18px;height:18px;color:#d97706;stroke-width:2;"></i>
+      <!-- 4. 百momo -->
+      <a href="https://momo-villa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#1c1003"/>
+            <line x1="0" y1="0" x2="280" y2="85" stroke="rgba(217,119,6,0.07)" stroke-width="45"/>
+            <line x1="280" y1="0" x2="0" y2="85" stroke="rgba(217,119,6,0.05)" stroke-width="30"/>
+            <rect x="38" y="10" width="204" height="65" fill="none" stroke="rgba(217,119,6,0.28)" stroke-width="1"/>
+            <rect x="42" y="14" width="196" height="57" fill="none" stroke="rgba(217,119,6,0.12)" stroke-width="0.5"/>
+            <text x="140" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#d97706" letter-spacing="4">百</text>
+            <text x="140" y="57" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="rgba(255,255,255,0.75)" letter-spacing="6">m o m o</text>
+            <text x="140" y="69" text-anchor="middle" font-family="Arial" font-size="6.5" fill="rgba(255,255,255,0.4)" letter-spacing="2">TINY LUXURY VILLA · NANJO</text>
+            <rect y="85" width="280" height="51" fill="#fefce8"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#fef3c7"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#fef9c3"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#fef9c3"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#fef3c7"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#d97706">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#b45309">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#d97706"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">百momo</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">ヴィラ / 南城市</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">百momo</p><p class="gf-cat">ヴィラ / 南城市</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://thai-raksaa.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#f3e8ff;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="flower-2" style="width:18px;height:18px;color:#9333ea;stroke-width:2;"></i>
+      <!-- 5. タイ古式 RAKSAA -->
+      <a href="https://thai-raksaa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#3b0764"/>
+            <ellipse cx="140" cy="42" rx="20" ry="30" fill="none" stroke="rgba(196,132,252,0.18)" stroke-width="1"/>
+            <ellipse cx="140" cy="42" rx="30" ry="20" fill="none" stroke="rgba(196,132,252,0.14)" stroke-width="1"/>
+            <ellipse cx="140" cy="42" rx="24" ry="24" fill="none" stroke="rgba(196,132,252,0.1)" stroke-width="1"/>
+            <circle cx="50" cy="18" r="1.5" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="230" cy="28" r="1" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="200" cy="14" r="1.5" fill="rgba(255,255,255,0.35)"/>
+            <circle cx="80" cy="64" r="1" fill="rgba(255,255,255,0.25)"/>
+            <text x="140" y="36" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="3" fill="#c084fc">タイ古式</text>
+            <text x="140" y="52" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="16" letter-spacing="4" fill="white">RAKSAA</text>
+            <rect x="108" y="62" width="64" height="12" rx="6" fill="#c084fc" opacity="0.25"/>
+            <text x="140" y="72" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="7" fill="#e9d5ff" letter-spacing="1">タイ古式マッサージ</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#f3e8ff"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#f3e8ff"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#9333ea">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#a855f7">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#c084fc"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">タイ古式 RAKSAA</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">マッサージ</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">タイ古式 RAKSAA</p><p class="gf-cat">マッサージ / 沖縄</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://hikari-seikotsu.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#fff7ed;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="heart-pulse" style="width:18px;height:18px;color:#ea580c;stroke-width:2;"></i>
+      <!-- 6. ひかり整骨院 -->
+      <a href="https://hikari-seikotsu.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#7c2d12"/>
+            <circle cx="140" cy="42" r="52" fill="rgba(251,146,60,0.07)"/>
+            <circle cx="140" cy="42" r="36" fill="rgba(251,146,60,0.07)"/>
+            <rect x="133" y="20" width="14" height="44" rx="4" fill="rgba(255,255,255,0.18)"/>
+            <rect x="118" y="35" width="44" height="14" rx="4" fill="rgba(255,255,255,0.18)"/>
+            <text x="140" y="62" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="14" fill="white">ひかり整骨院</text>
+            <text x="140" y="75" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.6)" letter-spacing="1">HIKARI SEIKOTSU · 豊見城市</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#fff7ed"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#fff7ed"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#ea580c">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#f97316">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#fb923c"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">ひかり整骨院</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">整骨 / 豊見城市</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">ひかり整骨院</p><p class="gf-cat">整骨 / 豊見城市</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://blow-kokusaidori.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#212121;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="dices" style="width:18px;height:18px;color:#fbbf24;stroke-width:2;"></i>
+      <!-- 7. BLOW 国際通り -->
+      <a href="https://blow-kokusaidori.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#0a0a0a"/>
+            <line x1="0" y1="24" x2="280" y2="24" stroke="rgba(251,191,36,0.14)" stroke-width="0.5"/>
+            <line x1="0" y1="64" x2="280" y2="64" stroke="rgba(251,191,36,0.14)" stroke-width="0.5"/>
+            <rect x="130" y="28" width="20" height="20" fill="none" stroke="rgba(251,191,36,0.22)" stroke-width="1" transform="rotate(45 140 38)"/>
+            <rect x="124" y="22" width="32" height="32" fill="none" stroke="rgba(251,191,36,0.1)" stroke-width="0.5" transform="rotate(45 140 38)"/>
+            <text x="140" y="38" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="22" letter-spacing="6" fill="#fbbf24">BLOW</text>
+            <text x="140" y="52" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.45)" letter-spacing="2">CASINO BAR · 国際通り 那覇</text>
+            <rect x="90" y="61" width="100" height="13" rx="2" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.28)" stroke-width="0.5"/>
+            <text x="140" y="71" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="7" fill="#fbbf24" letter-spacing="1">カジノバー / 那覇市松尾</text>
+            <rect y="85" width="280" height="51" fill="#111827"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#1f2937"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#1f2937"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#1f2937"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#1f2937"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#fbbf24">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#d97706">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#fbbf24"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">BLOW 国際通り</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">バー / 那覇</p>
+        <div class="gallery-footer" style="background:#111827;border-top-color:#1f2937;">
+          <div style="flex:1;"><p class="gf-name" style="color:white;">BLOW 国際通り</p><p class="gf-cat">バー / 那覇</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:#6b7280;stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://churamp.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#161e1a;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="tent" style="width:18px;height:18px;color:#e87833;stroke-width:2;"></i>
+      <!-- 8. ちゅらんぷ -->
+      <a href="https://churamp.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#052e16"/>
+            <polygon points="25,78 48,38 71,78" fill="rgba(34,197,94,0.09)"/>
+            <polygon points="58,78 84,28 110,78" fill="rgba(34,197,94,0.07)"/>
+            <polygon points="170,78 196,28 222,78" fill="rgba(34,197,94,0.07)"/>
+            <polygon points="209,78 232,38 255,78" fill="rgba(34,197,94,0.09)"/>
+            <circle cx="100" cy="14" r="1.5" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="160" cy="7" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="200" cy="19" r="1.5" fill="rgba(255,255,255,0.35)"/>
+            <circle cx="60" cy="11" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="240" cy="9" r="1" fill="rgba(255,255,255,0.3)"/>
+            <text x="140" y="37" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="18" fill="white">ちゅらんぷ</text>
+            <text x="140" y="52" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.5)" letter-spacing="2">CAMP &amp; BAR · 那覇市牧志</text>
+            <rect x="104" y="62" width="72" height="13" rx="6.5" fill="#e87833" opacity="0.9"/>
+            <text x="140" y="72" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="7" font-weight="700" fill="white">キャンプバー / 那覇</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#dcfce7"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#dcfce7"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#16a34a">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#22c55e">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#e87833"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">ちゅらんぷ</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">キャンプバー / 那覇</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">ちゅらんぷ</p><p class="gf-cat">キャンプバー / 那覇</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
-      <a href="https://miyoshi-iwamoto.search-mania.net/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .15s;" onmouseover="this.style.borderColor='#22c55e';this.style.boxShadow='0 4px 14px rgba(34,197,94,.15)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(0,0,0,.10)';this.style.boxShadow='none';this.style.transform='none'">
-        <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="stethoscope" style="width:18px;height:18px;color:#0369a1;stroke-width:2;"></i>
+      <!-- 9. 三次いわもと接骨院 -->
+      <a href="https://miyoshi-iwamoto.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
+        <div class="gallery-thumb">
+          <svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="85" fill="#0f172a"/>
+            <rect x="0" y="0" width="280" height="4" fill="#0ea5e9"/>
+            <line x1="0" y1="28" x2="280" y2="28" stroke="rgba(14,165,233,0.1)" stroke-width="0.5"/>
+            <line x1="0" y1="56" x2="280" y2="56" stroke="rgba(14,165,233,0.1)" stroke-width="0.5"/>
+            <line x1="70" y1="4" x2="70" y2="85" stroke="rgba(14,165,233,0.07)" stroke-width="0.5"/>
+            <line x1="140" y1="4" x2="140" y2="85" stroke="rgba(14,165,233,0.07)" stroke-width="0.5"/>
+            <line x1="210" y1="4" x2="210" y2="85" stroke="rgba(14,165,233,0.07)" stroke-width="0.5"/>
+            <rect x="134" y="14" width="12" height="36" rx="3" fill="rgba(14,165,233,0.12)"/>
+            <rect x="122" y="26" width="36" height="12" rx="3" fill="rgba(14,165,233,0.12)"/>
+            <text x="140" y="59" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="12" fill="white">三次いわもと接骨院</text>
+            <text x="140" y="73" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.45)" letter-spacing="1">MIYOSHI IWAMOTO · 広島県三次市</text>
+            <rect y="85" width="280" height="51" fill="white"/>
+            <rect x="12" y="93" width="72" height="5" rx="2.5" fill="#e0f2fe"/>
+            <rect x="12" y="103" width="145" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="12" y="110" width="115" height="3.5" rx="1.75" fill="#f3f4f6"/>
+            <rect x="200" y="92" width="68" height="22" rx="4" fill="#e0f2fe"/>
+            <text x="234" y="103" text-anchor="middle" font-family="Arial" font-size="7" font-weight="700" fill="#0369a1">自動更新中</text>
+            <text x="234" y="112" text-anchor="middle" font-family="Arial" font-size="5.5" fill="#0ea5e9">SEO / AIO 対応</text>
+            <rect y="136" width="280" height="4" fill="#38bdf8"/>
+          </svg>
         </div>
-        <div style="min-width:0;flex:1;">
-          <p style="font-size:13px;font-weight:700;color:var(--fg);margin:0;line-height:1.3;">三次いわもと接骨院</p>
-          <p style="font-size:10px;color:var(--fg-mute);margin:2px 0 0;">整骨 / 広島県三次市</p>
+        <div class="gallery-footer">
+          <div style="flex:1;"><p class="gf-name">三次いわもと接骨院</p><p class="gf-cat">整骨 / 広島県三次市</p></div>
+          <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
         </div>
-        <i data-lucide="arrow-up-right" style="width:14px;height:14px;color:var(--fg-mute);stroke-width:2.5;flex-shrink:0;"></i>
       </a>
 
     </div>
