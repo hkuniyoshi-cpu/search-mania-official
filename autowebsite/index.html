@@ -157,7 +157,8 @@
       transition:border-color .2s, box-shadow .2s, transform .18s;
     }
     .gallery-card:hover { border-color:#22c55e; box-shadow:0 6px 24px rgba(34,197,94,.18); transform:translateY(-3px); }
-    .gallery-thumb { width:100%; }
+    .gallery-thumb { width:100%; aspect-ratio:40/21; overflow:hidden; position:relative; }
+    .gallery-thumb img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; }
     .gallery-thumb svg { width:100%; height:auto; display:block; }
     .gallery-footer { display:flex; align-items:center; padding:10px 12px; gap:8px; border-top:1px solid var(--line); background:inherit; }
     .gallery-footer .gf-name { font-size:12px; font-weight:700; color:var(--fg); margin:0; line-height:1.3; }
@@ -564,7 +565,7 @@
       <!-- 1. S.F.P 沖縄 -->
       <a href="https://sfp-okinawa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/sfp-okinawa.svg" alt="S.F.P 沖縄" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/sfp-okinawa.svg" alt="S.F.P 沖縄" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">S.F.P 沖縄</p><p class="gf-cat">フットサル / 南風原町</p></div>
@@ -575,7 +576,7 @@
       <!-- 2. クレープの森 -->
       <a href="https://crepes-no-mori.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/crepes-no-mori.png" alt="クレープの森" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/crepes-no-mori.png" alt="クレープの森" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">クレープの森</p><p class="gf-cat">飲食店 / 沖縄</p></div>
@@ -586,7 +587,7 @@
       <!-- 3. Laundrypress 那覇泊 -->
       <a href="https://laundrypress-nahatomari.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/laundrypress.svg" alt="Laundrypress 那覇泊" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/laundrypress.svg" alt="Laundrypress 那覇泊" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">Laundrypress 那覇泊</p><p class="gf-cat">クリーニング / 那覇</p></div>
@@ -597,7 +598,7 @@
       <!-- 4. 百momo -->
       <a href="https://momo-villa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/momo-villa.svg" alt="百momo" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/momo-villa.svg" alt="百momo" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">百momo</p><p class="gf-cat">ヴィラ / 南城市</p></div>
@@ -608,7 +609,7 @@
       <!-- 5. タイ古式 RAKSAA -->
       <a href="https://thai-raksaa.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/thai-raksaa.svg" alt="タイ古式 RAKSAA" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/thai-raksaa.svg" alt="タイ古式 RAKSAA" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">タイ古式 RAKSAA</p><p class="gf-cat">マッサージ / 沖縄</p></div>
@@ -619,7 +620,7 @@
       <!-- 6. ひかり整骨院 -->
       <a href="https://hikari-seikotsu.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/hikari-seikotsu.svg" alt="ひかり整骨院" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/hikari-seikotsu.svg" alt="ひかり整骨院" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">ひかり整骨院</p><p class="gf-cat">整骨 / 豊見城市</p></div>
@@ -630,7 +631,7 @@
       <!-- 7. BLOW 国際通り -->
       <a href="https://blow-kokusaidori.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/blow-kokusaidori.svg" alt="BLOW 国際通り" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/blow-kokusaidori.svg" alt="BLOW 国際通り" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer" style="background:#111827;border-top-color:#1f2937;">
           <div style="flex:1;"><p class="gf-name" style="color:white;">BLOW 国際通り</p><p class="gf-cat">バー / 那覇</p></div>
@@ -641,7 +642,7 @@
       <!-- 8. ちゅらんぷ -->
       <a href="https://churamp.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/churanpu.svg" alt="ちゅらんぷ" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/churanpu.svg" alt="ちゅらんぷ" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">ちゅらんぷ</p><p class="gf-cat">キャンプバー / 那覇</p></div>
@@ -652,7 +653,7 @@
       <!-- 9. 三次いわもと接骨院 -->
       <a href="https://miyoshi-iwamoto.search-mania.net/" target="_blank" rel="noopener" class="gallery-card">
                 <div class="gallery-thumb">
-          <img src="/autowebsite/images/miyoshi-iwamoto.svg" alt="三次いわもと接骨院" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:3/2;">
+          <img src="/autowebsite/images/miyoshi-iwamoto.svg" alt="三次いわもと接骨院" loading="lazy" style="width:100%;height:100%;display:block;">
         </div>
         <div class="gallery-footer">
           <div style="flex:1;"><p class="gf-name">三次いわもと接骨院</p><p class="gf-cat">整骨 / 広島県三次市</p></div>
@@ -1004,4 +1005,5 @@
 </script>
 </body>
 </html>
+
 
