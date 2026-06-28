@@ -669,17 +669,17 @@ a:hover { color: var(--blue-dark); }
 
 /* バッジ(角丸ピル風・控えめ) */
 .service-badge {
-  position: absolute;
-  top: 22px;
-  left: 24px;
-  z-index: 2;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-bottom: 12px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: .18em;
+  letter-spacing: .24em;
   color: var(--blue);
-  background: #fff;
-  border: 1px solid var(--blue-line);
-  padding: 5px 12px;
+  background: rgba(66,133,244,.10);
+  border: 1px solid rgba(66,133,244,.25);
+  padding: 4px 10px;
   border-radius: 999px;
   text-transform: uppercase;
 }
@@ -4548,6 +4548,9 @@ a.service-card:hover .service-link-hint {
 .services-grid a.service-card[href*="autowebsite"] .service-body::before {
   content: 'WEB 集客';
   display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  margin-bottom: 12px;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -4557,13 +4560,16 @@ a.service-card:hover .service-link-hint {
   border: 1px solid rgba(52,168,83,.25);
   padding: 4px 10px;
   border-radius: 999px;
-  margin-bottom: 12px;
 }
 /* 同様にMEO系のカード(automap or マップ集客)はGoogle Blue強調 */
 .services-grid a.service-card[href*="automap"] .service-body::before,
+.services-grid a.service-card[href*="mapform"] .service-body::before,
 .services-grid a.service-card[href*="meo"] .service-body::before {
   content: 'MEO 集客';
   display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  margin-bottom: 12px;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -4573,5 +4579,10 @@ a.service-card:hover .service-link-hint {
   border: 1px solid rgba(66,133,244,.25);
   padding: 4px 10px;
   border-radius: 999px;
-  margin-bottom: 12px;
+}
+/* autowebsite カード内の 人気 バッジは緑系で統一 */
+.services-grid a.service-card[href*="autowebsite"] .service-badge {
+  color: #34A853;
+  background: rgba(52,168,83,.10);
+  border-color: rgba(52,168,83,.25);
 }
