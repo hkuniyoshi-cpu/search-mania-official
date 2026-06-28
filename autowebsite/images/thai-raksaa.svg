@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e0e0e"/>
+      <stop offset="100%" style="stop-color:#1e1a16"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c9a84c"/>
+      <stop offset="50%" style="stop-color:#f0d080"/>
+      <stop offset="100%" style="stop-color:#c9a84c"/>
+    </linearGradient>
+    <linearGradient id="goldV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0d080"/>
+      <stop offset="100%" style="stop-color:#a07830"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <rect x="72" y="72" width="2" height="486" fill="url(#goldV)" opacity="0.6"/>
+  <rect x="1126" y="72" width="2" height="486" fill="url(#goldV)" opacity="0.6"/>
+  <rect x="72" y="72" width="1056" height="1.5" fill="url(#gold)" opacity="0.5"/>
+  <rect x="72" y="556.5" width="1056" height="1.5" fill="url(#gold)" opacity="0.5"/>
+
+  <rect x="72" y="72" width="32" height="2" fill="#c9a84c"/>
+  <rect x="72" y="72" width="2" height="32" fill="#c9a84c"/>
+  <rect x="1096" y="72" width="32" height="2" fill="#c9a84c"/>
+  <rect x="1126" y="72" width="2" height="32" fill="#c9a84c"/>
+  <rect x="72" y="556" width="32" height="2" fill="#c9a84c"/>
+  <rect x="72" y="526" width="2" height="32" fill="#c9a84c"/>
+  <rect x="1096" y="556" width="32" height="2" fill="#c9a84c"/>
+  <rect x="1126" y="526" width="2" height="32" fill="#c9a84c"/>
+
+  <rect x="540" y="148" width="120" height="1" fill="url(#gold)" opacity="0.7"/>
+
+  <text x="600" y="188" font-family="Georgia, serif" font-size="14" fill="#c9a84c" text-anchor="middle" letter-spacing="8" opacity="0.9">PRIVATE SPA · NAHA OMOKACHO</text>
+
+  <text x="600" y="316" font-family="Georgia, 'Times New Roman', serif" font-size="112" fill="url(#gold)" text-anchor="middle" letter-spacing="12" font-weight="400">RAKSAA</text>
+
+  <text x="600" y="378" font-family="'Hiragino Mincho ProN', 'Yu Mincho', serif" font-size="26" fill="#e8d9b8" text-anchor="middle" letter-spacing="10" opacity="0.9">タイ古式　ラクサー</text>
+
+  <rect x="420" y="410" width="360" height="1" fill="url(#gold)" opacity="0.5"/>
+
+  <text x="600" y="448" font-family="Georgia, serif" font-size="16" fill="#c9a84c" text-anchor="middle" letter-spacing="4" opacity="0.85">深 夜 2 5 時 ま で 　 完 全 個 室 　 無 料 駐 車 場</text>
+
+  <text x="600" y="510" font-family="Georgia, serif" font-size="15" fill="#8a7a60" text-anchor="middle" letter-spacing="3">thai-raksaa.search-mania.net</text>
+
+  <polygon points="600,130 606,136 600,142 594,136" fill="#c9a84c" opacity="0.7"/>
+  <polygon points="600,488 604,492 600,496 596,492" fill="#c9a84c" opacity="0.5"/>
+</svg>
