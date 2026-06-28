@@ -563,8 +563,8 @@ a:hover { color: var(--blue-dark); }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-start;
+  gap: 20px;
   isolation: isolate;
 }
 /* 微細ドットパターン背景 (hover で出現) */
@@ -671,8 +671,7 @@ a:hover { color: var(--blue-dark); }
 .service-badge {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 8px;
-  margin-bottom: 12px;
+  margin: 8px 8px 12px 0;     /* top right bottom left */
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .24em;
@@ -684,7 +683,11 @@ a:hover { color: var(--blue-dark); }
   text-transform: uppercase;
 }
 
-.service-body { position: relative; z-index: 1; }
+.service-body {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;  /* アイコンとタグの間に必ず余白を確保 */
+}
 .service-name {
   font-size: 18px;
   font-weight: 700;
@@ -4549,8 +4552,7 @@ a.service-card:hover .service-link-hint {
   content: 'WEB 集客';
   display: inline-block;
   vertical-align: middle;
-  margin-right: 6px;
-  margin-bottom: 12px;
+  margin: 8px 6px 12px 0;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 700;
@@ -4568,8 +4570,7 @@ a.service-card:hover .service-link-hint {
   content: 'MEO 集客';
   display: inline-block;
   vertical-align: middle;
-  margin-right: 6px;
-  margin-bottom: 12px;
+  margin: 8px 6px 12px 0;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 700;
