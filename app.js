@@ -14,18 +14,18 @@ window.addEventListener('load', () => {
 
 /* ============================================================
    ⚡ パフォーマンス: Font Awesome を非ブロッキングで読込
+   (preload は事前ダウンロード用、stylesheet を確実に append して適用)
    ============================================================ */
 (function loadFontAwesomeAsync(){
-  const link = document.getElementById('fa-css');
-  if(link && link.rel === 'preload'){
-    link.rel = 'stylesheet';
-  } else if(!link){
-    // fallback: preloadタグがない場合は通常stylesheetを追加
-    const fa = document.createElement('link');
-    fa.rel = 'stylesheet';
-    fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
-    document.head.appendChild(fa);
-  }
+  /* 既存の preload タグを除去 (キャッシュに乗ってる) */
+  const existing = document.getElementById('fa-css');
+  if(existing && existing.rel === 'preload') existing.remove();
+  /* 確実にstylesheetとして適用 */
+  const fa = document.createElement('link');
+  fa.rel = 'stylesheet';
+  fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+  fa.crossOrigin = 'anonymous';
+  document.head.appendChild(fa);
 })();
 
 /* ============================================================
