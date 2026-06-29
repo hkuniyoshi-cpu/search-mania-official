@@ -200,6 +200,12 @@
       </div>
     </div>
 
+    <!-- Drive folder notice（Square決済後に表示） -->
+    <div id="drive-notice" style="display:none; background:rgba(52,168,83,.1); border:1px solid rgba(52,168,83,.3); border-radius:10px; padding:16px 20px; margin-bottom:24px; font-size:0.85rem; color:#1e7e34; line-height:1.7;">
+      <strong>写真格納用Googleドライブフォルダを発行しました。</strong><br>
+      ご登録のメールアドレスに確認メールをお送りしました。フォルダのリンクを確認いただき、写真・素材をアップロードしてください。
+    </div>
+
     <form id="hearing-form" novalidate>
 
       <div class="hp-field" aria-hidden="true">
@@ -447,6 +453,32 @@
   const categoryEl     = document.getElementById('category');
   const hintEl         = document.getElementById('target-want-hint');
   const photoNotice    = document.getElementById('photo-notice');
+
+  /* Drive folder creation（Square決済完了後、初回ロード時のみ） */
+  (function() {
+    try {
+      const saved       = localStorage.getItem('autoweb_apply');
+      const alreadyDone = localStorage.getItem('autoweb_drive_done');
+      if (saved && !alreadyDone) {
+        const data = JSON.parse(saved);
+        if (data && data.email) {
+          fetch(GAS_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              action:   'createDriveFolder',
+              service:  'autoweb',
+              email:    data.email,
+              shopName: data.shopName || '',
+            }),
+          }).catch(function() {});
+          localStorage.setItem('autoweb_drive_done', '1');
+          var notice = document.getElementById('drive-notice');
+          if (notice) notice.style.display = 'block';
+        }
+      }
+    } catch (_) {}
+  })();
 
   /* localStorage autofill */
   try {
