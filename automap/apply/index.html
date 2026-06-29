@@ -565,6 +565,8 @@
 
       <p class="info-note">
         次のページで決済情報をご入力いただきます。<br>
+        決済完了後、<strong>写真格納用のGoogleドライブフォルダ</strong>を自動発行し、<br>
+        ご登録のメールアドレスにリンクをお送りします。<br>
         ご不明点は <a href="mailto:info@search-mania.net">info@search-mania.net</a> まで
       </p>
 
@@ -753,10 +755,11 @@
     });
 
     fetch(GAS_URL, {
-      method:  'POST',
-      mode:    'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body:    payload,
+      method:    'POST',
+      mode:      'no-cors',
+      headers:   { 'Content-Type': 'text/plain' },
+      body:      payload,
+      keepalive: true,
     }).catch(function() {
       /* Intentionally ignore — fire-and-forget */
     });
