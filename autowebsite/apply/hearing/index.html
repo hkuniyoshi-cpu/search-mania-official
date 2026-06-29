@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>ヒアリングフォーム | 手放しWEB集客 | SearchMania</title>
+  <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent:      #34A853;
+      --accent-dark: #1e7e34;
+      --green:       #34A853;
+      --bg:          #f5f7fa;
+      --card:        #ffffff;
+      --fg:          #1a1f2e;
+      --mute:        #6b7280;
+      --line:        rgba(0,0,0,.09);
+      --err:         #d93025;
+      --radius:      10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: "Noto Sans JP", Inter, system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; min-height: 100vh; }
+
+    /* ── Header ── */
+    .site-header { background: var(--card); border-bottom: 1px solid var(--line); padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
+    .site-header img { height: 28px; width: auto; }
+    .site-header .logo-text { font-size: 0.8rem; color: var(--mute); letter-spacing: .03em; }
+    .step-badge { margin-left: auto; background: rgba(52,168,83,.12); color: var(--accent); border: 1px solid rgba(52,168,83,.3); border-radius: 20px; font-size: 0.72rem; font-weight: 700; padding: 3px 12px; letter-spacing: .05em; }
+
+    /* ── Container ── */
+    .container { max-width: 740px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    /* ── Hero ── */
+    .page-hero { text-align: center; margin-bottom: 40px; }
+    .page-hero .tag { display: inline-block; background: rgba(52,168,83,.1); color: var(--accent); border: 1px solid rgba(52,168,83,.25); border-radius: 20px; font-size: 0.75rem; font-weight: 700; padding: 4px 14px; margin-bottom: 16px; letter-spacing: .06em; }
+    .page-hero h1 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 700; line-height: 1.35; margin-bottom: 12px; }
+    .page-hero p { font-size: 0.9rem; color: var(--mute); max-width: 540px; margin: 0 auto; }
+
+    /* ── Progress ── */
+    .progress-wrap { display: flex; align-items: center; gap: 0; margin-bottom: 40px; }
+    .progress-step { flex: 1; text-align: center; position: relative; }
+    .progress-step:not(:last-child)::after { content: ''; position: absolute; top: 16px; left: 50%; right: -50%; height: 2px; background: var(--line); z-index: 0; }
+    .progress-step.done:not(:last-child)::after { background: var(--green); }
+    .progress-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--card); border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin: 0 auto 6px; position: relative; z-index: 1; }
+    .progress-step.done .progress-dot { background: var(--green); border-color: var(--green); color: #fff; }
+    .progress-step.active .progress-dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 4px rgba(52,168,83,.2); }
+    .progress-label { font-size: 0.68rem; color: var(--mute); line-height: 1.2; }
+    .progress-step.active .progress-label { color: var(--fg); font-weight: 600; }
+    .progress-step.done .progress-label { color: var(--green); }
+
+    /* ── Section cards ── */
+    .section-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 28px 24px; margin-bottom: 24px; }
+    .section-title { font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .section-title .icon { width: 22px; height: 22px; background: rgba(52,168,83,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; }
+
+    /* ── Form elements ── */
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+    label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--fg); margin-bottom: 7px; }
+    label .req { color: var(--err); margin-left: 3px; font-size: 0.7rem; }
+    label .opt { color: var(--mute); font-size: 0.68rem; font-weight: 400; margin-left: 5px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    select,
+    textarea {
+      width: 100%; background: #f7f9fc; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--fg); font-family: inherit; font-size: 0.9rem; padding: 11px 14px;
+      transition: border-color .2s, box-shadow .2s; outline: none; appearance: none; -webkit-appearance: none;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    select:focus,
+    textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,168,83,.15); }
+    input.error, select.error, textarea.error { border-color: var(--err); box-shadow: 0 0 0 3px rgba(217,48,37,.12); }
+    textarea { resize: vertical; min-height: 90px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236b7280' d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 38px;
+    }
+    ::placeholder { color: rgba(107,114,128,.55); font-size: 0.83rem; }
+
+    .field-hint { font-size: 0.75rem; color: var(--mute); margin-top: 6px; line-height: 1.5; }
+    .field-hint.hint-dynamic { background: rgba(52,168,83,.07); border-left: 2px solid var(--accent); padding: 8px 12px; border-radius: 0 6px 6px 0; color: var(--fg); font-size: 0.78rem; }
+    .field-error { font-size: 0.75rem; color: var(--err); margin-top: 5px; display: none; }
+    .field-error.show { display: block; }
+
+    /* ── Chips ── */
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .chip { cursor: pointer; user-select: none; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; border: 1px solid var(--line); background: #f7f9fc; color: var(--mute); transition: all .18s; }
+    .chip:hover { border-color: rgba(52,168,83,.4); color: var(--fg); }
+    .chip.selected { background: rgba(52,168,83,.12); border-color: var(--accent); color: var(--accent); }
+    .photo-chip.selected { background: rgba(52,168,83,.12); border-color: var(--green); color: var(--green); }
+
+    /* ── CMS guide ── */
+    .cms-guide { background: #f7f9fc; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; margin-bottom: 20px; }
+    .cms-guide h4 { font-size: 0.82rem; font-weight: 700; color: var(--fg); margin-bottom: 12px; }
+    .cms-steps { list-style: none; counter-reset: step; }
+    .cms-steps li { counter-increment: step; display: flex; gap: 10px; font-size: 0.8rem; color: var(--mute); margin-bottom: 10px; line-height: 1.55; }
+    .cms-steps li:last-child { margin-bottom: 0; }
+    .cms-steps li::before { content: counter(step); flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: rgba(52,168,83,.15); color: var(--accent); font-size: 0.68rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .cms-steps strong { color: var(--fg); }
+    .email-highlight { display: inline-block; background: rgba(52,168,83,.1); color: var(--accent); border-radius: 4px; padding: 0 5px; font-family: monospace; font-size: 0.8rem; }
+    .cms-note { margin-top: 10px; font-size: 0.75rem; color: var(--mute); border-top: 1px solid var(--line); padding-top: 10px; }
+
+    /* ── details/summary ── */
+    details { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    summary { cursor: pointer; padding: 12px 16px; font-size: 0.82rem; font-weight: 600; color: var(--mute); background: #f7f9fc; list-style: none; display: flex; align-items: center; gap: 8px; transition: color .18s; }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: '▶'; font-size: 0.6rem; color: var(--accent); transition: transform .2s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details[open] summary { color: var(--fg); }
+    .details-body { padding: 16px 16px 18px; border-top: 1px solid var(--line); }
+
+    /* ── Photo notice ── */
+    .photo-notice { display: none; margin-top: 12px; padding: 12px 16px; background: rgba(52,168,83,.08); border: 1px solid rgba(52,168,83,.3); border-radius: 8px; font-size: 0.8rem; color: #1e7e34; line-height: 1.6; }
+    .photo-notice.show { display: block; }
+
+    /* ── Honeypot ── */
+    .hp-field { display: none !important; visibility: hidden; }
+
+    /* ── Submit ── */
+    .submit-wrap { text-align: center; margin-top: 36px; }
+    .btn-submit { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; border: none; border-radius: 50px; font-family: inherit; font-size: 1rem; font-weight: 700; padding: 16px 48px; cursor: pointer; transition: opacity .2s, transform .15s, box-shadow .2s; box-shadow: 0 4px 20px rgba(52,168,83,.3); letter-spacing: .03em; }
+    .btn-submit:hover:not(:disabled) { opacity: .92; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(52,168,83,.4); }
+    .btn-submit:active:not(:disabled) { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-submit .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+    .btn-submit.loading .spinner { display: inline-block; }
+    .btn-submit.loading .btn-text { opacity: .7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .submit-note { font-size: 0.75rem; color: var(--mute); margin-top: 12px; }
+    .submit-error { display: none; margin-top: 14px; padding: 12px 18px; background: rgba(217,48,37,.08); border: 1px solid rgba(217,48,37,.25); border-radius: 8px; font-size: 0.82rem; color: #c62828; line-height: 1.6; }
+    .submit-error.show { display: block; }
+
+    /* ── Complete screen ── */
+    #complete-screen { display: none; text-align: center; padding: 60px 20px; }
+    #complete-screen .check-circle { width: 80px; height: 80px; border-radius: 50%; background: rgba(52,168,83,.12); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 2.2rem; }
+    #complete-screen h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 14px; }
+    #complete-screen p { color: var(--mute); font-size: 0.9rem; line-height: 1.8; max-width: 480px; margin: 0 auto 28px; }
+    #complete-screen .next-steps { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto 36px; }
+    #complete-screen .next-step-item { display: flex; gap: 12px; align-items: flex-start; text-align: left; background: #f7f9fc; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+    #complete-screen .next-step-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: rgba(52,168,83,.15); color: var(--accent); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    #complete-screen .next-step-text { font-size: 0.82rem; color: var(--mute); line-height: 1.55; }
+    #complete-screen .next-step-text strong { color: var(--fg); }
+    .btn-home { display: inline-block; padding: 12px 32px; border: 1px solid var(--accent); color: var(--accent); border-radius: 50px; font-family: inherit; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+    .btn-home:hover { background: rgba(52,168,83,.08); }
+
+    /* ── Footer ── */
+    .site-footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--line); margin-top: 40px; font-size: 0.72rem; color: var(--mute); }
+
+    /* ── SR only ── */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 600px) {
+      .section-card { padding: 20px 16px; }
+      .btn-submit { padding: 14px 32px; font-size: 0.92rem; }
+      .progress-label { font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" alt="SearchMania">
+  <span class="logo-text">手放しWEB集客</span>
+  <span class="step-badge">STEP 2 / 3</span>
+</header>
+
+<main>
+  <div class="container">
+
+    <div class="page-hero">
+      <span class="tag">HEARING FORM</span>
+      <h1>ヒアリングフォーム</h1>
+      <p>お申込みありがとうございます。<br>以下の情報をご入力いただくと、よりスピーディーに最適なWEB集客施策を開始できます。</p>
+    </div>
+
+    <div class="progress-wrap" aria-label="申込み進捗">
+      <div class="progress-step done">
+        <div class="progress-dot">✓</div>
+        <div class="progress-label">決済完了</div>
+      </div>
+      <div class="progress-step active">
+        <div class="progress-dot">2</div>
+        <div class="progress-label">ヒアリング<br>フォーム</div>
+      </div>
+      <div class="progress-step">
+        <div class="progress-dot">3</div>
+        <div class="progress-label">作業開始<br>ご連絡</div>
+      </div>
+    </div>
+
+    <form id="hearing-form" novalidate>
+
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- メールアドレス確認 -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">✉</span>
+          メールアドレス確認（必須）
+        </div>
+        <div class="field">
+          <label for="email">申込時と同じメールアドレス <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
+          <div class="field-error" id="email-error">正しいメールアドレス形式で入力してください。</div>
+          <p class="field-hint">申込情報と照合するため、決済時に使用したメールアドレスをご入力ください。</p>
+        </div>
+      </div>
+
+      <!-- A. 基本情報 -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">A</span>
+          基本情報（必須）
+        </div>
+
+        <div class="field">
+          <label for="category">業種カテゴリ <span class="req">*</span></label>
+          <select id="category" name="category">
+            <option value="">── 業種を選択してください ──</option>
+            <option value="接骨院・整骨院">接骨院・整骨院</option>
+            <option value="整体・リラクゼーション">整体・リラクゼーション</option>
+            <option value="美容室・ヘアサロン">美容室・ヘアサロン</option>
+            <option value="エステ・ネイル・まつげ">エステ・ネイル・まつげ</option>
+            <option value="飲食店（カフェ・レストラン）">飲食店（カフェ・レストラン）</option>
+            <option value="居酒屋・バー">居酒屋・バー</option>
+            <option value="歯科医院">歯科医院</option>
+            <option value="薬局・ドラッグストア">薬局・ドラッグストア</option>
+            <option value="不動産">不動産</option>
+            <option value="外壁塗装・リフォーム・建築">外壁塗装・リフォーム・建築</option>
+            <option value="クリーニング">クリーニング</option>
+            <option value="学習塾・スクール">学習塾・スクール</option>
+            <option value="フィットネス・ジム">フィットネス・ジム</option>
+            <option value="ペット関連">ペット関連</option>
+            <option value="保険・士業">保険・士業</option>
+            <option value="その他">その他</option>
+          </select>
+          <div class="field-error" id="category-error">業種カテゴリを選択してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="websiteUrl">現在のウェブサイトURL <span class="opt">任意</span></label>
+          <input type="url" id="websiteUrl" name="websiteUrl" placeholder="例）https://example.com">
+          <p class="field-hint">ない場合は空欄で構いません。</p>
+        </div>
+
+        <div class="field">
+          <label for="address">住所 <span class="req">*</span></label>
+          <input type="text" id="address" name="address" placeholder="例）沖縄県那覇市松尾2-7-1">
+          <div class="field-error" id="address-error">住所を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="hours">営業時間 <span class="req">*</span></label>
+          <input type="text" id="hours" name="hours" placeholder="例）平日 9:00-19:00 / 土 9:00-17:00">
+          <div class="field-error" id="hours-error">営業時間を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="holiday">定休日 <span class="opt">任意</span></label>
+          <input type="text" id="holiday" name="holiday" placeholder="例）日曜日・祝日">
+        </div>
+
+        <div class="field">
+          <label for="publicTel">公開用電話番号 <span class="req">*</span></label>
+          <input type="text" id="publicTel" name="publicTel" placeholder="例）098-123-4567" autocomplete="tel">
+          <div class="field-error" id="publicTel-error">電話番号を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="webSns">公式SNS URL <span class="opt">任意</span></label>
+          <input type="text" id="webSns" name="webSns" placeholder="例）Instagram / Facebook URL 等">
+          <p class="field-hint">複数ある場合はスペースや改行で区切ってご記入ください。</p>
+        </div>
+      </div>
+
+      <!-- B. 現状とターゲット -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">B</span>
+          現状とターゲット（必須）
+        </div>
+
+        <div class="field">
+          <label for="currentProblem">B-1. WEB集客の現状・課題 <span class="req">*</span></label>
+          <textarea id="currentProblem" name="currentProblem" rows="3"
+            placeholder="例）Googleで検索しても全然出てこない・問い合わせが月0〜1件・既存サイトが古くて使いにくい・SNSを更新する余裕がない など"></textarea>
+          <div class="field-error" id="currentProblem-error">現状・課題を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="targetWant">B-2. 獲得したいターゲット層 <span class="req">*</span></label>
+          <textarea id="targetWant" name="targetWant" rows="3" placeholder="獲得したいターゲット層をご記入ください"></textarea>
+          <div class="field-error" id="targetWant-error">獲得したいターゲット層を入力してください。</div>
+          <div class="field-hint hint-dynamic" id="target-want-hint" aria-live="polite" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- C. 強み・特徴 -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">C</span>
+          強み・特徴（自由記述）
+        </div>
+
+        <div class="field">
+          <label for="reasonChosen">C-1. 他店でなくウチを選ぶ理由 <span class="req">*</span></label>
+          <textarea id="reasonChosen" name="reasonChosen" rows="3"
+            placeholder="技術・資格・実績・接客・価格・通いやすさ・雰囲気・アフターケア など"></textarea>
+          <div class="field-error" id="reasonChosen-error">選ばれる理由を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="popularItem">C-2. 一番人気の商品／サービスとその魅力 <span class="req">*</span></label>
+          <textarea id="popularItem" name="popularItem" rows="3"
+            placeholder="人気メニューとその特徴・お客様に喜ばれる点 など"></textarea>
+          <div class="field-error" id="popularItem-error">人気サービスの情報を入力してください。</div>
+        </div>
+
+        <div class="field">
+          <label for="praise">C-3. よく言われる褒め言葉 <span class="opt">任意</span></label>
+          <textarea id="praise" name="praise" rows="2"
+            placeholder="お客様の口コミや感謝の言葉などをそのままご記入ください"></textarea>
+        </div>
+
+        <div class="field">
+          <details id="story-details">
+            <summary>C-4. 創業のきっかけ・こだわり <span class="opt" style="font-weight:400">（任意・タップで展開）</span></summary>
+            <div class="details-body">
+              <label for="story" class="sr-only">創業のきっかけ・こだわり</label>
+              <textarea id="story" name="story" rows="4"
+                placeholder="創業の想い・お客様への約束・こだわりのポイントなどをご自由にお書きください。WEBコンテンツに活用します。"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- D. サイト・Googleアクセス権 -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">D</span>
+          サイト・Googleアクセス権（必須）
+        </div>
+
+        <div class="field">
+          <label for="cmsType">現在のサイト管理方法 <span class="opt">任意</span></label>
+          <select id="cmsType" name="cmsType">
+            <option value="">── 選択してください ──</option>
+            <option value="WordPress">WordPress</option>
+            <option value="Wix">Wix</option>
+            <option value="STORES">STORES</option>
+            <option value="Squarespace">Squarespace</option>
+            <option value="Jimdo">Jimdo</option>
+            <option value="コーディング済み（HTML/CSS）">コーディング済み（HTML/CSS）</option>
+            <option value="サイトなし">サイトなし（これから制作）</option>
+            <option value="わからない">わからない</option>
+          </select>
+        </div>
+
+        <div class="cms-guide">
+          <h4>管理者権限を付与する 3 ステップ（WordPress の場合）</h4>
+          <ol class="cms-steps">
+            <li>WordPress 管理画面（<strong>/wp-admin</strong>）にログイン → 「ユーザー」→「新規追加」をクリック</li>
+            <li>メールアドレス <span class="email-highlight">h.kuniyoshi@search-mania.net</span> を入力し、権限グループ「<strong>管理者</strong>」を選択して送信</li>
+            <li>これだけで完了です（パスワードの共有は不要・後から削除できます）</li>
+          </ol>
+          <p class="cms-note">
+            ※ Wix / STORES などの場合は、各サービス内の「コラボレーター」「共同編集者」招待機能をご利用ください。<br>
+            ※ うまくいかない場合は、下の Google アカウントをご記入いただければ別途ご案内します。
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="googleEmail">Googleアカウント（Gmail） <span class="req">*</span></label>
+          <input type="email" id="googleEmail" name="googleEmail" placeholder="example@gmail.com" autocomplete="off">
+          <div class="field-error" id="googleEmail-error">正しいメールアドレス形式で入力してください。</div>
+          <p class="field-hint">Google Search Console・Analytics などの権限付与に使用します。</p>
+        </div>
+
+        <div class="field">
+          <label for="searchConsoleUrl">Google Search Console の URL <span class="opt">任意</span></label>
+          <input type="url" id="searchConsoleUrl" name="searchConsoleUrl"
+            placeholder="https://search.google.com/search-console/... またはサイト URL">
+          <p class="field-hint">わからない場合は空欄で構いません。</p>
+        </div>
+      </div>
+
+      <!-- E. 写真・素材 -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">E</span>
+          写真・素材（任意）
+        </div>
+
+        <div class="field">
+          <label>写真・素材の有無 <span class="opt">任意</span></label>
+          <div class="chip-group" id="photos-chips">
+            <span class="chip photo-chip" data-val="あり">あり</span>
+            <span class="chip photo-chip" data-val="なし">なし</span>
+            <span class="chip photo-chip" data-val="これから用意">これから用意</span>
+          </div>
+        </div>
+
+        <div class="photo-notice" id="photo-notice">
+          <strong>写真の送付先：</strong><br>
+          メール <span class="email-highlight">h.kuniyoshi@search-mania.net</span> 宛に添付、<br>
+          またはGoogleドライブで共有いただければスムーズに作業を開始できます。<br>
+          （外観・内観・商品・スタッフ写真など歓迎です）
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="submit-btn">
+          <span class="spinner"></span>
+          <span class="btn-text">ヒアリング情報を送信する</span>
+        </button>
+        <p class="submit-note">送信後、2〜3営業日以内に担当者よりご連絡します。</p>
+        <div class="submit-error" id="submit-error">
+          送信中にエラーが発生しました。時間を置いて再度お試しください。<br>
+          改善しない場合は <span class="email-highlight">info@search-mania.net</span> までご連絡ください。
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Complete screen -->
+    <div id="complete-screen">
+      <div class="check-circle">✓</div>
+      <h2>送信完了しました！</h2>
+      <p>ヒアリング情報を受け取りました。<br>内容を確認のうえ、<strong>2〜3営業日以内</strong>に担当者よりご連絡いたします。</p>
+      <div class="next-steps">
+        <div class="next-step-item">
+          <div class="next-step-num">1</div>
+          <div class="next-step-text"><strong>担当者からご連絡</strong><br>ヒアリング内容を確認後、作業スケジュールをお知らせします。</div>
+        </div>
+        <div class="next-step-item">
+          <div class="next-step-num">2</div>
+          <div class="next-step-text"><strong>WEB集客施策スタート</strong><br>SEO・コンテンツ・サイト改善などの施策を開始します。</div>
+        </div>
+        <div class="next-step-item">
+          <div class="next-step-num">3</div>
+          <div class="next-step-text"><strong>月次レポート</strong><br>毎月の検索順位・アクセス数などをレポートでお届けします。</div>
+        </div>
+      </div>
+      <a href="/autowebsite/" class="btn-home">トップページへ戻る</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  &copy; 2026 SearchMania Inc. All rights reserved.
+</footer>
+
+<script>
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbybbWX0lJQ8drdfsh5C67Z472fO2TY1PLz6HQpujgVzLPPFtvJ-p0SWrfbHeQxGgWm6aw/exec';
+
+  const HINTS = {
+    '接骨院・整骨院':        '例：産後骨盤ケアを探す20〜30代女性／スポーツ外傷の学生・部活層／交通事故後の通院',
+    '整体・リラクゼーション': '例：デスクワークの肩こり層／育児疲れの30代／睡眠の質を上げたい層',
+    '美容室・ヘアサロン':     '例：白髪ケア世代の40〜50代／トレンド重視の20代／髪質改善ニーズ',
+    'エステ・ネイル・まつげ': '例：ブライダル準備層／自分へのご褒美20〜30代／毎月通うリピーター',
+    '飲食店（カフェ・レストラン）': '例：仕事帰りの20〜40代／週末の家族連れ／観光客／記念日利用',
+    '居酒屋・バー':          '例：会社帰りの宴会幹事／少人数の常連／観光客の二次会',
+    '歯科医院':              '例：予防・定期検診を重視する層／審美・ホワイトニング希望／子育て家庭',
+    '薬局・ドラッグストア':   '例：かかりつけ需要のシニア／子育て家庭／健康相談ニーズ',
+    '不動産':                '例：県外からの移住・転勤層／初めての一人暮らし／投資・売却検討層',
+    '外壁塗装・リフォーム・建築': '例：築10〜20年の戸建て所有者／相続・空き家対応／省エネ補助金狙い',
+    'クリーニング':           '例：共働き家庭の時短ニーズ／衣替えのまとめ出し／布団・特殊品',
+    '学習塾・スクール':       '例：受験対策の中高生保護者／苦手克服したい小学生／社会人の学び直し',
+    'フィットネス・ジム':     '例：ダイエット目的の30〜40代／健康維持のシニア／部活・競技サポート',
+    'ペット関連':             '例：初めての飼い主／シニア犬猫のケア／多頭飼育家庭',
+    '保険・士業':             '例：ライフイベント期の30〜40代／事業者の節税相談／相続準備層',
+    'その他':                '年代・性別・お悩み・エリアの切り口で「来てほしい人」を描いてみてください。'
+  };
+
+  const form           = document.getElementById('hearing-form');
+  const completeScreen = document.getElementById('complete-screen');
+  const submitBtn      = document.getElementById('submit-btn');
+  const submitError    = document.getElementById('submit-error');
+  const categoryEl     = document.getElementById('category');
+  const hintEl         = document.getElementById('target-want-hint');
+  const photoNotice    = document.getElementById('photo-notice');
+
+  /* localStorage autofill */
+  try {
+    const saved = localStorage.getItem('autoweb_apply');
+    if (saved) {
+      const data = JSON.parse(saved);
+      if (data && data.email) document.getElementById('email').value = data.email;
+    }
+  } catch (_) {}
+
+  /* Category hint */
+  categoryEl.addEventListener('change', function () {
+    const hint = HINTS[this.value];
+    if (hint) { hintEl.textContent = hint; hintEl.style.display = 'block'; }
+    else       { hintEl.style.display = 'none'; hintEl.textContent = ''; }
+  });
+
+  /* Photos chips */
+  let selectedPhoto = '';
+  document.querySelectorAll('#photos-chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('#photos-chips .chip').forEach(c => c.classList.remove('selected'));
+      if (selectedPhoto === this.dataset.val) {
+        selectedPhoto = '';
+        photoNotice.classList.remove('show');
+      } else {
+        this.classList.add('selected');
+        selectedPhoto = this.dataset.val;
+        photoNotice.classList.toggle('show', selectedPhoto === 'あり');
+      }
+    });
+  });
+
+  /* Validation */
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+
+  function setError(fieldId, errId, condition) {
+    const field = document.getElementById(fieldId);
+    const err   = document.getElementById(errId);
+    if (condition) { field.classList.add('error'); err.classList.add('show'); return true; }
+    else           { field.classList.remove('error'); err.classList.remove('show'); return false; }
+  }
+
+  function validateForm() {
+    let hasError = false;
+    const emailVal = document.getElementById('email').value.trim();
+    if (setError('email', 'email-error', !emailVal || !isValidEmail(emailVal))) hasError = true;
+    if (setError('category', 'category-error', !categoryEl.value)) hasError = true;
+    if (setError('address', 'address-error', !document.getElementById('address').value.trim())) hasError = true;
+    if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
+    if (setError('publicTel', 'publicTel-error', !document.getElementById('publicTel').value.trim())) hasError = true;
+    if (setError('currentProblem', 'currentProblem-error', !document.getElementById('currentProblem').value.trim())) hasError = true;
+    if (setError('targetWant', 'targetWant-error', !document.getElementById('targetWant').value.trim())) hasError = true;
+    if (setError('reasonChosen', 'reasonChosen-error', !document.getElementById('reasonChosen').value.trim())) hasError = true;
+    if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
+    const gEmailVal = document.getElementById('googleEmail').value.trim();
+    if (setError('googleEmail', 'googleEmail-error', !gEmailVal || !isValidEmail(gEmailVal))) hasError = true;
+    return !hasError;
+  }
+
+  /* Submit */
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (document.getElementById('website').value) return;
+    if (!validateForm()) {
+      const firstError = form.querySelector('.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('.btn-text').textContent = '送信中…';
+    submitError.classList.remove('show');
+
+    const payload = {
+      action:           'submitWebHearing',
+      email:            document.getElementById('email').value.trim(),
+      category:         categoryEl.value,
+      websiteUrl:       document.getElementById('websiteUrl').value.trim(),
+      address:          document.getElementById('address').value.trim(),
+      hours:            document.getElementById('hours').value.trim(),
+      holiday:          document.getElementById('holiday').value.trim(),
+      publicTel:        document.getElementById('publicTel').value.trim(),
+      webSns:           document.getElementById('webSns').value.trim(),
+      currentProblem:   document.getElementById('currentProblem').value.trim(),
+      targetWant:       document.getElementById('targetWant').value.trim(),
+      reasonChosen:     document.getElementById('reasonChosen').value.trim(),
+      popularItem:      document.getElementById('popularItem').value.trim(),
+      praise:           document.getElementById('praise').value.trim(),
+      story:            document.getElementById('story').value.trim(),
+      cmsType:          document.getElementById('cmsType').value,
+      googleEmail:      document.getElementById('googleEmail').value.trim(),
+      searchConsoleUrl: document.getElementById('searchConsoleUrl').value.trim(),
+      hasPhotos:        selectedPhoto,
+    };
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      });
+      try { localStorage.removeItem('autoweb_apply'); } catch (_) {}
+      form.style.display = 'none';
+      completeScreen.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.querySelector('.btn-text').textContent = 'ヒアリング情報を送信する';
+      submitError.classList.add('show');
+    }
+  });
+
+  /* Blur validation */
+  const requiredFields = [
+    { id: 'email',          errId: 'email-error',          check: v => !v || !isValidEmail(v) },
+    { id: 'address',        errId: 'address-error',        check: v => !v },
+    { id: 'hours',          errId: 'hours-error',          check: v => !v },
+    { id: 'publicTel',      errId: 'publicTel-error',      check: v => !v },
+    { id: 'currentProblem', errId: 'currentProblem-error', check: v => !v },
+    { id: 'targetWant',     errId: 'targetWant-error',     check: v => !v },
+    { id: 'reasonChosen',   errId: 'reasonChosen-error',   check: v => !v },
+    { id: 'popularItem',    errId: 'popularItem-error',    check: v => !v },
+    { id: 'googleEmail',    errId: 'googleEmail-error',    check: v => !v || !isValidEmail(v) },
+  ];
+  requiredFields.forEach(function (f) {
+    const el = document.getElementById(f.id);
+    if (!el) return;
+    el.addEventListener('blur', function () { setError(f.id, f.errId, f.check(this.value.trim())); });
+    el.addEventListener('input', function () {
+      if (!f.check(this.value.trim())) {
+        this.classList.remove('error');
+        document.getElementById(f.errId).classList.remove('show');
+      }
+    });
+  });
+  categoryEl.addEventListener('blur', function () { setError('category', 'category-error', !this.value); });
+</script>
+
+</body>
+</html>
