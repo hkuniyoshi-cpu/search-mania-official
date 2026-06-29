@@ -28,15 +28,27 @@
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
   <link rel="apple-touch-icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
 
-  <!-- Fonts -->
+  <!-- Resource hints for external CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="dns-prefetch" href="https://script.google.com">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Preload critical hero image (smaller WebP variant) -->
+  <link rel="preload" as="image"
+    href="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=70&w=1200&fm=webp&auto=format&fit=crop"
+    fetchpriority="high">
 
-  <link rel="stylesheet" href="shared.css?v=20260607gap82">
+  <!-- Fonts: 必要なウェイトのみ (400/500/700) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome: 非ブロッキングで遅延読込 -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" id="fa-css">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+  <link rel="stylesheet" href="shared.css?v=20260607perf">
 
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="LZg90oxtbqi0v6An7Fc0uO3ufbqcmW4_Qp9mCI2u6wk" />
@@ -176,7 +188,12 @@
     </div>
     <div class="hero-edit-image">
       <div class="hero-image-frame">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1740&auto=format&fit=crop" alt="" loading="eager">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=70&w=1200&fm=webp&auto=format&fit=crop"
+             alt=""
+             loading="eager"
+             fetchpriority="high"
+             width="1200" height="1500"
+             decoding="async">
       </div>
       <div class="hero-edit-caption">
         <span class="caption-num">— 2025</span>
@@ -252,7 +269,13 @@
 
     <div class="greeting-content reveal" id="greetingContent">
       <div class="greeting-photo-wrap">
-        <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762621804/_MG_9748-3_idvpaj.png" alt="代表 国吉 弘孝" class="greeting-photo" id="greetingPhoto">
+        <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/f_webp,q_auto,w_700/v1762621804/_MG_9748-3_idvpaj.png"
+             alt="代表 国吉 弘孝"
+             class="greeting-photo"
+             id="greetingPhoto"
+             loading="lazy"
+             width="700" height="933"
+             decoding="async">
         <div class="greeting-photo-deco"></div>
       </div>
       <div class="greeting-text">
