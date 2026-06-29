@@ -1,7 +1,48 @@
 /* ============================================================
+   ⚡ パフォーマンス: Font Awesome を非ブロッキングで読込
+   ============================================================ */
+(function loadFontAwesomeAsync(){
+  const link = document.getElementById('fa-css');
+  if(link && link.rel === 'preload'){
+    link.rel = 'stylesheet';
+  } else if(!link){
+    // fallback: preloadタグがない場合は通常stylesheetを追加
+    const fa = document.createElement('link');
+    fa.rel = 'stylesheet';
+    fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+    document.head.appendChild(fa);
+  }
+})();
+
+/* ============================================================
    GAS_URL — STEP 4 でデプロイURLに置換
    ============================================================ */
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbybbWX0lJQ8drdfsh5C67Z472fO2TY1PLz6HQpujgVzLPPFtvJ-p0SWrfbHeQxGgWm6aw/exec';
+
+/* ============================================================
+   ⚡ CMS localStorage キャッシュ (60分 TTL)
+   - 初回: GAS から取得しキャッシュ
+   - 2回目以降: キャッシュ即返却で 2-3秒の待ち時間ゼロに
+   - バックグラウンドで最新を取得し差分があれば再描画
+   ============================================================ */
+const CMS_CACHE_KEY = 'sm_cms_cache_v1';
+const CMS_CACHE_TTL_MS = 60 * 60 * 1000; /* 60分 */
+
+function loadCMSFromCache(){
+  try {
+    const raw = localStorage.getItem(CMS_CACHE_KEY);
+    if(!raw) return null;
+    const obj = JSON.parse(raw);
+    if(!obj || !obj.t || !obj.data) return null;
+    if(Date.now() - obj.t > CMS_CACHE_TTL_MS) return null;
+    return obj.data;
+  } catch(_){ return null; }
+}
+function saveCMSToCache(data){
+  try {
+    localStorage.setItem(CMS_CACHE_KEY, JSON.stringify({ t: Date.now(), data }));
+  } catch(_){}
+}
 
 /* ============================================================
    Utilities
@@ -301,26 +342,47 @@ function applyCTA(c){
 /* ============================================================
    CMS fetch
    ============================================================ */
+function applyCMSData(data){
+  if(!data) return;
+  if(data.settings) applySettings(data.settings);
+  if(data.hero)     applyHero(data.hero);
+  if(data.about)    applyAbout(data.about);
+  if(data.menu)     applyMenu(data.menu);
+  if(data.features) applyFeatures(data.features);
+  if(data.forYou)   applyForYou(data.forYou);
+  if(data.reviews)  applyReviews(data.reviews);
+  if(data.blog)     applyBlog(data.blog);
+  if(data.works)    applyWorks(data.works);
+  if(data.partners) applyPartners(data.partners);
+  if(data.recruit)  applyRecruit(data.recruit, data.recruitStatus);
+  if(data.cta)      applyCTA(data.cta);
+}
+
 function loadCMS(){
   if(!GAS_URL || GAS_URL === '__GAS_URL__') {
     console.warn('GAS_URL not configured yet');
     return;
   }
+  /* ⚡ キャッシュがあれば先に描画 (体感速度UP) */
+  const cached = loadCMSFromCache();
+  if(cached){
+    applyCMSData(cached);
+    if(typeof observeNew === 'function') observeNew();
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.is-visible), .reveal-stagger > *:not(.is-visible)').forEach(el => {
+        el.classList.add('is-visible');
+      });
+    }, 200);
+  }
+  /* バックグラウンドで最新を取得 (キャッシュ更新+差分があれば再描画) */
   fetch(GAS_URL)
     .then(r => r.json())
     .then(data => {
-      if(data.settings) applySettings(data.settings);
-      if(data.hero)     applyHero(data.hero);
-      if(data.about)    applyAbout(data.about);
-      if(data.menu)     applyMenu(data.menu);
-      if(data.features) applyFeatures(data.features);
-      if(data.forYou)   applyForYou(data.forYou);
-      if(data.reviews)  applyReviews(data.reviews);
-      if(data.blog)     applyBlog(data.blog);
-      if(data.works)    applyWorks(data.works);
-      if(data.partners) applyPartners(data.partners);
-      if(data.recruit)  applyRecruit(data.recruit, data.recruitStatus);
-      if(data.cta)      applyCTA(data.cta);
+      saveCMSToCache(data);
+      /* キャッシュなしならここで初描画 */
+      if(!cached) applyCMSData(data);
+      /* キャッシュありで内容が変わっていれば再描画 */
+      else if(JSON.stringify(cached) !== JSON.stringify(data)) applyCMSData(data);
       // CMS反映直後に新規挿入要素のアニメーションを監視（タイミング依存バグの修正）
       if(typeof observeNew === 'function') observeNew();
       // CMS反映から800ms後にフェイルセーフ実行（全ての未表示 reveal を強制的に is-visible 化）
