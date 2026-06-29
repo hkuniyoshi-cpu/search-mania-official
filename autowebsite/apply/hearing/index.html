@@ -292,14 +292,13 @@
       <div class="section-card">
         <div class="section-title">
           <span class="icon">B</span>
-          現状とターゲット（必須）
+          現状とターゲット
         </div>
 
         <div class="field">
-          <label for="currentProblem">B-1. WEB集客の現状・課題 <span class="req">*</span></label>
+          <label for="currentProblem">B-1. WEB集客の現状・課題 <span class="opt">任意</span></label>
           <textarea id="currentProblem" name="currentProblem" rows="3"
             placeholder="例）Googleで検索しても全然出てこない・問い合わせが月0〜1件・既存サイトが古くて使いにくい・SNSを更新する余裕がない など"></textarea>
-          <div class="field-error" id="currentProblem-error">現状・課題を入力してください。</div>
         </div>
 
         <div class="field">
@@ -318,10 +317,9 @@
         </div>
 
         <div class="field">
-          <label for="reasonChosen">C-1. 他店でなくウチを選ぶ理由 <span class="req">*</span></label>
+          <label for="reasonChosen">C-1. 他店でなくウチを選ぶ理由 <span class="opt">任意</span></label>
           <textarea id="reasonChosen" name="reasonChosen" rows="3"
             placeholder="技術・資格・実績・接客・価格・通いやすさ・雰囲気・アフターケア など"></textarea>
-          <div class="field-error" id="reasonChosen-error">選ばれる理由を入力してください。</div>
         </div>
 
         <div class="field">
@@ -349,60 +347,10 @@
         </div>
       </div>
 
-      <!-- D. サイト・Googleアクセス権 -->
+      <!-- D. 写真・素材 -->
       <div class="section-card">
         <div class="section-title">
           <span class="icon">D</span>
-          サイト・Googleアクセス権（必須）
-        </div>
-
-        <div class="field">
-          <label for="cmsType">現在のサイト管理方法 <span class="opt">任意</span></label>
-          <select id="cmsType" name="cmsType">
-            <option value="">── 選択してください ──</option>
-            <option value="WordPress">WordPress</option>
-            <option value="Wix">Wix</option>
-            <option value="STORES">STORES</option>
-            <option value="Squarespace">Squarespace</option>
-            <option value="Jimdo">Jimdo</option>
-            <option value="コーディング済み（HTML/CSS）">コーディング済み（HTML/CSS）</option>
-            <option value="サイトなし">サイトなし（これから制作）</option>
-            <option value="わからない">わからない</option>
-          </select>
-        </div>
-
-        <div class="cms-guide">
-          <h4>管理者権限を付与する 3 ステップ（WordPress の場合）</h4>
-          <ol class="cms-steps">
-            <li>WordPress 管理画面（<strong>/wp-admin</strong>）にログイン → 「ユーザー」→「新規追加」をクリック</li>
-            <li>メールアドレス <span class="email-highlight">h.kuniyoshi@search-mania.net</span> を入力し、権限グループ「<strong>管理者</strong>」を選択して送信</li>
-            <li>これだけで完了です（パスワードの共有は不要・後から削除できます）</li>
-          </ol>
-          <p class="cms-note">
-            ※ Wix / STORES などの場合は、各サービス内の「コラボレーター」「共同編集者」招待機能をご利用ください。<br>
-            ※ うまくいかない場合は、下の Google アカウントをご記入いただければ別途ご案内します。
-          </p>
-        </div>
-
-        <div class="field">
-          <label for="googleEmail">Googleアカウント（Gmail） <span class="req">*</span></label>
-          <input type="email" id="googleEmail" name="googleEmail" placeholder="example@gmail.com" autocomplete="off">
-          <div class="field-error" id="googleEmail-error">正しいメールアドレス形式で入力してください。</div>
-          <p class="field-hint">Google Search Console・Analytics などの権限付与に使用します。</p>
-        </div>
-
-        <div class="field">
-          <label for="searchConsoleUrl">Google Search Console の URL <span class="opt">任意</span></label>
-          <input type="url" id="searchConsoleUrl" name="searchConsoleUrl"
-            placeholder="https://search.google.com/search-console/... またはサイト URL">
-          <p class="field-hint">わからない場合は空欄で構いません。</p>
-        </div>
-      </div>
-
-      <!-- E. 写真・素材 -->
-      <div class="section-card">
-        <div class="section-title">
-          <span class="icon">E</span>
           写真・素材（任意）
         </div>
 
@@ -416,9 +364,8 @@
         </div>
 
         <div class="photo-notice" id="photo-notice">
-          <strong>写真の送付先：</strong><br>
-          メール <span class="email-highlight">h.kuniyoshi@search-mania.net</span> 宛に添付、<br>
-          またはGoogleドライブで共有いただければスムーズに作業を開始できます。<br>
+          <strong>写真の格納先：</strong><br>
+          お申し込み完了メールでご案内した<strong>Googleドライブフォルダ</strong>にアップロードしてください。<br>
           （外観・内観・商品・スタッフ写真など歓迎です）
         </div>
       </div>
@@ -547,12 +494,8 @@
     if (setError('address', 'address-error', !document.getElementById('address').value.trim())) hasError = true;
     if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
     if (setError('publicTel', 'publicTel-error', !document.getElementById('publicTel').value.trim())) hasError = true;
-    if (setError('currentProblem', 'currentProblem-error', !document.getElementById('currentProblem').value.trim())) hasError = true;
     if (setError('targetWant', 'targetWant-error', !document.getElementById('targetWant').value.trim())) hasError = true;
-    if (setError('reasonChosen', 'reasonChosen-error', !document.getElementById('reasonChosen').value.trim())) hasError = true;
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
-    const gEmailVal = document.getElementById('googleEmail').value.trim();
-    if (setError('googleEmail', 'googleEmail-error', !gEmailVal || !isValidEmail(gEmailVal))) hasError = true;
     return !hasError;
   }
 
@@ -572,25 +515,22 @@
     submitError.classList.remove('show');
 
     const payload = {
-      action:           'submitWebHearing',
-      email:            document.getElementById('email').value.trim(),
-      category:         categoryEl.value,
-      websiteUrl:       document.getElementById('websiteUrl').value.trim(),
-      address:          document.getElementById('address').value.trim(),
-      hours:            document.getElementById('hours').value.trim(),
-      holiday:          document.getElementById('holiday').value.trim(),
-      publicTel:        document.getElementById('publicTel').value.trim(),
-      webSns:           document.getElementById('webSns').value.trim(),
-      currentProblem:   document.getElementById('currentProblem').value.trim(),
-      targetWant:       document.getElementById('targetWant').value.trim(),
-      reasonChosen:     document.getElementById('reasonChosen').value.trim(),
-      popularItem:      document.getElementById('popularItem').value.trim(),
-      praise:           document.getElementById('praise').value.trim(),
-      story:            document.getElementById('story').value.trim(),
-      cmsType:          document.getElementById('cmsType').value,
-      googleEmail:      document.getElementById('googleEmail').value.trim(),
-      searchConsoleUrl: document.getElementById('searchConsoleUrl').value.trim(),
-      hasPhotos:        selectedPhoto,
+      action:         'submitWebHearing',
+      email:          document.getElementById('email').value.trim(),
+      category:       categoryEl.value,
+      websiteUrl:     document.getElementById('websiteUrl').value.trim(),
+      address:        document.getElementById('address').value.trim(),
+      hours:          document.getElementById('hours').value.trim(),
+      holiday:        document.getElementById('holiday').value.trim(),
+      publicTel:      document.getElementById('publicTel').value.trim(),
+      webSns:         document.getElementById('webSns').value.trim(),
+      currentProblem: document.getElementById('currentProblem').value.trim(),
+      targetWant:     document.getElementById('targetWant').value.trim(),
+      reasonChosen:   document.getElementById('reasonChosen').value.trim(),
+      popularItem:    document.getElementById('popularItem').value.trim(),
+      praise:         document.getElementById('praise').value.trim(),
+      story:          document.getElementById('story').value.trim(),
+      hasPhotos:      selectedPhoto,
     };
 
     try {
@@ -613,15 +553,12 @@
 
   /* Blur validation */
   const requiredFields = [
-    { id: 'email',          errId: 'email-error',          check: v => !v || !isValidEmail(v) },
-    { id: 'address',        errId: 'address-error',        check: v => !v },
-    { id: 'hours',          errId: 'hours-error',          check: v => !v },
-    { id: 'publicTel',      errId: 'publicTel-error',      check: v => !v },
-    { id: 'currentProblem', errId: 'currentProblem-error', check: v => !v },
-    { id: 'targetWant',     errId: 'targetWant-error',     check: v => !v },
-    { id: 'reasonChosen',   errId: 'reasonChosen-error',   check: v => !v },
-    { id: 'popularItem',    errId: 'popularItem-error',    check: v => !v },
-    { id: 'googleEmail',    errId: 'googleEmail-error',    check: v => !v || !isValidEmail(v) },
+    { id: 'email',      errId: 'email-error',      check: v => !v || !isValidEmail(v) },
+    { id: 'address',    errId: 'address-error',    check: v => !v },
+    { id: 'hours',      errId: 'hours-error',      check: v => !v },
+    { id: 'publicTel',  errId: 'publicTel-error',  check: v => !v },
+    { id: 'targetWant', errId: 'targetWant-error', check: v => !v },
+    { id: 'popularItem',errId: 'popularItem-error',check: v => !v },
   ];
   requiredFields.forEach(function (f) {
     const el = document.getElementById(f.id);
