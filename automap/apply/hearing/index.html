@@ -274,6 +274,21 @@
       color: var(--fg);
       font-size: 0.78rem;
     }
+    .omakase-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(66,133,244,.06);
+      border: 1px solid rgba(66,133,244,.2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 0.82rem;
+      color: var(--fg);
+      line-height: 1.75;
+    }
+    .omakase-banner strong { color: var(--accent); }
+    .omakase-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
     .field-error {
       font-size: 0.75rem;
       color: var(--err);
@@ -793,6 +808,15 @@
         </div>
       </div>
 
+      <!-- おまかせバナー -->
+      <div class="omakase-banner">
+        <span class="omakase-icon">💡</span>
+        <div>
+          <strong>おまかせ可の項目は空白でOK</strong><br>
+          入力が難しい場合はそのままご送信ください。当社がGoogleマップやWebサイトを調査して情報を補完します。
+        </div>
+      </div>
+
       <!-- ===== A. Googleマップ基本情報 ===== -->
       <div class="section-card">
         <div class="section-title">
@@ -841,7 +865,7 @@
 
         <!-- 定休日 -->
         <div class="field">
-          <label for="holiday">定休日 <span class="opt">任意</span></label>
+          <label for="holiday">定休日 <span class="opt">おまかせ可</span></label>
           <input type="text" id="holiday" name="holiday" placeholder="例）日曜日・祝日">
         </div>
 
@@ -854,14 +878,14 @@
 
         <!-- 公式サイト・SNS URL -->
         <div class="field">
-          <label for="webSns">公式サイト・SNS URL <span class="opt">任意</span></label>
+          <label for="webSns">公式サイト・SNS URL <span class="opt">おまかせ可</span></label>
           <input type="text" id="webSns" name="webSns" placeholder="例）https://example.com / Instagram URL 等">
           <p class="field-hint">複数ある場合はスペースや改行で区切ってご記入ください。</p>
         </div>
 
         <!-- 設備・サービス（チップ複数選択） -->
         <div class="field">
-          <label>設備・サービス <span class="opt">任意・複数可</span></label>
+          <label>設備・サービス <span class="opt">おまかせ可・複数可</span></label>
           <div id="facilities-chips">
             <!-- 基本 -->
             <div class="chip-group">
@@ -1005,14 +1029,14 @@
 
         <!-- C-3. よく言われる褒め言葉 -->
         <div class="field">
-          <label for="praise">C-3. よく言われる褒め言葉 <span class="opt">任意</span></label>
+          <label for="praise">C-3. よく言われる褒め言葉 <span class="opt">おまかせ可</span></label>
           <textarea id="praise" name="praise" placeholder="お客様の口コミや感謝の言葉などをそのままご記入ください" rows="2"></textarea>
         </div>
 
         <!-- C-4. 創業のきっかけ・こだわり（折りたたみ） -->
         <div class="field">
           <details id="story-details">
-            <summary>C-4. 創業のきっかけ・こだわり <span class="opt" style="font-weight:400">（任意・タップで展開）</span></summary>
+            <summary>C-4. 創業のきっかけ・こだわり <span class="opt" style="font-weight:400">（おまかせ可・タップで展開）</span></summary>
             <div class="details-body">
               <label for="story" class="sr-only">創業のきっかけ・こだわり</label>
               <textarea id="story" name="story" placeholder="創業の想い・お客様への約束・こだわりのポイントなどをご自由にお書きください。Google投稿のコンテンツに活用します。" rows="4"></textarea>
@@ -1084,7 +1108,7 @@
 
         <!-- GBPのURL -->
         <div class="field">
-          <label for="gbpUrl">GoogleビジネスプロフィールのURL <span class="opt">任意</span></label>
+          <label for="gbpUrl">GoogleビジネスプロフィールのURL <span class="opt">おまかせ可</span></label>
           <input type="url" id="gbpUrl" name="gbpUrl" placeholder="https://business.google.com/... または Googleマップのお店URL">
           <p class="field-hint">わからない場合はGoogleマップで自店を検索したときのURLでもOKです。</p>
         </div>
@@ -1098,7 +1122,7 @@
         </div>
 
         <div class="field">
-          <label>写真・素材の有無 <span class="opt">任意</span></label>
+          <label>写真・素材の有無 <span class="opt">おまかせ可</span></label>
           <div class="chip-group" id="photos-chips">
             <span class="chip photo-chip" data-val="あり">あり</span>
             <span class="chip photo-chip" data-val="なし">なし</span>
