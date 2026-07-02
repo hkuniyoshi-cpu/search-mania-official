@@ -382,6 +382,94 @@
       border-top: 1px solid var(--line);
       padding-top: 10px;
     }
+    /* GBP visual mockup */
+    .gbp-visual {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0 16px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .gbp-mock {
+      flex-shrink: 0;
+      width: 136px;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+    .gbp-mock-bar {
+      background: #4285F4;
+      color: #fff;
+      font-size: 0.64rem;
+      font-weight: 700;
+      padding: 5px 8px;
+    }
+    .gbp-mock-body { padding: 8px; }
+    .gbp-mock-path { display: flex; flex-direction: column; gap: 2px; }
+    .gbp-mock-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 0.63rem;
+      color: var(--mute);
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .gbp-mock-row.active {
+      background: rgba(66,133,244,.1);
+      color: var(--accent);
+      font-weight: 700;
+      border-bottom-color: transparent;
+    }
+    .gbp-mock-input {
+      border: 1.5px solid var(--accent);
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 0.58rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+      word-break: break-all;
+      font-family: monospace;
+      line-height: 1.4;
+    }
+    .gbp-mock-role {
+      font-size: 0.63rem;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+    .gbp-mock-send {
+      background: #4285F4;
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px 0;
+      font-size: 0.63rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .gbp-connector {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: var(--mute);
+    }
+    .gbp-done-circle {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #e8f5e9;
+      border: 2px solid #81c784;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #2e7d32;
+    }
+    .gbp-done-circle .done-check { font-size: 1.4rem; line-height: 1; }
+    .gbp-done-circle .done-label { font-size: 0.58rem; font-weight: 700; }
 
     /* ===== details/summary ===== */
     details {
@@ -823,10 +911,43 @@
         <!-- 管理者追加ガイド -->
         <div class="gbp-guide">
           <h4>管理者を追加する 3 ステップ</h4>
+
+          <!-- イラスト -->
+          <div class="gbp-visual">
+            <!-- STEP 1 -->
+            <div class="gbp-mock">
+              <div class="gbp-mock-bar">📍 Googleマップ アプリ</div>
+              <div class="gbp-mock-body">
+                <div class="gbp-mock-path">
+                  <div class="gbp-mock-row">プロフィール <span>›</span></div>
+                  <div class="gbp-mock-row">ビジネス情報の編集 <span>›</span></div>
+                  <div class="gbp-mock-row active">ユーザーを管理 <span>›</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="gbp-connector">→</div>
+            <!-- STEP 2 -->
+            <div class="gbp-mock">
+              <div class="gbp-mock-bar">👤 ユーザーを追加</div>
+              <div class="gbp-mock-body">
+                <div class="gbp-mock-input">automap.admin@<br>search-mania.net</div>
+                <div class="gbp-mock-role">役割：<strong>管理者</strong> ✓</div>
+                <div class="gbp-mock-send">送信</div>
+              </div>
+            </div>
+            <div class="gbp-connector">→</div>
+            <!-- DONE -->
+            <div class="gbp-done-circle">
+              <span class="done-check">✓</span>
+              <span class="done-label">完了</span>
+            </div>
+          </div>
+
           <ol class="gbp-steps">
-            <li>スマホで <strong>Googleマップ</strong> アプリを開き、自店のプロフィール →「ビジネス情報の編集」→「ユーザーを管理」をタップ</li>
-            <li>「ユーザーを追加」に <span class="email-highlight">h.kuniyoshi@search-mania.net</span> を入力し、役割「<strong>管理者</strong>」を選択して送信</li>
-            <li>これだけで完了です（パスワードは不要）</li>
+            <li>スマホで <strong>Googleマップ</strong> アプリを開く → 自店プロフィール →「ビジネス情報の編集」→「<strong>ユーザーを管理</strong>」をタップ</li>
+            <li>「ユーザーを追加」をタップし、下記アドレスを入力 → 役割「<strong>管理者</strong>」を選択 → 送信<br>
+              <span class="email-highlight" style="margin-top:6px;display:inline-block;">automap.admin@search-mania.net</span></li>
+            <li>これで完了です（パスワードの共有は不要）</li>
           </ol>
           <p class="gbp-note">
             ※うまくいかない場合は、下のGmailとGBPのURLをご記入いただければ、当社からアクセス権を申請します。
@@ -882,7 +1003,7 @@
         <p class="submit-note">送信後、入力内容の控えをメールでお送りします。</p>
         <div class="submit-error" id="submit-error">
           送信中にエラーが発生しました。時間を置いて再度お試しください。<br>
-          改善しない場合は <span class="email-highlight">h.kuniyoshi@search-mania.net</span> までご連絡ください。
+          改善しない場合は <span class="email-highlight">automap.admin@search-mania.net</span> までご連絡ください。
         </div>
       </div>
 
