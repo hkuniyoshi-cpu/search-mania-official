@@ -91,6 +91,9 @@
 
     .field-hint { font-size: 0.75rem; color: var(--mute); margin-top: 6px; line-height: 1.5; }
     .field-hint.hint-dynamic { background: rgba(52,168,83,.07); border-left: 2px solid var(--accent); padding: 8px 12px; border-radius: 0 6px 6px 0; color: var(--fg); font-size: 0.78rem; }
+    .omakase-banner { display: flex; align-items: flex-start; gap: 12px; background: rgba(52,168,83,.06); border: 1px solid rgba(52,168,83,.25); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; font-size: 0.82rem; color: var(--fg); line-height: 1.75; }
+    .omakase-banner strong { color: var(--accent); }
+    .omakase-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
     .field-error { font-size: 0.75rem; color: var(--err); margin-top: 5px; display: none; }
     .field-error.show { display: block; }
 
@@ -231,6 +234,15 @@
         </div>
       </div>
 
+      <!-- おまかせバナー -->
+      <div class="omakase-banner">
+        <span class="omakase-icon">💡</span>
+        <div>
+          <strong>おまかせ可の項目は空白でOK</strong><br>
+          入力が難しい場合はそのままご送信ください。当社がWebサイトや各種情報を調査して内容を補完します。
+        </div>
+      </div>
+
       <!-- A. 基本情報 -->
       <div class="section-card">
         <div class="section-title">
@@ -263,7 +275,7 @@
         </div>
 
         <div class="field">
-          <label for="websiteUrl">現在のウェブサイトURL <span class="opt">任意</span></label>
+          <label for="websiteUrl">現在のウェブサイトURL <span class="opt">おまかせ可</span></label>
           <input type="url" id="websiteUrl" name="websiteUrl" placeholder="例）https://example.com">
           <p class="field-hint">ない場合は空欄で構いません。</p>
         </div>
@@ -281,7 +293,7 @@
         </div>
 
         <div class="field">
-          <label for="holiday">定休日 <span class="opt">任意</span></label>
+          <label for="holiday">定休日 <span class="opt">おまかせ可</span></label>
           <input type="text" id="holiday" name="holiday" placeholder="例）日曜日・祝日">
         </div>
 
@@ -292,7 +304,7 @@
         </div>
 
         <div class="field">
-          <label for="webSns">公式SNS URL <span class="opt">任意</span></label>
+          <label for="webSns">公式SNS URL <span class="opt">おまかせ可</span></label>
           <input type="text" id="webSns" name="webSns" placeholder="例）Instagram / Facebook URL 等">
           <p class="field-hint">複数ある場合はスペースや改行で区切ってご記入ください。</p>
         </div>
@@ -306,7 +318,7 @@
         </div>
 
         <div class="field">
-          <label for="currentProblem">B-1. WEB集客の現状・課題 <span class="opt">任意</span></label>
+          <label for="currentProblem">B-1. WEB集客の現状・課題 <span class="opt">おまかせ可</span></label>
           <textarea id="currentProblem" name="currentProblem" rows="3"
             placeholder="例）Googleで検索しても全然出てこない・問い合わせが月0〜1件・既存サイトが古くて使いにくい・SNSを更新する余裕がない など"></textarea>
         </div>
@@ -327,7 +339,7 @@
         </div>
 
         <div class="field">
-          <label for="reasonChosen">C-1. 他店でなくウチを選ぶ理由 <span class="opt">任意</span></label>
+          <label for="reasonChosen">C-1. 他店でなくウチを選ぶ理由 <span class="opt">おまかせ可</span></label>
           <textarea id="reasonChosen" name="reasonChosen" rows="3"
             placeholder="技術・資格・実績・接客・価格・通いやすさ・雰囲気・アフターケア など"></textarea>
         </div>
@@ -340,14 +352,14 @@
         </div>
 
         <div class="field">
-          <label for="praise">C-3. よく言われる褒め言葉 <span class="opt">任意</span></label>
+          <label for="praise">C-3. よく言われる褒め言葉 <span class="opt">おまかせ可</span></label>
           <textarea id="praise" name="praise" rows="2"
             placeholder="お客様の口コミや感謝の言葉などをそのままご記入ください"></textarea>
         </div>
 
         <div class="field">
           <details id="story-details">
-            <summary>C-4. 創業のきっかけ・こだわり <span class="opt" style="font-weight:400">（任意・タップで展開）</span></summary>
+            <summary>C-4. 創業のきっかけ・こだわり <span class="opt" style="font-weight:400">（おまかせ可・タップで展開）</span></summary>
             <div class="details-body">
               <label for="story" class="sr-only">創業のきっかけ・こだわり</label>
               <textarea id="story" name="story" rows="4"
@@ -365,7 +377,7 @@
         </div>
 
         <div class="field">
-          <label>写真・素材の有無 <span class="opt">任意</span></label>
+          <label>写真・素材の有無 <span class="opt">おまかせ可</span></label>
           <div class="chip-group" id="photos-chips">
             <span class="chip photo-chip" data-val="あり">あり</span>
             <span class="chip photo-chip" data-val="なし">なし</span>
