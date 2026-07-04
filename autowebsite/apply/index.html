@@ -103,6 +103,15 @@
     .plan-section > label .req { color: var(--err); margin-left: 3px; font-weight: 400; }
     .plan-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (max-width: 460px) { .plan-cards { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      main { padding: 24px 12px 60px; }
+      .step-badge { font-size: 0.7rem; }
+      input, select, textarea { font-size: 16px !important; }
+      .btn-primary, button[type="submit"] { width: 100%; padding: 15px; font-size: 0.95rem; }
+      .plan-card { padding: 16px 14px; }
+      .site-header { padding: 12px 14px; }
+      h1 { font-size: 1.5rem; }
+    }
 
     .plan-card {
       position: relative; background: var(--card2); border: 2px solid var(--line);
