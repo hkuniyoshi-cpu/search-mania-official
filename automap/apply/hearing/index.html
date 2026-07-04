@@ -397,94 +397,219 @@
       border-top: 1px solid var(--line);
       padding-top: 10px;
     }
-    /* GBP visual mockup */
-    .gbp-visual {
+    /* サポート希望チェックボックス */
+    .support-toggle {
+      display: block;
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .support-toggle:has(input:checked) {
+      border-color: var(--accent);
+      background: rgba(66,133,244,.04);
+    }
+    .support-toggle input { display: none; }
+    .support-toggle-inner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .support-toggle-check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border: 2px solid #c9d0d9;
+      border-radius: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 14px 0 16px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-    }
-    .gbp-mock {
-      flex-shrink: 0;
-      width: 136px;
+      justify-content: center;
       background: #fff;
-      border: 1.5px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      margin-top: 2px;
     }
-    .gbp-mock-bar {
-      background: #4285F4;
+    .support-toggle:has(input:checked) .support-toggle-check {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .support-toggle-check::after {
+      content: '✓';
       color: #fff;
-      font-size: 0.64rem;
-      font-weight: 700;
-      padding: 5px 8px;
+      font-size: 0.85rem;
+      font-weight: 900;
+      opacity: 0;
     }
-    .gbp-mock-body { padding: 8px; }
-    .gbp-mock-path { display: flex; flex-direction: column; gap: 2px; }
-    .gbp-mock-row {
+    .support-toggle:has(input:checked) .support-toggle-check::after { opacity: 1; }
+    .support-toggle-text { flex: 1; }
+    .support-toggle-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .support-toggle-desc {
+      font-size: 0.75rem;
+      color: var(--mute);
+      line-height: 1.65;
+    }
+    #support-panel { display: none; }
+    #support-panel.open { display: block; }
+
+    /* GBP guide - モバイル最適化 */
+    .gbp-steps-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .gbp-step-card {
+      display: flex;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .gbp-step-num {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+    .gbp-step-content { flex: 1; min-width: 0; }
+    .gbp-step-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .gbp-step-desc {
+      font-size: 0.78rem;
+      color: var(--mute);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .gbp-step-desc strong { color: var(--accent); font-weight: 700; }
+    /* モックアップ */
+    .gbp-mock-screen {
+      background: #fff;
+      border: 1.5px solid #dfe3e8;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 240px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    }
+    .gbp-mock-header {
+      background: linear-gradient(180deg, #4285F4, #3b78d8);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .gbp-mock-header .dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; opacity: .5; }
+    .gbp-mock-list { padding: 6px 0; }
+    .gbp-mock-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-size: 0.63rem;
-      color: var(--mute);
-      border-bottom: 1px solid #f0f0f0;
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      color: #5f6368;
+      border-bottom: 1px solid #f1f3f4;
     }
-    .gbp-mock-row.active {
+    .gbp-mock-item:last-child { border-bottom: none; }
+    .gbp-mock-item.highlight {
       background: rgba(66,133,244,.1);
       color: var(--accent);
       font-weight: 700;
-      border-bottom-color: transparent;
+    }
+    .gbp-mock-item .arrow { color: #bcc4cc; font-size: 0.9rem; }
+    .gbp-mock-form { padding: 10px 12px; }
+    .gbp-mock-label {
+      font-size: 0.65rem;
+      color: #5f6368;
+      margin-bottom: 4px;
     }
     .gbp-mock-input {
       border: 1.5px solid var(--accent);
-      border-radius: 4px;
-      padding: 4px 6px;
-      font-size: 0.58rem;
+      border-radius: 5px;
+      padding: 7px 10px;
+      font-size: 0.72rem;
       color: var(--accent);
-      margin-bottom: 6px;
-      word-break: break-all;
       font-family: monospace;
-      line-height: 1.4;
+      margin-bottom: 10px;
+      word-break: break-all;
+      line-height: 1.5;
+      background: rgba(66,133,244,.04);
     }
-    .gbp-mock-role {
-      font-size: 0.63rem;
+    .gbp-mock-radio {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
       color: var(--fg);
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
-    .gbp-mock-send {
-      background: #4285F4;
+    .gbp-mock-radio-dot {
+      width: 14px; height: 14px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .gbp-mock-radio-dot::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .gbp-mock-btn {
+      background: var(--accent);
       color: #fff;
-      border-radius: 4px;
-      padding: 4px 0;
-      font-size: 0.63rem;
+      border-radius: 5px;
+      padding: 8px 0;
+      font-size: 0.72rem;
       font-weight: 700;
       text-align: center;
     }
-    .gbp-connector {
-      flex-shrink: 0;
-      font-size: 1.1rem;
-      color: var(--mute);
-    }
-    .gbp-done-circle {
-      flex-shrink: 0;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: #e8f5e9;
-      border: 2px solid #81c784;
+    .gbp-mock-done {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(52,168,83,.1);
+      border-radius: 8px;
+    }
+    .gbp-mock-done-check {
+      width: 32px; height: 32px;
+      background: #34A853;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      color: #2e7d32;
+      font-size: 1rem;
+      font-weight: 900;
+      flex-shrink: 0;
     }
-    .gbp-done-circle .done-check { font-size: 1.4rem; line-height: 1; }
-    .gbp-done-circle .done-label { font-size: 0.58rem; font-weight: 700; }
+    .gbp-mock-done-text {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e7e34;
+    }
     /* 設備 expandable sections */
     #facilities-chips { display: flex; flex-direction: column; gap: 8px; }
     #facilities-chips > .chip-group { flex-wrap: wrap; }
@@ -732,9 +857,33 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 600px) {
-      .section-card { padding: 20px 16px; }
-      .btn-submit { padding: 14px 32px; font-size: 0.92rem; }
+      main { padding: 24px 12px 60px; }
+      .container { padding: 0; }
+      .section-card { padding: 18px 14px; margin-bottom: 16px; border-radius: 10px; }
+      .section-title { font-size: 0.95rem; gap: 8px; margin-bottom: 14px; }
+      .section-title .icon { width: 28px; height: 28px; font-size: 0.85rem; }
+      .btn-submit { padding: 15px 32px; font-size: 0.95rem; width: 100%; }
       .progress-label { font-size: 0.6rem; }
+      .field { margin-bottom: 18px; }
+      .field label { font-size: 0.86rem; }
+      input, textarea, select { font-size: 16px; padding: 12px 14px; }
+      .chip { padding: 10px 14px; font-size: 0.82rem; }
+      .fac-summary { padding: 14px 14px; font-size: 0.82rem; }
+      .gbp-guide { padding: 14px; }
+      .gbp-step-card { padding: 12px; gap: 10px; }
+      .gbp-step-num { width: 26px; height: 26px; font-size: 0.85rem; }
+      .gbp-step-title { font-size: 0.85rem; }
+      .gbp-step-desc { font-size: 0.78rem; }
+      .gbp-mock-screen { max-width: 100%; }
+      .omakase-banner { font-size: 0.82rem; padding: 12px 14px; }
+      .support-toggle { padding: 14px; }
+      .support-toggle-title { font-size: 0.88rem; }
+      .support-toggle-desc { font-size: 0.74rem; }
+      .page-hero h1 { font-size: 1.5rem; }
+      .page-hero p { font-size: 0.85rem; }
+      .site-header { padding: 12px 14px; }
+      .logo-text { font-size: 0.85rem; }
+      .step-badge { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -1049,50 +1198,86 @@
       <div class="section-card">
         <div class="section-title">
           <span class="icon">D</span>
-          Googleアクセス権（必須）
+          Googleアクセス権
         </div>
+
+        <!-- サポート希望チェックボックス -->
+        <label class="support-toggle" for="supportNeeded">
+          <input type="checkbox" id="supportNeeded" name="supportNeeded">
+          <div class="support-toggle-inner">
+            <div class="support-toggle-check"></div>
+            <div class="support-toggle-text">
+              <div class="support-toggle-title">Googleビジネスプロフィールの立ち上げサポートを希望する</div>
+              <div class="support-toggle-desc">
+                これから初めて登録する方・登録はしたが操作に不安がある方は、こちらにチェックを入れてください。当社が代行でお手伝いします。<br>
+                すでに運用中で管理者追加のみで進める場合は、チェック不要です。
+              </div>
+            </div>
+          </div>
+        </label>
 
         <!-- 管理者追加ガイド -->
         <div class="gbp-guide">
-          <h4>管理者を追加する 3 ステップ</h4>
+          <h4 style="font-size:0.9rem; font-weight:700; color:var(--fg); margin-bottom:6px;">管理者を追加する 3 ステップ</h4>
+          <p style="font-size:0.78rem; color:var(--mute); margin-bottom:8px;">下記アドレスを管理者として追加してください。</p>
+          <div class="email-highlight" style="display:block; text-align:center; padding:10px 12px; font-size:0.9rem; margin-bottom:14px;">automap.admin@search-mania.net</div>
 
-          <!-- イラスト -->
-          <div class="gbp-visual">
+          <!-- ステップカード -->
+          <div class="gbp-steps-visual">
             <!-- STEP 1 -->
-            <div class="gbp-mock">
-              <div class="gbp-mock-bar">📍 Googleマップ アプリ</div>
-              <div class="gbp-mock-body">
-                <div class="gbp-mock-path">
-                  <div class="gbp-mock-row">プロフィール <span>›</span></div>
-                  <div class="gbp-mock-row">ビジネス情報の編集 <span>›</span></div>
-                  <div class="gbp-mock-row active">ユーザーを管理 <span>›</span></div>
+            <div class="gbp-step-card">
+              <div class="gbp-step-num">1</div>
+              <div class="gbp-step-content">
+                <div class="gbp-step-title">Googleマップアプリを開き「ユーザーを管理」をタップ</div>
+                <div class="gbp-step-desc">
+                  <strong>自店プロフィール</strong> → <strong>ビジネス情報の編集</strong> → <strong>ユーザーを管理</strong>
+                </div>
+                <div class="gbp-mock-screen">
+                  <div class="gbp-mock-header"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Googleマップ</div>
+                  <div class="gbp-mock-list">
+                    <div class="gbp-mock-item">プロフィール<span class="arrow">›</span></div>
+                    <div class="gbp-mock-item">ビジネス情報の編集<span class="arrow">›</span></div>
+                    <div class="gbp-mock-item highlight">ユーザーを管理<span class="arrow">›</span></div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="gbp-connector">→</div>
+
             <!-- STEP 2 -->
-            <div class="gbp-mock">
-              <div class="gbp-mock-bar">👤 ユーザーを追加</div>
-              <div class="gbp-mock-body">
-                <div class="gbp-mock-input">automap.admin@<br>search-mania.net</div>
-                <div class="gbp-mock-role">役割：<strong>管理者</strong> ✓</div>
-                <div class="gbp-mock-send">送信</div>
+            <div class="gbp-step-card">
+              <div class="gbp-step-num">2</div>
+              <div class="gbp-step-content">
+                <div class="gbp-step-title">当社アドレスを入力、役割「管理者」を選び送信</div>
+                <div class="gbp-step-desc">
+                  「ユーザーを追加」をタップして、下記のメールアドレスを入力 → 役割は <strong>管理者</strong> を選択
+                </div>
+                <div class="gbp-mock-screen">
+                  <div class="gbp-mock-header"><span class="dot"></span><span class="dot"></span><span class="dot"></span>ユーザーを追加</div>
+                  <div class="gbp-mock-form">
+                    <div class="gbp-mock-label">メールアドレス</div>
+                    <div class="gbp-mock-input">automap.admin@search-mania.net</div>
+                    <div class="gbp-mock-label">役割</div>
+                    <div class="gbp-mock-radio"><span class="gbp-mock-radio-dot"></span>管理者</div>
+                    <div class="gbp-mock-btn">送信</div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="gbp-connector">→</div>
-            <!-- DONE -->
-            <div class="gbp-done-circle">
-              <span class="done-check">✓</span>
-              <span class="done-label">完了</span>
+
+            <!-- STEP 3 -->
+            <div class="gbp-step-card">
+              <div class="gbp-step-num">3</div>
+              <div class="gbp-step-content">
+                <div class="gbp-step-title">これで完了です（パスワードの共有は不要）</div>
+                <div class="gbp-step-desc">当社から通知を受け取り次第、作業を開始します。</div>
+                <div class="gbp-mock-done">
+                  <div class="gbp-mock-done-check">✓</div>
+                  <div class="gbp-mock-done-text">管理者追加 完了</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <ol class="gbp-steps">
-            <li>スマホで <strong>Googleマップ</strong> アプリを開く → 自店プロフィール →「ビジネス情報の編集」→「<strong>ユーザーを管理</strong>」をタップ</li>
-            <li>「ユーザーを追加」をタップし、下記アドレスを入力 → 役割「<strong>管理者</strong>」を選択 → 送信<br>
-              <span class="email-highlight" style="margin-top:6px;display:inline-block;">automap.admin@search-mania.net</span></li>
-            <li>これで完了です（パスワードの共有は不要）</li>
-          </ol>
           <p class="gbp-note">
             ※うまくいかない場合は、下のGmailとGBPのURLをご記入いただければ、当社からアクセス権を申請します。
           </p>
@@ -1100,10 +1285,10 @@
 
         <!-- Google アカウント（Gmail） -->
         <div class="field">
-          <label for="googleEmail">Googleアカウント（Gmail） <span class="req">*</span></label>
+          <label for="googleEmail">Googleアカウント（Gmail） <span class="opt">おまかせ可</span></label>
           <input type="email" id="googleEmail" name="googleEmail" placeholder="example@gmail.com" autocomplete="off">
           <div class="field-error" id="googleEmail-error">正しいメールアドレス形式で入力してください。</div>
-          <p class="field-hint">管理者追加に使用するGoogleアカウントのメールアドレスです。</p>
+          <p class="field-hint">アクセス権申請が必要な場合のみご記入ください。</p>
         </div>
 
         <!-- GBPのURL -->
@@ -1380,9 +1565,9 @@
     // popularItem
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
 
-    // googleEmail (required, must be valid email)
+    // googleEmail (任意・入力があれば形式チェック)
     const gEmailVal = document.getElementById('googleEmail').value.trim();
-    if (setError('googleEmail', 'googleEmail-error', !gEmailVal || !isValidEmail(gEmailVal))) hasError = true;
+    if (setError('googleEmail', 'googleEmail-error', gEmailVal && !isValidEmail(gEmailVal))) hasError = true;
 
     return !hasError;
   }
@@ -1427,9 +1612,10 @@
       popularItem:  document.getElementById('popularItem').value.trim(),
       praise:       document.getElementById('praise').value.trim(),
       story:        document.getElementById('story').value.trim(),
-      googleEmail:  document.getElementById('googleEmail').value.trim(),
-      gbpUrl:       document.getElementById('gbpUrl').value.trim(),
-      hasPhotos:    selectedPhoto,
+      googleEmail:    document.getElementById('googleEmail').value.trim(),
+      gbpUrl:         document.getElementById('gbpUrl').value.trim(),
+      supportNeeded:  document.getElementById('supportNeeded').checked ? '希望する' : '',
+      hasPhotos:      selectedPhoto,
     };
 
     try {
@@ -1470,7 +1656,7 @@
     { id: 'targetWant',   errId: 'targetWant-error',   check: function(v){ return !v; } },
     { id: 'reasonChosen', errId: 'reasonChosen-error', check: function(v){ return !v; } },
     { id: 'popularItem',  errId: 'popularItem-error',  check: function(v){ return !v; } },
-    { id: 'googleEmail',  errId: 'googleEmail-error',  check: function(v){ return !v || !isValidEmail(v); } },
+    { id: 'googleEmail',  errId: 'googleEmail-error',  check: function(v){ return v && !isValidEmail(v); } },
   ];
 
   requiredFields.forEach(function (f) {
