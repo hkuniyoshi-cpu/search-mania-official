@@ -610,6 +610,20 @@
       font-weight: 700;
       color: #1e7e34;
     }
+    .gbp-guide-image-wrap {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 0 0 14px;
+      overflow: hidden;
+    }
+    .gbp-guide-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
     /* 設備 expandable sections */
     #facilities-chips { display: flex; flex-direction: column; gap: 8px; }
     #facilities-chips > .chip-group { flex-wrap: wrap; }
@@ -1218,64 +1232,12 @@
 
         <!-- 管理者追加ガイド -->
         <div class="gbp-guide">
-          <h4 style="font-size:0.9rem; font-weight:700; color:var(--fg); margin-bottom:6px;">管理者を追加する 3 ステップ</h4>
-          <p style="font-size:0.78rem; color:var(--mute); margin-bottom:8px;">下記アドレスを管理者として追加してください。</p>
-          <div class="email-highlight" style="display:block; text-align:center; padding:10px 12px; font-size:0.9rem; margin-bottom:14px;">automap.admin@search-mania.net</div>
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--fg); margin-bottom:8px;">管理者を追加する 3 ステップ</h4>
+          <p style="font-size:0.82rem; color:var(--mute); margin-bottom:10px;">下記アドレスを管理者として追加してください。</p>
+          <div class="email-highlight" style="display:block; text-align:center; padding:12px 14px; font-size:1rem; margin-bottom:16px; font-weight:700;">tenjin.kuniyoshi@gmail.com</div>
 
-          <!-- ステップカード -->
-          <div class="gbp-steps-visual">
-            <!-- STEP 1 -->
-            <div class="gbp-step-card">
-              <div class="gbp-step-num">1</div>
-              <div class="gbp-step-content">
-                <div class="gbp-step-title">Googleマップアプリを開き「ユーザーを管理」をタップ</div>
-                <div class="gbp-step-desc">
-                  <strong>自店プロフィール</strong> → <strong>ビジネス情報の編集</strong> → <strong>ユーザーを管理</strong>
-                </div>
-                <div class="gbp-mock-screen">
-                  <div class="gbp-mock-header"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Googleマップ</div>
-                  <div class="gbp-mock-list">
-                    <div class="gbp-mock-item">プロフィール<span class="arrow">›</span></div>
-                    <div class="gbp-mock-item">ビジネス情報の編集<span class="arrow">›</span></div>
-                    <div class="gbp-mock-item highlight">ユーザーを管理<span class="arrow">›</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- STEP 2 -->
-            <div class="gbp-step-card">
-              <div class="gbp-step-num">2</div>
-              <div class="gbp-step-content">
-                <div class="gbp-step-title">当社アドレスを入力、役割「管理者」を選び送信</div>
-                <div class="gbp-step-desc">
-                  「ユーザーを追加」をタップして、下記のメールアドレスを入力 → 役割は <strong>管理者</strong> を選択
-                </div>
-                <div class="gbp-mock-screen">
-                  <div class="gbp-mock-header"><span class="dot"></span><span class="dot"></span><span class="dot"></span>ユーザーを追加</div>
-                  <div class="gbp-mock-form">
-                    <div class="gbp-mock-label">メールアドレス</div>
-                    <div class="gbp-mock-input">automap.admin@search-mania.net</div>
-                    <div class="gbp-mock-label">役割</div>
-                    <div class="gbp-mock-radio"><span class="gbp-mock-radio-dot"></span>管理者</div>
-                    <div class="gbp-mock-btn">送信</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- STEP 3 -->
-            <div class="gbp-step-card">
-              <div class="gbp-step-num">3</div>
-              <div class="gbp-step-content">
-                <div class="gbp-step-title">これで完了です（パスワードの共有は不要）</div>
-                <div class="gbp-step-desc">当社から通知を受け取り次第、作業を開始します。</div>
-                <div class="gbp-mock-done">
-                  <div class="gbp-mock-done-check">✓</div>
-                  <div class="gbp-mock-done-text">管理者追加 完了</div>
-                </div>
-              </div>
-            </div>
+          <div class="gbp-guide-image-wrap">
+            <img src="./images/gbp-add-user.png" alt="Googleマップアプリで管理者を追加する3ステップ" class="gbp-guide-image">
           </div>
 
           <p class="gbp-note">
@@ -1332,7 +1294,7 @@
         <p class="submit-note">送信後、入力内容の控えをメールでお送りします。</p>
         <div class="submit-error" id="submit-error">
           送信中にエラーが発生しました。時間を置いて再度お試しください。<br>
-          改善しない場合は <span class="email-highlight">automap.admin@search-mania.net</span> までご連絡ください。
+          改善しない場合は <span class="email-highlight">info@search-mania.net</span> までご連絡ください。
         </div>
       </div>
 
