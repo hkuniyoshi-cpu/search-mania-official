@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex, nofollow">
   <title>ヒアリングフォーム | 手放しWEB集客 | SearchMania</title>
   <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -495,6 +495,7 @@
             method: 'POST', mode: 'no-cors',
             headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({
+              secret:   'sm_apply_7b3f9c2e4d1a',
               action:   'createDriveFolder',
               service:  'autoweb',
               email:    data.email,
@@ -580,6 +581,7 @@
     submitError.classList.remove('show');
 
     const payload = {
+      secret:         'sm_apply_7b3f9c2e4d1a',
       action:         'submitWebHearing',
       email:          document.getElementById('email').value.trim(),
       category:       categoryEl.value,
