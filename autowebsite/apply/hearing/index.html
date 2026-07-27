@@ -102,6 +102,17 @@
     .chip { cursor: pointer; user-select: none; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; border: 1px solid var(--line); background: #f7f9fc; color: var(--mute); transition: all .18s; }
     .chip:hover { border-color: rgba(52,168,83,.4); color: var(--fg); }
     .chip.selected { background: rgba(52,168,83,.12); border-color: var(--accent); color: var(--accent); }
+    /* 設備 expandable sections */
+    #facilities-chips { display: flex; flex-direction: column; gap: 8px; }
+    #facilities-chips > .chip-group { flex-wrap: wrap; }
+    .fac-details { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .fac-summary { padding: 9px 14px; font-size: 0.78rem; font-weight: 600; color: var(--fg); cursor: pointer; background: #f7f9fc; display: flex; align-items: center; justify-content: space-between; user-select: none; list-style: none; }
+    .fac-summary::-webkit-details-marker { display: none; }
+    .fac-summary::after { content: '＋'; color: var(--accent); font-weight: 700; }
+    .fac-details[open] > .fac-summary::after { content: '－'; }
+    .fac-inner { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px; background: #fff; border-top: 1px solid var(--line); }
+    .fac-label { width: 100%; font-size: 0.68rem; font-weight: 700; color: var(--mute); padding: 6px 0 4px; border-bottom: 1px solid var(--line); }
+    .fac-label:first-child { padding-top: 0; }
     .photo-chip.selected { background: rgba(52,168,83,.12); border-color: var(--green); color: var(--green); }
 
     /* ── CMS guide ── */
@@ -320,6 +331,165 @@
           <label for="webSns">公式SNS URL <span class="opt">おまかせ可</span></label>
           <input type="text" id="webSns" name="webSns" placeholder="例）Instagram / Facebook URL 等">
           <p class="field-hint">複数ある場合はスペースや改行で区切ってご記入ください。</p>
+        </div>
+
+        <!-- 設備・サービス（チップ複数選択） -->
+        <div class="field">
+          <label>設備・サービス <span class="opt">おまかせ可・複数可</span></label>
+          <div id="facilities-chips">
+            <!-- 基本 -->
+            <div class="chip-group">
+              <span class="chip" data-val="駐車場">駐車場</span>
+              <span class="chip" data-val="Wi-Fi">Wi-Fi</span>
+              <span class="chip" data-val="予約可">予約可</span>
+              <span class="chip" data-val="カード可">カード可</span>
+              <span class="chip" data-val="電子マネー可">電子マネー可</span>
+              <span class="chip" data-val="個室">個室</span>
+              <span class="chip" data-val="バリアフリー">バリアフリー</span>
+              <span class="chip" data-val="キッズ歓迎">キッズ歓迎</span>
+              <span class="chip" data-val="テイクアウト">テイクアウト</span>
+              <span class="chip" data-val="LGBTフレンドリー">LGBTフレンドリー</span>
+            </div>
+
+            <details class="fac-details">
+              <summary class="fac-summary">宿泊設備（プール・温泉・大浴場など）</summary>
+              <div class="fac-inner">
+                <span class="chip" data-val="プール">プール</span>
+                <span class="chip" data-val="ジム">ジム</span>
+                <span class="chip" data-val="サウナ">サウナ</span>
+                <span class="chip" data-val="大浴場">大浴場</span>
+                <span class="chip" data-val="温泉">温泉</span>
+                <span class="chip" data-val="露天風呂">露天風呂</span>
+                <span class="chip" data-val="家族風呂">家族風呂</span>
+                <span class="chip" data-val="送迎">送迎</span>
+                <span class="chip" data-val="ペット同伴可">ペット同伴可</span>
+                <span class="chip" data-val="お子様宿泊無料">お子様宿泊無料</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">フード＆ドリンク</summary>
+              <div class="fac-inner">
+                <span class="chip" data-val="レストラン">レストラン</span>
+                <span class="chip" data-val="バー">バー</span>
+                <span class="chip" data-val="朝食">朝食</span>
+                <span class="chip" data-val="ルームサービス">ルームサービス</span>
+                <span class="chip" data-val="ディナービュッフェ">ディナービュッフェ</span>
+                <span class="chip" data-val="自動販売機">自動販売機</span>
+                <span class="chip" data-val="地元食材使用">地元食材使用</span>
+                <span class="chip" data-val="ベジタリアン対応">ベジタリアン対応</span>
+                <span class="chip" data-val="ビーガン対応">ビーガン対応</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">サステナビリティ</summary>
+              <div class="fac-inner">
+                <div class="fac-label">節水・エネルギー</div>
+                <span class="chip" data-val="タオルの再利用">タオルの再利用</span>
+                <span class="chip" data-val="リネンの再利用">リネンの再利用</span>
+                <span class="chip" data-val="省エネ照明">省エネ照明</span>
+                <span class="chip" data-val="エネルギー保全プログラム">エネルギー保全プログラム</span>
+                <span class="chip" data-val="カーボンフリーエネルギー">カーボンフリーエネルギー</span>
+                <span class="chip" data-val="水効率の高い設備">水効率の高い設備</span>
+                <div class="fac-label">廃棄物削減</div>
+                <span class="chip" data-val="リサイクルプログラム">リサイクルプログラム</span>
+                <span class="chip" data-val="詰替可能トイレタリー">詰替可能トイレタリー</span>
+                <span class="chip" data-val="給水スタンド設置">給水スタンド設置</span>
+                <span class="chip" data-val="使い捨てプラスチック不使用">使い捨てプラスチック不使用</span>
+                <span class="chip" data-val="食品廃棄削減プログラム">食品廃棄削減プログラム</span>
+                <span class="chip" data-val="環境配慮トイレタリー">環境配慮トイレタリー</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">ポリシー・お支払い</summary>
+              <div class="fac-inner">
+                <div class="fac-label">ポリシー</div>
+                <span class="chip" data-val="禁煙">禁煙</span>
+                <div class="fac-label">クレジット・デビット</div>
+                <span class="chip" data-val="現金払い可">現金払い可</span>
+                <span class="chip" data-val="クレジットカード可">クレジットカード可</span>
+                <span class="chip" data-val="デビットカード可">デビットカード可</span>
+                <span class="chip" data-val="銀聯（UnionPay）可">銀聯（UnionPay）可</span>
+                <span class="chip" data-val="小切手払い可">小切手払い可</span>
+                <div class="fac-label">電子マネー・QR決済</div>
+                <span class="chip" data-val="NFC決済可（Apple Pay等）">NFC決済可（Apple Pay等）</span>
+                <span class="chip" data-val="交通系IC（Suica/PASMO等）">交通系IC（Suica/PASMO等）</span>
+                <span class="chip" data-val="iD">iD</span>
+                <span class="chip" data-val="QUICPay">QUICPay</span>
+                <span class="chip" data-val="nanaco">nanaco</span>
+                <span class="chip" data-val="WAON">WAON</span>
+                <span class="chip" data-val="楽天Edy">楽天Edy</span>
+                <span class="chip" data-val="PayPay">PayPay</span>
+                <span class="chip" data-val="LINE Pay">LINE Pay</span>
+                <span class="chip" data-val="楽天ペイ">楽天ペイ</span>
+                <span class="chip" data-val="d払い">d払い</span>
+                <span class="chip" data-val="au PAY">au PAY</span>
+                <span class="chip" data-val="メルペイ">メルペイ</span>
+                <span class="chip" data-val="Alipay">Alipay</span>
+                <span class="chip" data-val="WeChat Pay">WeChat Pay</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">対応言語</summary>
+              <div class="fac-inner">
+                <p style="width:100%; font-size:0.75rem; color:var(--mute); margin-bottom:6px;">
+                  スタッフが対応可能な言語を選択してください（複数可）。日本語のみの場合は選択不要。
+                </p>
+                <span class="chip" data-val="英語">英語</span>
+                <span class="chip" data-val="中国語（北京語）">中国語（北京語）</span>
+                <span class="chip" data-val="中国語（広東語）">中国語（広東語）</span>
+                <span class="chip" data-val="韓国語">韓国語</span>
+                <span class="chip" data-val="スペイン語">スペイン語</span>
+                <span class="chip" data-val="フランス語">フランス語</span>
+                <span class="chip" data-val="ドイツ語">ドイツ語</span>
+                <span class="chip" data-val="イタリア語">イタリア語</span>
+                <span class="chip" data-val="ポルトガル語">ポルトガル語</span>
+                <span class="chip" data-val="ロシア語">ロシア語</span>
+                <span class="chip" data-val="アラビア語">アラビア語</span>
+                <span class="chip" data-val="タイ語">タイ語</span>
+                <span class="chip" data-val="ベトナム語">ベトナム語</span>
+                <span class="chip" data-val="ヒンディー語">ヒンディー語</span>
+                <span class="chip" data-val="フィリピン語（タガログ語）">フィリピン語（タガログ語）</span>
+                <span class="chip" data-val="ウクライナ語">ウクライナ語</span>
+                <span class="chip" data-val="ポーランド語">ポーランド語</span>
+                <span class="chip" data-val="ルーマニア語">ルーマニア語</span>
+                <span class="chip" data-val="ハイチ語">ハイチ語</span>
+                <span class="chip" data-val="アメリカ手話">アメリカ手話</span>
+                <span class="chip" data-val="日本手話">日本手話</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">駐車場</summary>
+              <div class="fac-inner">
+                <p style="width:100%; font-size:0.75rem; color:var(--mute); margin-bottom:6px;">
+                  該当する駐車場をチェックしてください（未選択の項目は「なし」として扱います）。
+                </p>
+                <span class="chip" data-val="敷地内駐車場あり">敷地内駐車場あり</span>
+                <span class="chip" data-val="無料駐車場あり">無料駐車場あり</span>
+                <span class="chip" data-val="無料の屋内駐車場あり">無料の屋内駐車場あり</span>
+                <span class="chip" data-val="無料の路上駐車場あり">無料の路上駐車場あり</span>
+                <span class="chip" data-val="有料駐車場あり">有料駐車場あり</span>
+                <span class="chip" data-val="有料の屋内駐車場あり">有料の屋内駐車場あり</span>
+                <span class="chip" data-val="有料の路上駐車場あり">有料の路上駐車場あり</span>
+              </div>
+            </details>
+
+            <details class="fac-details">
+              <summary class="fac-summary">健康・安全対策</summary>
+              <div class="fac-inner">
+                <span class="chip" data-val="共用エリア清掃強化">共用エリア清掃強化</span>
+                <span class="chip" data-val="客室清掃強化">客室清掃強化</span>
+                <span class="chip" data-val="手指消毒液設置">手指消毒液設置</span>
+                <span class="chip" data-val="マスク・手袋提供">マスク・手袋提供</span>
+                <span class="chip" data-val="ソーシャルディスタンス確保">ソーシャルディスタンス確保</span>
+                <span class="chip" data-val="飛沫対策仕切り板">飛沫対策仕切り板</span>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
 
@@ -542,6 +712,19 @@
     });
   });
 
+  /* Facilities chips (multi-select) */
+  document.querySelectorAll('#facilities-chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () { this.classList.toggle('selected'); });
+  });
+  function getFacilities() {
+    const selected = [];
+    document.querySelectorAll('#facilities-chips .chip.selected').forEach(function (chip) {
+      selected.push(chip.dataset.val);
+    });
+    return selected.join(' / ');
+  }
+
+
   /* Validation */
   function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
 
@@ -597,6 +780,7 @@
       popularItem:    document.getElementById('popularItem').value.trim(),
       praise:         document.getElementById('praise').value.trim(),
       story:          document.getElementById('story').value.trim(),
+      facilities:     getFacilities(),
       hasPhotos:      selectedPhoto,
     };
 
