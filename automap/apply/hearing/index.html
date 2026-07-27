@@ -1263,23 +1263,38 @@
           </div>
 
           <p class="gbp-note">
-            ※うまくいかない場合は、下のGmailとGBPのURLをご記入いただければ、当社からアクセス権を申請します。
+            ※ 追加がうまくいかない場合は、下記のサポート希望チェックにチェックを入れてください。
           </p>
         </div>
 
-        <!-- Google アカウント（Gmail） -->
-        <div class="field">
-          <label for="googleEmail">Googleアカウント（Gmail） <span class="opt">おまかせ可</span></label>
-          <input type="email" id="googleEmail" name="googleEmail" placeholder="example@gmail.com" autocomplete="off">
-          <div class="field-error" id="googleEmail-error">正しいメールアドレス形式で入力してください。</div>
-          <p class="field-hint">アクセス権申請が必要な場合のみご記入ください。</p>
-        </div>
+        <!-- アカウント追加サポート希望チェック -->
+        <label class="support-toggle" for="accountAddSupport">
+          <input type="checkbox" id="accountAddSupport" name="accountAddSupport">
+          <div class="support-toggle-inner">
+            <div class="support-toggle-check"></div>
+            <div class="support-toggle-text">
+              <div class="support-toggle-title">アカウント追加のサポートを希望する</div>
+              <div class="support-toggle-desc">
+                管理者追加がご自身で難しい場合はチェックを入れてください。<br>
+                後日、担当者よりサポートの日程調整のご連絡をいたします。
+              </div>
+            </div>
+          </div>
+        </label>
 
-        <!-- GBPのURL -->
-        <div class="field">
-          <label for="gbpUrl">GoogleビジネスプロフィールのURL <span class="opt">おまかせ可</span></label>
-          <input type="url" id="gbpUrl" name="gbpUrl" placeholder="https://business.google.com/... または Googleマップのお店URL">
-          <p class="field-hint">わからない場合はGoogleマップで自店を検索したときのURLでもOKです。</p>
+        <!-- チェック時のみ表示：理由サブチェック -->
+        <div id="accountAddReasonsPanel" style="display:none; background:#f7f9fc; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:20px;">
+          <p style="font-size:0.82rem; font-weight:700; color:var(--fg); margin-bottom:10px;">現在の状況（複数選択可）</p>
+          <div class="chip-group" id="account-add-reasons-chips">
+            <span class="chip reason-chip" data-val="過去に業者に依頼した">過去に業者に依頼した</span>
+            <span class="chip reason-chip" data-val="過去に誰かが作った">過去に誰かが作った</span>
+            <span class="chip reason-chip" data-val="どのアカウントで作ったかわからない">どのアカウントで作ったかわからない</span>
+            <span class="chip reason-chip" data-val="その他">その他</span>
+          </div>
+          <p style="font-size:0.75rem; color:var(--mute); margin-top:12px; line-height:1.7;">
+            💬 後日、担当者よりメールまたはお電話にて<strong style="color:var(--fg);">サポート日程のご案内</strong>をいたします。<br>
+            当社が状況を確認し、Googleアカウント整理・管理者権限取得まで対応いたします。
+          </p>
         </div>
       </div>
 
@@ -1473,6 +1488,29 @@
   }
 
   /* ========================================================
+   * アカウント追加サポート: チェック連動＋理由チップ
+   * ======================================================== */
+  const accountAddSupportEl = document.getElementById('accountAddSupport');
+  const accountAddReasonsPanel = document.getElementById('accountAddReasonsPanel');
+  if (accountAddSupportEl && accountAddReasonsPanel) {
+    accountAddSupportEl.addEventListener('change', function () {
+      accountAddReasonsPanel.style.display = this.checked ? 'block' : 'none';
+    });
+  }
+  document.querySelectorAll('#account-add-reasons-chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      this.classList.toggle('selected');
+    });
+  });
+  function getAccountAddReasons() {
+    const selected = [];
+    document.querySelectorAll('#account-add-reasons-chips .chip.selected').forEach(function (chip) {
+      selected.push(chip.dataset.val);
+    });
+    return selected.join(' / ');
+  }
+
+  /* ========================================================
    * Photos chips (single-select)
    * ======================================================== */
   let selectedPhoto = '';
@@ -1550,10 +1588,6 @@
     // popularItem
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
 
-    // googleEmail (任意・入力があれば形式チェック)
-    const gEmailVal = document.getElementById('googleEmail').value.trim();
-    if (setError('googleEmail', 'googleEmail-error', gEmailVal && !isValidEmail(gEmailVal))) hasError = true;
-
     return !hasError;
   }
 
@@ -1598,10 +1632,10 @@
       popularItem:  document.getElementById('popularItem').value.trim(),
       praise:       document.getElementById('praise').value.trim(),
       story:        document.getElementById('story').value.trim(),
-      googleEmail:    document.getElementById('googleEmail').value.trim(),
-      gbpUrl:         document.getElementById('gbpUrl').value.trim(),
-      supportNeeded:  document.getElementById('supportNeeded').checked ? '希望する' : '',
-      hasPhotos:      selectedPhoto,
+      accountAddSupport:  document.getElementById('accountAddSupport').checked ? '希望する' : '',
+      accountAddReasons:  getAccountAddReasons(),
+      supportNeeded:      document.getElementById('supportNeeded').checked ? '希望する' : '',
+      hasPhotos:          selectedPhoto,
     };
 
     try {
@@ -1642,7 +1676,6 @@
     { id: 'targetWant',   errId: 'targetWant-error',   check: function(v){ return !v; } },
     { id: 'reasonChosen', errId: 'reasonChosen-error', check: function(v){ return !v; } },
     { id: 'popularItem',  errId: 'popularItem-error',  check: function(v){ return !v; } },
-    { id: 'googleEmail',  errId: 'googleEmail-error',  check: function(v){ return v && !isValidEmail(v); } },
   ];
 
   requiredFields.forEach(function (f) {
