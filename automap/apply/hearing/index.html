@@ -614,15 +614,30 @@
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 12px;
-      margin: 0 0 14px;
+      padding: 8px;
+      margin: 8px -12px 14px;
       overflow: hidden;
+      text-align: center;
+      position: relative;
     }
     .gbp-guide-image {
       width: 100%;
+      max-width: 100%;
       height: auto;
       display: block;
       border-radius: 6px;
+      cursor: zoom-in;
+      transition: transform .2s;
+    }
+    .gbp-guide-image:hover { transform: scale(1.02); }
+    .gbp-guide-image-hint {
+      font-size: 0.72rem;
+      color: var(--mute);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
     /* 設備 expandable sections */
     #facilities-chips { display: flex; flex-direction: column; gap: 8px; }
@@ -884,6 +899,8 @@
       .chip { padding: 10px 14px; font-size: 0.82rem; }
       .fac-summary { padding: 14px 14px; font-size: 0.82rem; }
       .gbp-guide { padding: 14px; }
+      .gbp-guide-image-wrap { margin-left: -10px; margin-right: -10px; padding: 6px; }
+      .gbp-guide-image-hint { font-size: 0.68rem; }
       .gbp-step-card { padding: 12px; gap: 10px; }
       .gbp-step-num { width: 26px; height: 26px; font-size: 0.85rem; }
       .gbp-step-title { font-size: 0.85rem; }
@@ -1239,7 +1256,10 @@
           <div class="email-highlight" style="display:block; text-align:center; padding:12px 14px; font-size:1rem; margin-bottom:16px; font-weight:700;">tenjin.kuniyoshi@gmail.com</div>
 
           <div class="gbp-guide-image-wrap">
-            <img src="./images/gbp-add-user.png" alt="Googleマップアプリで管理者を追加する3ステップ" class="gbp-guide-image">
+            <a href="./images/gbp-add-user.png" target="_blank" rel="noopener" aria-label="画像を拡大表示">
+              <img src="./images/gbp-add-user.png" alt="Googleマップアプリで管理者を追加する3ステップ" class="gbp-guide-image">
+            </a>
+            <div class="gbp-guide-image-hint">🔍 タップで拡大表示できます</div>
           </div>
 
           <p class="gbp-note">
