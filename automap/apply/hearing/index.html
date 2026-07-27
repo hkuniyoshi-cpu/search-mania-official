@@ -1363,6 +1363,42 @@
         </div>
       </div>
 
+      <!-- ===== F. クチコミ返信運用 ===== -->
+      <div class="section-card">
+        <div class="section-title">
+          <span class="icon">F</span>
+          クチコミ返信運用（おまかせ可）
+        </div>
+
+        <div class="field">
+          <label>クチコミ自動返信の希望 <span class="opt">おまかせ可</span></label>
+          <div class="chip-group" id="reviewAutoReply-chips">
+            <span class="chip review-reply-chip" data-val="あり">あり（AIによる自動返信を導入）</span>
+            <span class="chip review-reply-chip" data-val="なし">なし（自動返信は不要）</span>
+          </div>
+        </div>
+
+        <!-- 「あり」時のみ表示：返信レベル選択 -->
+        <div class="field" id="reviewReplyLevelField" style="display:none;">
+          <label>返信レベルの選択 <span class="opt">おまかせ可</span></label>
+          <div class="chip-group" id="reviewReplyLevel-chips">
+            <span class="chip review-level-chip" data-val="★1〜★5 フルオート">
+              ★1〜★5 フルオート
+            </span>
+            <span class="chip review-level-chip" data-val="★1〜★2 手動、★3〜★5 オート">
+              ★1〜★2 手動 / ★3〜★5 オート
+            </span>
+            <span class="chip review-level-chip" data-val="★1〜★3 手動、★4〜★5 オート">
+              ★1〜★3 手動 / ★4〜★5 オート
+            </span>
+          </div>
+          <p class="field-hint" style="margin-top:10px;">
+            💡 <strong>選択した運用レベルは、ご希望に応じてあとから変更できます。</strong><br>
+            例：導入初期は「★1〜★3 手動」でスタート → 慣れてきたら「フルオート」へ切り替え、といった調整が可能です。
+          </p>
+        </div>
+      </div>
+
       <!-- ===== E. 写真・素材 ===== -->
       <div class="section-card">
         <div class="section-title">
@@ -1602,6 +1638,50 @@
   });
 
   /* ========================================================
+   * クチコミ返信運用: 単一選択チップ＋レベル表示切替
+   * ======================================================== */
+  let selectedReviewAutoReply = '';
+  let selectedReviewReplyLevel = '';
+  const reviewReplyLevelField = document.getElementById('reviewReplyLevelField');
+
+  document.querySelectorAll('#reviewAutoReply-chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('#reviewAutoReply-chips .chip').forEach(function (c) {
+        c.classList.remove('selected');
+      });
+      if (selectedReviewAutoReply === this.dataset.val) {
+        selectedReviewAutoReply = '';
+        reviewReplyLevelField.style.display = 'none';
+      } else {
+        this.classList.add('selected');
+        selectedReviewAutoReply = this.dataset.val;
+        reviewReplyLevelField.style.display = (selectedReviewAutoReply === 'あり') ? 'block' : 'none';
+        if (selectedReviewAutoReply === 'なし') {
+          // levelを解除
+          selectedReviewReplyLevel = '';
+          document.querySelectorAll('#reviewReplyLevel-chips .chip').forEach(function (c) {
+            c.classList.remove('selected');
+          });
+        }
+      }
+    });
+  });
+
+  document.querySelectorAll('#reviewReplyLevel-chips .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('#reviewReplyLevel-chips .chip').forEach(function (c) {
+        c.classList.remove('selected');
+      });
+      if (selectedReviewReplyLevel === this.dataset.val) {
+        selectedReviewReplyLevel = '';
+      } else {
+        this.classList.add('selected');
+        selectedReviewReplyLevel = this.dataset.val;
+      }
+    });
+  });
+
+  /* ========================================================
    * Validation helpers
    * ======================================================== */
   function isValidEmail(val) {
@@ -1700,6 +1780,8 @@
       accountAddSupport:  document.getElementById('accountAddSupport').checked ? '希望する' : '',
       accountAddReasons:  getAccountAddReasons(),
       supportNeeded:      document.getElementById('supportNeeded').checked ? '希望する' : '',
+      reviewAutoReply:    selectedReviewAutoReply,
+      reviewReplyLevel:   selectedReviewReplyLevel,
       hasPhotos:          selectedPhoto,
     };
 
