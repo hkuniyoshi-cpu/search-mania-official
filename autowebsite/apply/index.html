@@ -291,12 +291,35 @@
       </button>
 
       <p class="info-note">
-        次のページで決済情報をご入力いただきます。<br>
-        決済完了後、写真格納用の<strong>Googleドライブフォルダ</strong>をご用意しメールにてご案内します。<br>
+        送信後、ご入力メールアドレスへ<strong>本人確認メール</strong>をお送りします。<br>
+        メール内のリンクからヒアリングフォームへお進みください。<br>
         ご不明点は <a href="mailto:info@search-mania.net">info@search-mania.net</a> まで
       </p>
 
     </form>
+  </div>
+
+  <div id="completeScreen" style="display:none; max-width:640px; margin:0 auto; padding:0 16px;">
+    <div class="form-card" style="text-align:center;">
+      <div style="width:64px; height:64px; border-radius:50%; background:rgba(52,168,83,.15); color:#1e7e34; display:inline-flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:900; margin-bottom:20px;">✉</div>
+      <h2 style="font-size:1.4rem; font-weight:700; color:var(--fg); margin-bottom:14px;">本人確認メールを送信しました</h2>
+      <p style="font-size:0.9rem; color:var(--mute); line-height:1.85; margin-bottom:24px;">
+        ご登録のメールアドレス宛にメールをお送りしました。<br>
+        メール内の <strong style="color:var(--fg);">ヒアリングフォーム専用リンク</strong> からご入力を続けてください。
+      </p>
+      <div style="background:#f7f9fc; border-radius:10px; padding:20px; text-align:left; margin-bottom:24px;">
+        <h3 style="font-size:0.9rem; font-weight:700; color:var(--fg); margin-bottom:12px;">次にやること</h3>
+        <ol style="font-size:0.85rem; color:var(--mute); line-height:1.85; padding-left:1.4em;">
+          <li><strong style="color:var(--fg);">下の「決済ページへ進む」ボタン</strong>から Square でお支払い</li>
+          <li>メール内の <strong style="color:var(--fg);">ヒアリングフォームリンク</strong> をクリック</li>
+          <li>ヒアリングフォームを送信すると、Googleドライブフォルダをお送りします</li>
+        </ol>
+      </div>
+      <a id="squarePayBtn" href="#" style="display:inline-block; background:var(--accent); color:#fff; padding:14px 32px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.95rem;">決済ページへ進む →</a>
+      <p style="font-size:0.75rem; color:var(--mute); margin-top:16px;">
+        ※ メールが届かない場合は迷惑メールフォルダをご確認ください。
+      </p>
+    </div>
   </div>
 
 </main>
@@ -408,18 +431,28 @@
     btn.disabled = true;
     btn.innerHTML = '送信中…';
 
+    const token = 'tk_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 14);
+
     fetch(GAS_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ secret: 'sm_apply_7b3f9c2e4d1a', action: 'logWebApplication', payment: 'クレジットサブスク', shopName, contactName, email, tel, plan }),
+      body: JSON.stringify({ secret: 'sm_apply_7b3f9c2e4d1a', action: 'logWebApplication', token, payment: 'クレジットサブスク', shopName, contactName, email, tel, plan }),
       keepalive: true,
     }).catch(function() {});
 
     try {
-      localStorage.setItem('autoweb_apply', JSON.stringify({ email, shopName }));
+      localStorage.setItem('autoweb_apply', JSON.stringify({ email, shopName, token }));
     } catch (_) {}
 
-    window.location.href = squareUrl;
+    setTimeout(function() {
+      const squareBtn = document.getElementById('squarePayBtn');
+      if (squareBtn) squareBtn.href = squareUrl;
+      document.getElementById('applyForm').style.display = 'none';
+      document.querySelector('.page-title').style.display = 'none';
+      document.querySelector('.steps').style.display = 'none';
+      document.getElementById('completeScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 400);
   });
 </script>
 
