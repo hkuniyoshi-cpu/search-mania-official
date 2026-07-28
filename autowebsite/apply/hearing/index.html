@@ -322,7 +322,7 @@
         </div>
 
         <div class="field">
-          <label for="publicTel">公開用電話番号 <span class="req">*</span></label>
+          <label for="publicTel">公開用電話番号 <span class="opt">おまかせ可</span></label>
           <input type="text" id="publicTel" name="publicTel" placeholder="例）098-123-4567" autocomplete="tel">
           <div class="field-error" id="publicTel-error">電話番号を入力してください。</div>
         </div>
@@ -729,7 +729,6 @@
     if (setError('category', 'category-error', !categoryEl.value)) hasError = true;
     if (setError('address', 'address-error', !document.getElementById('address').value.trim())) hasError = true;
     if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
-    if (setError('publicTel', 'publicTel-error', !document.getElementById('publicTel').value.trim())) hasError = true;
     if (setError('targetWant', 'targetWant-error', !document.getElementById('targetWant').value.trim())) hasError = true;
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
     return !hasError;
@@ -795,7 +794,6 @@
     { id: 'email',      errId: 'email-error',      check: v => !v || !isValidEmail(v) },
     { id: 'address',    errId: 'address-error',    check: v => !v },
     { id: 'hours',      errId: 'hours-error',      check: v => !v },
-    { id: 'publicTel',  errId: 'publicTel-error',  check: v => !v },
     { id: 'targetWant', errId: 'targetWant-error', check: v => !v },
     { id: 'popularItem',errId: 'popularItem-error',check: v => !v },
   ];
