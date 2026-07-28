@@ -1516,46 +1516,36 @@
   const photoNotice   = document.getElementById('photo-notice');
 
   /* ========================================================
-   * Drive folder creation（Square決済完了後、初回ロード時のみ）
+   * トークン取得（URL ?t= or localStorage）＆ メール自動特定
    * ======================================================== */
-  (function() {
-    try {
-      const saved      = localStorage.getItem('automap_apply');
-      const alreadyDone = localStorage.getItem('automap_drive_done');
-      if (saved && !alreadyDone) {
-        const data = JSON.parse(saved);
-        if (data && data.email) {
-          fetch(GAS_URL, {
-            method: 'POST', mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain' },
-            body: JSON.stringify({
-              secret:  'sm_apply_7b3f9c2e4d1a',
-              action: 'createDriveFolder',
-              service: 'automap',
-              email:    data.email,
-              shopName: data.shopName || '',
-            }),
-          }).catch(function() {});
-          localStorage.setItem('automap_drive_done', '1');
-          var notice = document.getElementById('drive-notice');
-          if (notice) notice.style.display = 'block';
-        }
-      }
-    } catch (_) {}
-  })();
-
-  /* ========================================================
-   * localStorage: autofill email
-   * ======================================================== */
+  var HEARING_TOKEN = '';
   try {
-    const saved = localStorage.getItem('automap_apply');
-    if (saved) {
-      const data = JSON.parse(saved);
-      if (data && data.email) {
-        document.getElementById('email').value = data.email;
+    var urlParams = new URLSearchParams(window.location.search);
+    HEARING_TOKEN = urlParams.get('t') || '';
+    if (!HEARING_TOKEN) {
+      const saved = localStorage.getItem('automap_apply');
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data && data.token) HEARING_TOKEN = data.token;
+        // localStorageからメール自動入力（トークンなしフォールバック）
+        if (data && data.email) document.getElementById('email').value = data.email;
       }
     }
   } catch (_) {}
+
+  // トークンがあればメール入力欄セクションを隠す
+  if (HEARING_TOKEN) {
+    try {
+      const emailSection = document.getElementById('email').closest('.section-card');
+      if (emailSection) emailSection.style.display = 'none';
+      // localStorageのメールがあれば hidden で送信
+      const saved = localStorage.getItem('automap_apply');
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data && data.email) document.getElementById('email').value = data.email;
+      }
+    } catch (_) {}
+  }
 
   /* ========================================================
    * Category → B-2 hint switcher
@@ -1706,8 +1696,11 @@
     let hasError = false;
 
     // email
-    const emailVal = document.getElementById('email').value.trim();
-    if (setError('email', 'email-error', !emailVal || !isValidEmail(emailVal))) hasError = true;
+    // トークンがある場合はメール検証スキップ（GAS側で引き当てるため）
+    if (!HEARING_TOKEN) {
+      const emailVal = document.getElementById('email').value.trim();
+      if (setError('email', 'email-error', !emailVal || !isValidEmail(emailVal))) hasError = true;
+    }
 
     // category
     if (setError('category', 'category-error', !categoryEl.value)) hasError = true;
@@ -1763,6 +1756,7 @@
     const payload = {
       secret:       'sm_apply_7b3f9c2e4d1a',
       action:       'submitHearing',
+      token:        HEARING_TOKEN,
       email:        document.getElementById('email').value.trim(),
       category:     categoryEl.value,
       address:      document.getElementById('address').value.trim(),
