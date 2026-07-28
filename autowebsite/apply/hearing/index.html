@@ -653,41 +653,26 @@
   const hintEl         = document.getElementById('target-want-hint');
   const photoNotice    = document.getElementById('photo-notice');
 
-  /* Drive folder creation（Square決済完了後、初回ロード時のみ） */
-  (function() {
-    try {
-      const saved       = localStorage.getItem('autoweb_apply');
-      const alreadyDone = localStorage.getItem('autoweb_drive_done');
-      if (saved && !alreadyDone) {
-        const data = JSON.parse(saved);
-        if (data && data.email) {
-          fetch(GAS_URL, {
-            method: 'POST', mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain' },
-            body: JSON.stringify({
-              secret:   'sm_apply_7b3f9c2e4d1a',
-              action:   'createDriveFolder',
-              service:  'autoweb',
-              email:    data.email,
-              shopName: data.shopName || '',
-            }),
-          }).catch(function() {});
-          localStorage.setItem('autoweb_drive_done', '1');
-          var notice = document.getElementById('drive-notice');
-          if (notice) notice.style.display = 'block';
-        }
-      }
-    } catch (_) {}
-  })();
-
-  /* localStorage autofill */
+  /* トークン取得（URL ?t= or localStorage）＆ メール自動特定 */
+  var HEARING_TOKEN = '';
   try {
+    var urlParams = new URLSearchParams(window.location.search);
+    HEARING_TOKEN = urlParams.get('t') || '';
     const saved = localStorage.getItem('autoweb_apply');
     if (saved) {
       const data = JSON.parse(saved);
+      if (!HEARING_TOKEN && data && data.token) HEARING_TOKEN = data.token;
       if (data && data.email) document.getElementById('email').value = data.email;
     }
   } catch (_) {}
+
+  // トークンがあればメール入力欄セクションを隠す
+  if (HEARING_TOKEN) {
+    try {
+      const emailSection = document.getElementById('email').closest('.section-card');
+      if (emailSection) emailSection.style.display = 'none';
+    } catch (_) {}
+  }
 
   /* Category hint */
   categoryEl.addEventListener('change', function () {
@@ -737,8 +722,10 @@
 
   function validateForm() {
     let hasError = false;
-    const emailVal = document.getElementById('email').value.trim();
-    if (setError('email', 'email-error', !emailVal || !isValidEmail(emailVal))) hasError = true;
+    if (!HEARING_TOKEN) {
+      const emailVal = document.getElementById('email').value.trim();
+      if (setError('email', 'email-error', !emailVal || !isValidEmail(emailVal))) hasError = true;
+    }
     if (setError('category', 'category-error', !categoryEl.value)) hasError = true;
     if (setError('address', 'address-error', !document.getElementById('address').value.trim())) hasError = true;
     if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
@@ -766,6 +753,7 @@
     const payload = {
       secret:         'sm_apply_7b3f9c2e4d1a',
       action:         'submitWebHearing',
+      token:          HEARING_TOKEN,
       email:          document.getElementById('email').value.trim(),
       category:       categoryEl.value,
       websiteUrl:     document.getElementById('websiteUrl').value.trim(),
