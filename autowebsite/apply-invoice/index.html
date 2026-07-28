@@ -426,15 +426,17 @@
     btn.disabled = true;
     btn.innerHTML = '送信中…';
 
+    const token = 'tk_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 14);
+
     fetch(GAS_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ secret: 'sm_apply_7b3f9c2e4d1a', action: 'logWebApplication', payment: '請求書払い', shopName, contactName, email, tel, plan }),
+      body: JSON.stringify({ secret: 'sm_apply_7b3f9c2e4d1a', action: 'logWebApplication', token, payment: '請求書払い', shopName, contactName, email, tel, plan }),
       keepalive: true,
     }).catch(function() {});
 
     try {
-      localStorage.setItem('autoweb_apply', JSON.stringify({ email, shopName }));
+      localStorage.setItem('autoweb_apply', JSON.stringify({ email, shopName, token }));
     } catch (_) {}
 
     setTimeout(function() {
