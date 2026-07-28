@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>決済ページへ移動中… | 手放しWEB集客</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif; background:#f5f7fa; color:#1a1f2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; padding:20px; }
+    .card { max-width:420px; background:#fff; border:1px solid rgba(0,0,0,.09); border-radius:12px; padding:32px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,.05); }
+    h1 { font-size:1.15rem; margin:0 0 12px; color:#1a1f2e; }
+    p { font-size:.85rem; line-height:1.7; color:#6b7280; margin:8px 0; }
+    .spinner { width:36px; height:36px; border:3px solid rgba(52,168,83,.2); border-top-color:#34A853; border-radius:50%; animation:spin .8s linear infinite; margin:16px auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    a { color:#34A853; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>決済ページへ移動しています</h1>
+    <div class="spinner"></div>
+    <p>Square の決済ページに自動で移動します。<br>数秒お待ちください。</p>
+    <p style="font-size:.75rem;">自動で切り替わらない場合は <a id="fallback" href="#">こちら</a> をクリックしてください。</p>
+  </div>
+  <script>
+    (function() {
+      const SQUARE = {
+        monthly: 'https://square.link/u/HTtLQnu3',
+        yearly:  'https://square.link/u/jZNwfQJS',
+      };
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('t') || '';
+      const plan  = params.get('plan') || 'monthly';
+      const url = SQUARE[plan] || SQUARE.monthly;
+
+      if (token) {
+        try {
+          const saved = JSON.parse(localStorage.getItem('autoweb_apply') || '{}');
+          saved.token = token;
+          localStorage.setItem('autoweb_apply', JSON.stringify(saved));
+        } catch (_) {}
+      }
+
+      document.getElementById('fallback').href = url;
+      setTimeout(function() { window.location.href = url; }, 800);
+    })();
+  </script>
+</body>
+</html>
