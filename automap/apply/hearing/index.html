@@ -1051,7 +1051,7 @@
 
         <!-- 公開用電話番号 -->
         <div class="field">
-          <label for="publicTel">公開用電話番号 <span class="req">*</span></label>
+          <label for="publicTel">公開用電話番号 <span class="opt">おまかせ可</span></label>
           <input type="text" id="publicTel" name="publicTel" placeholder="例）098-123-4567" autocomplete="tel">
           <div class="field-error" id="publicTel-error">電話番号を入力してください。</div>
         </div>
@@ -1299,20 +1299,40 @@
           Googleアクセス権
         </div>
 
-        <!-- サポート希望チェックボックス -->
+        <!-- サポート希望チェックボックス（統合版） -->
         <label class="support-toggle" for="supportNeeded">
           <input type="checkbox" id="supportNeeded" name="supportNeeded">
           <div class="support-toggle-inner">
             <div class="support-toggle-check"></div>
             <div class="support-toggle-text">
-              <div class="support-toggle-title">Googleビジネスプロフィールの立ち上げサポートを希望する</div>
+              <div class="support-toggle-title">Googleビジネスプロフィールのサポートを希望する</div>
               <div class="support-toggle-desc">
-                これから初めて登録する方・登録はしたが操作に不安がある方は、こちらにチェックを入れてください。当社が代行でお手伝いします。<br>
-                すでに運用中で管理者追加のみで進める場合は、チェック不要です。
+                以下のいずれかに該当する方は、こちらにチェックを入れてください。当社が伴走してサポートします。<br>
+                ・これから初めてGoogleビジネスプロフィールに登録する<br>
+                ・登録はしたが操作に不安がある／管理者追加のやり方がわからない<br>
+                ・過去に業者に依頼した／誰かが作ったので状況がわからない<br>
+                <span style="display:inline-block; margin-top:6px;">すでに運用中でご自身で管理者追加のみで進める場合は、チェック不要です。</span>
               </div>
             </div>
           </div>
         </label>
+
+        <!-- チェック時のみ表示：状況チップ＋日程調整の案内 -->
+        <div id="supportReasonsPanel" style="display:none; background:#f7f9fc; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:20px;">
+          <p style="font-size:0.82rem; font-weight:700; color:var(--fg); margin-bottom:10px;">現在の状況（複数選択可）</p>
+          <div class="chip-group" id="account-add-reasons-chips">
+            <span class="chip reason-chip" data-val="これから初めて登録する">これから初めて登録する</span>
+            <span class="chip reason-chip" data-val="登録済みだが操作に不安がある">登録済みだが操作に不安がある</span>
+            <span class="chip reason-chip" data-val="過去に業者に依頼した">過去に業者に依頼した</span>
+            <span class="chip reason-chip" data-val="過去に誰かが作った">過去に誰かが作った</span>
+            <span class="chip reason-chip" data-val="どのアカウントで作ったかわからない">どのアカウントで作ったかわからない</span>
+            <span class="chip reason-chip" data-val="その他">その他</span>
+          </div>
+          <p style="font-size:0.75rem; color:var(--mute); margin-top:12px; line-height:1.7;">
+            💬 後日、担当者よりメールまたはお電話にて<strong style="color:var(--fg);">サポート日程のご案内</strong>をいたします。<br>
+            当社が状況を確認し、Googleアカウント整理・管理者権限取得までサポートします。
+          </p>
+        </div>
 
         <!-- 管理者追加ガイド -->
         <div class="gbp-guide">
@@ -1328,37 +1348,7 @@
           </div>
 
           <p class="gbp-note">
-            ※ 追加がうまくいかない場合は、下記のサポート希望チェックにチェックを入れてください。
-          </p>
-        </div>
-
-        <!-- アカウント追加サポート希望チェック -->
-        <label class="support-toggle" for="accountAddSupport">
-          <input type="checkbox" id="accountAddSupport" name="accountAddSupport">
-          <div class="support-toggle-inner">
-            <div class="support-toggle-check"></div>
-            <div class="support-toggle-text">
-              <div class="support-toggle-title">アカウント追加のサポートを希望する</div>
-              <div class="support-toggle-desc">
-                管理者追加がご自身で難しい場合はチェックを入れてください。<br>
-                後日、担当者よりサポートの日程調整のご連絡をいたします。
-              </div>
-            </div>
-          </div>
-        </label>
-
-        <!-- チェック時のみ表示：理由サブチェック -->
-        <div id="accountAddReasonsPanel" style="display:none; background:#f7f9fc; border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:20px;">
-          <p style="font-size:0.82rem; font-weight:700; color:var(--fg); margin-bottom:10px;">現在の状況（複数選択可）</p>
-          <div class="chip-group" id="account-add-reasons-chips">
-            <span class="chip reason-chip" data-val="過去に業者に依頼した">過去に業者に依頼した</span>
-            <span class="chip reason-chip" data-val="過去に誰かが作った">過去に誰かが作った</span>
-            <span class="chip reason-chip" data-val="どのアカウントで作ったかわからない">どのアカウントで作ったかわからない</span>
-            <span class="chip reason-chip" data-val="その他">その他</span>
-          </div>
-          <p style="font-size:0.75rem; color:var(--mute); margin-top:12px; line-height:1.7;">
-            💬 後日、担当者よりメールまたはお電話にて<strong style="color:var(--fg);">サポート日程のご案内</strong>をいたします。<br>
-            当社が状況を確認し、Googleアカウント整理・管理者権限取得まで対応いたします。
+            ※ 追加がうまくいかない場合は、上のサポート希望チェックにチェックを入れてください。担当者よりご連絡いたします。
           </p>
         </div>
       </div>
@@ -1581,11 +1571,11 @@
   /* ========================================================
    * アカウント追加サポート: チェック連動＋理由チップ
    * ======================================================== */
-  const accountAddSupportEl = document.getElementById('accountAddSupport');
-  const accountAddReasonsPanel = document.getElementById('accountAddReasonsPanel');
-  if (accountAddSupportEl && accountAddReasonsPanel) {
-    accountAddSupportEl.addEventListener('change', function () {
-      accountAddReasonsPanel.style.display = this.checked ? 'block' : 'none';
+  const supportNeededEl = document.getElementById('supportNeeded');
+  const supportReasonsPanel = document.getElementById('supportReasonsPanel');
+  if (supportNeededEl && supportReasonsPanel) {
+    supportNeededEl.addEventListener('change', function () {
+      supportReasonsPanel.style.display = this.checked ? 'block' : 'none';
     });
   }
   document.querySelectorAll('#account-add-reasons-chips .chip').forEach(function (chip) {
@@ -1711,8 +1701,7 @@
     // hours
     if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
 
-    // publicTel
-    if (setError('publicTel', 'publicTel-error', !document.getElementById('publicTel').value.trim())) hasError = true;
+    // publicTel (任意)
 
     // targetNow
     if (setError('targetNow', 'targetNow-error', !document.getElementById('targetNow').value.trim())) hasError = true;
@@ -1771,7 +1760,7 @@
       popularItem:  document.getElementById('popularItem').value.trim(),
       praise:       document.getElementById('praise').value.trim(),
       story:        document.getElementById('story').value.trim(),
-      accountAddSupport:  document.getElementById('accountAddSupport').checked ? '希望する' : '',
+      accountAddSupport:  document.getElementById('supportNeeded').checked ? '希望する' : '',
       accountAddReasons:  getAccountAddReasons(),
       supportNeeded:      document.getElementById('supportNeeded').checked ? '希望する' : '',
       reviewAutoReply:    selectedReviewAutoReply,
@@ -1812,7 +1801,6 @@
     { id: 'email',        errId: 'email-error',        check: function(v){ return !v || !isValidEmail(v); } },
     { id: 'address',      errId: 'address-error',      check: function(v){ return !v; } },
     { id: 'hours',        errId: 'hours-error',        check: function(v){ return !v; } },
-    { id: 'publicTel',    errId: 'publicTel-error',    check: function(v){ return !v; } },
     { id: 'targetNow',    errId: 'targetNow-error',    check: function(v){ return !v; } },
     { id: 'targetWant',   errId: 'targetWant-error',   check: function(v){ return !v; } },
     { id: 'reasonChosen', errId: 'reasonChosen-error', check: function(v){ return !v; } },
