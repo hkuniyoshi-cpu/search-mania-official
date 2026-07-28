@@ -552,26 +552,38 @@
         </div>
       </div>
 
-      <!-- D. 写真・素材 -->
+      <!-- D. 写真・素材（必須） -->
       <div class="section-card">
         <div class="section-title">
           <span class="icon">D</span>
-          写真・素材（任意）
+          写真・素材のご提供（必須）
         </div>
 
-        <div class="field">
-          <label>写真・素材の有無 <span class="opt">おまかせ可</span></label>
-          <div class="chip-group" id="photos-chips">
-            <span class="chip photo-chip" data-val="あり">あり</span>
-            <span class="chip photo-chip" data-val="なし">なし</span>
-            <span class="chip photo-chip" data-val="これから用意">これから用意</span>
+        <div style="background:rgba(52,168,83,.06); border:1px solid rgba(52,168,83,.25); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:0.85rem; color:var(--fg); line-height:1.75;">
+          <strong style="color:var(--accent);">📸 なぜ写真素材が必要か</strong><br>
+          Webサイト制作・コンテンツ更新・SNS投稿には <strong>お店の写真素材が不可欠</strong> です。<br>
+          当社では、ご提供いただいた写真をもとに <strong>継続的にサイト更新・記事作成</strong> を行い、集客につなげます。
+        </div>
+
+        <label for="photoConsent" style="display:block; background:#fff; border:2px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:12px; cursor:pointer; transition:all .2s;" id="photoConsentLabel">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <input type="checkbox" id="photoConsent" name="photoConsent" style="width:20px; height:20px; margin-top:2px; flex-shrink:0; accent-color:var(--accent); cursor:pointer;" required>
+            <div style="flex:1;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--fg); margin-bottom:4px; line-height:1.4;">Googleドライブへの写真素材アップロードに同意します <span class="req">*</span></div>
+              <div style="font-size:0.78rem; color:var(--mute); line-height:1.7;">
+                お申込み完了メールでご案内した <strong>専用Googleドライブフォルダ</strong> に、以下のような写真素材を<strong>継続的にアップロード</strong>いただくことに同意します。<br>
+                <span style="display:inline-block; margin-top:6px;">・お店の外観／内観／商品／メニュー／スタッフ／作業風景／お客様の様子（許可の範囲）等</span><br>
+                <span style="display:inline-block;">・ご提供いただいた素材は、Webサイト・記事・SNS投稿に活用いたします。</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </label>
+        <div class="field-error" id="photoConsent-error" style="margin-top:0; display:none;">写真素材のご提供に同意いただく必要があります。</div>
 
-        <div class="photo-notice" id="photo-notice">
-          <strong>写真の格納先：</strong><br>
-          お申し込み完了メールでご案内した<strong>Googleドライブフォルダ</strong>にアップロードしてください。<br>
-          （外観・内観・商品・スタッフ写真など歓迎です）
+        <div class="photo-notice show" style="margin-top:16px;">
+          <strong>💡 撮影が苦手な方へ</strong><br>
+          スマホで気軽に撮影したもので構いません。定期的にアップロードいただくほど、サイト・投稿の幅が広がります。<br>
+          ドライブのURLは <strong>お気に入り登録</strong> しておくと、いつでもすぐアクセスできます。
         </div>
       </div>
 
@@ -681,21 +693,20 @@
     else       { hintEl.style.display = 'none'; hintEl.textContent = ''; }
   });
 
-  /* Photos chips */
-  let selectedPhoto = '';
-  document.querySelectorAll('#photos-chips .chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      document.querySelectorAll('#photos-chips .chip').forEach(c => c.classList.remove('selected'));
-      if (selectedPhoto === this.dataset.val) {
-        selectedPhoto = '';
-        photoNotice.classList.remove('show');
+  /* 写真素材はチェックボックス同意方式 */
+  const photoConsentEl = document.getElementById('photoConsent');
+  const photoConsentLabel = document.getElementById('photoConsentLabel');
+  if (photoConsentEl && photoConsentLabel) {
+    photoConsentEl.addEventListener('change', function () {
+      if (this.checked) {
+        photoConsentLabel.style.borderColor = 'var(--accent)';
+        photoConsentLabel.style.background = 'rgba(52,168,83,.04)';
       } else {
-        this.classList.add('selected');
-        selectedPhoto = this.dataset.val;
-        photoNotice.classList.toggle('show', selectedPhoto === 'あり');
+        photoConsentLabel.style.borderColor = 'var(--line)';
+        photoConsentLabel.style.background = '#fff';
       }
     });
-  });
+  }
 
   /* Facilities chips (multi-select) */
   document.querySelectorAll('#facilities-chips .chip').forEach(function (chip) {
@@ -731,6 +742,18 @@
     if (setError('hours', 'hours-error', !document.getElementById('hours').value.trim())) hasError = true;
     if (setError('targetWant', 'targetWant-error', !document.getElementById('targetWant').value.trim())) hasError = true;
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
+
+    // 写真素材アップロード同意（必須）
+    const _photoConsent = document.getElementById('photoConsent');
+    const _photoConsentErr = document.getElementById('photoConsent-error');
+    if (!_photoConsent.checked) {
+      _photoConsentErr.style.display = 'block';
+      _photoConsentErr.classList.add('show');
+      hasError = true;
+    } else {
+      _photoConsentErr.style.display = 'none';
+      _photoConsentErr.classList.remove('show');
+    }
     return !hasError;
   }
 
@@ -768,7 +791,7 @@
       praise:         document.getElementById('praise').value.trim(),
       story:          document.getElementById('story').value.trim(),
       facilities:     getFacilities(),
-      hasPhotos:      selectedPhoto,
+      hasPhotos:      document.getElementById('photoConsent').checked ? '継続アップロード同意' : '',
     };
 
     try {
