@@ -1389,27 +1389,39 @@
         </div>
       </div>
 
-      <!-- ===== E. 写真・素材 ===== -->
+      <!-- ===== E. 写真・素材（必須） ===== -->
       <div class="section-card">
         <div class="section-title">
           <span class="icon">E</span>
-          写真・素材（任意）
+          写真・素材のご提供（必須）
         </div>
 
-        <div class="field">
-          <label>写真・素材の有無 <span class="opt">おまかせ可</span></label>
-          <div class="chip-group" id="photos-chips">
-            <span class="chip photo-chip" data-val="あり">あり</span>
-            <span class="chip photo-chip" data-val="なし">なし</span>
-            <span class="chip photo-chip" data-val="これから用意">これから用意</span>
+        <div style="background:rgba(66,133,244,.06); border:1px solid rgba(66,133,244,.2); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:0.85rem; color:var(--fg); line-height:1.75;">
+          <strong style="color:var(--accent);">📸 なぜ写真素材が必要か</strong><br>
+          Googleマップの投稿・プロフィール整備・記事投稿には <strong>お店の写真素材が不可欠</strong> です。<br>
+          当社では、ご提供いただいた写真をもとに <strong>継続的にGoogle投稿・記事作成</strong> を行い、集客につなげます。
+        </div>
+
+        <label class="support-toggle" for="photoConsent">
+          <input type="checkbox" id="photoConsent" name="photoConsent" required>
+          <div class="support-toggle-inner">
+            <div class="support-toggle-check"></div>
+            <div class="support-toggle-text">
+              <div class="support-toggle-title">Googleドライブへの写真素材アップロードに同意します <span class="req">*</span></div>
+              <div class="support-toggle-desc">
+                お申込み完了メールでご案内した <strong>専用Googleドライブフォルダ</strong> に、以下のような写真素材を<strong>継続的にアップロード</strong>いただくことに同意します。<br>
+                <span style="display:inline-block; margin-top:6px;">・お店の外観／内観／商品／メニュー／スタッフ／作業風景／お客様の様子（許可の範囲）等</span><br>
+                <span style="display:inline-block;">・ご提供いただいた素材は、Googleマップ投稿・記事作成・SNS投稿に活用いたします。</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </label>
+        <div class="field-error" id="photoConsent-error" style="margin-top:-10px; display:none;">写真素材のご提供に同意いただく必要があります。</div>
 
-        <!-- 「あり」の場合の案内 -->
-        <div class="photo-notice" id="photo-notice">
-          <strong>写真の格納先：</strong><br>
-          お申し込み完了メールでご案内した<strong>Googleドライブフォルダ</strong>にアップロードしてください。<br>
-          （お店の外観・内観・商品・スタッフ写真など歓迎です）
+        <div class="photo-notice show" style="margin-top:16px;">
+          <strong>💡 撮影が苦手な方へ</strong><br>
+          スマホで気軽に撮影したもので構いません。定期的にアップロードいただくほど、投稿の幅が広がります。<br>
+          ドライブのURLは <strong>お気に入り登録</strong> しておくと、いつでもすぐアクセスできます。
         </div>
       </div>
 
@@ -1594,28 +1606,7 @@
   /* ========================================================
    * Photos chips (single-select)
    * ======================================================== */
-  let selectedPhoto = '';
-  document.querySelectorAll('#photos-chips .chip').forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      // deselect all
-      document.querySelectorAll('#photos-chips .chip').forEach(function (c) {
-        c.classList.remove('selected');
-      });
-      if (selectedPhoto === this.dataset.val) {
-        // toggle off
-        selectedPhoto = '';
-        photoNotice.classList.remove('show');
-      } else {
-        this.classList.add('selected');
-        selectedPhoto = this.dataset.val;
-        if (selectedPhoto === 'あり') {
-          photoNotice.classList.add('show');
-        } else {
-          photoNotice.classList.remove('show');
-        }
-      }
-    });
-  });
+  // 写真素材はチェックボックス同意方式（下記 validateForm で必須チェック）
 
   /* ========================================================
    * クチコミ返信運用: 単一選択チップ＋レベル表示切替
@@ -1715,6 +1706,18 @@
     // popularItem
     if (setError('popularItem', 'popularItem-error', !document.getElementById('popularItem').value.trim())) hasError = true;
 
+    // 写真素材アップロード同意（必須）
+    const photoConsentEl = document.getElementById('photoConsent');
+    const photoConsentErr = document.getElementById('photoConsent-error');
+    if (!photoConsentEl.checked) {
+      photoConsentErr.classList.add('show');
+      photoConsentErr.style.display = 'block';
+      hasError = true;
+    } else {
+      photoConsentErr.classList.remove('show');
+      photoConsentErr.style.display = 'none';
+    }
+
     return !hasError;
   }
 
@@ -1765,7 +1768,7 @@
       supportNeeded:      document.getElementById('supportNeeded').checked ? '希望する' : '',
       reviewAutoReply:    selectedReviewAutoReply,
       reviewReplyLevel:   selectedReviewReplyLevel,
-      hasPhotos:          selectedPhoto,
+      hasPhotos:          document.getElementById('photoConsent').checked ? '継続アップロード同意' : '',
     };
 
     try {
