@@ -726,12 +726,22 @@
     }
   } catch (_) {}
 
-  // トークンがあればメール入力欄セクションを隠す
-  if (HEARING_TOKEN) {
-    try {
-      const emailSection = document.getElementById('email').closest('.section-card');
-      if (emailSection) emailSection.style.display = 'none';
-    } catch (_) {}
+  // メール入力欄セクションは常に非表示（本人確認はメール経由トークン方式）
+  try {
+    const emailSection = document.getElementById('email').closest('.section-card');
+    if (emailSection) emailSection.style.display = 'none';
+  } catch (_) {}
+
+  // トークン無し（URL直打ちアクセス等）は警告バナー表示
+  if (!HEARING_TOKEN) {
+    const container = document.querySelector('.container');
+    if (container) {
+      const warn = document.createElement('div');
+      warn.style.cssText = 'background:rgba(217,48,37,.08); border:1px solid rgba(217,48,37,.3); border-radius:10px; padding:16px 20px; margin-bottom:24px; font-size:0.9rem; color:#d93025; line-height:1.75;';
+      warn.innerHTML = '<strong>⚠️ 本人確認が完了していません</strong><br>お申込み時にお送りした<strong>本人確認メール内のヒアリングフォームリンク</strong>からアクセスしてください。<br>メールが見当たらない場合は、お手数ですが <a href="mailto:info@search-mania.net" style="color:#d93025; text-decoration:underline;">info@search-mania.net</a> までご連絡ください。';
+      const form = document.getElementById('hearing-form');
+      if (form && form.parentNode) form.parentNode.insertBefore(warn, form);
+    }
   }
 
   /* Category hint */
