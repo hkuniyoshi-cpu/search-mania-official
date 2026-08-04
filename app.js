@@ -470,7 +470,7 @@ document.querySelectorAll('form[data-form]').forEach(form => {
     if(fd.get('website')) {
       console.warn('Honeypot triggered, dropping silently');
       status.className = 'form-status success';
-      status.innerHTML = '<i class="fa-solid fa-circle-check"></i> 送信が完了しました。<br>担当者より2営業日以内にご返信いたします。';
+      status.innerHTML = '<i class="fa-solid fa-circle-check"></i> お問い合わせを承りました。<br>内容を確認のうえ、必要に応じて担当者よりご連絡差し上げます。';
       form.reset();
       return;
     }
@@ -499,7 +499,7 @@ document.querySelectorAll('form[data-form]').forEach(form => {
       });
       // no-cors なのでレスポンス検証不可。送信完了とみなす。
       status.className = 'form-status success';
-      status.innerHTML = '<i class="fa-solid fa-circle-check"></i> 送信が完了しました。<br>担当者より2営業日以内にご返信いたします。';
+      status.innerHTML = '<i class="fa-solid fa-circle-check"></i> お問い合わせを承りました。<br>内容を確認のうえ、必要に応じて担当者よりご連絡差し上げます。';
       form.reset();
       setTimeout(() => { status.scrollIntoView({behavior:'smooth', block:'center'}); }, 100);
     } catch(err){
