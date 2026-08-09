@@ -647,13 +647,17 @@ setupCharCascade();
    ============================================================ */
 function setupTilt(){
   document.querySelectorAll('.tilt').forEach(card => {
+    /* 二重登録防止 */
+    if(card.dataset.tiltReady) return;
+    card.dataset.tiltReady = '1';
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      const rotY = (x - 0.5) * 10;
-      const rotX = (0.5 - y) * 10;
-      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+      /* 角度を10deg→4degへ縮小、perspectiveを外して ghost outline を軽減 */
+      const rotY = (x - 0.5) * 4;
+      const rotX = (0.5 - y) * 4;
+      card.style.transform = `translateY(-6px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
