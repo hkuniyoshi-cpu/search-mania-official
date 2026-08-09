@@ -2336,25 +2336,10 @@ a.service-card:hover .service-link-hint {
   box-shadow: 0 30px 60px rgba(66,133,244,.22);
 }
 
-/* ---------- Service card image zoom + glow ---------- */
-.service-card {
-  position: relative;
-}
-.service-card::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: var(--radius-lg);
-  padding: 1px;
-  background: linear-gradient(135deg, transparent 40%, rgba(66,133,244,.6) 50%, transparent 60%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  opacity: 0;
-  transition: opacity .4s var(--ease);
-  pointer-events: none;
-}
-.service-card:hover::after { opacity: 1; }
+/* ---------- Service card image zoom + glow (旧ゴースト描画を廃止) ---------- */
+/* 旧: linear-gradient border-glow が inset:-1px でカード外側に浮き上がり、
+   3D tilt と重なって ghost outline を発生させていた。削除。
+   ホバー時のグロー効果は .service-card::before + Bento背景ドット で十分表現される */
 
 /* ---------- Works section ---------- */
 .works-grid {
