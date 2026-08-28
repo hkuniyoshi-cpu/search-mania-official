@@ -69,31 +69,140 @@
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="LZg90oxtbqi0v6An7Fc0uO3ufbqcmW4_Qp9mCI2u6wk" />
 
-  <!-- JSON-LD: LocalBusiness -->
+  <!-- JSON-LD (SEO/AIO): 複数エンティティを @graph で束ねる -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "SearchMania Inc.",
-    "alternateName": "サーチマニア",
-    "url": "https://search-mania.net/",
-    "logo": "https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png",
-    "image": "https://search-mania.net/ogp.svg",
-    "description": "MEO・AI集客・DX支援を行う沖縄拠点のデジタル支援カンパニー",
-    "inLanguage": "ja",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "首里石嶺町2丁目248番地",
-      "addressLocality": "那覇市",
-      "addressRegion": "沖縄県",
-      "postalCode": "903-0804",
-      "addressCountry": "JP"
-    },
-    "areaServed": "JP",
-    "founder": { "@type": "Person", "name": "国吉 弘孝" },
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=61567535690415",
-      "https://www.instagram.com/kuniyoshi.search_mania/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://search-mania.net/#org",
+        "name": "SearchMania Inc.",
+        "alternateName": ["サーチマニア", "サーチマニア株式会社", "SearchMania"],
+        "url": "https://search-mania.net/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png",
+          "width": 400,
+          "height": 400
+        },
+        "image": "https://search-mania.net/ogp.svg",
+        "description": "沖縄・那覇拠点のデジタル支援カンパニー。MEO集客、AI自動化、DX支援、Webサービス開発、SEO/AIO対策を行う。",
+        "email": "info@search-mania.net",
+        "foundingDate": "2024",
+        "founder": {
+          "@type": "Person",
+          "name": "国吉 弘孝",
+          "givenName": "弘孝",
+          "familyName": "国吉",
+          "jobTitle": "代表",
+          "worksFor": { "@id": "https://search-mania.net/#org" }
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "首里石嶺町2丁目248番地",
+          "addressLocality": "那覇市",
+          "addressRegion": "沖縄県",
+          "postalCode": "903-0804",
+          "addressCountry": "JP"
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61567535690415",
+          "https://www.instagram.com/kuniyoshi.search_mania/",
+          "https://search-mania.net/automap/",
+          "https://search-mania.net/autowebsite/",
+          "https://mapform.search-mania.net/"
+        ],
+        "knowsAbout": [
+          "MEO", "Googleマップ集客", "AI自動化", "DX支援",
+          "Webサイト制作", "SEO", "AIO対策", "オウンドメディア",
+          "自動ブログ", "GAS", "Make", "n8n"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://search-mania.net/#business",
+        "name": "SearchMania Inc.",
+        "url": "https://search-mania.net/",
+        "parentOrganization": { "@id": "https://search-mania.net/#org" },
+        "inLanguage": "ja",
+        "priceRange": "¥¥",
+        "areaServed": [
+          { "@type": "Country", "name": "日本" },
+          { "@type": "AdministrativeArea", "name": "沖縄県" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "首里石嶺町2丁目248番地",
+          "addressLocality": "那覇市",
+          "addressRegion": "沖縄県",
+          "postalCode": "903-0804",
+          "addressCountry": "JP"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "SearchMania サービス",
+          "itemListElement": [
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Googleマップ(MEO)集客コンサル","url":"https://search-mania.net/automap/"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"Googleマップ AI自動集客システム","url":"https://search-mania.net/automap/"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"自動更新WEBサイト制作","url":"https://search-mania.net/autowebsite/"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"集客コンテンツ制作・動線設計"}},
+            {"@type":"Offer","itemOffered":{"@type":"Service","name":"DX支援(業務自動化・Web開発・SEO)"}}
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://search-mania.net/#website",
+        "url": "https://search-mania.net/",
+        "name": "SearchMania Inc.",
+        "inLanguage": "ja",
+        "publisher": { "@id": "https://search-mania.net/#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.google.com/search?q=site%3Asearch-mania.net+{search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://search-mania.net/#faq",
+        "inLanguage": "ja",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "SearchMania は何をする会社ですか?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "沖縄・那覇拠点のデジタル支援カンパニーです。Googleマップ集客(MEO)、AI自動集客、自動更新WEBサイト制作、DX支援(GAS/Make/n8n による業務自動化)を提供しています。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "対応エリアはどこですか?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "沖縄県那覇市に本社があり、日本全国オンライン対応可能です。首里石嶺町からリモート/対面で全国のクライアントを支援しています。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "MEO集客と手放しWEB集客の違いは?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MEO集客は Googleマップ経由の店舗集客に特化。手放しWEB集客(自動更新WEBサイト)は 自社ドメインの Webサイト + AI自動ブログでSEO/AIO経由の集客に特化します。両者は補完関係にあります。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "問い合わせから返信までどのくらいかかりますか?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "内容を確認のうえ、必要に応じて担当者よりご連絡差し上げます。案件のご相談は info@search-mania.net または公式サイトの問い合わせフォームからお受けしています。"
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
