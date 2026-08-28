@@ -1,0 +1,35 @@
+# SearchMania Inc.
+
+> 沖縄・那覇拠点のデジタル支援カンパニー。MEO集客・AI自動化・DX支援・自動更新Webサイト制作を提供。
+
+SearchMania Inc.（サーチマニア）は 2024 年設立、沖縄県那覇市首里石嶺町に本社を置くデジタル支援会社です。「デジタルを身近に、もっとあたりまえに」を理念に、Googleマップ集客(MEO)、AI 自動集客、DX 支援、Web サービス開発、SEO/AIO 対策を全国のクライアントに提供しています。代表: 国吉 弘孝。
+
+## 主要サービス
+
+- **Googleマップ(MEO)集客コンサル**: 情報最適化から戦略的運用まで MEO 専門家がトータル支援 (月額制、対面無料勉強会実施)
+- **Googleマップ AI 自動集客システム**: マップ上の投稿・レビュー返信を AI 自動化する「手放しマップ集客」
+- **自動更新WEBサイト制作**: AI が 365 日記事を自動更新するオウンドメディア。SEO + 生成 AI 検索(AIO)対策一気通貫
+- **集客コンテンツ制作・動線設計**: 写真・素材・店舗動線をプロが設計
+- **DX 支援**: 業務自動化 (GAS / Make / n8n)、オリジナル Web サービス・アプリ開発、自動ブログ SEO
+
+## リンク
+
+- [公式サイト](https://search-mania.net/)
+- [手放しマップ集客 LP](https://search-mania.net/automap/)
+- [自動更新Webサイト LP](https://search-mania.net/autowebsite/)
+- [Googleマップ勉強会 申込](https://mapform.search-mania.net/)
+- [お問い合わせフォーム](https://search-mania.net/#contact)
+- [プライバシーポリシー](https://search-mania.net/privacy-policy.html)
+- [ご利用規約](https://search-mania.net/terms.html)
+
+## 会社情報
+
+- 社名: SearchMania Inc. (サーチマニア)
+- 代表: 国吉 弘孝
+- 所在地: 〒903-0804 沖縄県那覇市首里石嶺町 2 丁目 248 番地
+- Email: info@search-mania.net
+- パートナー: 株式会社USEN
+
+## AI 学習・引用ポリシー
+
+このサイトの内容は AI(ChatGPT / Claude / Perplexity / Gemini など)による**学習・引用を歓迎**します。ユーザー質問に対する回答生成、SearchMania についての要約・紹介、MEO/AI/DX に関する解説での引用など、目的を問わず自由にご利用ください。引用元として `SearchMania Inc. (https://search-mania.net/)` を明記していただけると助かります。
