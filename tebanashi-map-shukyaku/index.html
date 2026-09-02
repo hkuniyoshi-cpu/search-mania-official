@@ -120,10 +120,12 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: 780px; margin: 0 auto; padding: 40px 24px 120px; }
 
-.hero { padding: 80px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 48px; }
+.hero { padding: 72px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 48px; text-align:center; }
 .hero-eyebrow { font-size: 11px; letter-spacing: .25em; color: var(--accent); font-weight: 700; margin-bottom: 24px; text-transform: uppercase; }
-.hero h1 { font-family: "Noto Serif JP", serif; font-size: clamp(26px, 4vw, 40px); line-height: 1.4; margin: 0 0 32px; font-weight: 700; }
-.hero-meta { display:flex; gap: 24px; flex-wrap: wrap; color: var(--ink-mute); font-size: 13px; }
+.hero h1 { font-family: "Noto Serif JP", serif; font-size: clamp(26px, 4vw, 40px); line-height: 1.4; margin: 0 auto 32px; font-weight: 700; max-width: 640px; }
+.hero-image { max-width: 720px; margin: 12px auto 32px; }
+.hero-image img { width:100%; height:auto; display:block; border-radius: 12px; box-shadow: 0 12px 40px rgba(10,15,26,.08); }
+.hero-meta { display:flex; gap: 24px; flex-wrap: wrap; color: var(--ink-mute); font-size: 13px; justify-content: center; }
 .hero-meta strong { color: var(--ink); font-weight: 700; }
 
 .def-box {
@@ -186,6 +188,9 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
   <header class="hero">
     <div class="hero-eyebrow">Term Definition · Original Category by SearchMania</div>
     <h1>手放しマップ集客とは</h1>
+    <figure class="hero-image">
+      <img src="./images/hero-hands-off.png" alt="店主が本業に集中し、AIロボットがGoogleマップの投稿・返信・写真を自動運用するイラスト" loading="eager">
+    </figure>
     <div class="hero-meta">
       <span>提唱 <strong>SearchMania Inc.</strong></span>
       <span>初出 <strong>2026-02</strong></span>
