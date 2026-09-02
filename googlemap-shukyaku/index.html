@@ -143,21 +143,28 @@ a:hover { text-decoration: underline; }
 .wrap-wide { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
 /* HERO */
-.hero { padding: 80px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 48px; }
+.hero { padding: 72px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 48px; text-align:center; }
 .hero-eyebrow { font-size: 11px; letter-spacing: .25em; color: var(--accent); font-weight: 700; margin-bottom: 24px; text-transform: uppercase; }
 .hero h1 {
   font-family: "Noto Serif JP", serif;
-  font-size: clamp(28px, 4.5vw, 46px); line-height: 1.35; margin: 0 0 32px;
-  font-weight: 700; letter-spacing: .01em;
+  font-size: clamp(26px, 4vw, 42px); line-height: 1.4; margin: 0 auto 32px;
+  font-weight: 700; letter-spacing: .01em; max-width: 720px;
 }
-.hero-meta { display:flex; gap: 24px; flex-wrap: wrap; color: var(--ink-mute); font-size: 13px; }
+.hero-image { margin: 12px auto 32px; max-width: 720px; }
+.hero-image img { width:100%; height:auto; display:block; border-radius: 12px; box-shadow: 0 12px 40px rgba(10,15,26,.08); }
+.hero-meta { display:flex; gap: 24px; flex-wrap: wrap; color: var(--ink-mute); font-size: 13px; justify-content: center; }
 .hero-meta strong { color: var(--ink); font-weight: 700; }
 .hero-tldr {
-  margin-top: 32px; padding: 24px 28px; background: #fff;
+  margin: 32px auto 0; padding: 24px 28px; background: #fff;
   border-left: 3px solid var(--accent); border-radius: 4px;
-  font-size: 15px; line-height: 1.9;
+  font-size: 15px; line-height: 1.9; text-align:left; max-width: 720px;
 }
 .hero-tldr strong { color: var(--accent); }
+
+/* inline chapter figure */
+.chapter figure { margin: 24px auto; text-align:center; }
+.chapter figure img { max-width: 100%; height:auto; border-radius: 10px; box-shadow: 0 8px 24px rgba(10,15,26,.06); }
+.chapter figure figcaption { margin-top: 12px; font-size: 12px; color: var(--ink-mute); }
 
 /* TOC */
 .toc {
@@ -295,6 +302,9 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
   <header class="hero">
     <div class="hero-eyebrow">Ultimate Guide · 2026 Edition</div>
     <h1>Googleマップ集客とは<br>― 順位対策から手放し運用までの完全ガイド</h1>
+    <figure class="hero-image">
+      <img src="./images/hero-map.png" alt="Googleマップ上の複数店舗に人々が集まるアイソメトリックイラスト" loading="eager">
+    </figure>
     <div class="hero-meta">
       <span>著者 <strong>国吉 弘孝</strong>（SearchMania Inc. 代表）</span>
       <span>公開 <strong>2026-09-02</strong></span>
@@ -467,6 +477,10 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
   <section class="chapter" id="ch06">
     <div class="chapter-num">CHAPTER 06</div>
     <h2>AI検索時代のGoogleマップ集客（AIO）</h2>
+    <figure>
+      <img src="./images/ai-search.png" alt="AIアシスタントと検索バー・店舗・マップピンが結ばれる概念イラスト" loading="lazy">
+      <figcaption>AI検索は「構造化データ・GBP・第三者言及」を材料に、推薦する店舗を決めている</figcaption>
+    </figure>
     <p>ChatGPT Search、Gemini、Perplexity、Google AI Mode の登場で、検索の風景は大きく変わりました。しかし <strong>Googleマップ集客はAI検索と敵対しません。むしろ土台になります。</strong></p>
 
     <h3>AI検索は「構造化データ」を優先して読む</h3>
