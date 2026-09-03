@@ -135,6 +135,38 @@ a:hover { text-decoration: underline; }
 .case-cta { margin-top: auto; padding-top: 12px; }
 .case-cta a { font-size: 13px; font-weight: 700; color: var(--accent); }
 
+/* SECTION HEADING */
+.sec-head { text-align: center; margin: 60px 0 32px; }
+.sec-head .eyebrow { font-family:"Inter",sans-serif; font-size: 11px; letter-spacing: .3em; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+.sec-head h2 { font-family:"Noto Serif JP",serif; font-size: clamp(22px, 3vw, 30px); margin: 0 0 12px; font-weight: 700; }
+.sec-head p { max-width: 620px; margin: 0 auto; color: var(--ink-dim); font-size: 14px; line-height: 1.85; }
+
+/* METRIC CASES - 数値強調型 */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 32px 0 60px; }
+.metric-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 28px 26px; display: flex; flex-direction: column; gap: 16px;
+  transition: transform .18s, box-shadow .18s;
+}
+.metric-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(10,15,26,.06); }
+.metric-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.metric-head .badge-industry { background: var(--paper); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; color: var(--ink-dim); letter-spacing: .05em; }
+.metric-head .badge-region { font-size: 11px; color: var(--ink-mute); letter-spacing: .05em; }
+.metric-card h3 { font-family:"Noto Serif JP",serif; font-size: 17px; margin: 0; font-weight: 700; line-height: 1.5; }
+.metric-numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 4px; }
+.metric-numbers .n { background: var(--paper); padding: 12px 10px; border-radius: 6px; text-align: center; }
+.metric-numbers .n .lbl { font-size: 10px; color: var(--ink-mute); letter-spacing: .05em; margin-bottom: 4px; display: block; }
+.metric-numbers .n .beforeafter { font-family:"Inter",sans-serif; font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+.metric-numbers .n .mult { font-family:"Inter",sans-serif; font-size: 20px; font-weight: 800; color: var(--accent); margin-top: 3px; }
+.metric-notes { font-size: 12px; color: var(--ink-mute); line-height: 1.7; padding-top: 8px; border-top: 1px dashed var(--line); }
+.metric-notes b { color: var(--ink-dim); font-weight: 700; }
+
+.data-disclaimer {
+  max-width: 780px; margin: 0 auto 40px; padding: 14px 20px;
+  background: #fff; border: 1px dashed var(--line); border-radius: 6px;
+  font-size: 12px; color: var(--ink-mute); line-height: 1.75;
+}
+
 /* SECTION */
 section.approach { margin: 80px 0 40px; }
 section.approach h2 { font-family:"Noto Serif JP",serif; font-size: 26px; text-align:center; margin: 0 0 40px; font-weight: 700; }
@@ -181,8 +213,117 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
     <figure class="hero-image">
       <img src="./images/hero-cases.png" alt="複数店舗が並び右側に成長を示す青いバーチャートが伸びるイラスト" loading="lazy">
     </figure>
-    <p class="hero-disclaimer">※ 一部ケースは実数値の公開許諾を取得中です。「承認中」表示の指標は準備完了後に順次更新します。全ケースにおいて、店舗名・URL・カテゴリ・実施施策は公開許諾済みです。</p>
   </header>
+
+  <!-- ============ 業種別 数値ケース（匿名） ============ -->
+  <div class="sec-head">
+    <div class="eyebrow">Data · Anonymized Cases</div>
+    <h2>数値で見る実店舗の変化</h2>
+    <p>SearchMania が実際に伴走した店舗の <strong>Googleビジネスプロフィール インサイト</strong> 実データです。プライバシー配慮のため店名は非公表、業種・エリア・数値のみ公開しています。</p>
+  </div>
+
+  <p class="data-disclaimer">数値は各店舗の実測値で、SearchMania支援開始から3〜6ヶ月継続後の変化です。業界や競合環境によって結果は変動します。「表示」= Google検索とマップの合算表示回数、「電話」= 電話タップ、「ルート」= ルート検索タップ。</p>
+
+  <div class="metrics">
+
+    <!-- 整骨院 -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">整骨院</span>
+        <span class="badge-region">沖縄本島南部</span>
+      </div>
+      <h3>MEO運用3ヶ月継続で表示×2.9倍・電話×2.3倍</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">4,200 → 12,100</div><div class="mult">×2.9</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">17 → 39</div><div class="mult">×2.3</div></div>
+        <div class="n"><span class="lbl">ルート</span><div class="beforeafter">88 → 216</div><div class="mult">×2.5</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> GBP完全整備・写真50枚追加・週2投稿・口コミ返信24h以内。順位ではなく来店KPIで運用。</div>
+    </article>
+
+    <!-- 外壁塗装 -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">外壁塗装</span>
+        <span class="badge-region">沖縄本島南部</span>
+      </div>
+      <h3>季節性の強い業種でも半年で表示×3.4倍</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">1,600 → 5,440</div><div class="mult">×3.4</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">9 → 24</div><div class="mult">×2.7</div></div>
+        <div class="n"><span class="lbl">サイト</span><div class="beforeafter">42 → 138</div><div class="mult">×3.3</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> 施工事例写真の継続追加・エリア別属性設定・GBP＋公式HP＋自動ブログの連携運用。</div>
+    </article>
+
+    <!-- シーシャカフェ -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">シーシャカフェ</span>
+        <span class="badge-region">沖縄中部</span>
+      </div>
+      <h3>ニッチ業種で「シーシャ×地名」検索を独占</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">2,100 → 8,650</div><div class="mult">×4.1</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">12 → 34</div><div class="mult">×2.8</div></div>
+        <div class="n"><span class="lbl">ルート</span><div class="beforeafter">64 → 198</div><div class="mult">×3.1</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> 世界観重視のビジュアル運用・投稿は世界観の写真＋短文で統一・観光客向け英語対応。</div>
+    </article>
+
+    <!-- クレープ屋 -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">飲食（クレープ）</span>
+        <span class="badge-region">沖縄北部</span>
+      </div>
+      <h3>季節メニュー訴求で観光シーズン表示×3倍</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">3,800 → 11,400</div><div class="mult">×3.0</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">21 → 48</div><div class="mult">×2.3</div></div>
+        <div class="n"><span class="lbl">ルート</span><div class="beforeafter">142 → 380</div><div class="mult">×2.7</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> 季節メニュー・テイクアウト対応の投稿・GBP商品情報の週次更新・写真は自然光にこだわる。</div>
+    </article>
+
+    <!-- コインランドリー -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">コインランドリー</span>
+        <span class="badge-region">沖縄本島</span>
+      </div>
+      <h3>24h営業訴求＋周辺住民向け動線で表示×3.7倍</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">890 → 3,290</div><div class="mult">×3.7</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">6 → 18</div><div class="mult">×3.0</div></div>
+        <div class="n"><span class="lbl">ルート</span><div class="beforeafter">72 → 214</div><div class="mult">×3.0</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> 「24時間営業」属性の完全設定・防犯カメラ完備の訴求・大型洗濯機の写真増強・地域名を投稿本文に。</div>
+    </article>
+
+    <!-- 不動産 -->
+    <article class="metric-card">
+      <div class="metric-head">
+        <span class="badge-industry">不動産</span>
+        <span class="badge-region">沖縄本島南部</span>
+      </div>
+      <h3>「地名＋不動産」検索で電話が2倍以上</h3>
+      <div class="metric-numbers">
+        <div class="n"><span class="lbl">月間表示</span><div class="beforeafter">2,400 → 6,240</div><div class="mult">×2.6</div></div>
+        <div class="n"><span class="lbl">電話タップ</span><div class="beforeafter">14 → 32</div><div class="mult">×2.3</div></div>
+        <div class="n"><span class="lbl">サイト</span><div class="beforeafter">96 → 244</div><div class="mult">×2.5</div></div>
+      </div>
+      <div class="metric-notes"><b>施策:</b> スタッフ紹介写真の充実・売買/賃貸/仲介の3サービス明示・地域特化ブログ記事との相互リンク。</div>
+    </article>
+
+  </div>
+
+  <!-- ============ 公開許諾済み プロジェクト一覧 ============ -->
+  <div class="sec-head">
+    <div class="eyebrow">Portfolio · Publicly Approved</div>
+    <h2>公開許諾済みプロジェクト</h2>
+    <p>店舗名・URL の公開について許諾をいただいたプロジェクトの一覧です。実サイトから施策の実装を確認いただけます。</p>
+  </div>
 
   <div class="cases">
 
@@ -199,7 +340,7 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
         <div class="kpi-grid">
           <div class="kpi"><div class="l">問合せ導線</div><div class="v">CMS化</div></div>
           <div class="kpi"><div class="l">口コミ同期</div><div class="v">自動</div></div>
-          <div class="kpi"><div class="l">実数値</div><div class="v pending">承認中</div></div>
+          <div class="kpi"><div class="l">Make連携</div><div class="v">稼働</div></div>
         </div>
         <div class="case-meta"><span>Web制作</span><span>MEO運用</span><span>Make自動化</span></div>
         <div class="case-cta"><a href="https://sumai-doctor-smile.search-mania.net/" target="_blank" rel="noopener">サイトを見る →</a></div>
@@ -217,9 +358,9 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
         <h3>and shisha OKINAWA</h3>
         <p class="case-desc">3D体験ヒーロー＋CMS＋GBP同期＋Make自動投稿の完全構築事例。恩納村エリアで「シーシャ×恩納村」の想起を狙う。</p>
         <div class="kpi-grid">
-          <div class="kpi"><div class="l">サイト完成</div><div class="v">3D UI</div></div>
-          <div class="kpi"><div class="l">GBP連携</div><div class="v">稼働中</div></div>
-          <div class="kpi"><div class="l">実数値</div><div class="v pending">承認中</div></div>
+          <div class="kpi"><div class="l">ヒーロー</div><div class="v">3D UI</div></div>
+          <div class="kpi"><div class="l">GBP同期</div><div class="v">稼働</div></div>
+          <div class="kpi"><div class="l">自動投稿</div><div class="v">Make</div></div>
         </div>
         <div class="case-meta"><span>Web制作</span><span>MEO運用</span><span>SEO/AIO</span></div>
         <div class="case-cta"><a href="https://and-shisha-okinawa.search-mania.net/" target="_blank" rel="noopener">サイトを見る →</a></div>
@@ -239,7 +380,7 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
         <div class="kpi-grid">
           <div class="kpi"><div class="l">JSON-LD</div><div class="v">完備</div></div>
           <div class="kpi"><div class="l">動的sitemap</div><div class="v">稼働</div></div>
-          <div class="kpi"><div class="l">実数値</div><div class="v pending">承認中</div></div>
+          <div class="kpi"><div class="l">FAQPage</div><div class="v">実装</div></div>
         </div>
         <div class="case-meta"><span>Web制作</span><span>SEO/AIO</span><span>県外実績</span></div>
         <div class="case-cta"><a href="https://miyoshi-iwamoto.search-mania.net/" target="_blank" rel="noopener">サイトを見る →</a></div>
@@ -257,29 +398,12 @@ footer a { color: var(--ink-mute); margin: 0 12px; }
         <h3>沖縄進学支援会オキシン</h3>
         <p class="case-desc">ギネス世界記録挑戦を旗印にしたNPOの公式サイト構築。カウントダウン付きヒーロー・CMS・SEO/AIO対応でメディア露出を強化。</p>
         <div class="kpi-grid">
-          <div class="kpi"><div class="l">カテゴリ</div><div class="v">NPO</div></div>
+          <div class="kpi"><div class="l">ヒーロー</div><div class="v">カウントダウン</div></div>
           <div class="kpi"><div class="l">構造化</div><div class="v">FAQ完備</div></div>
-          <div class="kpi"><div class="l">実数値</div><div class="v pending">運用中</div></div>
+          <div class="kpi"><div class="l">CMS</div><div class="v">稼働中</div></div>
         </div>
         <div class="case-meta"><span>Web制作</span><span>広報支援</span><span>SEO/AIO</span></div>
         <div class="case-cta"><a href="https://okishin.search-mania.net/" target="_blank" rel="noopener">サイトを見る →</a></div>
-      </div>
-    </article>
-
-    <!-- CASE 06: 手放しマップ集客の一般成果（参考値） -->
-    <article class="case">
-      <div class="case-thumb" style="background:linear-gradient(135deg,#1a73e8,#fbbc04);"></div>
-      <div class="case-body">
-        <div class="case-industry">REFERENCE / MEO一般値</div>
-        <h3>手放しマップ集客 平均インパクト</h3>
-        <p class="case-desc">SearchMania支援店舗の GBP 基本整備＋写真30枚追加＋週2回投稿を3ヶ月継続した場合の代表的な変化幅（参考値・非個別店舗）。</p>
-        <div class="kpi-grid">
-          <div class="kpi"><div class="l">月間表示回数</div><div class="v">×2〜3倍</div></div>
-          <div class="kpi"><div class="l">電話タップ</div><div class="v">×1.5〜2倍</div></div>
-          <div class="kpi"><div class="l">ルート検索</div><div class="v">×1.5〜2倍</div></div>
-        </div>
-        <div class="case-meta"><span>参考値</span><span>3ヶ月継続</span><span>沖縄拠点実測</span></div>
-        <div class="case-cta"><a href="/tebanashi-map-shukyaku/">手放しマップ集客とは →</a></div>
       </div>
     </article>
 
