@@ -21,6 +21,7 @@ SearchMania Inc.（サーチマニア）は 2024 年設立、沖縄県那覇市�
 - [手放しマップ集客 LP](https://search-mania.net/automap/)
 - [自動更新Webサイト LP](https://search-mania.net/autowebsite/)
 - [Googleマップ勉強会 申込](https://mapform.search-mania.net/)
+- [**無料MEO診断ツール**](https://meo.search-mania.net/) — 事業名＋住所でGoogleマップ整備＆検索評価診断
 - [お問い合わせフォーム](https://search-mania.net/#contact)
 - [プライバシーポリシー](https://search-mania.net/privacy-policy.html)
 - [ご利用規約](https://search-mania.net/terms.html)
