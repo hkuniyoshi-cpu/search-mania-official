@@ -466,7 +466,9 @@ a:hover { color: var(--blue-dark); }
   font-family: var(--sans);
   font-size: clamp(26px, 3.6vw, 38px);
   font-weight: 700;
-  letter-spacing: .12em;
+  /* 文字間は実スペースではなく letter-spacing で表現 (SEO/読み上げ対策)。text-indent は末尾余白の中央ズレ補正 */
+  letter-spacing: .32em;
+  text-indent: .32em;
   color: var(--ink);
   margin-bottom: 18px;
   line-height: 1.4;
@@ -489,6 +491,20 @@ a:hover { color: var(--blue-dark); }
   margin: 0 auto;
 }
 .section-subtitle.light { color: rgba(255,255,255,.7); }
+
+/* Skip link (キーボード/読み上げ利用者向け。フォーカス時のみ表示) */
+.skip-link {
+  position: absolute; left: -9999px; top: 8px; z-index: 2000;
+  background: #fff; color: var(--ink); padding: 8px 14px; border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15); font-size: 14px;
+}
+.skip-link:focus { left: 8px; }
+
+/* ゴーストボタン (CTA の副導線用) */
+.btn-ghost {
+  background: transparent; color: var(--blue); border: 2px solid var(--blue);
+}
+.btn-ghost:hover { background: var(--blue); color: #fff; }
 
 /* ============================================================
    Reveal
