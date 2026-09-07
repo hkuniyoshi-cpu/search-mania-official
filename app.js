@@ -92,6 +92,12 @@ function stars(n){
   n = Math.max(0, Math.min(5, parseInt(n,10) || 5));
   return '★'.repeat(n) + '<span style="opacity:.25">' + '★'.repeat(5-n) + '</span>';
 }
+/* 静的プリレンダ(scripts/prerender.mjs)と同一アルゴリズム。CMS JSON が変わっていなければ再描画をスキップ */
+function cmsHash(s){
+  let h = 5381;
+  for(let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36) + '.' + s.length;
+}
 
 /* ============================================================
    CMS apply functions
@@ -207,15 +213,10 @@ function applyReviews(items){
 function applyBlog(items){
   const wall = document.querySelector('#blog .wall');
   if(wall) wall.classList.remove('cms-loading');
-  if(!items || !items.length){
-    if(wall) wall.innerHTML = '<div class="blog-empty">準備中です。MEO・AI活用の最新情報をお届け予定です。</div>';
-    return;
-  }
+  /* CMS に記事が無い間は、HTML に静的に埋め込んだ特集記事(ピラーページ)をそのまま表示 */
+  if(!items || !items.length) return;
   const valid = items.filter(b => b.body || (b.title && !/^（.*）$/.test(b.title)));
-  if(!valid.length){
-    if(wall) wall.innerHTML = '<div class="blog-empty">準備中です。MEO・AI活用の最新情報をお届け予定です。</div>';
-    return;
-  }
+  if(!valid.length) return;
   window._blogItems = valid;
   wall.innerHTML = valid.map((b,i) => {
     let rawTitle = (b.title || '').trim();
@@ -251,40 +252,6 @@ function applyBlog(items){
    Partners (delivery 流用)
    delivery シートの type=partner で扱う or 専用partnersシート
    ============================================================ */
-/* ============================================================
-   Works
-   ============================================================ */
-function applyWorks(items){
-  if(!Array.isArray(items) || !items.length) return;
-  const grid = document.getElementById('worksGrid');
-  if(!grid) return;
-  // 「サンプル」が含まれるものはスケルトンのまま空にせず、フォールバックでサンプル表示
-  const real = items.filter(w => !/サンプル/.test(w.title || ''));
-  const display = real.length ? real : items;
-  grid.innerHTML = display.map(w => {
-    const img = driveImg(w.image);
-    const hasUrl = w.url && /^https?:/.test(w.url);
-    const open = hasUrl
-      ? `<a class="work-card reveal" href="${esc(w.url)}" target="_blank" rel="noopener">`
-      : `<article class="work-card reveal">`;
-    const close = hasUrl ? '</a>' : '</article>';
-    return `${open}
-      <div class="work-image">
-        ${img
-          ? `<img src="${esc(img)}" alt="${esc(w.title)}" loading="lazy" onerror="this.closest('.work-image').innerHTML='<div class=\\'work-image-placeholder\\'><i class=\\'fa-solid fa-image\\'></i></div>'">`
-          : '<div class="work-image-placeholder"><i class="fa-solid fa-image"></i></div>'}
-        <div class="work-image-overlay"></div>
-      </div>
-      <div class="work-body">
-        ${w.category ? `<span class="work-cat">${esc(w.category)}</span>` : ''}
-        <h3 class="work-title">${esc(w.title)}</h3>
-        ${w.desc ? `<p class="work-desc">${esc(w.desc)}</p>` : ''}
-        ${hasUrl ? '<span class="work-link">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>' : ''}
-      </div>
-    ${close}`;
-  }).join('');
-}
-
 function applyPartners(items){
   if(!Array.isArray(items) || !items.length) return;
   const grid = document.getElementById('partnersGrid');
@@ -366,7 +333,6 @@ function applyCMSData(data){
   if(data.forYou)   applyForYou(data.forYou);
   if(data.reviews)  applyReviews(data.reviews);
   if(data.blog)     applyBlog(data.blog);
-  if(data.works)    applyWorks(data.works);
   if(data.partners) applyPartners(data.partners);
   if(data.recruit)  applyRecruit(data.recruit, data.recruitStatus);
   if(data.cta)      applyCTA(data.cta);
@@ -377,8 +343,11 @@ function loadCMS(){
     console.warn('GAS_URL not configured yet');
     return;
   }
-  /* ⚡ キャッシュがあれば先に描画 (体感速度UP) */
-  const cached = loadCMSFromCache();
+  /* 静的プリレンダ済み(meta cms-hash あり)なら、HTML の内容が既に表示されているので
+     localStorage キャッシュでの先行描画はしない (古いキャッシュで新しい静的HTMLを上書きしない) */
+  const hashMeta = document.querySelector('meta[name="cms-hash"]');
+  const prerenderedHash = hashMeta ? (hashMeta.getAttribute('content') || '') : '';
+  const cached = prerenderedHash ? null : loadCMSFromCache();
   if(cached){
     applyCMSData(cached);
     if(typeof observeNew === 'function') observeNew();
@@ -388,15 +357,21 @@ function loadCMS(){
       });
     }, 200);
   }
-  /* バックグラウンドで最新を取得 (キャッシュ更新+差分があれば再描画) */
+  /* バックグラウンドで最新を取得 (差分があれば再描画) */
   fetch(GAS_URL)
     .then(r => r.json())
     .then(data => {
+      const raw = JSON.stringify(data);
       saveCMSToCache(data);
+      if(prerenderedHash){
+        /* 静的HTMLと同じ内容なら何もしない (ちらつき防止) */
+        if(cmsHash(raw) === prerenderedHash) return;
+        applyCMSData(data);
+      }
       /* キャッシュなしならここで初描画 */
-      if(!cached) applyCMSData(data);
+      else if(!cached) applyCMSData(data);
       /* キャッシュありで内容が変わっていれば再描画 */
-      else if(JSON.stringify(cached) !== JSON.stringify(data)) applyCMSData(data);
+      else if(JSON.stringify(cached) !== raw) applyCMSData(data);
       // CMS反映直後に新規挿入要素のアニメーションを監視（タイミング依存バグの修正）
       if(typeof observeNew === 'function') observeNew();
       // CMS反映から800ms後にフェイルセーフ実行（全ての未表示 reveal を強制的に is-visible 化）
@@ -598,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ----- 全主要セクション: スクロール到達で in-view 付与 ----- */
   const animSections = document.querySelectorAll(
-    '.section.chapter, #features, #for-you, #works, #partners, #reviews, #recruit, #contact'
+    '.section.chapter, #features, #for-you, #partners, #reviews, #recruit, #contact'
   );
   if(animSections.length && 'IntersectionObserver' in window){
     const secIO = new IntersectionObserver((entries) => {
