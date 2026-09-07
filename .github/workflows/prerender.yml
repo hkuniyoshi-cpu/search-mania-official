@@ -1,0 +1,38 @@
+name: Prerender CMS into index.html
+
+# CMS(Google Sheets → GAS JSON) の内容を index.html に静的に焼き込む。
+# 検索エンジン / AI クローラーが JS なしで本文を読めるようにし、初回表示のスケルトン待ちを無くす。
+# 変更があった場合のみ commit → Cloudflare Pages が自動デプロイ。
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # 6時間ごと (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prerender
+  cancel-in-progress: false
+
+jobs:
+  prerender:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Render CMS content
+        run: node scripts/prerender.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "index.html unchanged"
+            exit 0
+          fi
+          git config user.name  "cms-prerender[bot]"
+          git config user.email "noreply@search-mania.net"
+          git add index.html
+          git commit -m "chore(cms): prerender CMS content [auto]"
+          git push
