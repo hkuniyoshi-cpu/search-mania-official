@@ -1644,8 +1644,8 @@
       <img src="images/monthly.png" alt="1ヶ月の運用イメージカレンダー" style="display:block;max-width:min(760px,92%);width:100%;height:auto;margin:0 auto;">
     </div>
 
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-      <div class="card" style="padding:24px;border-left:4px solid var(--g-green);">
+    <div class="reveal monthly-grid">
+      <div class="card monthly-card" style="padding:24px;border-left:4px solid var(--g-green);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="sun" style="width:22px;height:22px;color:var(--g-green);stroke-width:2;"></i>
           <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎日</h3>
@@ -1657,7 +1657,7 @@
         </ul>
       </div>
 
-      <div class="card" style="padding:24px;border-left:4px solid var(--accent);">
+      <div class="card monthly-card" style="padding:24px;border-left:4px solid var(--accent);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="calendar-days" style="width:22px;height:22px;color:var(--accent);stroke-width:2;"></i>
           <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎週</h3>
@@ -1669,7 +1669,7 @@
         </ul>
       </div>
 
-      <div class="card" style="padding:24px;border-left:4px solid #F57F17;">
+      <div class="card monthly-card" style="padding:24px;border-left:4px solid #F57F17;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="calendar-check" style="width:22px;height:22px;color:#F57F17;stroke-width:2;"></i>
           <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">月末</h3>
@@ -1681,18 +1681,32 @@
         </ul>
       </div>
 
-      <div class="card" style="padding:24px;border-left:4px solid var(--g-red);">
+      <div class="card monthly-card monthly-anytime" style="padding:24px;border-left:4px solid var(--g-red);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="message-square" style="width:22px;height:22px;color:var(--g-red);stroke-width:2;"></i>
-          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">いつでも</h3>
+          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">いつでも（オーナー様発信）</h3>
         </div>
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
+        <ul class="monthly-anytime-list" style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px 24px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li>・LINE／メールで更新依頼</li>
           <li>・写真を追加送付</li>
           <li>・キャンペーン・イベント告知</li>
         </ul>
       </div>
     </div>
+
+    <style>
+      .monthly-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+      .monthly-anytime { grid-column:1 / -1; }
+      @media (max-width: 900px) {
+        .monthly-grid { grid-template-columns:repeat(2,1fr); }
+        .monthly-anytime { grid-column:1 / -1; }
+        .monthly-anytime-list { grid-template-columns:repeat(2,1fr) !important; }
+      }
+      @media (max-width: 560px) {
+        .monthly-grid { grid-template-columns:1fr; }
+        .monthly-anytime-list { grid-template-columns:1fr !important; }
+      }
+    </style>
   </div>
 </section>
 
