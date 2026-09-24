@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ----- 全主要セクション: スクロール到達で in-view 付与 ----- */
   const animSections = document.querySelectorAll(
-    '.section.chapter, #features, #for-you, #partners, #reviews, #recruit, #contact'
+    '.section.chapter, #features, #for-you, #case, #partners, #reviews, #recruit, #contact'
   );
   if(animSections.length && 'IntersectionObserver' in window){
     const secIO = new IntersectionObserver((entries) => {
