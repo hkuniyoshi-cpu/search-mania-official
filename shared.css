@@ -4522,22 +4522,30 @@ a.service-card:hover .service-link-hint {
   transform: scale(1.12) rotate(90deg);
 }
 
-/* 無料MEO診断ポップアップ: 勉強会の上に積む。Blue→Green で区別 */
+/* 2つのポップアップは同じ幅に揃える (PC) */
+.study-popup { width: 310px; max-width: 310px; }
+
+/* 無料MEO診断ポップアップ: 勉強会の上に積む。ネイビー→インディゴで Google 4色と明確に区別 */
 .study-popup--meo {
   bottom: 110px;
   background: linear-gradient(135deg,
-    #1a73e8  0%,
-    #4285F4 30%,
-    #2e9be0 55%,
-    #34A853 85%,
-    #22c55e 100%);
+    #0b1e46  0%,
+    #14306e 40%,
+    #1e49a8 75%,
+    #2f6fe0 100%);
   box-shadow:
-    0 16px 44px rgba(26,115,232,.40),
-    0 8px 22px rgba(52,168,83,.28),
+    0 16px 44px rgba(11,30,70,.45),
+    0 8px 22px rgba(30,73,168,.30),
     0 4px 12px rgba(15,23,42,.20),
-    inset 0 0 0 1px rgba(255,255,255,.28);
+    inset 0 0 0 1px rgba(255,255,255,.22);
 }
-.study-popup--meo::after { background: #34A853; }
+.study-popup--meo::after { background: #2f6fe0; }
+.study-popup--meo:hover {
+  box-shadow:
+    0 22px 46px rgba(30,73,168,.50),
+    0 6px 16px rgba(11,30,70,.35),
+    inset 0 0 0 1px rgba(255,255,255,.25);
+}
 
 /* モバイル: フル幅で下に */
 @media (max-width: 600px) {
@@ -4545,6 +4553,7 @@ a.service-card:hover .service-link-hint {
     bottom: 16px;
     right: 16px;
     left: 16px;
+    width: auto;
     max-width: none;
     padding: 12px 20px 12px 14px;
     border-radius: 14px;
