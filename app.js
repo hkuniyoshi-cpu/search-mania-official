@@ -130,12 +130,21 @@ function applyAbout(a){
   }
 }
 
+/* CMS の画像URL列が空のときに使う既定イラスト (表示順) */
+const SERVICE_DEFAULT_ILLUST = [
+  '/images/services/01-meo.webp',
+  '/images/services/02-ai-auto.webp',
+  '/images/services/03-content.webp',
+  '/images/services/04-dx.webp',
+  '/images/services/05-web.webp',
+];
+
 function applyMenu(items){
   if(!Array.isArray(items) || !items.length) return;
   const grid = document.getElementById('servicesGrid');
   if(!grid) return;
   grid.innerHTML = items.map((m,i) => {
-    const img = driveImg(m.image);
+    const img = driveImg(m.image) || SERVICE_DEFAULT_ILLUST[i] || '';
     const num = String(i+1).padStart(2,'0');
     const hasLink = m.url && m.url.trim() !== '';
     const tag = hasLink ? `a href="${esc(m.url.trim())}"` : 'article';
@@ -143,7 +152,7 @@ function applyMenu(items){
     const linkStyle = hasLink ? ' style="text-decoration:none;color:inherit;display:block;"' : '';
     return `<${tag} class="service-card reveal"${linkStyle}${hasLink ? ' target="_blank" rel="noopener noreferrer"' : ''}>
       <div class="service-num">${num}</div>
-      ${img ? `<div class="service-img"><img src="${esc(img)}" alt="${esc(m.name)}" loading="lazy"></div>` : '<div class="service-img placeholder"><i class="fa-solid fa-circle-nodes"></i></div>'}
+      <div class="service-img placeholder"><i class="fa-solid fa-circle-nodes"></i></div>
       <div class="service-body">
         ${m.bestSeller ? '<span class="service-badge">人気</span>' : ''}
         <h3 class="service-name">${esc(m.name)}</h3>
@@ -151,6 +160,7 @@ function applyMenu(items){
         <p class="service-desc">${esc(m.desc)}</p>
         ${hasLink ? '<span class="service-link-hint">詳しく見る →</span>' : ''}
       </div>
+      ${img ? `<div class="service-illust"><img src="${esc(img)}" alt="${esc(m.name)}のイメージイラスト" loading="lazy" width="1200" height="800"></div>` : ''}
     </${closeTag}>`;
   }).join('');
 }
@@ -552,24 +562,26 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  /* ----- 勉強会ポップアップ ----- */
-  const studyPopup = document.getElementById('studyPopup');
-  if(studyPopup){
-    const closeBtn = studyPopup.querySelector('.study-popup-close');
-    // セッション中に閉じていなければ 2秒後に出現
-    if(sessionStorage.getItem('studyPopupDismissed') !== '1'){
-      setTimeout(() => studyPopup.classList.add('is-shown'), 2000);
+  /* ----- 追従ポップアップ (勉強会 / 無料MEO診断)。data-popup-key で個別に閉じた状態を記憶 ----- */
+  document.querySelectorAll('.study-popup').forEach(popup => {
+    const key = popup.dataset.popupKey || 'studyPopupDismissed';
+    const delay = parseInt(popup.dataset.popupDelay || '2000', 10);
+    const closeBtn = popup.querySelector('.study-popup-close');
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(key) === '1'; } catch(_){}
+    if(!dismissed){
+      setTimeout(() => popup.classList.add('is-shown'), delay);
     }
     if(closeBtn){
       closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        studyPopup.classList.remove('is-shown');
-        studyPopup.classList.add('is-dismissed');
-        try { sessionStorage.setItem('studyPopupDismissed', '1'); } catch(_){}
+        popup.classList.remove('is-shown');
+        popup.classList.add('is-dismissed');
+        try { sessionStorage.setItem(key, '1'); } catch(_){}
       });
     }
-  }
+  });
 
   /* ----- 全主要セクション: スクロール到達で in-view 付与 ----- */
   const animSections = document.querySelectorAll(
