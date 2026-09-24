@@ -4573,6 +4573,54 @@ a.service-card:hover .service-link-hint {
 }
 
 /* ============================================================
+   導入事例 ティーザー (トップ #case)。詳細は /case/
+   ============================================================ */
+.case-teaser { background: #fff; }
+.case-teaser .sec-head { text-align: center; margin-bottom: 44px; }
+.case-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.case-teaser-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 26px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.case-teaser-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--blue);
+  box-shadow: 0 24px 50px -16px rgba(66,133,244,.22);
+}
+.case-teaser-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.case-teaser-industry {
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  color: var(--ink); background: var(--blue-soft, #eaf1fe);
+  padding: 5px 11px; border-radius: 999px;
+}
+.case-teaser-region { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; }
+.case-teaser-metric { display: flex; flex-direction: column; gap: 2px; padding: 14px 0 6px; border-top: 1px dashed var(--line); }
+.case-teaser-label { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+.case-teaser-mult {
+  font-family: 'Inter', sans-serif; font-size: 44px; font-weight: 800; line-height: 1.1;
+  letter-spacing: -.03em; color: var(--blue);
+}
+.case-teaser-ba { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); font-weight: 500; }
+.case-teaser-note { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--ink-dim, #374151); }
+.case-teaser-actions { text-align: center; margin-top: 36px; }
+@media (max-width: 600px) {
+  .case-teaser-card { padding: 22px 22px 20px; }
+  .case-teaser-mult { font-size: 38px; }
+}
+
+/* ============================================================
    ポップアップ コンパクト版 (従来の約半分)。テキストは1行固定で改行させない
    ============================================================ */
 .study-popup,
