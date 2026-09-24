@@ -4573,6 +4573,35 @@ a.service-card:hover .service-link-hint {
 }
 
 /* ============================================================
+   ポップアップ コンパクト版 (従来の約半分)。テキストは1行固定で改行させない
+   ============================================================ */
+.study-popup,
+.study-popup--meo {
+  width: 224px;
+  max-width: 224px;
+  padding: 8px 12px 8px 10px;
+  gap: 8px;
+  border-radius: 12px;
+  bottom: 20px;
+  right: 20px;
+}
+.study-popup--meo { bottom: 72px; }   /* 20 + 高さ44 + 隙間8 */
+.study-popup-icon { width: 28px; height: 28px; font-size: 13px; border-radius: 8px; }
+.study-popup-text { gap: 1px; }
+.study-popup-title { font-size: 11.5px; letter-spacing: .01em; }
+.study-popup-sub { font-size: 9.5px; letter-spacing: .02em; }
+.study-popup-arrow { font-size: 13px; margin-left: 2px; }
+.study-popup-close { width: 18px; height: 18px; font-size: 12px; top: -7px; right: -7px; }
+.study-popup::before { inset: -6px; border-radius: 16px; }
+.study-popup::after { width: 10px; height: 10px; bottom: -5px; }
+@media (max-width: 600px) {
+  .study-popup,
+  .study-popup--meo { left: auto; right: 12px; width: 224px; bottom: 14px; }
+  .study-popup--meo { bottom: 66px; }
+  .study-popup::after { right: 24px; transform: rotate(45deg); }
+}
+
+/* ============================================================
    ⭐ Services - autowebsite 系カードを Google Green で差別化
    href に "autowebsite" を含むサービスカードは緑アクセント
    ============================================================ */
