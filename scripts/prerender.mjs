@@ -34,10 +34,19 @@ function cmsHash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h <
 /* ---------- レンダラ (app.js の apply* と同じ DOM。reveal は is-visible 付きで出力) ---------- */
 const R = 'reveal is-visible';
 
+/* app.js の SERVICE_DEFAULT_ILLUST と同一 */
+const SERVICE_DEFAULT_ILLUST = [
+  '/images/services/01-meo.webp',
+  '/images/services/02-ai-auto.webp',
+  '/images/services/03-content.webp',
+  '/images/services/04-dx.webp',
+  '/images/services/05-web.webp',
+];
+
 function renderMenu(items) {
   if (!Array.isArray(items) || !items.length) return null;
   return items.map((m, i) => {
-    const img = driveImg(m.image);
+    const img = driveImg(m.image) || SERVICE_DEFAULT_ILLUST[i] || '';
     const num = String(i + 1).padStart(2, '0');
     const hasLink = m.url && m.url.trim() !== '';
     const tag = hasLink ? `a href="${esc(m.url.trim())}"` : 'article';
@@ -45,7 +54,7 @@ function renderMenu(items) {
     const linkStyle = hasLink ? ' style="text-decoration:none;color:inherit;display:block;"' : '';
     return `<${tag} class="service-card ${R}"${linkStyle}${hasLink ? ' target="_blank" rel="noopener noreferrer"' : ''}>
       <div class="service-num">${num}</div>
-      ${img ? `<div class="service-img"><img src="${esc(img)}" alt="${esc(m.name)}" loading="lazy"></div>` : '<div class="service-img placeholder"><i class="fa-solid fa-circle-nodes"></i></div>'}
+      <div class="service-img placeholder"><i class="fa-solid fa-circle-nodes"></i></div>
       <div class="service-body">
         ${m.bestSeller ? '<span class="service-badge">人気</span>' : ''}
         <h3 class="service-name">${esc(m.name)}</h3>
@@ -53,6 +62,7 @@ function renderMenu(items) {
         <p class="service-desc">${esc(m.desc)}</p>
         ${hasLink ? '<span class="service-link-hint">詳しく見る →</span>' : ''}
       </div>
+      ${img ? `<div class="service-illust"><img src="${esc(img)}" alt="${esc(m.name)}のイメージイラスト" loading="lazy" width="1200" height="800"></div>` : ''}
     </${close}>`;
   }).join('\n');
 }
