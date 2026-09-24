@@ -4614,6 +4614,16 @@ a.service-card:hover .service-link-hint {
 }
 .case-teaser-ba { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); font-weight: 500; }
 .case-teaser-note { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--ink-dim, #374151); }
+/* 導入サービスの短いタグ (正式名称はセクション説明文に記載) */
+.case-teaser-tag {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  color: var(--blue); border: 1px solid rgba(66,133,244,.45);
+  padding: 5px 10px; border-radius: 999px; background: #fff;
+}
+.case-teaser-tag i { font-size: 11px; }
 .case-teaser-actions { text-align: center; margin-top: 36px; }
 @media (max-width: 600px) {
   .case-teaser-card { padding: 22px 22px 20px; }
