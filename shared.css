@@ -4731,3 +4731,6 @@ a.service-card:hover .service-link-hint {
   background: rgba(52,168,83,.10);
   border-color: rgba(52,168,83,.25);
 }
+
+/* 日本語見出しを文節単位で改行 (<wbr> は BudouX で挿入) */
+.bx{word-break:keep-all;overflow-wrap:anywhere}
