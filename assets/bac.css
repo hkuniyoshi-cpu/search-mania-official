@@ -1,0 +1,115 @@
+/* ============================================================
+   BAC — Before / After Comparison (横向きレース型バー)
+   各行は独立スケール (行ごとに max=100%)。値ラベルはバー端に直接表示。
+   JS なしでも最終状態で表示される (--f はマークアップ側で指定済み)。
+   ============================================================ */
+.bac {
+  --bac-ink: #0a0f1a;
+  --bac-mute: #6b7280;
+  --bac-before: #c9d0da;
+  --bac-after-1: #1a73e8;
+  --bac-after-2: #5aa2ff;
+  --bac-chip-bg: #e8f0fe;
+  --bac-chip-ink: #1747a6;
+  --bac-track: #f1f4f8;
+  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+}
+
+.bac-legend {
+  display: flex; flex-wrap: wrap; gap: 6px 14px;
+  font-size: 11px; color: var(--bac-mute); letter-spacing: .02em;
+  margin: 0 0 12px;
+}
+.bac-key { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.bac-key::before {
+  content: ''; width: 14px; height: 6px; border-radius: 3px;
+  background: var(--bac-before);
+}
+.bac-key--after::before { background: linear-gradient(90deg, var(--bac-after-1), var(--bac-after-2)); }
+
+.bac-rows { display: flex; flex-direction: column; gap: 14px; }
+
+.bac-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "label mult"
+    "tracks tracks";
+  gap: 6px 10px;
+  align-items: center;
+}
+.bac-label { grid-area: label; font-size: 12px; font-weight: 700; color: var(--bac-ink); letter-spacing: .02em; }
+
+.bac-mult {
+  grid-area: mult;
+  font-family: "Inter", sans-serif; font-weight: 800; font-size: 15px; line-height: 1;
+  color: var(--bac-chip-ink); background: var(--bac-chip-bg);
+  padding: 5px 9px; border-radius: 999px; letter-spacing: -.01em;
+  transform-origin: center;
+}
+
+.bac-tracks { grid-area: tracks; display: flex; flex-direction: column; gap: 4px; }
+.bac-track {
+  display: flex; align-items: center; gap: 8px;
+  min-height: 16px;
+}
+.bac-fill {
+  display: block; flex: none;
+  /* 数値ラベル分(64px)を残した幅に対する比率 */
+  width: calc((100% - 64px) * var(--f, 1));
+  min-width: 4px;
+  border-radius: 4px;
+  transition: width 1.05s cubic-bezier(.16,1,.3,1);
+  transition-delay: calc(var(--i, 0) * 160ms + var(--lag, 0ms));
+}
+.bac-track--before .bac-fill { height: 8px; background: var(--bac-before); }
+.bac-track--after  .bac-fill {
+  height: 14px;
+  background: linear-gradient(90deg, var(--bac-after-1), var(--bac-after-2));
+  position: relative; overflow: hidden;
+  --lag: 260ms;
+}
+/* 伸び切った後に一度だけ光が走る */
+.bac-track--after .bac-fill::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.55) 50%, transparent 80%);
+  transform: translateX(-120%);
+}
+.bac-num {
+  font-family: "Inter", sans-serif; font-variant-numeric: tabular-nums;
+  font-size: 11.5px; color: var(--bac-mute); white-space: nowrap;
+  transition: opacity .4s ease;
+  transition-delay: calc(var(--i, 0) * 160ms + 300ms);
+}
+.bac-track--after .bac-num { font-size: 13px; font-weight: 700; color: var(--bac-ink); }
+
+/* ---- アニメーション状態 (JS が付与) ---- */
+.bac.is-armed .bac-fill { width: 4px; }
+.bac.is-armed .bac-num { opacity: 0; }
+.bac.is-armed .bac-mult { opacity: 0; transform: scale(.6) rotate(-8deg); }
+
+.bac.is-play .bac-mult {
+  animation: bacPop .55s cubic-bezier(.34,1.56,.64,1) both;
+  animation-delay: calc(var(--i, 0) * 160ms + 1.05s);
+}
+.bac.is-play .bac-track--after .bac-fill::after {
+  animation: bacShine .9s ease-out both;
+  animation-delay: calc(var(--i, 0) * 160ms + 1.2s);
+}
+@keyframes bacPop {
+  0%   { opacity: 0; transform: scale(.6) rotate(-8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes bacShine {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+.bac-period {
+  margin: 12px 0 0; font-size: 11px; color: var(--bac-mute); letter-spacing: .02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bac-fill, .bac-num { transition: none; }
+  .bac.is-play .bac-mult, .bac.is-play .bac-track--after .bac-fill::after { animation: none; }
+}
