@@ -392,6 +392,8 @@
       .comp-row { grid-template-columns:1fr; }
     }
   </style>
+  <link rel="stylesheet" href="/assets/bac.css?v=1">
+  <script src="/assets/bac.js?v=1" defer></script>
 </head>
 <body>
 
@@ -672,6 +674,127 @@
       </div>
     </div>
 
+    <!-- ── GBP インサイト実測 (Before/After アニメーション) ── -->
+    <div class="reveal" id="gbp-results" style="margin-bottom:48px;">
+      <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
+        <i data-lucide="map-pin" style="width:18px;height:18px;color:var(--accent);stroke-width:2.5;"></i>
+        Googleマップの実測データ（導入前 → 導入後）
+      </h3>
+      <p style="font-size:12px;color:var(--fg-mute);margin:0 0 20px;text-align:center;line-height:1.7;">Googleビジネスプロフィールのインサイト実測値。店名は非公表・業種とエリアのみ公開しています。</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        <div class="card" style="background:#fff;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+            <span style="font-size:12px;font-weight:700;color:var(--fg);background:#E8F0FE;padding:4px 10px;border-radius:99px;">マッサージサロン</span>
+            <span style="font-size:11px;color:var(--fg-mute);">那覇市中心部</span>
+          </div>
+          <p style="font-size:14px;font-weight:800;color:var(--fg);margin:0 0 14px;line-height:1.55;">毎日投稿の手放し運用で電話×2.2、予約が埋まりセラピスト採用へ</p>
+          <div class="bac" data-bac>
+            <div class="bac-legend"><span class="bac-key">支援前 2026.02</span><span class="bac-key bac-key--after">支援後 2026.06</span></div>
+            <div class="bac-rows">
+            <div class="bac-row" data-before="34" data-after="75" title="電話タップ: 34 → 75（×2.2）">
+              <span class="bac-label">電話タップ</span>
+              <span class="bac-mult">×2.2</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.453"></span><span class="bac-num">34</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">75</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="705" data-after="823" title="マップ表示: 705 → 823（×1.2）">
+              <span class="bac-label">マップ表示</span>
+              <span class="bac-mult">×1.2</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.857"></span><span class="bac-num">705</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">823</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="103" data-after="127" title="ルート検索: 103 → 127（×1.2）">
+              <span class="bac-label">ルート検索</span>
+              <span class="bac-mult">×1.2</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.811"></span><span class="bac-num">103</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">127</span></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:#fff;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+            <span style="font-size:12px;font-weight:700;color:var(--fg);background:#E8F0FE;padding:4px 10px;border-radius:99px;">アミューズメント施設</span>
+            <span style="font-size:11px;color:var(--fg-mute);">那覇市中心部</span>
+          </div>
+          <p style="font-size:14px;font-weight:800;color:var(--fg);margin:0 0 14px;line-height:1.55;">開業半年の新店を、半年で検索表示×4.8・月7,781表示へ</p>
+          <div class="bac" data-bac>
+            <div class="bac-legend"><span class="bac-key">支援前 2026.02</span><span class="bac-key bac-key--after">支援後 2026.08</span></div>
+            <div class="bac-rows">
+            <div class="bac-row" data-before="2680" data-after="7781" title="月間表示: 2,680 → 7,781（×2.9）">
+              <span class="bac-label">月間表示</span>
+              <span class="bac-mult">×2.9</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.344"></span><span class="bac-num">2,680</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">7,781</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="560" data-after="2667" title="検索表示: 560 → 2,667（×4.8）">
+              <span class="bac-label">検索表示</span>
+              <span class="bac-mult">×4.8</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.210"></span><span class="bac-num">560</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">2,667</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="7" data-after="16" title="電話タップ: 7 → 16（×2.3）">
+              <span class="bac-label">電話タップ</span>
+              <span class="bac-mult">×2.3</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.438"></span><span class="bac-num">7</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">16</span></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background:#fff;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+            <span style="font-size:12px;font-weight:700;color:var(--fg);background:#E8F0FE;padding:4px 10px;border-radius:99px;">コインランドリー</span>
+            <span style="font-size:11px;color:var(--fg-mute);">沖縄本島</span>
+          </div>
+          <p style="font-size:14px;font-weight:800;color:var(--fg);margin:0 0 14px;line-height:1.55;">「近くのコインランドリー」でマップ表示×5</p>
+          <div class="bac" data-bac>
+            <div class="bac-legend"><span class="bac-key">支援前 2026.01</span><span class="bac-key bac-key--after">支援後 2026.08</span></div>
+            <div class="bac-rows">
+            <div class="bac-row" data-before="412" data-after="2066" title="マップ表示: 412 → 2,066（×5.0）">
+              <span class="bac-label">マップ表示</span>
+              <span class="bac-mult">×5.0</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.199"></span><span class="bac-num">412</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">2,066</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="832" data-after="3239" title="月間表示: 832 → 3,239（×3.9）">
+              <span class="bac-label">月間表示</span>
+              <span class="bac-mult">×3.9</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.257"></span><span class="bac-num">832</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">3,239</span></div>
+              </div>
+            </div>
+            <div class="bac-row" data-before="102" data-after="187" title="ルート検索: 102 → 187（×1.8）">
+              <span class="bac-label">ルート検索</span>
+              <span class="bac-mult">×1.8</span>
+              <div class="bac-tracks">
+                <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.545"></span><span class="bac-num">102</span></div>
+                <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1.000"></span><span class="bac-num">187</span></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;margin:20px 0 0;"><a href="/case/" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:underline;">8業種の導入事例をすべて見る →</a></p>
+    </div>
+<!--/gbp-results-->
+
     <!-- ── Featured Case Studies with Before/After Bar Chart ── -->
     <div class="reveal" style="margin-bottom:48px;">
       <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 20px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
@@ -702,37 +825,20 @@
             <p style="font-size:12px;color:var(--fg-dim);margin:6px 0 0;">ランチは連日ほぼ満席</p>
           </div>
 
-          <!-- Before/After Bar Chart SVG -->
           <div style="margin-bottom:16px;">
-            <p style="font-size:11px;font-weight:700;color:var(--fg-mute);margin:0 0 10px;letter-spacing:.05em;">▼ 売上推移（イメージ）</p>
-            <svg viewBox="0 0 280 110" style="width:100%;height:auto;">
-              <!-- Axis -->
-              <line x1="40" y1="95" x2="270" y2="95" stroke="#e8eaed" stroke-width="1"/>
-              <!-- Y-axis labels -->
-              <text x="35" y="22" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">136%</text>
-              <text x="35" y="58" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">100%</text>
-              <text x="35" y="98" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">0%</text>
-              <!-- Grid lines -->
-              <line x1="40" y1="19" x2="270" y2="19" stroke="#f1f3f4" stroke-width="0.5" stroke-dasharray="2,2"/>
-              <line x1="40" y1="55" x2="270" y2="55" stroke="#f1f3f4" stroke-width="0.5" stroke-dasharray="2,2"/>
-              <!-- Before bar -->
-              <rect x="80" y="55" width="60" height="40" rx="4" fill="#9aa0a6"/>
-              <text x="110" y="50" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle" font-weight="700">100%</text>
-              <text x="110" y="107" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle">前年</text>
-              <!-- After bar -->
-              <rect x="170" y="19" width="60" height="76" rx="4" fill="url(#barGradA)"/>
-              <defs>
-                <linearGradient id="barGradA" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stop-color="#EA4335"/>
-                  <stop offset="1" stop-color="#FBBC05"/>
-                </linearGradient>
-              </defs>
-              <text x="200" y="14" font-family="system-ui" font-size="11" fill="#EA4335" text-anchor="middle" font-weight="900">136%</text>
-              <text x="200" y="107" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle">翌年</text>
-              <!-- Arrow -->
-              <path d="M 145 50 Q 155 30 175 25" stroke="#EA4335" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <polygon points="171,22 178,24 174,30" fill="#EA4335"/>
-            </svg>
+            <div class="bac" data-bac>
+              <div class="bac-legend"><span class="bac-key">前年</span><span class="bac-key bac-key--after">導入後の翌年</span></div>
+              <div class="bac-rows">
+                <div class="bac-row" data-before="100" data-after="136" title="売上（前年=100）: 100 → 136">
+                  <span class="bac-label">売上（前年=100）</span>
+                  <span class="bac-mult">136%</span>
+                  <div class="bac-tracks">
+                    <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.735"></span><span class="bac-num">100</span></div>
+                    <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1"></span><span class="bac-num">136</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Timeline -->
@@ -777,34 +883,20 @@
             <p style="font-size:12px;color:var(--fg-dim);margin:6px 0 0;">手土産需要を獲得</p>
           </div>
 
-          <!-- Before/After Bar Chart SVG -->
           <div style="margin-bottom:16px;">
-            <p style="font-size:11px;font-weight:700;color:var(--fg-mute);margin:0 0 10px;letter-spacing:.05em;">▼ 売上推移（イメージ）</p>
-            <svg viewBox="0 0 280 110" style="width:100%;height:auto;">
-              <line x1="40" y1="95" x2="270" y2="95" stroke="#e8eaed" stroke-width="1"/>
-              <text x="35" y="14" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">150%</text>
-              <text x="35" y="58" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">100%</text>
-              <text x="35" y="98" font-family="system-ui" font-size="8" fill="#9aa0a6" text-anchor="end">0%</text>
-              <line x1="40" y1="11" x2="270" y2="11" stroke="#f1f3f4" stroke-width="0.5" stroke-dasharray="2,2"/>
-              <line x1="40" y1="55" x2="270" y2="55" stroke="#f1f3f4" stroke-width="0.5" stroke-dasharray="2,2"/>
-              <!-- Before bar -->
-              <rect x="80" y="55" width="60" height="40" rx="4" fill="#9aa0a6"/>
-              <text x="110" y="50" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle" font-weight="700">100%</text>
-              <text x="110" y="107" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle">前年</text>
-              <!-- After bar -->
-              <rect x="170" y="11" width="60" height="84" rx="4" fill="url(#barGradB)"/>
-              <defs>
-                <linearGradient id="barGradB" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stop-color="#EA4335"/>
-                  <stop offset="1" stop-color="#DB2777"/>
-                </linearGradient>
-              </defs>
-              <text x="200" y="7" font-family="system-ui" font-size="11" fill="#EA4335" text-anchor="middle" font-weight="900">150%+</text>
-              <text x="200" y="107" font-family="system-ui" font-size="9" fill="#5f6368" text-anchor="middle">翌年</text>
-              <!-- Arrow -->
-              <path d="M 145 50 Q 155 25 175 18" stroke="#EA4335" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <polygon points="171,15 178,17 174,23" fill="#EA4335"/>
-            </svg>
+            <div class="bac" data-bac>
+              <div class="bac-legend"><span class="bac-key">前年</span><span class="bac-key bac-key--after">導入後の翌年</span></div>
+              <div class="bac-rows">
+                <div class="bac-row" data-before="100" data-after="150" title="売上（前年=100）: 100 → 150">
+                  <span class="bac-label">売上（前年=100）</span>
+                  <span class="bac-mult">150%</span>
+                  <div class="bac-tracks">
+                    <div class="bac-track bac-track--before"><span class="bac-fill" style="--f:0.667"></span><span class="bac-num">100</span></div>
+                    <div class="bac-track bac-track--after"><span class="bac-fill" style="--f:1"></span><span class="bac-num">150</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Timeline -->
