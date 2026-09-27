@@ -1,38 +1,41 @@
-/* BAC — Before/After Comparison: スクロールで表示範囲に入ったらバーを伸ばし、支援後の数値をカウントアップする */
+/* BAC — Before/After Comparison: 表示範囲に入ったらバーを伸ばし、支援後の数値をカウントアップする
+   失敗時・非表示タブ・動き抑制設定では、マークアップの最終状態 (値もバー幅も確定済み) のまま表示する */
 (function () {
-  var blocks = document.querySelectorAll('[data-bac]');
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('[data-bac]'));
   if (!blocks.length) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) return; /* マークアップの最終状態のまま表示 */
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  var ROW_STAGGER = 160, AFTER_LAG = 260, DURATION = 1050;
 
   function fmt(n) { return Math.round(n).toLocaleString('ja-JP'); }
 
   function countUp(el, from, to, delay) {
-    var dur = 1050;
     el.textContent = fmt(from);
-    setTimeout(function () {
-      var t0 = null;
-      function step(ts) {
-        if (t0 === null) t0 = ts;
-        var p = Math.min(1, (ts - t0) / dur);
-        var eased = 1 - Math.pow(1 - p, 4);
-        el.textContent = fmt(from + (to - from) * eased);
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = fmt(to);
-      }
-      requestAnimationFrame(step);
-    }, delay);
+    var start = null, done = false;
+    function finish() { if (!done) { done = true; el.textContent = fmt(to); } }
+    function step(ts) {
+      if (done) return;
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / DURATION);
+      el.textContent = fmt(from + (to - from) * (1 - Math.pow(1 - p, 4)));
+      if (p < 1) requestAnimationFrame(step); else finish();
+    }
+    setTimeout(function () { requestAnimationFrame(step); }, delay);
+    /* rAF が止まっても最終値は必ず表示する */
+    setTimeout(finish, delay + DURATION + 150);
   }
 
   function play(block) {
+    if (block.classList.contains('is-play')) return;
     block.classList.remove('is-armed');
     block.classList.add('is-play');
     block.querySelectorAll('.bac-row').forEach(function (row, i) {
       var num = row.querySelector('.bac-track--after .bac-num');
       var from = parseFloat(row.getAttribute('data-before')) || 0;
       var to = parseFloat(row.getAttribute('data-after')) || 0;
-      if (num) countUp(num, from, to, i * 160 + 260);
+      if (num) countUp(num, from, to, i * ROW_STAGGER + AFTER_LAG);
     });
   }
 
@@ -40,15 +43,27 @@
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
-      /* 2フレーム待ってから開始 (armed 状態の幅0が描画されてから伸ばす) */
-      requestAnimationFrame(function () { requestAnimationFrame(function () { play(e.target); }); });
+      /* armed (幅0) を一度描画させてから伸ばす */
+      setTimeout(function () { play(e.target); }, 30);
     });
-  }, { threshold: 0.35 });
+  }, { threshold: 0.3 });
 
-  blocks.forEach(function (block) {
-    block.querySelectorAll('.bac-row').forEach(function (row, i) { row.style.setProperty('--i', i); });
-    /* 既に画面内にあるものも armed → play の流れで一度だけアニメーションさせる */
-    block.classList.add('is-armed');
-    io.observe(block);
-  });
+  function arm() {
+    blocks.forEach(function (block) {
+      block.querySelectorAll('.bac-row').forEach(function (row, i) { row.style.setProperty('--i', i); });
+      block.classList.add('is-armed');
+      io.observe(block);
+    });
+  }
+
+  /* 裏タブ等で開かれた場合は、ページが表示された瞬間にアニメーション待機へ入る */
+  if (document.visibilityState === 'visible') {
+    arm();
+  } else {
+    document.addEventListener('visibilitychange', function onVis() {
+      if (document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVis);
+      arm();
+    });
+  }
 })();
