@@ -391,7 +391,8 @@
       .nav-links a:not(.nav-cta) { display:none; }
       .comp-row { grid-template-columns:1fr; }
     }
-  </style>
+  .bx{word-break:keep-all;overflow-wrap:anywhere}
+</style>
   <link rel="stylesheet" href="/assets/bac.css?v=1">
   <script src="/assets/bac.js?v=3" defer></script>
 </head>
@@ -478,7 +479,7 @@
         <span style="font-size:11px;color:#5f6368;font-family:Inter,system-ui;">○○エリア △△ おすすめ</span>
       </div>
 
-      <h2 style="font-size:clamp(28px,5.5vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px;color:var(--fg);">
+      <h2 class="bx" style="font-size:clamp(28px,5.5vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px;color:var(--fg);">
         もう <span style="color:var(--g-red);">"順位"</span> だけでは、<br>選ばれない。
       </h2>
       <p style="font-size:clamp(14px,1.8vw,17px);color:var(--fg-dim);line-height:1.8;margin:0 0 24px;">
@@ -507,7 +508,7 @@
 
     <!-- Service name -->
     <div id="hero-title" style="margin-bottom:20px;">
-      <h1 style="font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--fg);margin:0 0 12px;letter-spacing:-.02em;">
+      <h1 class="bx" style="font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--fg);margin:0 0 12px;letter-spacing:-.02em;">
         手放し<span style="color:var(--accent);">マップ</span>集客
       </h1>
       <p style="font-size:12px;color:var(--fg-mute);margin:0 0 12px;letter-spacing:.05em;">＝ MEOを起点とした自動集客プラン ＝</p>
@@ -548,7 +549,7 @@
   <div style="max-width:960px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="margin-bottom:16px;">PROBLEM</div>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0;">こんなお悩み、抱えていませんか？</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0;">こんな<wbr>お悩み、<wbr>抱えていませんか？</h2>
     </div>
 
     <!-- Problems: 2x2 グリッド（モバイル：1列）番号付きハイライト -->
@@ -615,7 +616,7 @@
   <div style="max-width:1060px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="margin-bottom:16px;">CASE STUDY</div>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;text-align:center;letter-spacing:.02em;">数字が物語る運用実績</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;text-align:center;letter-spacing:.02em;">数字が<wbr>物語る<wbr>運用実績</h2>
       <p style="font-size:14px;color:var(--fg-dim);margin:0;">継続運用で売上を伸ばし続けているクライアントの実例です。</p>
     </div>
 
@@ -644,9 +645,9 @@
 
     <!-- ── Customer Voice (focus on experience, not numbers) ── -->
     <div class="reveal" style="margin-bottom:48px;">
-      <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 20px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
+      <h3 class="bx" style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 20px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
         <i data-lucide="quote" style="width:18px;height:18px;color:var(--accent);stroke-width:2.5;"></i>
-        オーナー様の声
+        オーナー様の<wbr>声
       </h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
         <div class="card" style="background:#fff;">
@@ -676,9 +677,9 @@
 
     <!-- ── GBP インサイト実測 (Before/After アニメーション) ── -->
     <div class="reveal" id="gbp-results" style="margin-bottom:48px;">
-      <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
+      <h3 class="bx" style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
         <i data-lucide="map-pin" style="width:18px;height:18px;color:var(--accent);stroke-width:2.5;"></i>
-        Googleマップの実測データ（導入前 → 導入後）
+        Googleマップの<wbr>実測データ<wbr>（導入前 → 導入後）
       </h3>
       <p style="font-size:12px;color:var(--fg-mute);margin:0 0 20px;text-align:center;line-height:1.7;">Googleビジネスプロフィールのインサイト実測値。店名は非公表・業種とエリアのみ公開しています。</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
@@ -797,7 +798,7 @@
 
     <!-- ── Featured Case Studies with Before/After Bar Chart ── -->
     <div class="reveal" style="margin-bottom:48px;">
-      <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 20px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
+      <h3 class="bx" style="font-size:18px;font-weight:800;color:var(--fg);margin:0 0 20px;text-align:center;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;">
         <i data-lucide="bar-chart-3" style="width:18px;height:18px;color:var(--g-red);stroke-width:2.5;"></i>
         運用データ実績
       </h3>
@@ -848,9 +849,9 @@
           </div>
 
           <details>
-            <summary style="list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;padding:4px 0;">
+            <summary class="bx" style="list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--accent);cursor:pointer;padding:4px 0;">
               <i data-lucide="bar-chart-3" style="width:13px;height:13px;stroke-width:2.5;"></i>
-              詳細レポートを見る
+              詳細レポートを<wbr>見る
               <i data-lucide="chevron-down" style="width:13px;height:13px;stroke-width:2.5;"></i>
             </summary>
             <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
@@ -906,9 +907,9 @@
           </div>
 
           <details>
-            <summary style="list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--g-red);cursor:pointer;padding:4px 0;">
+            <summary class="bx" style="list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--g-red);cursor:pointer;padding:4px 0;">
               <i data-lucide="bar-chart-3" style="width:13px;height:13px;stroke-width:2.5;"></i>
-              詳細レポートを見る
+              詳細レポートを<wbr>見る
               <i data-lucide="chevron-down" style="width:13px;height:13px;stroke-width:2.5;"></i>
             </summary>
             <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
@@ -925,7 +926,7 @@
 
     <!-- ── Effect Timeline Infographic ── -->
     <div class="reveal" style="background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:0 4px 24px rgba(66,133,244,.06);">
-      <h3 style="font-size:clamp(18px,2.4vw,22px);font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;">効果が出始めるまでのタイムライン</h3>
+      <h3 class="bx" style="font-size:clamp(18px,2.4vw,22px);font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;">効果が<wbr>出始めるまでの<wbr>タイムライン</h3>
       <p style="font-size:clamp(13px,1.6vw,15px);color:var(--fg-dim);margin:0 0 28px;text-align:center;line-height:1.7;">中長期で「資産」として伸び続けるのが、本物のマップ集客です。</p>
 
       <svg viewBox="0 0 600 220" style="width:100%;height:auto;">
@@ -993,23 +994,23 @@
   <div style="max-width:960px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="margin-bottom:16px;">SOLUTION</div>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0;">「手放しマップ集客」が提供する<br>3つの解決策</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0;">「手放しマップ集客」が<wbr>提供する<br>3つの<wbr>解決策</h2>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
       <div class="card reveal-left">
         <div class="num-badge" style="background:var(--accent);margin-bottom:16px;">1</div>
-        <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">AIによる"手放し"集客</h3>
+        <h3 class="bx" style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">AIに<wbr>よる<wbr>"手放し"集客</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">AIが365日、口コミ返信や最新情報の投稿を全自動で実行。オーナー様の「面倒」をゼロにし、貴重な時間を本業に集中させます。</p>
       </div>
       <div class="card reveal">
         <div class="num-badge" style="background:var(--g-green);margin-bottom:16px;">2</div>
-        <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">戦略的集客設定</h3>
+        <h3 class="bx" style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">戦略的集客設定</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">AIはあくまで「実行部隊」。中核はMEOのプロによる「戦略」です。AI任せの他社とは違い、貴店の勝ち筋を設計し、売上UPまで伴走します。</p>
       </div>
       <div class="card reveal-right">
         <div class="num-badge" style="background:var(--g-yellow);margin-bottom:16px;">3</div>
-        <h3 style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">MEO×SEO×AIO + Web導線設計</h3>
+        <h3 class="bx" style="font-size:17px;font-weight:700;color:var(--fg);margin:0 0 10px;">MEO×SEO×AIO + Web導線設計</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">マップ（MEO）→検索（SEO/AIO）→自動更新WEBサイトへ。<strong style="color:var(--fg);">Web上の導線設計</strong>でお客様を迷わせず予約・来店へ誘導し、取りこぼしをゼロにします。</p>
       </div>
     </div>
@@ -1023,7 +1024,7 @@
 <section style="padding:80px 0;">
   <div style="max-width:960px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
-      <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">具体的なサービス内容</h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">具体的な<wbr>サービス内容</h2>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:32px;">
@@ -1031,7 +1032,7 @@
         <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1763274970/Whisk_7216cb03a1164b2ba2d403383236df7cdr_b7lxa0.jpg" style="width:min(100%,280px);height:200px;object-fit:cover;border-radius:12px;" alt="MEO戦略">
         <div style="flex:1;min-width:200px;">
           <span style="font-size:11px;font-weight:700;color:var(--accent);background:#EBF3FE;padding:3px 10px;border-radius:99px;letter-spacing:.08em;">SERVICE 01</span>
-          <h3 style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">Googleマップ（MEO）戦略的集客設定</h3>
+          <h3 class="bx" style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">Googleマップ<wbr>（MEO）<wbr>戦略的集客設定</h3>
           <p style="font-size:14px;color:var(--fg-dim);line-height:1.7;margin:0;">貴店の集客効果を最大化するため、中核となる<strong style="color:var(--accent);">戦略的なGoogleマップの運用アドバイス</strong>や総合的な集客設定を行います。AIは、この戦略を実行するための「最強の兵隊」です。</p>
         </div>
       </div>
@@ -1039,7 +1040,7 @@
       <div class="reveal-right" style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;overflow:hidden;">
         <div style="flex:1;min-width:200px;order:1;">
           <span style="font-size:11px;font-weight:700;color:var(--g-green);background:#E8F5E9;padding:3px 10px;border-radius:99px;letter-spacing:.08em;">SERVICE 02</span>
-          <h3 style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">GoogleマップAI自動集客システム</h3>
+          <h3 class="bx" style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">GoogleマップAI自動集客システム</h3>
           <p style="font-size:14px;color:var(--fg-dim);line-height:1.7;margin:0;">プロが設計した戦略に基づき、AIがGoogleマップ上の投稿やレビュー返信などを自動化。365日休まず稼働し、オーナー様の「手放し集客」を実現します。</p>
         </div>
         <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1763275685/%E8%87%AA%E5%8B%95%E9%9B%86%E5%AE%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8_t8scoz.png" style="width:min(100%,280px);height:200px;object-fit:cover;border-radius:12px;order:2;" alt="AI自動集客">
@@ -1049,7 +1050,7 @@
         <img src="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1763277245/%E9%9B%86%E5%AE%A2%E5%B0%8E%E7%B7%9A2_gq3cyh.jpg" style="width:min(100%,280px);height:200px;object-fit:cover;border-radius:12px;" alt="自動更新WEBサイト">
         <div style="flex:1;min-width:200px;">
           <span style="font-size:11px;font-weight:700;color:var(--g-yellow);background:#FFF8E1;padding:3px 10px;border-radius:99px;letter-spacing:.08em;">SERVICE 03</span>
-          <h3 style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">自動更新WEBサイト + Web導線設計</h3>
+          <h3 class="bx" style="font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--fg);">自動更新WEBサイト + Web導線設計</h3>
           <p style="font-size:14px;color:var(--fg-dim);line-height:1.7;margin:0;">マップだけでは取りこぼす検索流入を獲得。業種に合った<strong style="color:var(--fg);">問い合わせたくなる設計</strong>と<strong style="color:var(--fg);">構造化データ整備</strong>でGoogle・AI検索（AIO）に対応。マップ→検索→自動更新WEBサイトへの<strong style="color:var(--fg);">Web上の導線</strong>を設計し、お客様を予約・来店までスムーズに誘導します。英語SEOで海外集客にも対応。</p>
           <p style="font-size:12px;color:var(--fg-mute);margin:10px 0 0;">導入実績：詳細は「あわせて使いたい」セクションをご覧ください。</p>
         </div>
@@ -1066,7 +1067,7 @@
   <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="margin-bottom:16px;">WEB ACQUISITION METHODS</div>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">WEB上の主な集客手法、<br>どれを選ぶ？</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">WEB上の<wbr>主な<wbr>集客手法、<br>どれを<wbr>選ぶ？</h2>
       <p style="font-size:14px;color:var(--fg-dim);margin:0;line-height:1.8;">代表的な4手法を「実際の検索画面」と一緒に比較。<br><strong style="color:var(--fg);">パーソナライズ検索の時代、1つだけでは取りこぼしが発生します。</strong></p>
     </div>
 
@@ -1110,7 +1111,7 @@
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
             <span style="font-size:10px;font-weight:700;color:#856404;background:#FEF3CD;padding:2px 8px;border-radius:4px;">PAID</span>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">リスティング広告</h3>
+          <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">リスティング<wbr>広告</h3>
           <p style="font-size:12px;color:var(--fg-dim);line-height:1.7;margin:0 0 12px;">検索結果の上部に「広告」として表示される有料枠。</p>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;">
             <div style="display:flex;justify-content:space-between;"><span style="color:var(--fg-mute);">即効性</span><span style="color:var(--g-green);font-weight:700;">◎ 当日〜</span></div>
@@ -1166,7 +1167,7 @@
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
             <span style="font-size:10px;font-weight:700;color:var(--accent);background:rgba(66,133,244,.12);padding:2px 8px;border-radius:4px;">MEO</span>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">マップ対策</h3>
+          <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">マップ対策</h3>
           <p style="font-size:12px;color:var(--fg-dim);line-height:1.7;margin:0 0 12px;">Googleマップで「来店意欲MAX」の客にダイレクトにアプローチ。</p>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;">
             <div style="display:flex;justify-content:space-between;"><span style="color:var(--fg-mute);">即効性</span><span style="color:#856404;font-weight:700;">○ 1〜3ヶ月</span></div>
@@ -1222,7 +1223,7 @@
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
             <span style="font-size:10px;font-weight:700;color:var(--g-green);background:rgba(52,168,83,.12);padding:2px 8px;border-radius:4px;">SEO</span>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">通常検索対策</h3>
+          <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">通常検索対策</h3>
           <p style="font-size:12px;color:var(--fg-dim);line-height:1.7;margin:0 0 12px;"><strong style="color:var(--fg);">自動更新WEBサイト</strong>を構築。比較検討層に自社の強みを深く伝えます。</p>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;">
             <div style="display:flex;justify-content:space-between;"><span style="color:var(--fg-mute);">即効性</span><span style="color:var(--g-red);font-weight:700;">△ 6ヶ月〜</span></div>
@@ -1289,7 +1290,7 @@
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
             <span style="font-size:10px;font-weight:700;color:var(--g-red);background:rgba(234,67,53,.1);padding:2px 8px;border-radius:4px;">AIO</span>
           </div>
-          <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">AI検索対策</h3>
+          <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">AI検索対策</h3>
           <p style="font-size:12px;color:var(--fg-dim);line-height:1.7;margin:0 0 12px;">構造化された<strong style="color:var(--fg);">情報資産</strong>でChatGPT・Gemini・Google AI Modeに「引用されやすい情報構造を持つ店」になる。</p>
           <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;">
             <div style="display:flex;justify-content:space-between;"><span style="color:var(--fg-mute);">即効性</span><span style="color:#856404;font-weight:700;">○ 中</span></div>
@@ -1307,8 +1308,8 @@
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%, rgba(66,133,244,.18) 0%, transparent 65%), radial-gradient(ellipse at 80% 20%, rgba(234,67,53,.12) 0%, transparent 60%);"></div>
       <div style="position:relative;z-index:1;">
         <p style="font-size:13px;color:#FBBC05;font-weight:700;letter-spacing:.1em;margin:0 0 12px;">CONCLUSION</p>
-        <h3 style="font-size:clamp(20px,3.2vw,28px);font-weight:900;margin:0 0 16px;line-height:1.4;">
-          1つだけでは取りこぼす。<br><span style="color:#4285F4;">MEO</span> × <span style="color:#34A853;">SEO</span> × <span style="color:#EA4335;">AIO</span> の <span style="color:#FBBC05;">複合対策</span>で、全ての検索面を押さえる。
+        <h3 class="bx" style="font-size:clamp(20px,3.2vw,28px);font-weight:900;margin:0 0 16px;line-height:1.4;">
+          1つだけでは<wbr>取りこぼす。<br><span style="color:#4285F4;">MEO</span> × <span style="color:#34A853;">SEO</span> × <span style="color:#EA4335;">AIO</span> の <span style="color:#FBBC05;">複合対策</span>で、<wbr>全ての<wbr>検索面を<wbr>押さえる。
         </h3>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin:0;">
           「広告」は止めたら即ゼロ。「マップだけ」では検索層を取り逃す。<br>
@@ -1326,7 +1327,7 @@
 <section style="padding:80px 0;background:var(--surf);">
   <div style="max-width:760px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
-      <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">他社との決定的な違い</h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">他社との<wbr>決定的な<wbr>違い</h2>
     </div>
 
     <div class="reveal" style="background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);">
@@ -1357,7 +1358,7 @@
   <div style="max-width:960px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="background:rgba(66,133,244,.15);color:#93C5FD;margin-bottom:16px;">MEDIA ROLES</div>
-      <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;margin:0 0 12px;">「集客」と言っても、何から手をつければ…？</h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,32px);font-weight:800;margin:0 0 12px;">「集客」と<wbr>言っても、<wbr>何から<wbr>手を<wbr>つければ…？</h2>
       <p style="color:rgba(255,255,255,.5);font-size:14px;max-width:560px;margin:0 auto;line-height:1.7;">SNS、ブログ、HP… 世の中には集客媒体が溢れています。しかし<strong style="color:rgba(255,255,255,.8);">媒体ごとに「役割」が全く違う</strong>ことをご存知ですか？</p>
     </div>
 
@@ -1369,7 +1370,7 @@
       </div>
       <div style="flex:1;min-width:240px;">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
-          <h4 style="font-size:18px;font-weight:800;color:var(--accent);margin:0;">Googleビジネスプロフィール</h4>
+          <h4 class="bx" style="font-size:18px;font-weight:800;color:var(--accent);margin:0;">Googleビジネスプロフィール</h4>
           <span style="font-size:11px;color:var(--accent);border:1px solid rgba(66,133,244,.5);background:rgba(66,133,244,.08);padding:3px 10px;border-radius:4px;font-weight:700;">「今すぐ客」を獲得</span>
         </div>
         <p style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.7;margin:0;">「口コミ」と「写真」で来店を決定づける<strong style="color:#FBBC05;">最重要拠点</strong>。来店意欲MAXのイマ客にダイレクトに刺さる設計です。</p>
@@ -1382,7 +1383,7 @@
       <div class="media-card reveal" style="padding:16px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
           <i data-lucide="globe" style="width:14px;height:14px;color:#93C5FD;stroke-width:2.5;"></i>
-          <h4 style="font-size:13px;font-weight:700;color:#e8eaed;margin:0;">ホームページ</h4>
+          <h4 class="bx" style="font-size:13px;font-weight:700;color:#e8eaed;margin:0;">ホームページ</h4>
         </div>
         <span style="font-size:10px;color:#9aa0a6;border:1px solid rgba(255,255,255,.2);padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:6px;">信頼の「本店」</span>
         <p style="font-size:11px;color:#bdc1c6;line-height:1.6;margin:0;">企業の信頼性を決定づける最終砦。</p>
@@ -1390,7 +1391,7 @@
       <div class="media-card reveal" style="padding:16px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
           <i data-lucide="file-text" style="width:14px;height:14px;color:#93C5FD;stroke-width:2.5;"></i>
-          <h4 style="font-size:13px;font-weight:700;color:#e8eaed;margin:0;">ブログ</h4>
+          <h4 class="bx" style="font-size:13px;font-weight:700;color:#e8eaed;margin:0;">ブログ</h4>
         </div>
         <span style="font-size:10px;color:#9aa0a6;border:1px solid rgba(255,255,255,.2);padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:6px;">育てる「資産」</span>
         <p style="font-size:11px;color:#bdc1c6;line-height:1.6;margin:0;">役立つ情報でファンを育成・SEO効果も。</p>
@@ -1422,7 +1423,7 @@
     </div>
 
     <div class="reveal" style="margin-top:32px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);border-radius:16px;padding:28px 32px;text-align:center;">
-      <h3 style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px;">では、多忙なオーナーが真っ先に攻略すべき媒体は？</h3>
+      <h3 class="bx" style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px;">では、<wbr>多忙な<wbr>オーナーが<wbr>真っ先に<wbr>攻略すべき媒体は？</h3>
       <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin:0;">
         答えは、来店意欲が最も高い「イマ客」にダイレクトに刺さる<br>
         <strong style="color:#FBBC05;font-size:18px;">「Googleビジネスプロフィール」</strong>です。<br>
@@ -1440,24 +1441,24 @@
   <div style="max-width:960px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <div class="eyebrow" style="margin-bottom:16px;">NEEDS</div>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">ご契約時に<br class="md:hidden">ご用意いただくもの</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">ご契約時に<br class="md:hidden">ご用意いただく<wbr>もの</h2>
       <p style="font-size:14px;color:var(--fg-dim);margin:0;">自動運用と口コミ返信の精度を最大化するため、以下の3点をお願いしています。</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
       <div class="card reveal-left">
         <div class="num-badge" style="background:var(--accent);margin-bottom:16px;"><i data-lucide="image" style="width:20px;height:20px;color:#fff;stroke-width:2.5;"></i></div>
-        <h3 style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">写真素材 30〜50枚</h3>
+        <h3 class="bx" style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">写真素材 30〜50枚</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">店内外・お客様対応中の様子・現場物件・スタッフ等、業務に関わる写真。<strong style="color:var(--fg);">累積200枚以上</strong>を目標に蓄積します。</p>
       </div>
       <div class="card reveal">
         <div class="num-badge" style="background:var(--g-green);margin-bottom:16px;"><i data-lucide="clipboard-list" style="width:20px;height:20px;color:#fff;stroke-width:2.5;"></i></div>
-        <h3 style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">事業情報のフォーム入力</h3>
+        <h3 class="bx" style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">事業情報の<wbr>フォーム入力</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">専用のお申込みフォームから事業情報をご入力（所要約15〜30分）。サブスク決済の登録もそのまま完了します。<strong style="color:var(--fg);">対面ヒアリング不要</strong>でスムーズに開始できます。</p>
       </div>
       <div class="card reveal-right">
         <div class="num-badge" style="background:var(--g-yellow);margin-bottom:16px;"><i data-lucide="link-2" style="width:20px;height:20px;color:#fff;stroke-width:2.5;"></i></div>
-        <h3 style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">Googleマップの共有</h3>
+        <h3 class="bx" style="font-size:16px;font-weight:700;color:var(--fg);margin:0 0 8px;">Googleマップの<wbr>共有</h3>
         <p style="font-size:13px;color:var(--fg-dim);line-height:1.7;margin:0;">システム連携のため、貴店のGoogleビジネスプロフィールに<strong style="color:var(--fg);">指定メールアドレス</strong>の追加をお願いします。</p>
       </div>
     </div>
@@ -1472,7 +1473,7 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--g-green);background:rgba(52,168,83,.12);padding:6px 16px;border-radius:99px;margin-bottom:14px;">HOW TO START</span>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">申込みから運用開始まで</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">申込みから<wbr>運用開始まで</h2>
       <p style="font-size:14px;color:var(--fg-dim);margin:0;line-height:1.8;">マップ設定まで<strong style="color:var(--fg);">約10日前後</strong>。サイト制作まで含めて<strong style="color:var(--fg);">約15日前後</strong>で全自動運用がスタートします。</p>
     </div>
 
@@ -1592,7 +1593,7 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
       <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);background:rgba(66,133,244,.12);padding:6px 16px;border-radius:99px;margin-bottom:14px;">SERVICE PACKAGE</span>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">月4万円で、毎月これが届きます</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">月4万円で、<wbr>毎月<wbr>これが<wbr>届きます</h2>
       <p style="font-size:14px;color:var(--fg-dim);line-height:1.8;margin:0;">「AIが自動で〜」だけでは伝わりづらいので、実際に毎月納品するものを全部お見せします。</p>
     </div>
 
@@ -1670,7 +1671,7 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
       <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--g-green);background:rgba(52,168,83,.12);padding:6px 16px;border-radius:99px;margin-bottom:14px;">ROLE-SHARING</span>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">オーナー様の役割・弊社の役割</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">オーナー様の<wbr>役割・弊社の<wbr>役割</h2>
       <p style="font-size:14px;color:var(--fg-dim);line-height:1.8;margin:0;">「本当に何もしなくていいの？」という声にお答えします。<strong style="color:var(--fg);">オーナー様の作業時間は月あたり30分程度</strong>、あとは弊社が引き受けます。</p>
     </div>
 
@@ -1684,7 +1685,7 @@
           <div style="width:44px;height:44px;border-radius:12px;background:rgba(52,168,83,.12);display:flex;align-items:center;justify-content:center;"><i data-lucide="user" style="width:22px;height:22px;color:var(--g-green);stroke-width:2;"></i></div>
           <div>
             <p style="font-size:11px;color:var(--g-green);font-weight:700;margin:0;letter-spacing:.08em;">OWNER</p>
-            <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:2px 0 0;">オーナー様がやること</h3>
+            <h3 class="bx" style="font-size:18px;font-weight:800;color:var(--fg);margin:2px 0 0;">オーナー様が<wbr>やる<wbr>こと</h3>
           </div>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
@@ -1703,7 +1704,7 @@
           <div style="width:44px;height:44px;border-radius:12px;background:rgba(66,133,244,.12);display:flex;align-items:center;justify-content:center;"><i data-lucide="users" style="width:22px;height:22px;color:var(--accent);stroke-width:2;"></i></div>
           <div>
             <p style="font-size:11px;color:var(--accent);font-weight:700;margin:0;letter-spacing:.08em;">SEARCHMANIA</p>
-            <h3 style="font-size:18px;font-weight:800;color:var(--fg);margin:2px 0 0;">弊社が引き受けること</h3>
+            <h3 class="bx" style="font-size:18px;font-weight:800;color:var(--fg);margin:2px 0 0;">弊社が<wbr>引き受ける<wbr>こと</h3>
           </div>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
@@ -1728,7 +1729,7 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
       <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:#F57F17;background:rgba(251,188,5,.15);padding:6px 16px;border-radius:99px;margin-bottom:14px;">MONTHLY FLOW</span>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">運用開始後は、こう動きます</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">運用開始後は、<wbr>こう<wbr>動きます</h2>
       <p style="font-size:14px;color:var(--fg-dim);line-height:1.8;margin:0;">"手放し"の実態を可視化しました。<strong style="color:var(--fg);">毎日／毎週／月末</strong>のリズムでご覧ください。</p>
     </div>
 
@@ -1740,7 +1741,7 @@
       <div class="card monthly-card" style="padding:24px;border-left:4px solid var(--g-green);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="sun" style="width:22px;height:22px;color:var(--g-green);stroke-width:2;"></i>
-          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎日</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎日</h3>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li>・GBP投稿を 1本 配信</li>
@@ -1752,7 +1753,7 @@
       <div class="card monthly-card" style="padding:24px;border-left:4px solid var(--accent);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="calendar-days" style="width:22px;height:22px;color:var(--accent);stroke-width:2;"></i>
-          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎週</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">毎週</h3>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li>・写真を 1〜2枚 追加</li>
@@ -1764,7 +1765,7 @@
       <div class="card monthly-card" style="padding:24px;border-left:4px solid #F57F17;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="calendar-check" style="width:22px;height:22px;color:#F57F17;stroke-width:2;"></i>
-          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">月末</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">月末</h3>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li>・数値集計・PDFレポート送付</li>
@@ -1776,7 +1777,7 @@
       <div class="card monthly-card monthly-anytime" style="padding:24px;border-left:4px solid var(--g-red);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <i data-lucide="message-square" style="width:22px;height:22px;color:var(--g-red);stroke-width:2;"></i>
-          <h3 style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">いつでも（オーナー様発信）</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:800;color:var(--fg);margin:0;">いつでも<wbr>（オーナー様発信）</h3>
         </div>
         <ul class="monthly-anytime-list" style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px 24px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li>・LINE／メールで更新依頼</li>
@@ -1810,7 +1811,7 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
       <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--g-red);background:rgba(234,67,53,.1);padding:6px 16px;border-radius:99px;margin-bottom:14px;">WEBSITE PREVIEW</span>
-      <h2 style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">「自動更新WEBサイト」って、どんなサイト？</h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--fg);margin:0 0 12px;">「自動更新WEBサイト」って、<wbr>どんな<wbr>サイト？</h2>
       <p style="font-size:14px;color:var(--fg-dim);line-height:1.8;margin:0;">プランに含まれる<strong style="color:var(--fg);">SEO/AIO対応サイト</strong>のイメージです。公式サイトを新たに作らず、これ1本で兼用いただけます。</p>
     </div>
 
@@ -1821,22 +1822,22 @@
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
       <div class="card" style="padding:24px;text-align:center;">
         <div style="width:52px;height:52px;border-radius:14px;background:rgba(66,133,244,.12);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;"><i data-lucide="layout" style="width:26px;height:26px;color:var(--accent);stroke-width:2;"></i></div>
-        <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">標準ページ構成</h3>
+        <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">標準ページ構成</h3>
         <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.7;">トップ／サービス／お知らせ／実績／アクセス／お問合せ の6ページ標準</p>
       </div>
       <div class="card" style="padding:24px;text-align:center;">
         <div style="width:52px;height:52px;border-radius:14px;background:rgba(52,168,83,.12);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;"><i data-lucide="refresh-cw" style="width:26px;height:26px;color:var(--g-green);stroke-width:2;"></i></div>
-        <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">記事の自動更新</h3>
+        <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">記事の<wbr>自動更新</h3>
         <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.7;">新着記事・お知らせ・事例をAI＋担当者が月4〜8本更新し続けます</p>
       </div>
       <div class="card" style="padding:24px;text-align:center;">
         <div style="width:52px;height:52px;border-radius:14px;background:rgba(251,188,5,.15);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;"><i data-lucide="search" style="width:26px;height:26px;color:#F57F17;stroke-width:2;"></i></div>
-        <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">SEO・AIO対応</h3>
+        <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">SEO・AIO対応</h3>
         <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.7;">構造化データ・サイトマップ・AI検索対策までワンストップで実装</p>
       </div>
       <div class="card" style="padding:24px;text-align:center;">
         <div style="width:52px;height:52px;border-radius:14px;background:rgba(234,67,53,.1);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;"><i data-lucide="smartphone" style="width:26px;height:26px;color:var(--g-red);stroke-width:2;"></i></div>
-        <h3 style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">スマホ最適化</h3>
+        <h3 class="bx" style="font-size:15px;font-weight:800;color:var(--fg);margin:0 0 8px;">スマホ最適化</h3>
         <p style="font-size:12px;color:var(--fg-dim);margin:0;line-height:1.7;">Google推奨のCore Web Vitals準拠・表示速度もチューニング済</p>
       </div>
     </div>
@@ -1852,13 +1853,13 @@
 <section style="padding:80px 0;background:var(--surf);">
   <div style="max-width:760px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
-      <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">合う方・合わない方</h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">合う方<wbr>・合わない<wbr>方</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
       <div class="card reveal-left" style="border-top:3px solid var(--g-green);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
           <div style="width:36px;height:36px;border-radius:50%;background:#E8F5E9;display:flex;align-items:center;justify-content:center;"><i data-lucide="check-circle" style="width:20px;height:20px;color:var(--g-green);stroke-width:2;"></i></div>
-          <h3 style="font-size:16px;font-weight:700;color:var(--g-green);margin:0;">特に「合う」方</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:700;color:var(--g-green);margin:0;">特に<wbr>「合う」方</h3>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           <li style="display:flex;gap:8px;font-size:13px;color:var(--fg-dim);"><span style="color:var(--g-green);font-weight:700;flex-shrink:0;">✓</span>店舗型ビジネスのオーナー様</li>
@@ -1871,7 +1872,7 @@
       <div class="card reveal-right" style="border-top:3px solid var(--g-red);">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
           <div style="width:36px;height:36px;border-radius:50%;background:#FEE8E6;display:flex;align-items:center;justify-content:center;"><i data-lucide="x-circle" style="width:20px;height:20px;color:var(--g-red);stroke-width:2;"></i></div>
-          <h3 style="font-size:16px;font-weight:700;color:var(--g-red);margin:0;">「合わない」方</h3>
+          <h3 class="bx" style="font-size:16px;font-weight:700;color:var(--g-red);margin:0;">「合わない」方</h3>
         </div>
         <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
           <li style="display:flex;gap:8px;font-size:13px;color:var(--fg-dim);"><span style="color:var(--g-red);font-weight:700;flex-shrink:0;">×</span><span>「1ヶ月以内に」結果が出ないと嫌だという方<br><span style="font-size:11px;color:var(--fg-mute);">※集客は中長期的な資産構築です</span></span></li>
@@ -1895,7 +1896,7 @@
   <div style="max-width:920px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:32px;">
       <div class="eyebrow" style="background:rgba(52,168,83,.12);color:var(--g-green);margin-bottom:16px;">RELATED SERVICE</div>
-      <h2 style="font-size:clamp(22px,3.5vw,30px);font-weight:800;color:var(--fg);margin:0 0 10px;">あわせて使いたい <span style="color:var(--g-green);">「手放しWEB集客」</span></h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,30px);font-weight:800;color:var(--fg);margin:0 0 10px;">あわせて<wbr>使いたい <span style="color:var(--g-green);">「手放しWEB集客」</span></h2>
       <p style="font-size:14px;color:var(--fg-dim);margin:0;line-height:1.8;">マップだけでは届かない「比較検討層・AI検索層」に届ける、<br><strong style="color:var(--fg);">自動更新型のSEO/AIO対策サイト</strong>を別プランでご用意。</p>
     </div>
 
@@ -1955,7 +1956,7 @@
           <span style="font-size:10px;font-weight:700;color:var(--g-red);background:rgba(234,67,53,.1);padding:3px 10px;border-radius:4px;">AIO</span>
           <span style="font-size:10px;font-weight:700;color:#856404;background:#FEF3CD;padding:3px 10px;border-radius:4px;">公式HP兼用</span>
         </div>
-        <h3 style="font-size:20px;font-weight:800;color:var(--fg);margin:0 0 12px;line-height:1.4;">自動更新型サイトで<br>「検索」「AI検索」に強くなる</h3>
+        <h3 class="bx" style="font-size:20px;font-weight:800;color:var(--fg);margin:0 0 12px;line-height:1.4;">自動更新型サイトで<br>「検索」<wbr>「AI検索」に<wbr>強くなる</h3>
         <ul style="list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--fg-dim);line-height:1.6;">
           <li style="display:flex;gap:8px;"><span style="color:var(--g-green);font-weight:700;flex-shrink:0;">✓</span>AIが365日、情報を自動で更新・蓄積</li>
           <li style="display:flex;gap:8px;"><span style="color:var(--g-green);font-weight:700;flex-shrink:0;">✓</span>構造化データ整備でAI検索（ChatGPT・Gemini）にも引用されやすい構造</li>
@@ -1982,7 +1983,7 @@
     <div class="reveal" style="margin-top:48px;">
       <div style="text-align:center;margin-bottom:24px;">
         <p style="font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--g-green);margin:0 0 8px;">CASE GALLERY</p>
-        <h3 style="font-size:clamp(18px,2.4vw,24px);font-weight:800;color:var(--fg);margin:0 0 8px;">自動更新WEBサイトの導入実績</h3>
+        <h3 class="bx" style="font-size:clamp(18px,2.4vw,24px);font-weight:800;color:var(--fg);margin:0 0 8px;">自動更新WEBサイトの<wbr>導入実績</h3>
         <p style="font-size:13px;color:var(--fg-dim);margin:0;line-height:1.7;">業種・地域を問わず、9業態以上で稼働中。クリックで実例サイトをご覧いただけます。</p>
       </div>
 
@@ -2097,28 +2098,28 @@
 <section style="padding:80px 0;">
   <div style="max-width:680px;margin:0 auto;padding:0 24px;">
     <div class="reveal" style="text-align:center;margin-bottom:40px;">
-      <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">よくあるご質問</h2>
+      <h2 class="bx" style="font-size:clamp(22px,3.5vw,32px);font-weight:800;color:var(--fg);margin:0;">よく<wbr>ある<wbr>ご質問</h2>
     </div>
 
     <div class="reveal">
       <details class="faq">
-        <summary>マップ順位やAI検索での引用は保証されますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">マップ順位や<wbr>AI検索での<wbr>引用は<wbr>保証されますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">Googleマップ順位・SEO・AI検索での順位や引用可否は、Google・OpenAI・Anthropic等各社のアルゴリズムが決めるため、弊社を含めどの事業者も"保証"はできません。弊社サービスは<strong>「上位表示・引用されやすい情報基盤」を継続的に整備し、その状態を保ち続けること</strong>に責任を持ちます。効果には個社差があり、業種・地域・競合状況によって出方が異なります。</div>
       </details>
       <details class="faq">
-        <summary>本当に何もせず「手放し」で良いのですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">本当に<wbr>何も<wbr>せず<wbr>「手放し」で<wbr>良いのですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">はい。AIが投稿や口コミ返信を自動で行うため、日常の運用は「手放し」で問題ありません。ただし、中核となる「戦略」の部分（新メニューの打ち出し方、Web導線の改善など）は、オーナー様と二人三脚で進めさせていただきます。</div>
       </details>
       <details class="faq">
-        <summary>一般的な「SEO対策」とはどう違うのですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">一般的な<wbr>「SEO対策」とは<wbr>どう<wbr>違うのですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">SEOが「Webサイト（HPやブログ）」を対象にするのに対し、私たちが得意とする「MEO」は「Googleマップ」を対象にします。「今すぐ行きたい（イマ客）」に最も強くアプローチできるのがMEO（マップ対策）です。</div>
       </details>
       <details class="faq">
-        <summary>写真はスマホで撮ったものでも大丈夫ですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">写真は<wbr>スマホで<wbr>撮った<wbr>ものでも<wbr>大丈夫ですか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">スマホ撮影でも問題ありません。まずはオーナー様にて30〜50枚をご用意いただき、その後も累積200枚以上を目標に蓄積していきます。<br>※本サービスにプロカメラマンによる撮影提供は含まれません。必要な場合は別途ご相談ください。</div>
       </details>
       <details class="faq">
-        <summary>料金プランを教えてください。<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">料金プランを<wbr>教えてください。<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">
           <p style="margin:0 0 12px;">料金プランは以下の2つです。（すべて税別）</p>
           <ul style="list-style:disc;padding-left:20px;margin:0 0 12px;line-height:1.9;">
@@ -2129,43 +2130,43 @@
         </div>
       </details>
       <details class="faq">
-        <summary>契約期間の縛りや解約はできますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">契約期間の<wbr>縛りや<wbr>解約は<wbr>できますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">最低契約期間の縛りは設けておりません。いつでも解約が可能です。ただし、本サービスは中長期的な集客資産を構築するものですので、継続的なご利用を推奨しております。</div>
       </details>
       <details class="faq">
-        <summary>効果が出るまでにどれくらいの期間がかかりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">効果が<wbr>出るまでに<wbr>どれくらいの<wbr>期間が<wbr>かかりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">業種・地域・現在のマップ状況によって異なりますが、多くの場合 6ヶ月〜1年程度で集客効果を実感いただき始めています。本サービスは即時性を求めるものではなく、中長期で安定した集客資産を築くためのものです。</div>
       </details>
       <details class="faq">
-        <summary>ご契約・ヒアリング・日常のやり取りについて<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">ご契約・ヒアリング・<wbr>日常の<wbr>やり<wbr>取りに<wbr>ついて<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">ご契約時のヒアリングは<strong>お申込みフォーム（ヒアリングシート）にご入力いただく形式</strong>で行いますので、お打合せのお時間を確保いただく必要はありません。以降の日常的なご質問・情報の更新依頼・追加のご要望などは<strong>LINE・メールでお気軽にご連絡いただけます</strong>。シートで取得した基本情報をベースに、必要な部分だけLINE・メールで拾わせていただく運用スタイルです。</div>
       </details>
       <details class="faq">
-        <summary>Googleビジネスプロフィールの設定のみの申込みもできますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">Googleビジネスプロフィールの<wbr>設定のみの<wbr>申込みも<wbr>できますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">はい、可能です。<br>・Googleビジネスプロフィール初期設定：30,000円（税別・1か所）</div>
       </details>
       <details class="faq">
-        <summary>投稿内容は誰が考えるのですか？勝手に投稿されて困ることはない？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">投稿内容は<wbr>誰が<wbr>考えるのですか？<wbr>勝手に<wbr>投稿されて困る<wbr>ことはない？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">初回ヒアリングでいただいた情報・お店の強み・NGワード等を元に、AIと担当者が投稿文を制作します。<strong>季節ネタ・新メニュー・キャンペーン等はLINEで一言いただければ即反映</strong>。「これは投稿しないで」等のご要望も無制限に反映できます。</div>
       </details>
       <details class="faq">
-        <summary>クチコミ自動返信、うちの文体に合わせられますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">クチコミ自動返信、<wbr>うちの<wbr>文体に<wbr>合わせられますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">はい、可能です。ヒアリングシートで「敬語のトーン」「一人称（私／当店／スタッフ一同）」「使いたい言い回し」等を教えていただき、貴店らしい自動返信文を作成します。運用開始後もLINEで「もう少し柔らかく」等のご要望をいただければ随時チューニングします。</div>
       </details>
       <details class="faq">
-        <summary>AIが書いた投稿だとお客様に分かってしまいませんか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">AIが<wbr>書いた<wbr>投稿だとお客様に<wbr>分かってしまいませんか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">AIが下書き→担当者が加筆・校正→貴店の写真とセットで投稿という流れのため、機械的な文章にはなりません。実際の投稿は「そのお店が普通に発信している」ように読める仕上がりを目指しています。<strong>不自然だと感じたらいつでもフィードバックください</strong>、すぐ調整します。</div>
       </details>
       <details class="faq">
-        <summary>初期に写真50枚を集めるのが難しい場合は？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">初期に<wbr>写真50枚を<wbr>集めるのが<wbr>難しい<wbr>場合は？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">30枚程度でも運用開始は可能です。まずお手元にあるスマホ写真から始めていただき、運用しながら追加でお送りいただく形でもOKです。<strong>撮り方のコツ（構図・光・時間帯）はLINEでレクチャー</strong>しますので、日常的に撮り溜めていただければ十分です。</div>
       </details>
       <details class="faq">
-        <summary>自動更新サイトの記事は業種に合った内容になりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">自動更新サイトの<wbr>記事は<wbr>業種に<wbr>合った<wbr>内容に<wbr>なりますか？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">はい。業種別のトピック辞書＋貴店のヒアリング情報を組み合わせて記事の切り口を決めます。飲食なら「季節メニュー」「食材のこだわり」、整骨院なら「症状別対応」「セルフケア」等、業種に合ったコンテンツが自動蓄積されます。掲載前後で違和感があればLINEで修正依頼をいただけます。</div>
       </details>
       <details class="faq" style="border-bottom:none;">
-        <summary>申込みから稼働開始までの流れは？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
+        <summary class="bx">申込みから<wbr>稼働開始までの<wbr>流れは？<span class="chevron"><i data-lucide="chevron-down" style="width:16px;height:16px;stroke-width:2.5;"></i></span></summary>
         <div class="faq-body">①お申込み → ②ヒアリング（フォーム入力）+ 写真素材30〜50枚のご提供 + Googleビジネスプロフィールへの指定メールアドレス追加 → ③自動運用スタート。月3件までの受付となりますので、ご希望の方はお早めにご相談ください。</div>
       </details>
     </div>
@@ -2179,7 +2180,7 @@
 <section id="contact" class="cta-section" style="padding:80px 0;scroll-margin-top:70px;">
   <div style="max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
-      <h2 style="font-size:clamp(24px,4vw,40px);font-weight:900;color:#fff;margin:0 0 12px;line-height:1.2;">さあ、面倒な集客業務を"破壊"し、<br><span style="color:#4285F4;">「手放し」で売上を伸ばしませんか？</span></h2>
+      <h2 class="bx" style="font-size:clamp(24px,4vw,40px);font-weight:900;color:#fff;margin:0 0 12px;line-height:1.2;">さあ、<wbr>面倒な<wbr>集客業務を<wbr>"破壊"し、<br><span style="color:#4285F4;">「手放し」で<wbr>売上を<wbr>伸ばしませんか？</span></h2>
       <p style="font-size:14px;color:rgba(255,255,255,.5);margin:0;">まずは無料のマップ勉強会で、貴店の現状を一緒に確認しましょう。</p>
     </div>
 
