@@ -931,14 +931,14 @@
       <h3 class="bx" style="font-size:clamp(18px,2.4vw,22px);font-weight:800;color:var(--fg);margin:0 0 8px;text-align:center;">効果が<wbr>出始めるまでの<wbr>タイムライン</h3>
       <p style="font-size:clamp(13px,1.6vw,15px);color:var(--fg-dim);margin:0 0 28px;text-align:center;line-height:1.7;">中長期で<wbr>「資産」⁠として<wbr>伸び続けるのが、<wbr>本物の<wbr>マップ集客です。</p>
 
-      <svg viewBox="0 -40 600 260" style="width:100%;height:auto;">
-        <!-- Phases background -->
-        <rect x="40" y="100" width="260" height="50" fill="#FEF3CD" opacity="0.45" rx="6"/>
-        <rect x="300" y="100" width="260" height="50" fill="#E8F5E9" opacity="0.55" rx="6"/>
-        <text x="170" y="118" font-family="system-ui" font-size="13" fill="#856404" text-anchor="middle" font-weight="700">準備・蓄積フェーズ</text>
-        <text x="170" y="136" font-family="system-ui" font-size="11" fill="#5f6368" text-anchor="middle">情報蓄積・口コミ獲得</text>
-        <text x="430" y="118" font-family="system-ui" font-size="13" fill="#1e8e3e" text-anchor="middle" font-weight="700">効果実感・資産化フェーズ</text>
-        <text x="430" y="136" font-family="system-ui" font-size="11" fill="#5f6368" text-anchor="middle">継続成長・LTV向上</text>
+      <svg viewBox="0 -40 600 292" style="width:100%;height:auto;">
+        <!-- Phases (横軸の下に配置して曲線と分離) -->
+        <rect x="40" y="204" width="258" height="44" fill="#FEF3CD" opacity="0.6" rx="6"/>
+        <rect x="302" y="204" width="258" height="44" fill="#E8F5E9" opacity="0.75" rx="6"/>
+        <text x="169" y="222" font-family="system-ui" font-size="13" fill="#856404" text-anchor="middle" font-weight="700">準備・蓄積フェーズ</text>
+        <text x="169" y="239" font-family="system-ui" font-size="11" fill="#5f6368" text-anchor="middle">情報蓄積・口コミ獲得</text>
+        <text x="431" y="222" font-family="system-ui" font-size="13" fill="#1e8e3e" text-anchor="middle" font-weight="700">効果実感・資産化フェーズ</text>
+        <text x="431" y="239" font-family="system-ui" font-size="11" fill="#5f6368" text-anchor="middle">継続成長・LTV向上</text>
 
         <!-- Growth arrow (behind everything) -->
         <path d="M 50 175 Q 180 168 320 130 T 560 55" stroke="#4285F4" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.55"/>
@@ -960,17 +960,21 @@
           <text x="560" y="192">24ヶ月+</text>
         </g>
 
-        <!-- Case A milestone (12ヶ月地点・上に吹き出し) -->
-        <circle cx="300" cy="175" r="8" fill="#EA4335" stroke="#fff" stroke-width="2.5"/>
-        <line x1="300" y1="165" x2="300" y2="-5" stroke="#EA4335" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
-        <rect x="210" y="-30" width="140" height="52" rx="8" fill="#fff" stroke="#EA4335" stroke-width="1.8"/>
-        <text x="280" y="-14" font-family="system-ui" font-size="11" fill="#9aa0a6" text-anchor="middle" font-weight="600">12ヶ月目から</text>
-        <text x="280" y="4" font-family="system-ui" font-size="17" fill="#EA4335" text-anchor="middle" font-weight="900">136%達成</text>
-        <text x="280" y="17" font-family="system-ui" font-size="10" fill="#5f6368" text-anchor="middle" font-weight="600">CASE 01・飲食店A</text>
+        <!-- 12/13ヶ月の位置を示す薄い補助線（曲線上の点→横軸） -->
+        <line x1="300" y1="143" x2="300" y2="172" stroke="#EA4335" stroke-width="1" stroke-dasharray="2,3" opacity="0.35"/>
+        <line x1="320" y1="138" x2="320" y2="172" stroke="#E8A200" stroke-width="1" stroke-dasharray="2,3" opacity="0.4"/>
 
-        <!-- Case B milestone (13ヶ月地点・吹き出しは右上に配置) -->
-        <circle cx="320" cy="175" r="8" fill="#E8A200" stroke="#fff" stroke-width="2.5"/>
-        <path d="M 320 167 Q 380 60 430 22" stroke="#E8A200" stroke-width="1.2" fill="none" stroke-dasharray="3,2" opacity="0.7"/>
+        <!-- Case A：曲線上の点から真上の吹き出しへ -->
+        <line x1="300" y1="127" x2="300" y2="22" stroke="#EA4335" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.7"/>
+        <circle cx="300" cy="135" r="7" fill="#EA4335" stroke="#fff" stroke-width="2.5"/>
+        <rect x="230" y="-30" width="140" height="52" rx="8" fill="#fff" stroke="#EA4335" stroke-width="1.8"/>
+        <text x="300" y="-14" font-family="system-ui" font-size="11" fill="#9aa0a6" text-anchor="middle" font-weight="600">12ヶ月目から</text>
+        <text x="300" y="4" font-family="system-ui" font-size="17" fill="#EA4335" text-anchor="middle" font-weight="900">136%達成</text>
+        <text x="300" y="17" font-family="system-ui" font-size="10" fill="#5f6368" text-anchor="middle" font-weight="600">CASE 01・飲食店A</text>
+
+        <!-- Case B：曲線上の点から右上の吹き出しへ（曲線より上を通す） -->
+        <line x1="325" y1="124" x2="440" y2="22" stroke="#E8A200" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.8"/>
+        <circle cx="320" cy="130" r="7" fill="#E8A200" stroke="#fff" stroke-width="2.5"/>
         <rect x="420" y="-30" width="140" height="52" rx="8" fill="#fff" stroke="#E8A200" stroke-width="1.8"/>
         <text x="490" y="-14" font-family="system-ui" font-size="11" fill="#9aa0a6" text-anchor="middle" font-weight="600">13ヶ月目から</text>
         <text x="490" y="4" font-family="system-ui" font-size="17" fill="#EA4335" text-anchor="middle" font-weight="900">150%超達成</text>
