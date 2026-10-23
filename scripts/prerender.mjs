@@ -186,6 +186,21 @@ function replaceBlock(html, id, inner) {
   return html.replace(re, (_, a, b) => `${a}\n${inner}\n${b}`);
 }
 
+// 文言が CMS と同じなら、手で入れた <wbr>（文節改行）を残す。タグと空白を除いた本文で比べる
+const plain = s => String(s || '').replace(/<[^>]*>/g, '')
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+  .replace(/\s+/g, '');
+const sameText = (current, text) => plain(current) === plain(text);
+
+// 文言だけのブロック（見出し・リード文）。文言が変わったときだけ差し替える
+function replaceTextBlock(html, id, text) {
+  const re = new RegExp(`(<!--CMS:${id}-->)([\\s\\S]*?)(<!--/CMS:${id}-->)`);
+  const m = html.match(re);
+  if (!m) { console.warn(`[prerender] marker not found: ${id}`); return html; }
+  if (sameText(m[2], text)) return html;
+  return html.replace(re, (_, a, _cur, b) => `${a}\n${esc(text)}\n${b}`);
+}
+
 async function main() {
   const res = await fetch(GAS_URL, { redirect: 'follow' });
   if (!res.ok) throw new Error(`GAS fetch failed: ${res.status}`);
@@ -207,14 +222,16 @@ async function main() {
     html = replaceBlock(html, 'greetingBody', data.about.paragraphs.map(p => `<p>${esc(p)}</p>`).join('\n'));
   }
   if (data.cta) {
-    if (data.cta.headline1) html = replaceBlock(html, 'ctaH1', esc(data.cta.headline1));
-    if (data.cta.subText)   html = replaceBlock(html, 'ctaSub', esc(data.cta.subText));
+    if (data.cta.headline1) html = replaceTextBlock(html, 'ctaH1', data.cta.headline1);
+    if (data.cta.subText)   html = replaceTextBlock(html, 'ctaSub', data.cta.subText);
   }
   if (data.settings && data.settings.copyright) {
     html = replaceBlock(html, 'copyright', `&copy; ${new Date().getFullYear()} ${esc(data.settings.copyright)} All Rights Reserved.`);
   }
   if (data.recruitStatus) {
-    html = html.replace(/(id="recruitStatus">)[^<]*(<)/, (_, a, b) => `${a}${esc(data.recruitStatus)}${b}`);
+    // <p> の中身全体（<wbr> を含む）を対象にする。[^<]* だと最初の <wbr> で止まり、文言が二重になる
+    html = html.replace(/(id="recruitStatus">)([\s\S]*?)(<\/p>)/, (all, a, cur, b) =>
+      sameText(cur, data.recruitStatus) ? all : `${a}${esc(data.recruitStatus)}${b}`);
   }
   html = html.replace(/<meta name="cms-hash" content="[^"]*">/, `<meta name="cms-hash" content="${hash}">`);
 
