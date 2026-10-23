@@ -44,7 +44,7 @@ ${list.map(n => `<li><a class="news-card" href="${BASE}${esc(n.slug)}/">
   <h2 class="bx">${bxText(n.title)}</h2>
   <p>${esc(n.description)}</p>
 </a></li>`).join('\n')}
-</ul>` : '<div class="empty"><p>まだ記事はありません。Google の発表があり次第、こちらでお知らせします。</p></div>'}
+</ul>` : `<div class="empty"><p class="bx">${bxText('まだ記事はありません。Google の発表があり次第、こちらでお知らせします。')}</p></div>`}
 ${pages > 1 ? `<nav class="pager" aria-label="ページ送り">
   <span>${cur > 1 ? `<a href="${BASE}${cur > 2 ? `?page=${cur - 1}` : ''}">← 新しい記事</a>` : ''}</span>
   <span>${cur < pages ? `<a href="${BASE}?page=${cur + 1}">古い記事 →</a>` : ''}</span>
