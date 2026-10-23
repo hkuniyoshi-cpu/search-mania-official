@@ -2,7 +2,7 @@
 
 import {
   SITE_URL, BASE, NAME, getNews, respond, redirect, unavailable, notFound,
-  page, crumbs, crumbLd, ctaBand, esc, bxText, fmtDate, ld,
+  page, crumbs, crumbLd, ctaBand, esc, bxText, fmtDate, ld, imageUrl,
 } from '../../lib/news.js';
 
 const PER_PAGE = 20;
@@ -39,10 +39,13 @@ function render(news, cur, pages) {
   <p class="lead bx">${bxText(desc)}</p>
 </header>
 ${list.length ? `<ul class="news-list">
-${list.map(n => `<li><a class="news-card" href="${BASE}${esc(n.slug)}/">
+${list.map((n, i) => `<li><a class="news-card${n.image ? ' has-image' : ''}" href="${BASE}${esc(n.slug)}/">
+  ${n.image ? `<img class="thumb" src="${esc(imageUrl(n.image, 480))}" width="480" height="320" alt="" ${i < 2 ? 'fetchpriority="high"' : 'loading="lazy"'}>` : ''}
+  <div class="card-body">
   <time datetime="${esc(n.published_at)}">${esc(fmtDate(n.published_at))}</time>
   <h2 class="bx">${bxText(n.title)}</h2>
   <p>${esc(n.description)}</p>
+  </div>
 </a></li>`).join('\n')}
 </ul>` : `<div class="empty"><p class="bx">${bxText('まだ記事はありません。Google の発表があり次第、こちらでお知らせします。')}</p></div>`}
 ${pages > 1 ? `<nav class="pager" aria-label="ページ送り">
