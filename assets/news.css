@@ -1,0 +1,130 @@
+/* Googleマップ最新情報（/googlemap-news/）— /googlemap-shukyaku/ と同じ見た目にそろえる */
+:root {
+  --ink:      #0a0f1a;
+  --ink-dim:  #1f2937;
+  --ink-mute: #6b7280;
+  --paper:    #fafaf7;
+  --line:     rgba(10,15,26,.10);
+  --accent:   #1a73e8;
+  --highlight: #fff7c2;
+}
+* { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  background: var(--paper); color: var(--ink); margin: 0;
+  font-family: "Noto Sans JP", "Inter", system-ui, sans-serif;
+  font-size: 16px; line-height: 1.85; letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.bx { word-break: keep-all; overflow-wrap: anywhere; }
+
+/* NAV */
+#nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250,250,247,.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 24px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.nav-brand:hover { text-decoration: none; }
+.nav-brand img { width: 28px; height: 28px; }
+.nav-brand span { font-weight: 800; font-size: 15px; letter-spacing: .02em; }
+.nav-brand small { color: var(--ink-mute); font-size: 11px; letter-spacing: .15em; }
+.nav-cta {
+  background: var(--ink); color: #fff !important; padding: 8px 16px; border-radius: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: .06em;
+}
+.nav-cta:hover { background: var(--accent); text-decoration: none; }
+
+.wrap { max-width: 780px; margin: 0 auto; padding: 32px 24px 120px; }
+
+/* パンくず */
+.crumbs { font-size: 12px; color: var(--ink-mute); margin: 0 0 24px; }
+.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 8px; }
+.crumbs li + li::before { content: "›"; margin-right: 8px; color: var(--ink-mute); }
+.crumbs a { color: var(--ink-mute); }
+
+/* 見出し */
+.page-head { padding: 24px 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.eyebrow { font-size: 11px; letter-spacing: .25em; color: var(--accent); font-weight: 700; margin: 0 0 16px; text-transform: uppercase; }
+.page-head h1 {
+  font-family: "Noto Serif JP", serif; font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.45; margin: 0 0 16px; font-weight: 700;
+}
+.lead { color: var(--ink-dim); margin: 0; font-size: 15px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--ink-mute); font-size: 13px; margin: 0; }
+.meta strong { color: var(--ink); font-weight: 700; }
+
+/* 一覧 */
+.news-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.news-card {
+  display: block; padding: 22px 24px; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  color: var(--ink); transition: border-color .15s, transform .15s;
+}
+.news-card:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); }
+.news-card time { font-size: 12px; color: var(--ink-mute); letter-spacing: .04em; }
+.news-card h2 { font-size: 18px; line-height: 1.55; margin: 6px 0 8px; font-weight: 700; }
+.news-card p { margin: 0; font-size: 14px; color: var(--ink-dim); line-height: 1.8; }
+.empty { padding: 48px 24px; text-align: center; background: #fff; border: 1px solid var(--line); border-radius: 8px; color: var(--ink-dim); }
+.empty-title { font-size: 22px; line-height: 1.5; margin: 0 0 12px; color: var(--ink); }
+.back { margin: 32px 0 0; font-size: 14px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin: 32px 0 0; font-size: 14px; }
+
+/* 記事 */
+.points {
+  margin: 0 0 40px; padding: 24px 28px; background: #fff;
+  border-left: 3px solid var(--accent); border-radius: 4px;
+}
+.points h2 { font-size: 13px; letter-spacing: .12em; color: var(--accent); margin: 0 0 10px; font-weight: 700; }
+.points ul { margin: 0; padding-left: 20px; }
+.points li { margin: 4px 0; }
+.prose h2 {
+  font-size: 20px; line-height: 1.5; margin: 44px 0 16px; font-weight: 700;
+  padding-left: 12px; border-left: 3px solid var(--accent);
+}
+.prose p { margin: 0 0 20px; }
+.box {
+  margin: 36px 0 0; padding: 22px 24px; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.box h2 { font-size: 15px; margin: 0 0 10px; font-weight: 700; }
+.box p { margin: 0; font-size: 15px; color: var(--ink-dim); }
+.box--view { border-left: 3px solid var(--ink); }
+.source dl { margin: 0; font-size: 14px; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; }
+.source dt { color: var(--ink-mute); }
+.source dd { margin: 0; overflow-wrap: anywhere; }
+.note { font-size: 12px; color: var(--ink-mute); margin: 16px 0 0; }
+
+/* CTA */
+.cta-band {
+  background: var(--ink); color: #fff; border-radius: 12px;
+  padding: 44px 36px; text-align: center; margin: 64px 0 0;
+}
+.cta-band h2 { font-family: "Noto Serif JP", serif; font-size: 22px; line-height: 1.5; margin: 0 0 14px; font-weight: 700; }
+.cta-band p { color: rgba(255,255,255,.78); margin: 0 0 24px; font-size: 14px; }
+.cta-band .btn {
+  display: inline-block; background: #fff; color: var(--ink); font-weight: 700;
+  padding: 14px 32px; border-radius: 6px; font-size: 15px; letter-spacing: .04em;
+  transition: transform .15s, background .15s;
+}
+.cta-band .btn:hover { background: var(--accent); color: #fff; text-decoration: none; transform: translateY(-2px); }
+.cta-band .sub { display: inline-block; margin-top: 16px; color: rgba(255,255,255,.85); font-size: 13px; text-decoration: underline; }
+
+/* FOOTER */
+footer {
+  background: #fff; border-top: 1px solid var(--line);
+  padding: 40px 24px; text-align: center; font-size: 12px; color: var(--ink-mute);
+}
+footer a { color: var(--ink-mute); margin: 0 12px; display: inline-block; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 20px 16px 80px; }
+  .page-head { padding: 12px 0 24px; margin-bottom: 28px; }
+  .news-card { padding: 18px; }
+  .points { padding: 18px 20px; }
+  .cta-band { padding: 32px 20px; }
+  .source dl { grid-template-columns: 1fr; gap: 2px; }
+  .source dd { margin-bottom: 8px; }
+}
