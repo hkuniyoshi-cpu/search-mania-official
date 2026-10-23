@@ -5,10 +5,13 @@ import {
   SITE_URL, BASE, NAME, LOGO, getNews, respond, redirect, unavailable, notFound, gone,
   page, crumbs, crumbLd, ctaBand, esc, bxText, fmtDate, ld, articleUrl,
 } from '../../lib/news.js';
+import { onRequest as sitemap } from './sitemap.xml.js';
 
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const slug = String(context.params.slug || '');
+  // Pages では sitemap.xml.js より [slug].js が先に当たる（2026-10-24 本番で確認）ので、ここで渡す
+  if (slug === 'sitemap.xml') return sitemap(context);
 
   let data;
   try {
