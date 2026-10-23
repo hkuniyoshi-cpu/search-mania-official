@@ -3,7 +3,7 @@
 
 import {
   SITE_URL, BASE, NAME, LOGO, getNews, respond, redirect, unavailable, notFound, gone,
-  page, crumbs, crumbLd, ctaBand, esc, bxText, fmtDate, ld, articleUrl,
+  page, crumbs, crumbLd, ctaBand, esc, bxText, fmtDate, ld, articleUrl, imageUrl, IMAGE_W, IMAGE_H,
 } from '../../lib/news.js';
 import { onRequest as sitemap } from './sitemap.xml.js';
 
@@ -48,13 +48,15 @@ function render(n) {
   const items = [['ホーム', '/'], [NAME, BASE], [n.title]];
   const points = lines(n.points);
   const modified = n.updated_at || n.published_at;
+  const ogImage = n.image ? imageUrl(n.image, 1200) : '';
 
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: n.title,
     description: n.description,
-    // 記事ごとの画像はまだないので image は付けない（ロゴは publisher.logo にだけ使う）
+    // 画像がない記事は image を付けない（ロゴは publisher.logo にだけ使う）
+    image: ogImage ? [ogImage] : undefined,
     datePublished: n.published_at || undefined,
     dateModified: modified || undefined,
     inLanguage: 'ja',
@@ -76,6 +78,7 @@ function render(n) {
     <span>出典 <strong>${esc(n.source_name)}</strong></span>
   </p>
 </header>
+${n.image ? `<figure class="eyecatch"><img src="${esc(imageUrl(n.image, 1200))}" srcset="${esc(imageUrl(n.image, 800))} 800w, ${esc(imageUrl(n.image, 1200))} 1200w, ${esc(imageUrl(n.image, 1536))} 1536w" sizes="(max-width: 780px) 100vw, 732px" width="${IMAGE_W}" height="${IMAGE_H}" alt="" fetchpriority="high"></figure>` : ''}
 ${points.length ? `<section class="points" aria-labelledby="pt-h"><h2 id="pt-h">この記事のポイント</h2><ul>${points.map(p => `<li class="bx">${bxText(p)}</li>`).join('')}</ul></section>` : ''}
 <div class="prose">
 ${bodyHtml(n.body)}
@@ -102,6 +105,7 @@ ${ctaBand()}
     desc: n.description,
     canonical,
     ogType: 'article',
+    image: ogImage,
     head: `${n.published_at ? `<meta property="article:published_time" content="${esc(n.published_at)}">\n` : ''}${ld(articleLd)}\n${ld(crumbLd(items.slice(0, 2).concat([[n.title, `${BASE}${n.slug}/`]])))}`,
     main,
   });
