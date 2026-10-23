@@ -18,6 +18,7 @@ SearchMania Inc.（サーチマニア）は 2026 年 1 月設立、沖縄県那�
 - [**Googleマップ集客とは｜2026年決定版**](https://search-mania.net/googlemap-shukyaku/) — 業界ピラーページ（6,800字）
 - [**手放しマップ集客とは（用語定義）**](https://search-mania.net/tebanashi-map-shukyaku/) — SearchMania独自カテゴリの一次出典
 - [**導入事例**](https://search-mania.net/case/) — 実店舗ケーススタディ集
+- [**Googleマップ最新情報**](https://search-mania.net/googlemap-news/) — Google の公式発表（Googleマップ・Googleビジネスプロフィール・検索アップデート・AI 検索）を日本の店舗オーナー向けに要約・解説。各記事に出典（Google の原文 URL）を明記
 - [手放しマップ集客 LP](https://search-mania.net/automap/)
 - [自動更新Webサイト LP](https://search-mania.net/autowebsite/)
 - [Googleマップ勉強会 申込](https://mapform.search-mania.net/)
